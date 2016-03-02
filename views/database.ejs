@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>Result Show</title>
+        
+        <style>
+
+
+
+       #header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+	#section {
+		    width:800px;
+		    float:left;
+		    padding:10px;	 	 
+		}
+
+		#nav {
+		    line-height:30px;
+		    background-color:#eeeeee;
+		    height:800px;
+		    width:150px;
+		    float:left;
+		    padding:2px;	      
+		}
+
+		#footer {
+		    background-color:black;
+		    color:white;
+		    clear:both;
+		    text-align:center;
+		   padding:5px;	 	 
+		}
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+        }
+        
+</style>
+
+    </head>
+    <body>
+
+                <div id = "header">
+                <h1><%=title%></h1>
+                </div>
+
+
+                <div  id="nav">
+
+             <button onclick="{location.href='http://localhost:9000/inputSelection'}">Back</button>
+             </div>
+
+                <div id="section">
+                <span>Data:</span>
+
+
+
+
+                <table border="1px solid black" style="width:100%">
+                <%var number1 = numberRowsE; %>
+
+
+                <% for (var i=0;    i<numberRowsE;  i++) { %>
+
+                        <% if (i ==0 ) {   %>
+                            <tr>
+                            <% for (var k =0; k<numberFieldsE; k++) { %>
+                            <th >
+
+                                    <%= nameOfFieldsE[k] %>
+
+                            </th>
+                            <% } %>
+                            </tr>
+                        <% } %>
+                        
+
+                        <tr>
+                        <% for (var j =0; j<numberFieldsE; j++) { %>
+                        <td style="width:100px">
+                               <%= dataForShowingE[i][j] %>
+                        </td>
+                        <% } %>
+                        </tr>
+
+
+
+
+    <% } %>
+                </table>
+
+                </div>
+             
+    <div id="footer">
+	@ Hunsicker DataBase Select Result
+	</div>
+
+    </body>
+
+    
+    
+
+
+
+</html>

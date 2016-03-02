@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>Existing Contact</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+       
+        <script type="text/javascript">
+        
+        $(document).ready(function() {
+                          
+                         $("#TableAll").toggle();
+                          $("#nav").height($("#section").outerHeight());
+                          
+                          });
+                          
+        function ContactNameOnChange(){
+                              var ContactNumber = $("#ContactName").val();
+                              
+                              //console.log(ContactNumber);
+                              
+                              //var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
+                              //var ContactID ="#"+(20*ContactNumber).toString();
+                              var FirstName="#"+ (20*ContactNumber+1).toString();
+                              var LastName="#"+ (20*ContactNumber+2).toString();
+                              var Phone="#"+(20*ContactNumber+3).toString();
+                              var Email = "#"+(20*ContactNumber+4).toString();
+                              var SiteAddress = "#"+(20*ContactNumber+5).toString();
+                              var SiteCity ="#"+ (20*ContactNumber+7).toString();
+                              var SiteState= "#"+(20*ContactNumber+6).toString();
+                              var SiteZip ="#"+(20*ContactNumber+8).toString();
+                              var CompanyName = "#"+(20*ContactNumber+11).toString();
+                       
+                              
+                              $("#ContactID").val(ContactNumber);
+                              $("#First").val($(FirstName).html());
+                              $("#Last").val($(LastName).html());
+                              $("#Phone").val($(Phone).html());
+                              $("#EMail").val($(Email).html());
+                              //console.log($(CompanyName).html());
+                              $("#CompanyName").val($(CompanyName).html());
+                              //$("#CompanyName").val('$(CompanyName).html()');
+
+                              $("#SiteAddress").val($(SiteAddress).html());
+                              $("#SiteState").val($(SiteState).html());
+                              $("#SiteCity").val($(SiteCity).html());
+                              $("#SiteZip").val($(SiteZip).html());
+                              $("#form_1").attr("action", "/chooseExistingVehicle/" + $("#ContactID option:selected").text()+"?ContactName=" +$("#ContactName option:selected").text()+"&CompanyID="+$("#CompanyID").html());
+                              console.log($("#form_1").attr("action"));
+                              //console.log($("#CompanyID").val());
+                           
+                          }
+        
+        function ContactIDOnChange(){
+             var ContactNumber = $("#ContactID").val();
+           
+             
+             var FirstName="#"+ (20*ContactNumber+1).toString();
+             var LastName="#"+ (20*ContactNumber+2).toString();
+             var Phone="#"+(20*ContactNumber+3).toString();
+             var Email = "#"+(20*ContactNumber+4).toString();
+             var SiteAddress = "#"+(20*ContactNumber+5).toString();
+             var SiteCity ="#"+ (20*ContactNumber+7).toString();
+             var SiteState= "#"+(20*ContactNumber+6).toString();
+             var SiteZip ="#"+(20*ContactNumber+8).toString();
+             var CompanyName = "#"+(20*ContactNumber+11).toString();
+             
+             $("#ContactName").val(ContactNumber);
+             $("#First").val($(FirstName).html());
+             $("#Last").val($(LastName).html());
+             $("#Phone").val($(Phone).html());
+             $("#EMail").val($(Email).html());
+             $("#CompanyName").val($(CompanyName).html());
+             $("#SiteAddress").val($(SiteAddress).html());
+             $("#SiteState").val($(SiteState).html());
+             $("#SiteCity").val($(SiteCity).html());
+             $("#SiteZip").val($(SiteZip).html());
+             $("#form_1").attr("action", "/chooseExistingVehicle/" + $("#ContactID option:selected").text()+"?ContactName=" +$("#ContactName option:selected").text()+"&CompanyID="+$("#CompanyID").html());
+             //console.log($("#form_1").attr("action"));
+
+
+        }
+        
+       
+        var arry2 = ['Hide All','Show All'];
+        
+        function hideContactInfo(){
+            var value = arry.shift();
+            arry.push(value);
+            $("#ContactInfo").toggle();
+                        document.getElementById("hide1").innerHTML = value;
+            
+            
+        }
+        
+        function showAll(){
+            var value = arry2.shift();
+            arry2.push(value);
+            document.getElementById("showall1").innerHTML = value;
+            $("#TableAll").toggle();
+                $("#nav").height($("#section").outerHeight());
+
+        }
+        function EditContactInfo(){
+            
+        }
+        function submitContact(){
+            ContactID =$("#ContactID option:selected").val();
+            if(ContactID ==-1){
+                alert("Please select a Contact and then click next.");
+                event.preventDefault();
+                return;
+            }
+            
+            //window.location = "http://localhost:9000/chooseExistingContactBasedOnCompanyID/"+CompanyID;
+
+        }
+        /*
+        function checkContactID(){
+            var count_Contact = parseInt(document.getElementById('ContactID').length);
+            console.log('count_ContactID ' +count_Contact);
+            if( count_Contact <2  ) {
+                window.alert('No Contact Information, Please insert One Contact First!');
+                document.getElementById('ContactID_Span').style.color="red";
+                return false;
+                
+            }
+            else{
+                
+              //  var cid = $('#ContactID');
+              var ContactIDValue = document.getElementById("ContactID");
+              var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
+
+                if(Choice  =="select")
+                {
+                    window.alert('Please choose a ContactID');
+                     document.getElementById('ContactID_Span').style.color="red";
+                    return false;
+                }
+                else{
+                return true;
+                }
+            }
+            
+            
+            return false;
+           
+        }
+        */
+        
+        </script>
+
+        <title> <%= h1 %></title>
+        
+        <style>
+
+
+
+       #header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+
+	#section {
+		    width:800px;
+		    float:left;
+		    padding:10px;
+            
+            height: auto;
+		}
+        #section1{
+            width:25%;
+            float:left;
+            padding:10px;
+            text-align: right;
+        }
+        #section2{
+            width:30%;
+            float:left;
+            padding:10px;
+            text-align: left;
+        }
+        #section3_4{
+            width:40%;
+            float:left;
+            text-align:right;
+            top:50%;
+            position: relative;
+            top:50px;
+            
+            
+        }
+        #section3{
+            width:40%;
+            float:left;
+            text-align:right;
+             padding:10px;
+        }
+        #section4{
+            width:40%;
+            float:left;
+            text-align:left;
+             padding:10px;
+            
+        }
+		#nav {
+		    line-height:30px;
+		    background-color:#eeeeee;
+		    height:auto;
+            min-height: 600px;
+            
+		    width:150px;
+		    float:left;
+		    padding:2px;	      
+		}
+
+		#footer {
+		    background-color:black;
+		    color:white;
+		    clear:both;
+		    text-align:center;
+		   padding:5px;	 	 
+		}
+        #ContactInfo
+        {
+            font-family:"Cursive", Cursive, serif;
+            font-size: 16px;
+        }
+        #showall1
+        {
+            position: fixed;
+            top:20%;
+            left:6%;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            
+        }
+        th, td {
+            padding: 5px;
+        }
+        .submit{
+            max-width: 150px;
+            max-height: 100px;
+        }
+        .input1 {
+            text-align: left;
+            width:200px;
+        }
+</style>
+
+    </head>
+    <body>
+        
+                <div id = "header">
+                <h1><%=title%></h1>
+                </div>
+
+
+                <div  id="nav">
+                <button onclick="{location.href='http://localhost:9000/userPage/inputSelection'}">Back To Home</button>
+                <button onclick="{location.href='http://localhost:9000/signout'}">signout</button>
+             </div>
+
+
+                <div id="section">
+                    
+                    <p>
+                    <% if(typeof(errorMessage) !== 'undefined') {%>
+                    <span style="color:red"><%= errorMessage %></span>
+                    <% } %>
+                    </p>
+                    <p>
+                    <% if(typeof(CompanyName) !== 'undefined') {%>
+                    <span style="color:green;display:none" id ="CompanyName_1">CompanyName is: <%= CompanyName %></span>
+                    <% } %>
+                    </p>
+                    <p>
+                    <% if(typeof(CompanyID) !== 'undefined') {%>
+                    <span style="color:green; display:none" id="CompanyID" value=""><%= CompanyID %></span>
+                    <% } %>
+                    </p>
+                <div id = "section1">
+                                  <br><br>
+                    Contact Name:<br><br>
+                   
+                    Contact ID:<br><br>
+                    First:<br><br>
+                    Last:<br><br>
+                    Phone:<br><br>
+                    Email:<br><br>
+                   
+                    Company Name:<br><br>
+                </div>
+                
+                <form id = "form_1" method="post" name="form1"   >
+              
+                    <div id = "section2">
+                    
+                    <p><span id="ContactID_Span" >Select Your ContactID Or Show All:    </span>
+                    <br><Select name = "ContactName" id="ContactName" onchange="ContactNameOnChange()"/>
+                    
+                    <option value="select">-- select --</option>
+                    <% for(var i = 0; i <ContactCount;i++) {%>
+                   <!-- <option value="<%= ContactID%>"><%=ContactID%></option>-->
+                    <option value="<%=i%>"><%=ContactName[i]%></option>
+                    <%}%>
+                    
+                            </select></p>
+                             <Select name = "ContactID" id="ContactID" onchange="ContactIDOnChange()"/>
+                            <option value="-1">-- select --</option>
+                            <% for(var i = 0; i <ContactCount;i++) {%>
+                            <!-- <option value="<%= ContactID%>"><%=ContactID%></option>-->
+                            <option value="<%=i%>"><%=ContactID[i]%></option>
+                            <%}%>
+                            </select>
+                            <br>
+                            <br>
+                            <input class ="input1"  type ="text" disabled id = "First"/><br><br>
+                            <input type ="text" class ="input1" disabled id = "Last"/><br><br>
+                            <input type ="text" disabled class ="input1"  id = "Phone"/><br><br>
+                            <input type ="text" disabled id = "EMail" class ="input1" /><br><br>
+                            <input type ="text" disabled id = "CompanyName" class ="input1" /><br><br>
+                            <button id="EditContactInfo" >Edit Contact Info</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="Add New Contact" >Add New Contact</button>
+                             <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitContact()">
+                          </div>
+                    
+                            <div id = "section3_4">
+                                Site Information<br><br>
+                            <div id="section3">
+                                Site Address:<br><br>
+                                City:<br><br>
+                                State:<br><br>
+                                Zip:<br><br>
+                                
+                                                        </div>
+                            <div id = "section4">
+                                <input class ="input1" type ="text" disabled id = "SiteAddress"><br><br>
+                                    <input class ="input1"  type ="text" disabled id = "SiteCity"><br><br>
+                                        <input type ="text" class ="input1" disabled id = "SiteState"><br><br>
+                                            <input type ="text" disabled class ="input1"  id = "SiteZip"><br><br>
+                                            
+                            </div>
+                            
+                        </div>
+               
+                           
+                </form>
+                  <!-- <button id = "hide1" onclick = "hideContactInfo()" >Hide</button><br>-->
+                  <div id = "table1">
+                  <table id = "TableAll" style="width:100%">
+                      <tr>
+                          <th>ContactID</th>
+                          <th>FirstName</th>
+                          <th>LastName</th>
+                          <th>Phone</th>
+                          <th>Email</th>
+                          <th>SiteAddress</th>
+                          <th>SiteCity</th>
+                          <th>SiteState</th>
+                          <th>SiteZip</th>
+                          <th>CSID</th>
+                          <th>CompanyID</th>
+                          <th>CompanyName</th>
+                        </tr>
+                      <% for (var i=0;    i<ContactCount;  i++) { %>
+                      <tr>
+                          <% for (var j =0; j<12; j++) { %>
+                          <% var id = (20*i+j).toString();%>
+                          <td style="width:100px"  id = "<%= id %>"><%= dataForShowingE[i][j] %></td>
+                          <% } %>
+                      </tr>
+                       <% } %>
+
+       
+                  </table>
+                  </div>
+                  
+                  
+                  <button id="showall1" style = "background-color : lightblue" onclick ="showAll()" >Show All</button>
+
+
+
+
+
+                </div>
+             
+    <div id="footer">
+	@ Hunsicker DataBase Choose Existing ContactID Information
+	</div>
+
+    </body>
+
+    
+    
+
+
+
+</html>
+
+
+
+

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>Existing Company</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+       
+        <script type="text/javascript">
+        
+        $(document).ready(function() {
+                          
+                         $("#TableAll").toggle();
+                          $("#nav").height($("#section").outerHeight());
+                          
+                          });
+                          
+        function CompanyNameOnChange(){
+                              var CompanyNumber = $("#CompanyName").val();
+                              
+                              //console.log(CompanyNumber);
+                              //var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
+                              var CompanyID ="#"+(20*CompanyNumber).toString();
+                              var Address="#"+ (20*CompanyNumber+2).toString();
+                              var City="#"+(20*CompanyNumber+3).toString();
+                              var State = "#"+(20*CompanyNumber+4).toString();
+                              var Zip = "#"+(20*CompanyNumber+5).toString();
+                              var FirstName ="#"+ (20*CompanyNumber+6).toString();
+                              var LastName= "#"+(20*CompanyNumber+7).toString();
+                              var Email ="#"+(20*CompanyNumber+8).toString();
+                              var Phone = "#"+(20*CompanyNumber+9).toString();
+                              //console.log("CompanyID  " +  (parseInt($(CompanyID).html())));
+                              
+                              $("#CompanyID").val(CompanyNumber);
+                              $("#Address").val($(Address).html());
+                              $("#City").val($(City).html());
+                              $("#State").val($(State).html());
+                              $("#Zip").val($(Zip).html());
+                              $("#BillingContactFirstName").val($(FirstName).html());
+                              $("#BillingContactLastName").val($(LastName).html());
+                              $("#BillingContactEmail").val($(Email).html());
+                              $("#BillingContactPhone").val($(Phone).html());
+                              $("#form_1").attr("action", "/chooseExistingContactBasedOnCompanyID/" + $("#CompanyID option:selected").text()+"/?CompanyName=\""+$("#CompanyName option:selected").text()+"\"");
+                              console.log($("#form_1").attr("action"));
+                              
+                           
+                          }
+        
+        function CompanyIDOnChange(){
+             var CompanyNumber = parseInt($("#CompanyID").val());
+             //console.log("CompanyNumber = " + CompanyNumber);
+             //var CompanyName ="#"+(20*CompanyNumber).toString();
+             var Address="#"+ (20*CompanyNumber+2).toString();
+             var City="#"+(20*CompanyNumber+3).toString();
+             var State = "#"+(20*CompanyNumber+4).toString();
+             var Zip = "#"+(20*CompanyNumber+5).toString();
+             var FirstName ="#"+ (20*CompanyNumber+6).toString();
+             var LastName= "#"+(20*CompanyNumber+7).toString();
+             var Email ="#"+(20*CompanyNumber+8).toString();
+             var Phone = "#"+(20*CompanyNumber+9).toString();
+             
+             //console.log("CompanyName   " +CompanyNumber );
+             $("#CompanyName").val(CompanyNumber);
+             console.log($("#CompanyName option:selected").text());
+              //$("#CompanyName").val(16);
+             $("#Address").val($(Address).html());
+             $("#City").val($(City).html());
+             $("#State").val($(State).html());
+             $("#Zip").val($(Zip).html());
+             $("#BillingContactFirstName").val($(FirstName).html());
+             $("#BillingContactLastName").val($(LastName).html());
+             $("#BillingContactEmail").val($(Email).html());
+             $("#BillingContactPhone").val($(Phone).html());
+             $("#form_1").attr("action", "/chooseExistingContactBasedOnCompanyID/" + $("#CompanyID option:selected").text()+"?CompanyName=\""+$("#CompanyName option:selected").text()+"\"");
+             console.log($("#form_1").attr("action"));
+
+        }
+        
+       
+        var arry2 = ['Hide All','Show All'];
+        
+        function hideContactInfo(){
+            var value = arry.shift();
+            arry.push(value);
+            $("#ContactInfo").toggle();
+                        document.getElementById("hide1").innerHTML = value;
+            
+            
+        }
+        
+        function showAll(){
+            var value = arry2.shift();
+            arry2.push(value);
+            document.getElementById("showall1").innerHTML = value;
+            $("#TableAll").toggle();
+                $("#nav").height($("#section").outerHeight());
+
+        }
+        function EditCompany(){
+            
+        }
+        function submitCompany(){
+            CompanyID =$("#CompanyID").val();
+            if(CompanyID ==-1){
+                alert("Please select a Company and then click next.");
+                event.preventDefault();
+                return;
+            }
+            
+            //window.location = "http://localhost:9000/chooseExistingContactBasedOnCompanyID/"+CompanyID;
+
+        }
+        /*
+        function checkContactID(){
+            var count_Contact = parseInt(document.getElementById('ContactID').length);
+            console.log('count_ContactID ' +count_Contact);
+            if( count_Contact <2  ) {
+                window.alert('No Contact Information, Please insert One Contact First!');
+                document.getElementById('ContactID_Span').style.color="red";
+                return false;
+                
+            }
+            else{
+                
+              //  var cid = $('#ContactID');
+              var ContactIDValue = document.getElementById("ContactID");
+              var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
+
+                if(Choice  =="select")
+                {
+                    window.alert('Please choose a ContactID');
+                     document.getElementById('ContactID_Span').style.color="red";
+                    return false;
+                }
+                else{
+                return true;
+                }
+            }
+            
+            
+            return false;
+           
+        }
+        */
+        
+        </script>
+
+        <title> <%= h1 %></title>
+        
+        <style>
+
+
+
+       #header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+
+	#section {
+		    width:800px;
+		    float:left;
+		    padding:10px;
+            
+            height: auto;
+		}
+        #section1{
+            width:25%;
+            float:left;
+            padding:10px;
+            text-align: right;
+        }
+        #section2{
+            width:30%;
+            float:left;
+            padding:10px;
+            text-align: left;
+        }
+        #section3_4{
+            width:40%;
+            float:left;
+            text-align:right;
+            top:50%;
+            position: relative;
+            top:50px;
+            
+            
+        }
+        #section3{
+            width:40%;
+            float:left;
+            text-align:right;
+             padding:10px;
+        }
+        #section4{
+            width:40%;
+            float:left;
+            text-align:left;
+             padding:10px;
+            
+        }
+		#nav {
+		    line-height:30px;
+		    background-color:#eeeeee;
+		    height:auto;
+            min-height: 600px;
+            
+		    width:150px;
+		    float:left;
+		    padding:2px;	      
+		}
+
+		#footer {
+		    background-color:black;
+		    color:white;
+		    clear:both;
+		    text-align:center;
+		   padding:5px;	 	 
+		}
+        #ContactInfo
+        {
+            font-family:"Cursive", Cursive, serif;
+            font-size: 16px;
+        }
+        #showall1
+        {
+            position: fixed;
+            top:20%;
+            left:6%;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            
+        }
+        th, td {
+            padding: 5px;
+        }
+        .submit{
+            max-width: 150px;
+            max-height: 100px;
+        }
+        .input1 {
+            text-align: left;
+            width:200px;
+        }
+</style>
+
+    </head>
+    <body>
+        
+                <div id = "header">
+                <h1><%=title%></h1>
+                </div>
+
+
+                <div  id="nav">
+                <button onclick="{location.href='http://localhost:9000/userPage/inputSelection'}">Back To Home</button>
+                <button onclick="{location.href='http://localhost:9000/signout'}">signout</button>
+             </div>
+
+
+                <div id="section">
+                    
+                    <p>
+                    <% if(typeof(errorMessage) !== 'undefined') {%>
+                    <span style="color:red"><%= errorMessage %></span>
+                    <% } %>
+                    </p>
+                <div id = "section1">
+                                  <br><br>
+                    Company Name:<br><br>
+                    Company ID:<br><br>
+                    Address:<br><br>
+                    City:<br><br>
+                    State:<br><br>
+                    Zip:<br><br>
+                </div>
+                
+                <form id = "form_1"method="post" name="form1"   >
+              
+                    <div id = "section2">
+                    
+                    <p><span id="ContactID_Span" >Select Your Company Or Show All:    </span>
+                    <br><Select name = "CompanyName" id="CompanyName" onchange="CompanyNameOnChange()"/>
+                    
+                    <option value="select">-- select --</option>
+                    <% for(var i = 0; i <CompanyCount;i++) {%>
+                   <!-- <option value="<%= ContactID%>"><%=ContactID%></option>-->
+                    <option value="<%=i%>"><%=CompanyName[i]%></option>
+                    <%}%>
+                    
+                            </select></p>
+                             <Select name = "CompanyID" id="CompanyID" onchange="CompanyIDOnChange()"/>
+                            <option value="-1">-- select --</option>
+                            <% for(var i = 0; i <CompanyCount;i++) {%>
+                            <!-- <option value="<%= ContactID%>"><%=ContactID%></option>-->
+                            <option value="<%=i%>"><%=CompanyID[i]%></option>
+                            <%}%>
+                            </select>
+                            <br>
+                            <br>
+                            <input class ="input1"  type ="text" disabled id = "Address"><br><br>
+                            <input type ="text" class ="input1" disabled id = "City"><br><br>
+                            <input type ="text" disabled class ="input1"  id = "State"><br><br>
+                            <input type ="text" disabled id = "Zip" class ="input1" ><br><br>
+                                
+                            <button id="EditCompanyInfo" >Edit Company Info</button>
+                             <input type="image" src ="../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitCompany()">
+                          </div>
+                    
+                            <div id = "section3_4">
+                                Billing Contact Information<br><br>
+                            <div id="section3">
+                                First Name:<br><br>
+                                Last Name:<br><br>
+                                Email:<br><br>
+                                Phone:<br><br>
+                                
+                                                        </div>
+                            <div id = "section4">
+                                <input class ="input1" type ="text" disabled id = "BillingContactFirstName"><br><br>
+                                    <input class ="input1"  type ="text" disabled id = "BillingContactLastName"><br><br>
+                                        <input type ="text" class ="input1" disabled id = "BillingContactEmail"><br><br>
+                                            <input type ="text" disabled class ="input1"  id = "BillingContactPhone"><br><br>
+                                            
+                            </div>
+                            
+                        </div>
+               
+                           
+                </form>
+                  <!-- <button id = "hide1" onclick = "hideContactInfo()" >Hide</button><br>-->
+                  <div id = "table1">
+                  <table id = "TableAll" style="width:100%">
+                      <tr>
+                          <th>CompanyID</th>
+                          <th>ComName</th>
+                          <th>BillingAddr</th>
+                          <th>BillingCity</th>
+                          <th>BillingState</th>
+                          <th>BillingZip</th>
+                          <th>BlCFirstName</th>
+                          <th>BlCLastName</th>
+                          <th>BlCEmail</th>
+                          <th>BlCPhone</th>
+                          <th>CSID</th>
+                        </tr>
+                      <% console.log("CompanyCount "  +CompanyCount)  %>
+                      <% for (var i=0;    i<CompanyCount;  i++) { %>
+                      <tr>
+                          <% for (var j =0; j<11; j++) { %>
+                          <% var id = (20*i+j).toString();%>
+                          <td style="width:100px"  id = "<%= id %>"><%= dataForShowingE[i][j] %></td>
+                          <% } %>
+                      </tr>
+                       <% } %>
+
+       
+                  </table>
+                  </div>
+                  
+                  
+                  <button id="showall1" style = "background-color : lightblue" onclick ="showAll()" >Show All</button>
+
+
+
+
+
+                </div>
+             
+    <div id="footer">
+	@ Hunsicker DataBase Choose Existing CompanyID Information
+	</div>
+
+    </body>
+
+    
+    
+
+
+
+</html>
+
+
+
+

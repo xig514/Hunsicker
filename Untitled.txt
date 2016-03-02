@@ -1,0 +1,85 @@
+Tiny Bugs:
+
+1. The length of both username and password should be smaller than 16!
+2. Match BillingZip and BillingCity and BillingState.
+3.1 If the Company has been found but the trivial information changed, then update this company.
+4.2 If the Company changed but the Contact is still the same, then update the Contact with this new CompanyID.
+5. Check the data when click next using Ajax.
+6. we should decide when Job insertion, is this Job Information already in the database.
+we require that one can only require one job in one day with the same Contact and VIN.
+7. change the database that we can make administrator by add a field called duty!(admin or normal user)
+8. add placeholder in selectByIDResult.ejs
+
+9.link to add contact page for e contacts in page http://localhost:9000/userRequireANewJob/Bob
+10. http://localhost:9000/userPage/Bob the first button :”add contact information and company for new user”
+“Search Job History”
+
+for existing user: go to require a new Job. if you have the Contact.
+
+
+11. add a Job in adminBob page
+12. when a user change the password. email to all contacts in this account.
+13. In Job history, edit the Job.
+14. step in http://localhost:9000/userRequireANewJob/xig514, create a page of all the Job Information, please check if it’s correct, if not , they can edit it.
+If yes, they can get a job number and option to print. 
+15. add a back button, which means to advert the former operation
+16. about the times cleaned.
+——————————————————
+for the Job Requirements
+miles/hours
+Vehicle Make Model
+take out the location.
+Truck Number
+Unit Number (only one)
+————————————
+P.O
+
+Workorder #(both or just one)
+—————————————————————————————————
+
+
+set a new account in administrator page
+
+ret the password for both users
+————————————————————————————————————
+**Add a exemption for the company
+
+parts yes/no
+service yes/no
+
+————————————————————————————————————
+
+
+1.buttons
+2.links and search 
+
+4.report
+
+
+
+
+———————————————————
+1.DPF Scheduled
+JobNumber
+view Job Details ->Contact Name: DPF Cleaning
+			Cancel 
+			reSchedule
+			new
+			edit the Information.
+
+2.Other in manufacture
+3.drop down in Vehicle Make
+4.TimesCleaned in DPF and add new DPF
+5.Contact Update
+Dec 7-12 new objective about what to do in January and Dec about get data from the truck.
+6. line 69 in submitDPF.js
+7. after changing DPF_DOC then change DPFID
+8.Give every vehicle a  when requiring a job
+
+
+
+——————————————————————————————————————————————————————————————————————————————————————————
+
+
+1. updateContactInformation line 58
+add a tag for showing the input of update

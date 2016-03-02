@@ -1,0 +1,22 @@
+ poolH.getConnection(function(err,connection){
+                        if (err) {
+                        connection.release();
+                        
+                        response.json({"code" : 100, "status" : "Error in connection database"});
+                        return;
+                        }
+ connection.query(queryClause2,function(err,rows){
+if(!err)
+{
+}
+else{
+                     var title = "Input into Company and Contact";
+                     response.render('UserInputContactAndCompany',{ title:title ,usernameE: request.params.id, errorMessage:'Failed to Select Contact'});
+                     }
+                     
+                     });
+    //-------------------------------------------------------------------------
+                         connection.on('error', function(err) {response.json({"code" : 100, "status" : "Error in connection database"});return;});
+
+}
+});

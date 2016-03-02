@@ -1,0 +1,42 @@
+
+****************************************************************************
+SELECT PartNumber,SerialNumber,count(*) FROM DPFDOC 
+GROUP by SerialNumber,PartNumber
+having count(*)>1
+
+
+
+
+
+****************************************************************************
+Add a sort in the select by username
+trans service
+brown
+
+
+
+2. Beta test
+across the country
+
+equipment 
+solution 
+data
+service
+
+
+robust
+
+
+
+———————————————————————————————————————————————————————
+andy’s suggestion
+1. multiple choice of the reason for cleaning
+2. input form 
+3. report
+4. Download data in a list 
+
+
+
+————————————————————————————————————————————————————————————————————————————————————
+fixed position in admin find a job and edit.
+

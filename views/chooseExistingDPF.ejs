@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>Existing DPF</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+       
+        <script type="text/javascript">
+        
+        $(document).ready(function() {
+                          
+                         $("#TableAll").toggle();
+                          $("#nav").height($("#section").outerHeight());
+                          
+                          });
+                  /*
+        function VINonChange(){
+                              var DPFNumber = $("#SerialNumber").val();
+                              
+                              //console.log(VehicleNumber);
+                              
+
+                              //var VehicleID="#"+ (20*VehicleNumber+1).toString();
+                              var UnitNumber="#"+ (20*VehicleNumber+2).toString();
+                              var Make="#"+(20*VehicleNumber+3).toString();
+                              var Model = "#"+(20*VehicleNumber+4).toString();
+                              var Year = "#"+(20*VehicleNumber+5).toString();
+
+                              //console.log($(CompanyID).html());
+                              
+                              $("#VehicleID").val(VehicleNumber);
+                              $("#UnitNumber").val($(UnitNumber).html());
+                              $("#Make").val($(Make).html());
+                              $("#Model").val($(Model).html());
+                              $("#Year").val($(Year).html());
+ 
+                              $("#form_1").attr("action", "/chooseExistingEngineBasedOnVehicle/?VIN="+ $("#VIN option:selected").text() +"&ContactID="+ $("#ContactID").html()+"&CompanyID=" +$("#CompanyID").html());
+                              
+                              
+                           
+                          }
+        */
+        function DPFIDonChange(){
+             var DPFNumber = $("#DPFID").val();
+             console.log(DPFNumber);
+           
+             var PartNumber="#"+ (20*DPFNumber+1).toString();
+             var SerialNumber="#"+ (20*DPFNumber+2).toString();
+             var OtherNumber="#"+ (20*DPFNumber+3).toString();
+             var Manufacturer="#"+(20*DPFNumber+4).toString();
+             var OuterDiameter	 = "#"+(20*DPFNumber+5).toString();
+             var SubstrateDiameter = "#"+(20*DPFNumber+6).toString();
+             var OuterLength = "#"+(20*DPFNumber+7).toString();
+             var SubstrateLength = "#"+(20*DPFNumber+8).toString();
+             var DPForDOC = "#"+(20*DPFNumber+9).toString();
+             var TypeOfSubstrate = "#"+(20*DPFNumber+10).toString();
+
+             
+             
+             $("#PartNumber").val($(PartNumber).html());
+             $("#SerialNumber").val($(SerialNumber).html());
+             $("#OtherNumber").val($(OtherNumber).html());
+             $("#Manufacturer").val($(Manufacturer).html());
+             $("#OuterDiameter").val($(OuterDiameter).html());
+             $("#SubstrateDiameter").val($(SubstrateDiameter).html());
+             $("#OuterLength").val($(OuterLength).html());
+             $("#SubstrateLength").val($(SubstrateLength).html());
+             $("#DPForDOC").val($(DPForDOC).html());
+             $("#TypeOfSubstrate").val($(TypeOfSubstrate).html());
+
+
+$("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&ContactID="+ $("#ContactID").html()+"&CompanyID=" +$("#CompanyID").html()+"&DPFID="+$("#DPFID option:selected").text());
+
+        }
+        
+       
+        var arry2 = ['Hide All','Show All'];
+        /*
+        function hideContactInfo(){
+            var value = arry.shift();
+            arry.push(value);
+            $("#ContactInfo").toggle();
+                        document.getElementById("hide1").innerHTML = value;
+            
+            
+        }
+        */
+        function showAll(){
+            var value = arry2.shift();
+            arry2.push(value);
+            document.getElementById("showall1").innerHTML = value;
+            $("#TableAll").toggle();
+                $("#nav").height($("#section").outerHeight());
+
+        }
+
+        function submitDPF(){
+            DPFID =$("#DPFID option:selected").val();
+            if(DPFID ==-1){
+                alert("Please select a DPFID and then click next.");
+                event.preventDefault();
+                return;
+            }
+            
+            //window.location = "http://localhost:9000/chooseExistingContactBasedOnCompanyID/"+CompanyID;
+
+        }
+        /*
+        function checkContactID(){
+            var count_Contact = parseInt(document.getElementById('ContactID').length);
+            console.log('count_ContactID ' +count_Contact);
+            if( count_Contact <2  ) {
+                window.alert('No Contact Information, Please insert One Contact First!');
+                document.getElementById('ContactID_Span').style.color="red";
+                return false;
+                
+            }
+            else{
+                
+              //  var cid = $('#ContactID');
+              var ContactIDValue = document.getElementById("ContactID");
+              var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
+
+                if(Choice  =="select")
+                {
+                    window.alert('Please choose a ContactID');
+                     document.getElementById('ContactID_Span').style.color="red";
+                    return false;
+                }
+                else{
+                return true;
+                }
+            }
+            
+            
+            return false;
+           
+        }
+        */
+        
+        </script>
+
+        <title> <%= h1 %></title>
+        
+        <style>
+
+
+
+       #header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+
+	#section {
+		    width:800px;
+		    float:left;
+		    padding:10px;
+            
+            height: auto;
+		}
+        #section1{
+            width:25%;
+            float:left;
+            padding:10px;
+            text-align: right;
+        }
+        #section2{
+            width:30%;
+            float:left;
+            padding:10px;
+            text-align: left;
+        }
+
+		#nav {
+		    line-height:30px;
+		    background-color:#eeeeee;
+		    height:auto;
+            min-height: 600px;
+            
+		    width:150px;
+		    float:left;
+		    padding:2px;	      
+		}
+
+		#footer {
+		    background-color:black;
+		    color:white;
+		    clear:both;
+		    text-align:center;
+		   padding:5px;	 	 
+		}
+
+        #showall1
+        {
+            position: fixed;
+            top:20%;
+            left:6%;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            
+        }
+        th, td {
+            padding: 5px;
+        }
+        .submit{
+            max-width: 150px;
+            max-height: 100px;
+        }
+        .input1 {
+            text-align: left;
+            width:200px;
+        }
+        #section3_4{
+            width:40%;
+            float:left;
+            text-align:right;
+            top:50%;
+            position: relative;
+            top:50px;
+            
+            
+        }
+        #section3{
+            width:40%;
+            float:left;
+            text-align:right;
+            padding:10px;
+        }
+        #section4{
+            width:40%;
+            float:left;
+            text-align:left;
+            padding:10px;
+            
+        }
+
+</style>
+
+    </head>
+    <body>
+        
+                <div id = "header">
+                <h1><%=title%></h1>
+                </div>
+
+
+                <div  id="nav">
+                <button onclick="{location.href='http://localhost:9000/userPage/inputSelection'}">Back To Home</button>
+                <button onclick="{location.href='http://localhost:9000/signout'}">signout</button>
+             </div>
+
+
+                <div id="section">
+                    
+                    <p>
+                    <% if(typeof(errorMessage) !== 'undefined') {%>
+                    <span style="color:red"><%= errorMessage %></span>
+                    <% } %>
+                    </p>
+                    <p>
+                    <% if(typeof(username) !== 'undefined') {%>
+                    <span style="color:green;display:none">Add a Job for ( <%= username %> ).</span>
+                    <% } %>
+                    </p>
+                    <p>
+                    <% if(typeof(CompanyID) !== 'undefined') {%>
+                    <span style = "color:green">This is the DPF of Company:
+                    <span style="color:green " id ="CompanyID"><%= CompanyID %></span>
+                    <% } %>
+                    </p>
+                    <p>
+                    <% if(typeof(ContactID) !== 'undefined') {%>
+                    <span style="color:green ;display:none" id = "ContactID"><%= ContactID %></span>
+                    <% } %>
+                    </p>
+                    <p>
+                    <% if(typeof(VIN) !== 'undefined') {%>
+                    <span style="color:green ;display:none" id = "VIN"><%= VIN %></span>
+                    <% } %>
+                    </p>
+                <div id = "section1">
+                                  <br><br>
+                    DPFID :<br><br>
+                    Serial Number:<br><br>
+                    
+                   
+                   
+                    Part Number:<br><br>
+                    Other Number:<br><br>
+                    Manufacturer:<br><br>
+                    DPF or DOC:<br><br>
+                    Type Of Substrate:<br><br>
+                   
+                   
+                </div>
+                
+                <form id = "form_1" method="post" name="form1"   >
+              
+                    <div id = "section2">
+                    
+                    <p><span id="SerialNumber1" >Select Your DPF Or Show All:    </span>
+                    <br>
+                       
+                       <Select name = "DPFID" id="DPFID" onchange="DPFIDonChange()"/>
+                       <option value="-1">-- select --</option>
+                       <% for(var i = 0; i <DPFCount;i++) {%>
+                       <!-- <option value="<%= ContactID%>"><%=ContactID%></option>-->
+                       <option value="<%=i%>"><%=DPFID[i]%></option>
+                       <%}%>
+                       
+                        </select>
+                       
+                         </p>
+                         
+                         <!--
+                         <Select name = "SerialNumber" id="SerialNumber" onchange="SerialNumberonChange()"/>
+                         
+                         <option value="select">-- select --</option>
+                         <% for(var i = 0; i <DPFCount;i++) {%>
+                       
+                         <option value="<%=i%>"><%=SerialNumber[i]%></option>
+                         <%}%>
+                        
+                         </select>
+                        -->
+                     
+                            <input type ="text" disabled class ="input1"  id = "SerialNumber"/><br><br>
+                            <input type ="text" disabled class ="input1"  id = "PartNumber"/><br><br>
+                            <input type ="text" disabled class ="inpu1"id = "OtherNumber"  /><br><br>
+                            <input type ="text" disabled  class ="input1"id = "Manufacturer" /><br><br>
+                             <input type ="text" class ="input1" disabled id = "DPForDOC"/><br><br>
+                            <input type ="text" disabled  class ="input1"id = "TypeOfSubstrate" /><br><br>
+                            <button id="ADDNewDPF" >Add New DPF</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button id="EditDPFInfo" >Edit DPF Info</button>
+                             <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitDPF()">
+                          </div>
+                    <div id = "section3_4">
+                        Dimensions<br><br>
+                        <div id="section3">
+                            Outer Diameter:<br><br>
+                            Substrate Diameter:<br><br>
+                            Outer Length:<br><br>
+                            Substrate Length:<br><br>
+                            
+                        </div>
+                        <div id = "section4">
+                            <input class ="input1" type ="text" disabled id = "OuterDiameter"><br><br>
+                                <input class ="input1"  type ="text" disabled id = "SubstrateDiameter"><br><br>
+                                    <input type ="text" class ="input1" disabled id = "OuterLength"><br><br>
+                                        <input type ="text" disabled class ="input1"  id = "SubstrateLength"><br><br>
+                                            
+                                            </div>
+                        
+                    </div>
+
+
+
+
+                </form>
+                  <!-- <button id = "hide1" onclick = "hideContactInfo()" >Hide</button><br>-->
+                  <div id = "table1">
+                  <table id = "TableAll" style="width:100%">
+                      <tr>
+                          <th>DPFID</th>
+                          <th>PartNumber</th>
+                          <th>SerialNumber</th>
+                          <th>OtherNumber</th>
+                          <th>Manufacturer</th>
+                          <th>OuterDiameter</th>
+                          <th>SubstrateDiameter</th>
+                          <th>OuterLength</th>
+                          <th>SubstrateLength</th>
+                          <th>DPForDOC</th>
+                          <th>TypeOfSubstrate</th>
+                          <th>TimesCleaned</th>
+                         
+                        </tr>
+                      <% for (var i=0;    i<DPFCount  ;  i++) { %>
+                      <tr>
+                          <% for (var j =0; j<12; j++) { %>
+                          <% var id = (20*i+j).toString();%>
+                          <td style="width:100px"  id = "<%= id %>"><%= dataForShowingE[i][j] %></td>
+                          <% } %>
+                      </tr>
+                       <% } %>
+
+       
+                  </table>
+                  </div>
+                  
+                  
+                  <button id="showall1" style = "background-color : lightblue" onclick ="showAll()" >Show All</button>
+
+
+
+
+
+                </div>
+             
+    <div id="footer">
+	@ Hunsicker DataBase Choose Existing DPF Information
+	</div>
+
+    </body>
+
+    
+    
+
+
+
+</html>
+
+
+
+

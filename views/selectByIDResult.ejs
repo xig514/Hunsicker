@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        
+  
+       <title> <%= title%> </title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://localhost:9000/javascripts/jquery.autotab.js"></script>
+<script src = "http://localhost:9000/javascripts/typeahead.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+                      $("#section2").toggle();
+                      $("#section3").toggle();
+                      $("#section4").toggle();
+                      $("#button1").click(editDPF);
+                      $("#button2").click(editVehicle);
+                      $("#button3").click(editJob);
+                      $("#DPFID2").val($("#DPFID").val());
+                      $("#VIN_1").val($("#VIN").val());
+                      $('input.typeahead').typeahead({
+                                                     name: 'typeahead',
+                                                     remote: 'http://localhost:9000/admin_SearchDPF?key=%QUERY',
+                                                     limit: 10
+                                                     });
+                      
+                      
+                      
+                      
+                      
+                      
+                      });
+                      
+                      function showDPF(){
+                          if($("#DPFID").val()=='' || $("#DPFID").val==null)
+                          {
+                              alert('No DPF record for this Job. Please input one!');
+                          }
+                          else{
+                          $.ajax({
+                                 url: 'http://localhost:9000/showDPF?key='+$("#DPFID").val(),
+                                 // dataType: "jsonp",
+                                 data:'',
+                                 type: 'GET',
+                                 jsonpCallback: 'callback',
+                                 success: function (data) {
+                                 
+                                 if(data[0]=='not found')
+                                 {
+                                 $('#lblResponse').html('Error connecting to the server.');
+                                 }
+                                 else{
+                                 //console.log(data[5]+"    "+data[10]);
+                                 $("#TimesCleaned").val(data[0]);
+                                 $("#PartNumber").val(data[1]);
+                                 $("#SerialNumber").val(data[2]);
+                                 $("#OtherNumber").val(data[3]);
+                                 $("#Manufacturer").val(data[4]);
+                                 $("#OuterDiameter").val(data[5]);
+                                 $("#SubstrateDiameter").val(data[6]);
+                                 $("#OuterLength").val(data[7]);
+                                 $("#SubstrateLength").val(data[8]);
+                                 $("#DPForDOC").val(data[9]);
+                                 $("#TypeOfSubstrate").val(data[10]);
+                                 
+                                 }
+                                 },
+                                 error: function (xhr, status, error) {
+                                 console.log('Error: ' + error.message);
+                                 $('#lblResponse').html('Error connecting to the server.');
+                                 },
+                                 });
+                          }
+                          
+                      }
+                    function submitDPF(){
+                      
+                      if($("#DPFID").val()=='' ||$("#DPFID").val()==null )
+                      {
+                          $("#DPFID").val('newDPF');
+                          alert($("#DPFID").val());
+                      }
+                                 
+                      var s=  confirm("Do you really want to update or new this DPF information?");
+                        if (s==true)
+                        {
+                            var dataToPost = {};
+                            dataToPost.JobID = ($("#JobID").val());
+                            dataToPost.TimesCleaned=($("#TimesCleaned").val());
+                            dataToPost.PartNumber=($("#PartNumber").val());
+                                      dataToPost.SerialNumber=($("#SerialNumber").val());
+                                                dataToPost.OtherNumber=($("#OtherNumber").val());
+                                                if($("#Manufacturer").val()=='Manufacturer...')
+                                                {
+                                                     dataToPost.Manufacturer="";
+                                                }
+                                                else{
+                                                          dataToPost.Manufacturer=($("#Manufacturer").val());
+                                                }
+                                                                    dataToPost.OuterDiameter=($("#OuterDiameter").val());
+                                                                              dataToPost.SubstrateDiameter=($("#SubstrateDiameter").val());
+                                                                                        dataToPost.OuterLength=($("#OuterLength").val());
+                                                                                                  dataToPost.SubstrateLength=($("#SubstrateLength").val());
+                                                                                                            dataToPost.DPForDOC=($("#DPForDOC").val());
+                                                                                                                      dataToPost.TypeOfSubstrate=($("#TypeOfSubstrate").val());
+                                                                                                                      dataToPost.Location=($("#JL").val());
+                                                                                                                      console.log(dataToPost);
+                            $.ajax({
+                                   url: 'http://localhost:9000/submitDPF?key='+$("#DPFID").val(),
+                                   dataType: "json",
+                                   data: (dataToPost),
+                                   type: 'POST',
+                                   callback: '',
+                                   success: function(data1){
+                                    if(data1=='SU')
+                                   {
+                                   alert('Successfully update DPF');
+                                   location.reload();
+
+                                   }
+                                   else if (data1 =='SI')
+                                   {
+                                   alert('Successfully insert DPF');
+                                   location.reload();
+
+                                   }
+                                   else if (data1=='FI')
+                                   {
+                                   alert('Failed to Insert');
+                                   }
+                                   else if (data1=='FU')
+                                   {
+                                   alert('Failed to Update');
+                                   }
+                                   else if (data1 =='FUU'){
+                                   alert('Failed to Update Existing DPF(but you don\' know the DPFID)');
+                                   }
+                                   else if (data1=='Failed_Link')
+                                   {
+                                   alert('Failed to update Job with this DPFID');
+                                   }
+                                   else if (data1=='error in finding maxDPFID')
+                                   {
+                                   alert('Error in finding maxDPFID')
+                                   }},
+                                   error: function (xhr, status, error) {
+                                   console.log('Error: ' + error.message);
+                                   $('#lblResponse').html('Error connecting to the server.');
+                                   },
+                                   });
+                         
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                      function editDPF()
+                      {
+                          $("#section2").toggle();
+                          $("#section4").toggle();
+                  
+                      }
+//---------------------------------------------------------------------------------------------------------
+function showVehicle(){
+    var a =$("#toggleControl_Vehicle").val()
+    //alert(a);
+    if(($("#VIN").val()=='' || $("#VIN").val==null)&& a ==1)
+    {
+        alert('No DPF record for this Job. Please input one!');
+        $("#toggleControl_Vehicle").val(2);
+    }
+    else{
+        $.ajax({
+               url: 'http://localhost:9000/showVehicle?key='+$("#VIN").val(),
+               // dataType: "jsonp",
+               data:'',
+               type: 'GET',
+               jsonpCallback: 'callback',
+               success: function (data) {
+               
+               if(data[0]=='not found')
+               {
+               $('#lblResponse').html('Error connecting to the server.');
+               }
+               else{
+               //console.log(data[5]+"    "+data[10]);
+               $("#VIN_1").val($("#VIN").val());
+               $("#UnitNumber").val(data[2]);
+               $("#VehicleMake").val(data[0]);
+               $("#VehicleModel").val(data[1]);
+               $("#VehicleYear").val(data[3]);
+               $("#VehicleID").val(data[4]);
+               }
+               },
+               error: function (xhr, status, error) {
+               console.log('Error: ' + error.message);
+               $('#lblResponse1').html('Error connecting to the server.');
+               },
+               });
+             $("#toggleControl_Vehicle").val(1);
+    }
+
+}
+//----------------------------------------------------------------------------------------------------------------------
+function submitVehicle(){
+    if($("#VIN_1").val()=='' || $("#VIN_1").val()==null )
+    {
+        alert("Please input a specific VIN for this vehicle");
+    }
+  /*  if($("#VehicleID").val()=='' || $("#VehicleID").val()==null)
+    {
+        $("#VehicleID").val('newVehicle');
+    }*/
+    var s=  confirm("Do you really want to update or new this Vehicle information?");
+    if (s==true)
+    {
+        var dataToPost = {};
+        
+        dataToPost.VIN=($("#VIN_1").val());
+        dataToPost.VehicleID=($("#VehicleID").val())
+        dataToPost.VehicleMake=($("#VehicleMake").val());
+        dataToPost.VehicleModel=($("#VehicleModel").val());
+        dataToPost.UnitNumber=($("#UnitNumber").val());
+        dataToPost.VehicleYear=($("#VehicleYear").val());
+        console.log(dataToPost);
+        $.ajax({
+               url: 'http://localhost:9000/submitVehicle?key='+$("#VehicleID").val(),
+               dataType: "json",
+               data: (dataToPost),
+               type: 'POST',
+               callback: '',
+               success: function(data1){
+               if(data1=='SU')
+               {
+               alert('Successfully update Vehicle');
+               }
+               else if (data1 =='SI')
+               {
+               alert('Successfully insert Vehicle');
+               }
+               else if (data1=='FI')
+               {
+               alert('Failed to Vehicle');
+               }
+               else if (data1=='FU')
+               {
+               alert('Failed to Vehicle');
+               }
+               },
+               error: function (xhr, status, error) {
+               console.log('Error: ' + error.message);
+               $('#lblResponse1').html('Error connecting to the server.');
+               },
+               });
+               
+    }
+    else
+    {
+        return;
+    }
+
+}
+//----------------------------------------------------------------------------------------------------------
+                    function editVehicle()
+                    {
+                       
+                        $("#section3").toggle();
+                        
+                    }
+                    function editJob()
+                    {
+                      document.getElementById('WO').readOnly = false;
+                      document.getElementById('PO').readOnly = false;
+                         document.getElementById('VIN').readOnly = false;
+                            document.getElementById('RFC').readOnly = false;
+                               document.getElementById('ET').readOnly = false;
+                                  document.getElementById('TOD').readOnly = false;
+                                     document.getElementById('OJID').readOnly = false;
+                                        document.getElementById('JL').readOnly = false;
+                               
+                               
+
+                    }
+    </script>
+
+        <style>
+            
+            .typeahead, .tt-query, .tt-hint, .DPF-query1,.DPF-query2,.Vehicle-query1 {
+                border: 2px solid #CCCCCC;
+                border-radius: 4px;
+                font-size: 10px;
+                height: 10px;
+                line-height: 10px;
+                outline: medium none;
+                padding: 2px 3px;
+                width: 100px;
+            }
+        .Vehicle-query1{
+            border: 2px solid #CCCCCC;
+            border-radius: 4px;
+            font-size: 10px;
+            height: 10px;
+            line-height: 10px;
+            outline: medium none;
+            padding: 2px 3px;
+            width: 200px;
+
+        }
+        .Main_table_input{
+            width:250px;
+            border: 2px solid #CCCCCC;
+            border-radius: 4px;
+        }
+        .Main_table_input2{
+            border: 2px solid #CCCCCC;
+            border-radius: 4px;
+        }
+    
+        .typeahead {
+            background-color: #FFFFFF;
+        }
+        .typeahead:focus {
+            border: 2px solid #0097CF;
+        }
+        .tt-query {
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+        }
+        .tt-hint {
+            color: #999999;
+        }
+        .tt-dropdown-menu {
+            background-color: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 12px;
+            padding: 8px 0;
+            width: 422px;
+        }
+        .tt-suggestion {
+            font-size: 24px;
+            line-height: 24px;
+            padding: 3px 20px;
+        }
+        .tt-suggestion.tt-is-under-cursor {
+            background-color: #0097CF;
+            color: #FFFFFF;
+        }
+        .tt-suggestion p {
+            margin: 0;
+        }
+
+       #header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+     
+  
+	#section {
+		    width:800px;
+		    float:left;
+		    padding:10px;	 	 
+		}
+        #section2
+        {
+            position: absolute;
+            width:200px;
+            right:600px;
+            top:200px;
+            padding:10px;
+            height:200px;
+            
+        }
+        #section3
+        {
+            position: absolute;
+            width:200px;
+            right:600px;
+            bottom: 1px;
+            padding:10px;
+            height:200px;
+            
+            
+        }
+        #section4{
+            position: absolute;
+            width:160px;
+            right:500px;
+            top:280px;
+            padding:10px;
+            height:200px;
+            
+            
+        }
+		#nav {
+		    line-height:30px;
+		    background-color:#eeeeee;
+		    height:800px;
+		    width:150px;
+		    float:left;
+		    padding:2px;	      
+		}
+
+		#footer {
+		    background-color:black;
+		    color:white;
+		    clear:both;
+		    text-align:center;
+		   padding:5px;	 	 
+		}
+        
+        
+</style>
+
+    </head>
+    <body>
+
+                <div id = "header">
+                <h1><%=title%></h1>
+                </div>
+
+
+                <div  id="nav">
+            <button onclick="{location.href='http://localhost:9000/inputSelection'}">back</button>
+             <button onclick="{location.href='http://localhost:9000/signout'}">signout</button>
+
+             </div>
+
+
+                <div id="section">
+                    <p><span style="color:blue">Input the JobID to do the Job.</span></p>
+                    <p>
+                    <% if(typeof(errorMessage) !== 'undefined') {%>
+                    <span style="color:red"><%= errorMessage %></span>
+                    <% } %>
+                    </p>
+                    
+            <form method = 'post' name = "form_Select_By_ID_Result" id = "form" action ="/selectByIDResult" >
+                
+               <p> <label for="JobID">JobID: </label><br><input type ="text" name = "JobID" id = "JobID"readonly = "readonly" value="<%=JobID%>" class="Main_table_input"></p>
+                   
+                     <p> <label for="DPFID">DPFID: </label><br> <input type ="text" name = "DPFID" id ="DPFID" readonly = "readonly" value ="<%=DPFID%>"class="Main_table_input">
+                         <button type= "button" id = "button1" onclick="showDPF()">Edit DPF Info</button>
+                         </p>
+                         
+                   <p><label for="ContactID">ContactID: </label> <br><input type ="text" value ="<%=ContactID%>" name = "ContactID"  readonly = "readonly" pattern="\d{1,}"class="Main_table_input"></p>
+                       
+             <p>  <label for="WorkOrderNumber">WorkOrderNumber: </label> <br><input type ="text" name = "WorkOrderNumber" id="WO" value ="<%=WorkOrderNumber%>" readonly = "readonly"class="Main_table_input"></p>
+                 
+              <p> <label for="PurchaseOrderNumber">PurchaseOrderNumber: </label> <br><input type ="text" value ="<%=PurchaseOrderNumber%>" name = "PurchaseOrderNumber" readonly = "readonly" id ="PO"class="Main_table_input"></p>
+                  
+                  <p> <label for="StratTime">StartTime: </label><br><input style="width:300px" type ="text" name = "StartTime" readonly = "readonly" value= "<%=StartTime%>" min ="<%=Today%>"class="Main_table_input2"></p>
+                 
+                   <p> <label for="EndTime">EndTime: </label>   <br> <input type ="date" style="width:300px"name = "EndTime" readonly = "readonly" id="ET" min = "<%=Today%>"class="Main_table_input"></p>
+                       
+                <p> <label for="VIN">VIN: </label> <br><input type ="text" name = "VIN" readonly = "readonly" value= "<%=VIN%>" id="VIN" class="Main_table_input">
+                    <button type="button" id = "button2" onclick="showVehicle()" >Edit Vehicle Info</button>
+                    
+                    </p>
+                    
+                    <p> <label for="ReasonForCleaning">Reason For Cleaning: </label><br> <input type ="text" name = "ReasonForCleaning" readonly = "readonly" value="<%=ReasonForCleaning%>" id="RFC"class="Main_table_input"></p>
+                        
+                    <p> <label for="TypeOfDriving">Type Of Driving: </label> <br><input type ="text" name = "TypeOfDriving" readonly = "readonly" id="TOD" value ="<%=TypeOFDriving%>"class="Main_table_input"></p>
+                    
+                    <p> <label for="OldJobID">OldJobID: </label><br> <input type ="text" name = "OldJobID" readonly = "readonly"  id="OJID" value ="<%=OldJobID%>"class="Main_table_input"></p>
+                        
+                    <p> <label for="JobLocation">JobLocation: </label> <br><input type ="text" name = "JobLocation" readonly = "readonly" value ="<%=JobLocation%>" id="JL"class="Main_table_input"></p>
+                                         <input type = "submit" value = "SelectByID">
+                </form>
+            <button tyoe="button" id="button3">Edit Job table</button>
+
+                              
+
+                </div>
+                <div id="section2">
+                    
+                    <h1> DPFTable</h1>
+                    <p>
+                    <label for="DPFID">DPFID: </label><br>
+                    <input id ="DPFID2"class="typeahead tt-query" readonly = "readonly" spellcheck="false" autocomplete="off" name="typeahead" type="text" placeHolder=""  >
+                    </br>
+                    <label for="TimesCleaned">Times Cleaned: </label><br>
+                    <input type = "text" class="DPF-query1" name = "TimesCleaned" id ="TimesCleaned" readonly="readonly"><br>
+                    <label for="PartNumber"> PartNumber: </label><br>
+                    <input type = "text" class="DPF-query1" name = "PartNumber" id ="PartNumber" ><br>
+                        <label for="SerialNumber">SerialNumber: </label><br>
+                    <input type = "text" class="DPF-query1" name = "SerialNumber" id ="SerialNumber"><br>
+                        <label for="OtherNumber">OtherNumber:</label><br>
+                    <input type = "text" class="DPF-query1" name = "OtherNumber" id ="OtherNumber"><br>
+                        <label for="Manufacturer">Manufacturer:</label><br>
+                    <select  name = "Manufacturer" id ="Manufacturer">
+                        <option selectedvalue ="">Manufacturer...</option>
+                        <option value="Caterpillar">Caterpillar</option>
+                        <option value="Cummins">Cummins</option>
+                        <option value="Detroit Diesel">Detroit Diesel</option>
+                       
+                        <option value="ECS">ECS</option>
+                        <option value="Fleetguard/Nelson">Fleetguard/Nelson</option>
+                        <option value="International">International</option>
+                        <option value="John Deere">John Deere</option>
+                        <option value="Mercedes">Mercedes</option>
+                        <option value="Perkins">Perkins</option>
+                        <option value="PUrifilter">PUrifilter</option>
+                        <option value="Takeuchi">Takeuchi</option>
+                        <option value="Volvo">Volvo</option>
+                        <option value="Cleair">Cleair</option>
+                        <option value="DCL">DCL</option>
+                        <option value="Donaldson">Donaldson</option>
+                        <option value="Englehard">Englehard</option>
+                        <option value="Hapco/Harco">Hapco/Harco </option>
+                        <option value="Isuzu"> Isuzu</option>
+                        <option value="Johnson Matthey">Johnson Matthey </option>
+                        <option value="Nett">Nett </option>
+                        <option value="Paccar">Paccar </option>
+                        <option value="RoadWarrior"> RoadWarrior</option>
+                        <option value="UD">UD </option>
+                        <option value="Other"> Other</option>
+                        </select>
+                </div>
+                <div id="section4">
+                    
+                        <label for="OuterDiameter"> Outer Diameter:</label><br>
+                    <input type = "text" class="DPF-query2" name = "OuterDiameter" id ="OuterDiameter"  pattern="^\d{1,3}*\.\d{1,2}$" placeholder="xxx.xx"><br>
+                        <label for="SubstrateDiameter">Substrate Diameter:</label><br>
+                    <input type = "text"class="DPF-query2" name = "SubstrateDiameter" id ="SubstrateDiameter" pattern="^\d{1,3}*\.\d{1,2}$" placeholder="xxx.xx"><br>
+                        <label for="OuterLength">Outer Length:</label><br>
+                    <input type = "text" class="DPF-query2" name = "OuterLength" id ="OuterLength" pattern="^\d{1,3}*\.\d{1,2}$" placeholder="xxx.xx"><br>
+                        <label for="SubstrateLength">Substrate Length:</label><br>
+                    <input type = "text" class="DPF-query2" name = "SubstrateLength" id ="SubstrateLength" pattern="^\d{1,3}*\.\d{1,2}$" placeholder="xxx.xx">
+                        
+                        DPForDOC:<select name ="DPForDOC" id="DPForDOC">
+                            <option selected value="">Type Of Filter...</option>
+                            <option value="DPF">DPF</option>
+                            <option value="DOC">DOC</option>
+                            <option value="SCR">SCR</option>
+                        </select>
+                        <br>
+                        Type Of Substrate:<select name ="TypeOfSubstrate" id="TypeOfSubstrate">
+                            <option selected value="">Type Of Substrate...</option>
+                            <option value="Cordierite (ceramic)">Cordierite (ceramic)</option>
+                            <option value="Silicon carbide">Silicon carbide</option>
+                            
+                        </select>
+                        
+                        <br><br>
+                        
+                                            <button  type="button" onclick = "submitDPF()"id = "button_DPF">Edit DPF</button>
+                           <br>
+                        
+                        </p>
+                        
+                </div>
+                
+                <div id="section3">
+                    <h1> VehicleTable</h1>
+                    <p>
+                    
+                    <label for="VIN">VIN: </label><br>
+                    <input type = "text" class="Vehicle-query1" name = "VIN" id ="VIN_1" >
+                    <!--<label for="VehicleID">VehicleID: </label><br>
+                    <input type = "text" class="DPF-query1" name = "TimesCleaned" id ="TimesCleaned" readonly="readonly"><br>
+                    -->
+                    </br>
+                    <label for="UnitNumber">Unit Number: </label><br>
+                    <input type = "text" class="Vehicle-query1" name = "UnitNumber" id ="UnitNumber"><br>
+                    <label for="VehicleMake">Vehicle Make: </label><br>
+                    <!--<input type = "text" class="Vehicle-query1" name = "VehicleMake" id ="VehicleMake"><br>-->
+                    
+                    <select  name = "VehicleMake" id ="VehicleMake">
+                        <option selectedvalue ="">VehicleMake...</option>
+                        <option value="Volvo">Volvo</option>
+                        <option value="Freightliner">Freightliner</option>
+                        <option value="UD">UD</option>
+                        <option value="Peterbuilt">Peterbuilt</option>
+                        <option value="Van Hool">Van Hool</option>
+                        <option value="Thomas Bus">Thomas Bus</option>
+                        <option value="Navistar">Navistar</option>
+                        <option value="Ford">Ford</option>
+                        <option value="MCI">MCI</option>
+                        <option value="Kenworth">Kenworth</option>
+                        <option value="GMC">GMC</option>
+                        <option value="Pocono Peterbuilt">Pocono Peterbuilt</option>
+                        <option value="Chevrolet">Chevrolet</option>
+                        <option value="FRT">FRT</option>
+                        <option value="Blue Bird Bus/International">Blue Bird Bus/International</option>
+                        <option value="MCI Bus/International">MCI Bus/International</option>
+                        <option value="Gillig">Gillig</option>
+                        <option value="Transit Bus">Transit Bus</option>
+                        <option value="Other">Other</option>
+                     </select>
+                    <label for="VehicleModel">Vehicle Model: </label><br>
+                    <input type = "text" class="Vehicle-query1" name = "VehicleModel" id ="VehicleModel"><br>
+                    <label for="VehicleYear">Vehicle Year: </label><br>
+                    <select  name = "VehicleYear" id ="VehicleYear">
+                        <option selectedvalue ="">Year...</option>
+                        <option value="1999">1999</option>
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        </select>
+                    <input type = "text" class="Vehicle-query1" name = "VehicleID" id="VehicleID" hidden><br>
+                    <input type = "text" class="Vehicle-query1"  id="toggleControl_Vehicle"  value =1 hidden><br>
+                            
+
+                    <button  type="button" onclick = "submitVehicle()"id = "button_Vehicle">Edit Vehicle</button>
+                    <span id = "lblResponse1"> </span>
+                    </p>
+                    
+                </div>
+                
+    <div id="footer">
+	@ Hunsicker DataBase Select By ID Result
+	</div>
+
+    </body>
+
+    
+    
+
+
+
+</html>
+
+
