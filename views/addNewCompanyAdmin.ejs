@@ -9,10 +9,9 @@
 <script type="text/javascript">
 $(document).ready(function() {
                   
-                   $("#form2").toggle();
-                  $("#ss-submit").toggle();
-                   $("#ss-submit").attr('disabled', 'disabled');
-                  $("#button1").click(checkstep1);
+       
+                
+                  $("#submit1").click(checkstep1);
               
                   
                   
@@ -20,9 +19,7 @@ $(document).ready(function() {
     $('#BillingContactPhone1').autotab({ target: '#BillingContactPhone2', format: 'numeric' });
     $('#BillingContactPhone2').autotab({ target: '#BillingContactPhone3', format: 'numeric', previous: '#BillingContactPhone1' });
     $('#BillingContactPhone3').autotab({ previous: '#BillingContactPhone2', format: 'numeric'});
-                  $('#PhoneNumber1').autotab({ target: '#PhoneNumber2', format: 'numeric' });
-                  $('#PhoneNumber2').autotab({ target: '#PhoneNumber3', format: 'numeric', previous: '#PhoneNumber1' });
-                  $('#PhoneNumber3').autotab({ previous: '#PhoneNumber2', format: 'numeric'});
+
                   
                   
                   

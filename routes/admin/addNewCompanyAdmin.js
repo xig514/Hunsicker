@@ -17,7 +17,7 @@ var poolH = mysql.createPool({
 exports.show=function (request,response)
 {
 
-
+}
 
 exports.handle_Input=function (request,response)
 {

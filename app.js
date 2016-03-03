@@ -340,9 +340,9 @@ app.post('/addRemainingJobInfo2',function(req,res){
          });
 
 
-app.post('/addNewCompanyAdmin'){
+app.post('/addNewCompanyAdmin',function(req,res){
     addNewCompanyAdmin.handle_Input(req,res);
-}
+});
 /*
 app.get('/back',function(req,res,next){
         console.log(req.headers);
