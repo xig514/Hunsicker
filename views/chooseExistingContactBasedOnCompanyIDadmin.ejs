@@ -187,7 +187,7 @@
             width:40%;
             float:left;
             text-align:right;
-            top:50%;
+            
             position: relative;
             top:50px;
             
@@ -250,6 +250,16 @@
         .input1 {
             text-align: left;
             width:200px;
+        }
+        .button1{
+            top:120px;
+            position: relative;
+            
+        }
+        .button2{
+            top:120px;
+            position: relative;
+            
         }
 </style>
 
@@ -325,7 +335,7 @@
                             <input type ="text" disabled class ="input1"  id = "Phone"/><br><br>
                             <input type ="text" disabled id = "EMail" class ="input1" /><br><br>
                             <input type ="text" disabled id = "CompanyName" class ="input1" /><br><br>
-                            <button id="EditContactInfo" >Edit Contact Info</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="Add New Contact" >Add New Contact</button>
+                           
                              <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitContact()">
                           </div>
                     
@@ -350,6 +360,9 @@
                
                            
                 </form>
+                <button class="button1" id="EditContactInfo"  >Edit Contact Info</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class = "button2" id="Add_New_Contact" onclick="{location.href='http://localhost:9000/addNewContactAdmin?CompanyID=<%= CompanyID%>'}">Add New Contact</button>
+                
                   <!-- <button id = "hide1" onclick = "hideContactInfo()" >Hide</button><br>-->
                   <div id = "table1">
                   <table id = "TableAll" style="width:100%">

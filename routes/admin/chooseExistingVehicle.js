@@ -28,7 +28,10 @@ exports.show=function (request,response)
 exports.handle_Input=function (req,res)
 {
     //console.log('1111111');
+    if(req.params.id!=undefined){
     var ContactID= req.params.id;
+    }
+    
     var ContactName =req.query.ContactName;
     var dataForShowing1=new Array();
     var CompanyID = req.query.CompanyID;

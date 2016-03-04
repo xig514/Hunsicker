@@ -419,7 +419,7 @@ function handle_Contact_NEW(request,response){//a new Company
                                          if(!err)
                                          {
                                          
-                                         if(rows[0]!=null && rows[0].solution!=undefined)//we found the Contact also in the database, but the CompangID changed, so we should update the Contact Info.
+                                         if(rows[0]!=null && rows[0].solution!=undefined)//we found the Contact also in the database, but the CompanyID changed, so we should update the Contact Info.
                                          {
                                          console.log('The ContactID is :' +rows[0].solution);
                                          //than we check the Link between ContactID and User, is exists return already in the database

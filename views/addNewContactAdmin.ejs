@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html>
 	<head>
-        <title>Admin Input Company Information</title>
+        <title>Admin Input Contact Information. You will be forced to here if no Contact exists for this Company.</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-       <script src="http://localhost:9000/javascripts/jquery.autotab.js"></script>
+        <script src="http://localhost:9000/javascripts/jquery.cookie.js"></script>
+        <script src="http://localhost:9000/javascripts/jquery.autotab.js"></script>
+        
        
 <script type="text/javascript">
+    
 $(document).ready(function() {
                   
 
-                
+                  $("#c01").val($.cookie("FirstName"));
+                  $("#c02").val($.cookie("LastName"));
+              
+                  $("#PhoneNumber1").val($.cookie("Phone1"));
+                  $("#PhoneNumber2").val($.cookie("Phone2"));
+                  $("#PhoneNumber3").val($.cookie("Phone3"));
+                  $("#c04").val($.cookie("Email"));
                   
-
+                  $("#c05").val( getCookie("field1"));
+                  $("#c06").val( getCookie("field2"));
+                  $("#c07").val( getCookie("field3"));
+                  $("#SiteState1").val( getCookie("field4"));
+                  
+                  //alert(getCookie("field1"));
                   $('#PhoneNumber1').autotab({ target: '#PhoneNumber2', format: 'numeric' });
                   $('#PhoneNumber2').autotab({ target: '#PhoneNumber3', format: 'numeric', previous: '#PhoneNumber1' });
                   $('#PhoneNumber3').autotab({ previous: '#PhoneNumber2', format: 'numeric'});
@@ -21,8 +34,68 @@ $(document).ready(function() {
                   
 });
 
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+    }
+    return "";
+}
+
+function storeValues()
+{
+    $.cookie("FirstName", $("#c01").val(), { expires : 3 });
     
+    $.cookie("LastName", $("#c02").val(), { expires : 3 });
+    $.cookie("Phone1", $("#PhoneNumber1").val(), { expires : 3 });
+    $.cookie("Phone2", $("#PhoneNumber2").val(), { expires : 3 });
+    $.cookie("Phone3", $("#PhoneNumber3").val(), { expires : 3 });
+    $.cookie("Email", $("#c04").val(), { expires : 3 });
     
+    setCookie("field1", $("#c05").val(),3);
+    setCookie("field2",$("#c06").val(), 3);
+    setCookie("field3",$("#c07").val(),3);
+    setCookie("field4",$("#SiteState1").val(),3);
+    
+    //setCookie("field2", form.field2.value);
+    //setCookie("field3", form.field3.value);
+    //setCookie("field4", form.field4.value);
+    return true;
+}
+
+function FirstChange(){
+    $("#ContactName").val($("#c01").val()+" "+$("#c02").val());
+}
+function LastChange(){
+    $("#ContactName").val($("#c01").val()+" "+$("#c02").val());
+}
+
+function submitContact(){
+    storeValues();
+}
+
+function checkCookie() {
+    var user = getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+        user = prompt("Please enter your name:", "");
+        if (user != "" && user != null) {
+            setCookie("username", user, 365);
+        }
+    }
+}
     
 
 </script>
@@ -155,12 +228,12 @@ $(document).ready(function() {
                     </p>
                     <p>
                     <% if(typeof(CompanyID) !== 'CompanyID') {%>
-                    <span style="color:red" ><%= CompanyID %></span>
+                    <span style="color:red" hidden><%= CompanyID %></span>
                     <% } %>
                     </p>
-                <form method="POST" id = "ContactInput" onsubmit="" action="/addNewContactAdmin?CompanyName">
+                <form method="POST" id = "ContactInput" onsubmit="" action="/addNewContactAdmin?CompanyID=<%= CompanyID %>">
                     
-                    <span style="color:Blue">Please input your Company Information.</span>
+                    <span style="color:Blue">Please input your Contact Information. You will be forced to here if no Contact exists for this Company.</span>
                         <div id = "section1_1">
                             Contact Name*:</br></br>
                             First*:</br></br>
@@ -169,9 +242,9 @@ $(document).ready(function() {
                             Email:</br></br>
                             </div>
                         <div id = "section 1_2">
-                            <p> <input type ="text" id = "ContactName">
-                            <p> <input type ="text " id="c01" value="" placeholder = "FirstName"  name ="FirstName" required/></p>
-                            <p><input type ="text " id="c02" value="" name = "LastName" required placeholder = "LastName"/></p>
+                            <p> <input type ="text"disabled id = "ContactName">
+                            <p> <input type ="text " id="c01" value="" placeholder = "FirstName"  name ="FirstName" required onchange="FirstChange();"/></p>
+                            <p><input type ="text " id="c02" value="" name = "LastName" required placeholder = "LastName"onchange="LastChange();"/></p>
                             
                             <p><input style="width:30px" class="PhoneNumber" type = "text" id = "PhoneNumber1"  name = "PhoneNumber1" value ="" placeholder = "000" maxlength=3 required = "true" pattern="\d{3}"  />-
                             <input type = "text" name = "PhoneNumber2" id = "PhoneNumber2" class="PhoneNumber" style="width:30px" value ="" placeholder = "000" maxlength=3 required = "true" pattern="\d{3}"  />-
@@ -179,6 +252,8 @@ $(document).ready(function() {
                             </p>
                             
                             <p><input type ="email" id="c04" value="" placeholder = "EmailAddress" name ="EmailAddress"></p>
+                                
+    
                     </div>
                     </div>
                     <div id="section2">
@@ -194,8 +269,8 @@ $(document).ready(function() {
                         Company Status ID: </br></br>
                         </div>
                         <div id ="section2_2">
-                            <p><input type ="text " id="c05" value="" placeholder = "SiteAddress" name = "SiteAddress" required="true"></p>
-                                <p><input type ="text " id="c06" value="" placeholder = "SiteCity" name = "SiteCity"></p>
+                            <p><input type ="text" id="c05" value="" placeholder = "SiteAddress" name = "SiteAddress" required="true"></p>
+                            <p><input type ="text " id="c06" value="" placeholder = "SiteCity" name = "SiteCity"></p>
                                     <p><Select name = "SiteState" id="SiteState1"></p>
                                         
                                         <option selected value="">State...</option>
@@ -278,7 +353,7 @@ $(document).ready(function() {
                                     </p>
                                     
                                     
-                                    <p><input type = "text" name = "SiteZip" placeholder = "00000" value =""   maxlength=5  pattern= "\d{5}"></p>
+                                    <p><input type = "text" name = "SiteZip" placeholder = "00000" value =""  id="c07" maxlength=5  pattern= "\d{5}"></p>
                                         <p><input type = "radio" name = "ContactStatusID" value ="Yes" id="ConSI_1" role="radio" checked = "checked"/>
                                         <Span>Active</Span>
                                         <input type = "radio" name = "ContactStatusID" value ="No" id="ConSI_2" role="radio"/>

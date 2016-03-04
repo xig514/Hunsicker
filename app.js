@@ -62,6 +62,8 @@ var chooseExistingDPF =require('./routes/admin/chooseExistingDPF');
 
 var addRemainingJobInfo = require('./routes/admin/addRemainingJobInfo');
 var addNewCompanyAdmin=require('./routes/admin/addNewCompanyAdmin');
+var addNewContactAdmin = require('./routes/admin/addNewContactAdmin');
+
 
 
 //-----------------------------------------------------------------------------------------------------------------------end admin
@@ -291,7 +293,7 @@ app.post('/chooseExistingContactBasedOnCompanyID/:id',function (req,res){
 
 app.get('/chooseExistingVehicle/:id',function(req,res){
     
-    chooseExistingVehicle.show(req,res);
+    chooseExistingVehicle.handle_Input(req,res);
     
         });
 
@@ -339,6 +341,12 @@ app.post('/addRemainingJobInfo2',function(req,res){
          
          });
 
+app.get('/addNewContactAdmin',function(req,res){
+        addNewContactAdmin.show(req,res);
+        });
+app.post('/addNewContactAdmin',function(req,res){
+        addNewContactAdmin.handle_Input(req,res);
+        });
 
 app.post('/addNewCompanyAdmin',function(req,res){
     addNewCompanyAdmin.handle_Input(req,res);
