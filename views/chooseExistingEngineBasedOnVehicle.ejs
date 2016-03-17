@@ -11,13 +11,22 @@
                           
                          $("#TableAll").toggle();
                           $("#nav").height($("#section").outerHeight());
+                          var a =$("#selectedSerialNumber").html();
+                          //alert(a);
+                          if(a!=-1)
+                          {
+                          $('#SerialNumber option:contains('+ a +')').prop({selected: true});
+                          $("#SerialNumber").change();
+                          }
+                          
+                          
                           
                           });
                           
-        function VINonChange(){
-                              var EngineNumber = $("#VIN").val();
+        function SerialNumberonChange(){
+                              var EngineNumber = $("#SerialNumber").val();
 
-                              var EngineSerialNumber="#"+ (20*EngineNumber+1).toString();
+
                               var Make="#"+(20*EngineNumber+2).toString();
                               var Model = "#"+(20*EngineNumber+3).toString();
                               var Year = "#"+(20*EngineNumber+4).toString();
@@ -25,13 +34,13 @@
                               //console.log($(CompanyID).html());
                               
                               
-                              $("#EngineSerialNumber").val($(EngineSerialNumber).html());
+                             
                               $("#Make").val($(Make).html());
                               $("#Model").val($(Model).html());
                               $("#Year").val($(Year).html());
  
-                               $("#form_1").attr("action", "/chooseExistingDPF/?VIN="+ $("#VIN option:selected").text() +"&ContactID="+ $("#ContactID").html()+"&CompanyID=" +$("#CompanyID").html());                              //console.log($("#form_1").attr("action"));
-                              
+                               $("#form_1").attr("action", "/chooseExistingDPF?VIN="+ $("#VIN").val() +"&ContactID="+ $("#ContactID").html()+"&CompanyID=" +$("#CompanyID").html());                              //console.log($("#form_1").attr("action"));
+                              // alert($("#form_1").attr("action"));
                            
                           }
         
@@ -180,6 +189,16 @@
             text-align: left;
             width:200px;
         }
+        #AddNewEngine{
+            position: relative;
+            top:250px;
+            left:0px;
+        }
+        #EditEngineInfo{
+            position: relative;
+            top:250px;
+            left:0px;
+        }
 </style>
 
     </head>
@@ -218,13 +237,20 @@
                     <span style="color:green ;display:none" id = "ContactID"><%= ContactID %></span>
                     <% } %>
                     </p>
+                    <p>
+                    <% if(typeof(selectedSerialNumber) !== 'undefined') {%>
+                    <span style="color:green;" id="selectedSerialNumber" hidden  value=""><%= selectedSerialNumber %></span>
+                    <% } else{%>
                     
+                    <span id="selectedSerialNumber"style="color:red" value ="0" hidden>-1</span>
+                    <% } %>
+                    </p>
                 <div id = "section1">
                                   <br><br>
-                    VIN:<br><br>
+                    Engine Serial Number:<br><br>
                    
 
-                    Engine Serial Number:<br><br>
+                   VIN:<br><br>
                     Make:<br><br>
                     Model:<br><br>
                     Year:<br><br>
@@ -236,26 +262,25 @@
               
                     <div id = "section2">
                     
-                    <p><span id="VIN_span" >Select Your Engine Or Show All:    </span>
-                    <br><Select name = "VIN" id="VIN" onchange="VINonChange()"/>
+                    <p><span id="SerialNumber_span" >Select Your Engine Or Show All:    </span>
+                    <br><Select name = "SerialNumber" id="SerialNumber" onchange="SerialNumberonChange()"/>
                     
                     <option value="-1">-- select --</option>
                     <% for(var i = 0; i <EngineCount;i++) {%>
                    <!-- <option value="<%= ContactID%>"><%=ContactID%></option>-->
-                    <option value="<%=i%>"><%=VIN[i]%></option>
+                    <option value="<%=i%>"><%=SerialNumber[i]%></option>
                     <%}%>
                     
                             </select></p>
 
 
                             
-                            <input type ="text" class ="input1" disabled id = "EngineSerialNumber"/><br><br>
+                            <input type ="text" class ="input1" disabled id = "VIN" value="<%= VIN%>"/><br><br>
                             
                             <input type ="text" disabled class ="input1"  id = "Make"/><br><br>
                             <input type ="text" disabled id = "Model" class ="input1" /><br><br>
                             <input type ="text" disabled  class ="input1"id = "Year" /><br><br>
-                            <button id="AddNewEngine" >Add New Engine</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="EditEngineInfo" >Edit Engine Info</button>
+                       
                              <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitEngine()">
                           </div>
                     
@@ -263,6 +288,8 @@
                
                            
                 </form>
+                <button id="AddNewEngine"onclick="{location.href='http://localhost:9000/addNewEngineAdmin/<%= VIN %>?ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>'}" >Add New Engine</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button id="EditEngineInfo" >Edit Engine Info</button>
                   <!-- <button id = "hide1" onclick = "hideContactInfo()" >Hide</button><br>-->
                   <div id = "table1">
                   <table id = "TableAll" style="width:100%">

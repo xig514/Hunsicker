@@ -12,6 +12,13 @@
                          $("#TableAll").toggle();
                           $("#nav").height($("#section").outerHeight());
                           
+                          var a =$("#selectedVIN").html();
+                          if(a!=-1)
+                          {
+                          $('#VIN option:contains('+ a +')').prop({selected: true});
+                          $("#VIN").change();
+                          
+                          }
                           });
                           
         function VINonChange(){
@@ -80,9 +87,7 @@
                 $("#nav").height($("#section").outerHeight());
 
         }
-        function EditContactInfo(){
-            
-        }
+
         function submitVehicle(){
             VIN =$("#VehicleID option:selected").val();
             if(VehicleID ==-1){
@@ -91,41 +96,9 @@
                 return;
             }
             
-            //window.location = "http://localhost:9000/chooseExistingContactBasedOnCompanyID/"+CompanyID;
-
-        }
-        /*
-        function checkContactID(){
-            var count_Contact = parseInt(document.getElementById('ContactID').length);
-            console.log('count_ContactID ' +count_Contact);
-            if( count_Contact <2  ) {
-                window.alert('No Contact Information, Please insert One Contact First!');
-                document.getElementById('ContactID_Span').style.color="red";
-                return false;
-                
-            }
-            else{
-                
-              //  var cid = $('#ContactID');
-              var ContactIDValue = document.getElementById("ContactID");
-              var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
-
-                if(Choice  =="select")
-                {
-                    window.alert('Please choose a ContactID');
-                     document.getElementById('ContactID_Span').style.color="red";
-                    return false;
-                }
-                else{
-                return true;
-                }
-            }
-            
-            
-            return false;
            
         }
-        */
+
         
         </script>
 
@@ -204,6 +177,12 @@
             text-align: left;
             width:200px;
         }
+        .button1{
+            position:relative;
+            top:300px;
+            left:5px;
+            
+        }
 </style>
 
     </head>
@@ -228,8 +207,8 @@
                     <% } %>
                     </p>
                     <p>
-                    <% if(typeof(username) !== 'undefined') {%>
-                    <span style="color:green;display:none">Add a Job for ( <%= username %> ).</span>
+                    <% if(typeof(ContactName) !== 'undefined') {%>
+                    <span style="color:green;display:none">Add a Job for ( <%= ContactName %> ).</span>
                     <% } %>
                     </p>
                     <p>
@@ -240,6 +219,15 @@
                     <p>
                     <% if(typeof(ContactID) !== 'undefined') {%>
                     <span style="color:green ;display:none" id = "ContactID"><%= ContactID %></span>
+                    <% } %>
+                    </p>
+                    </p>
+                    <p>
+                    <% if(typeof(selectedVIN) !== 'undefined') {%>
+                    <span style="color:green; display:none" id="selectedVIN" value=""><%= selectedVIN %></span>
+                    <% } else{%>
+                    
+                    <span id="selectedVIN"style="color:red" value ="0" hidden>-1</span>
                     <% } %>
                     </p>
                 <div id = "section1">
@@ -283,15 +271,15 @@
                             <input type ="text" disabled class ="input1"  id = "Make"/><br><br>
                             <input type ="text" disabled id = "Model" class ="input1" /><br><br>
                             <input type ="text" disabled  class ="input1"id = "Year" /><br><br>
-                            <button id="Add New Vehicle" >Add New Vehicle</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="EditVehicleInfo" >Edit Vehicle Info</button>
-                             <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitVehicle()">
+                                                         <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitVehicle()">
                           </div>
                     
                     
                
                            
                 </form>
+                
+
                   <!-- <button id = "hide1" onclick = "hideContactInfo()" >Hide</button><br>-->
                   <div id = "table1">
                   <table id = "TableAll" style="width:100%">
@@ -317,7 +305,8 @@
                   </table>
                   </div>
                   
-                  
+                  <button class ="button1"id="Add New Vehicle"  onclick="{location.href='http://localhost:9000/addNewVehicleAdmin/<%= CompanyID%>?ContactID=<%= ContactID%>&ContactName=<%= username%>'}">Add New Vehicle</button>&nbsp;&nbsp;&nbsp;
+                  <button class = "button1"id="EditVehicleInfo" >Edit Vehicle Info</button>
                   <button id="showall1" style = "background-color : lightblue" onclick ="showAll()" >Show All</button>
 
 

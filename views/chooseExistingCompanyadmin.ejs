@@ -2,16 +2,25 @@
 <html>
 	<head>
         <title>Existing Company</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-       
+  
+        <script src="http://localhost:9000/javascripts/jquery.cookie.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script type="text/javascript">
         
         $(document).ready(function() {
                           
                          $("#TableAll").toggle();
                           $("#nav").height($("#section").outerHeight());
-                          
+                          //alert($("#selectedCompanyID").html());
+                          var a =$("#selectedCompanyID").html();
+                          if(a!=-1)
+                          {
+                          $('#CompanyID option:contains('+ a +')').prop({selected: true});
+                          $("#CompanyID").change();
+                          }
                           });
                           
         function CompanyNameOnChange(){
@@ -46,7 +55,9 @@
                           }
         
         function CompanyIDOnChange(){
+            
              var CompanyNumber = parseInt($("#CompanyID").val());
+             //alert("CompanyNumber" +CompanyNumber);
              //console.log("CompanyNumber = " + CompanyNumber);
              //var CompanyName ="#"+(20*CompanyNumber).toString();
              var Address="#"+ (20*CompanyNumber+2).toString();
@@ -98,7 +109,10 @@
         function EditCompany(){
             
         }
+        
+      
         function submitCompany(){
+            
             CompanyID =$("#CompanyID").val();
             if(CompanyID ==-1){
                 alert("Please select a Company and then click next.");
@@ -157,7 +171,10 @@
     padding:5px;
 }
 
-
+#CompanyID{
+    
+    margin-top:11px
+}
 	#section {
 		    width:800px;
 		    float:left;
@@ -208,9 +225,9 @@
             
 		    width:150px;
 		    float:left;
-		    padding:2px;	      
+		    padding:20px;
 		}
-
+        
 		#footer {
 		    background-color:black;
 		    color:white;
@@ -226,8 +243,8 @@
         #showall1
         {
             position: fixed;
-            top:20%;
-            left:6%;
+            top:34%;
+            left:1.8%;
         }
         table, th, td {
             border: 1px solid black;
@@ -244,6 +261,7 @@
         .input1 {
             text-align: left;
             width:200px;
+            height:20px;
         }
 </style>
 
@@ -256,8 +274,12 @@
 
 
                 <div  id="nav">
-                <button onclick="{location.href='http://localhost:9000/userPage/inputSelection'}">Back To Home</button>
-                <button onclick="{location.href='http://localhost:9000/signout'}">signout</button>
+                    <button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='http://localhost:9000/userPage/inputSelection'}">Back To Home</button>
+                
+                <button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;" onclick="{location.href='http://localhost:9000/signout'}">signout</button>
+                
+                <button class="btn btn-primary"  style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='http://localhost:9000/addNewJobAdmin'}">BackToLast</button>
+                
              </div>
 
 
@@ -266,6 +288,14 @@
                     <p>
                     <% if(typeof(errorMessage) !== 'undefined') {%>
                     <span style="color:red"><%= errorMessage %></span>
+                    <% } %>
+                    </p>
+                    <p>
+                    <% if(typeof(selectedCompanyID) !== 'undefined') {%>
+                    <span id="selectedCompanyID"style="color:red" value ="1" hidden ><%= selectedCompanyID%></span>
+                    <% } else{%>
+                    
+                     <span id="selectedCompanyID"style="color:red" value ="0" hidden>-1</span>
                     <% } %>
                     </p>
                 <div id = "section1">
@@ -362,7 +392,7 @@
                   </div>
                   
                   
-                  <button id="showall1" style = "background-color : lightblue" onclick ="showAll()" >Show All</button>
+                  <button id="showall1"class="btn btn-info"  style = "background-color : lightblue" onclick ="showAll()" >Show All</button>
 
 
 

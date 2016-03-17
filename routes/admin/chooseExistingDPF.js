@@ -83,7 +83,8 @@ exports.handle_Input=function (req,res)
                                              }
                                              
                                              else{console.log("no DPFDOC records");
-                                             
+                                             //jump to add new DPF page.
+                                             res.redirect('http://localhost:9000/addNewDPFAdmin?ContactID='+ContactID+'&VIN='+VIN+'&CompanyID='+CompanyID);
                                              
                                              }
                                              
@@ -93,7 +94,9 @@ exports.handle_Input=function (req,res)
                                              res.render('chooseExistingDPF', {h1:'Select DPF',use:{username:'Administrator'},title:'The result of all DPF',DPFCount:countDPF,DPFID:DPFID,VIN:VIN,ContactID: ContactID,dataForShowingE:dataForShowing1,CompanyID:CompanyID});
                                              }
                                              else{
-                                             //Jump tp add new vehicle because there is no vehicle records here.
+                                             //Jump tp add new DPF because there is no vehicle records here.
+                                             res.redirect('http://localhost:9000/addNewDPFAdmin?ContactID='+ContactID+'&VIN='+VIN+'&CompanyID='+CompanyID);
+
                                              }
                                              }
                                              

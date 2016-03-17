@@ -11,35 +11,13 @@
                           
                          $("#TableAll").toggle();
                           $("#nav").height($("#section").outerHeight());
-                          
-                          });
-                  /*
-        function VINonChange(){
-                              var DPFNumber = $("#SerialNumber").val();
-                              
-                              //console.log(VehicleNumber);
-                              
-
-                              //var VehicleID="#"+ (20*VehicleNumber+1).toString();
-                              var UnitNumber="#"+ (20*VehicleNumber+2).toString();
-                              var Make="#"+(20*VehicleNumber+3).toString();
-                              var Model = "#"+(20*VehicleNumber+4).toString();
-                              var Year = "#"+(20*VehicleNumber+5).toString();
-
-                              //console.log($(CompanyID).html());
-                              
-                              $("#VehicleID").val(VehicleNumber);
-                              $("#UnitNumber").val($(UnitNumber).html());
-                              $("#Make").val($(Make).html());
-                              $("#Model").val($(Model).html());
-                              $("#Year").val($(Year).html());
- 
-                              $("#form_1").attr("action", "/chooseExistingEngineBasedOnVehicle/?VIN="+ $("#VIN option:selected").text() +"&ContactID="+ $("#ContactID").html()+"&CompanyID=" +$("#CompanyID").html());
-                              
-                              
-                           
+                          a=$("#selectedDPFID").html();
+                          if(a!=-1){
+                          $('#DPFID option:contains('+ a +')').prop({selected: true});
+                          $("#DPFID").change();
                           }
-        */
+                          });
+              
         function DPFIDonChange(){
              var DPFNumber = $("#DPFID").val();
              console.log(DPFNumber);
@@ -105,40 +83,7 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
             //window.location = "http://localhost:9000/chooseExistingContactBasedOnCompanyID/"+CompanyID;
 
         }
-        /*
-        function checkContactID(){
-            var count_Contact = parseInt(document.getElementById('ContactID').length);
-            console.log('count_ContactID ' +count_Contact);
-            if( count_Contact <2  ) {
-                window.alert('No Contact Information, Please insert One Contact First!');
-                document.getElementById('ContactID_Span').style.color="red";
-                return false;
-                
-            }
-            else{
-                
-              //  var cid = $('#ContactID');
-              var ContactIDValue = document.getElementById("ContactID");
-              var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
-
-                if(Choice  =="select")
-                {
-                    window.alert('Please choose a ContactID');
-                     document.getElementById('ContactID_Span').style.color="red";
-                    return false;
-                }
-                else{
-                return true;
-                }
-            }
-            
-            
-            return false;
-           
-        }
-        */
-        
-        </script>
+              </script>
 
         <title> <%= h1 %></title>
         
@@ -238,7 +183,20 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
             padding:10px;
             
         }
-
+        #ADDNewDPF{
+            padding:10px;
+            margin:10px;
+            position:relative;
+            left:0px;
+            top:115px;
+        }
+        #EditDPFInfo{
+            padding:10px;
+            margin:10px;
+            position:relative;
+            left:0px;
+            top:115px;
+        }
 </style>
 
     </head>
@@ -283,6 +241,15 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
                     <span style="color:green ;display:none" id = "VIN"><%= VIN %></span>
                     <% } %>
                     </p>
+                    <p>
+                    <% if(typeof(selectedDPFID) !== 'undefined') {%>
+                    <span style="color:green ;" id = "selectedDPFID"><%= selectedDPFID %></span>
+                    <% }else{%>
+                     <span style="color:green ;" id = "selectedDPFID"hidden>-1</span>
+                    
+                    <% } %>
+                    </p>
+                    
                 <div id = "section1">
                                   <br><br>
                     DPFID :<br><br>
@@ -329,14 +296,13 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
                          </select>
                         -->
                      
-                            <input type ="text" disabled class ="input1"  id = "SerialNumber"/><br><br>
-                            <input type ="text" disabled class ="input1"  id = "PartNumber"/><br><br>
-                            <input type ="text" disabled class ="inpu1"id = "OtherNumber"  /><br><br>
-                            <input type ="text" disabled  class ="input1"id = "Manufacturer" /><br><br>
-                             <input type ="text" class ="input1" disabled id = "DPForDOC"/><br><br>
-                            <input type ="text" disabled  class ="input1"id = "TypeOfSubstrate" /><br><br>
-                            <button id="ADDNewDPF" >Add New DPF</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="EditDPFInfo" >Edit DPF Info</button>
+                            <input type ="text" disabled class ="input1"  name="SerialNumber" id = "SerialNumber"/><br><br>
+                            <input type ="text" disabled class ="input1"  name="PartNumber"id = "PartNumber"/><br><br>
+                            <input type ="text" disabled class ="inpu1"name="OtherNumber"id = "OtherNumber"  /><br><br>
+                            <input type ="text" disabled  class ="input1"name="Manufacturer"id = "Manufacturer" /><br><br>
+                             <input type ="text" class ="input1" disabled name="DPForDOC"id = "DPForDOC"/><br><br>
+                            <input type ="text" disabled  class ="input1"name="TypeOfSubstrate"id = "TypeOfSubstrate" /><br><br>
+                    
                              <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitDPF()">
                           </div>
                     <div id = "section3_4">
@@ -349,10 +315,10 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
                             
                         </div>
                         <div id = "section4">
-                            <input class ="input1" type ="text" disabled id = "OuterDiameter"><br><br>
-                                <input class ="input1"  type ="text" disabled id = "SubstrateDiameter"><br><br>
-                                    <input type ="text" class ="input1" disabled id = "OuterLength"><br><br>
-                                        <input type ="text" disabled class ="input1"  id = "SubstrateLength"><br><br>
+                            <input class ="input1" type ="text" disabled id = "OuterDiameter" name ="OuterDiameter"><br><br>
+                                <input class ="input1"  type ="text" disabled id = "SubstrateDiameter"name ="SubstrateDiameter"><br><br>
+                                    <input type ="text" class ="input1" disabled id = "OuterLength"name ="OuterLength"><br><br>
+                                        <input type ="text" disabled class ="input1"  id = "SubstrateLength"name ="SubstrateLength"><br><br>
                                             
                                             </div>
                         
@@ -362,6 +328,8 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
 
 
                 </form>
+                <button id="ADDNewDPF" onclick="{location.href='http://localhost:9000/addNewDPFAdmin?VIN=<%= VIN%>&ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>'}">Add New DPF</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button id="EditDPFInfo" >Edit DPF Info</button>
                   <!-- <button id = "hide1" onclick = "hideContactInfo()" >Hide</button><br>-->
                   <div id = "table1">
                   <table id = "TableAll" style="width:100%">

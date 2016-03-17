@@ -53,8 +53,8 @@ exports.handle_Input=function (req,res)
                                              {
                                              if(rows[0]!=null&&rows[0].countEngine!=undefined){
                                              countEngine = rows[0].countEngine;
-                                             VIN = new Array(countEngine);
-                                             VehicleID = new Array(countEngine);
+                                             SerialNumber = new Array(countEngine);
+                                             
                                              for(var i =0; i <countEngine ; i++)
                                              {
                                              if (rows[i]!=null && rows[i].VIN!= undefined)
@@ -63,7 +63,7 @@ exports.handle_Input=function (req,res)
                                              
                                              dataForShowing1[i]=new Array(5);
                                              
-                                             VIN[i]=rows[i].VIN;
+                                             SerialNumber[i]=rows[i].esn;
                                              //console.log("CompanyName " + i +"  =  " + rows[i].cn)
                                             // console.log("CompanyID " + i +"  =  " + rows[i].ci)
                                              //console.log("");
@@ -86,11 +86,11 @@ exports.handle_Input=function (req,res)
                                              }
                                             // console.log('CompanyCount = ' + countCompanyID);
                                              //;console.log(CompanyID);
-                                             res.render('chooseExistingEngineBasedOnVehicle', {h1:'Select Engine',use:{username:'Administrator'},title:'The result of all Engine Base On specific VIN',EngineCount:countEngine,VIN:VIN,ContactID: ContactID, CompanyID:CompanyID,dataForShowingE:dataForShowing1,});
+                                             res.render('chooseExistingEngineBasedOnVehicle', {h1:'Select Engine',use:{username:'Administrator'},title:'The result of all Engine Base On specific VIN',EngineCount:countEngine,VIN:VIN,SerialNumber:SerialNumber,ContactID: ContactID, CompanyID:CompanyID,dataForShowingE:dataForShowing1,});
                                              }
                                              else{
                                              //Jump tp add new vehicle because there is no vehicle records here.
-                                             res.redirect('http://localhost:9000/AddNewEngine/'+VIN+'/?ContactID='+ContactID+'&CompanyID='+CompanyID);
+                                             res.redirect('http://localhost:9000/AddNewEngineAdmin/'+VIN+'?ContactID='+ContactID+'&CompanyID='+CompanyID);
                                              }
                                              }
                                              
@@ -112,7 +112,7 @@ exports.handle_Input=function (req,res)
     }
     else{
         //go direct to page that need you to input a new Engine.
-        
+         res.redirect('http://localhost:9000/AddNewEngineAdmin/'+VIN+'?ContactID='+ContactID+'&CompanyID='+CompanyID);
         
     }
     

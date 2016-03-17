@@ -17,6 +17,8 @@ var mysql = require('mysql');
 
 var gmail = require('./routes/gmail');
 
+var http = require('http');
+
 //-----------------------------------------------------------------------------------------------------------------------
 
 
@@ -63,6 +65,9 @@ var chooseExistingDPF =require('./routes/admin/chooseExistingDPF');
 var addRemainingJobInfo = require('./routes/admin/addRemainingJobInfo');
 var addNewCompanyAdmin=require('./routes/admin/addNewCompanyAdmin');
 var addNewContactAdmin = require('./routes/admin/addNewContactAdmin');
+var addNewVehicleAdmin = require('./routes/admin/addNewVehicleAdmin');
+var addNewEngineAdmin =require('./routes/admin/addNewEngineAdmin');
+var addNewDPFAdmin = require('./routes/admin/addNewDPFAdmin');
 
 
 
@@ -351,6 +356,34 @@ app.post('/addNewContactAdmin',function(req,res){
 app.post('/addNewCompanyAdmin',function(req,res){
     addNewCompanyAdmin.handle_Input(req,res);
 });
+
+
+app.get('/addNewVehicleAdmin/:id',function(req,res){
+        
+        addNewVehicleAdmin.show(req,res);
+});
+app.post('/addNewVehicleAdmin/:id',function(req,res){
+        
+        addNewVehicleAdmin.handle_Input(req,res);
+        });
+
+
+app.get('/addNewEngineAdmin/:id',function(req,res){
+        addNewEngineAdmin.show(req,res);
+        });
+app.post('/addNewEngineAdmin/:id',function(req,res){
+         addNewEngineAdmin.handle_Input(req,res);
+         });
+
+app.get('/addNewDPFAdmin',function(req,res){
+        addNewDPFAdmin.show(req,res);
+        });
+app.post('/addNewDPFAdmin',function(req,res){
+         addNewDPFAdmin.handle_Input(req,res);
+         
+         
+         });
+
 /*
 app.get('/back',function(req,res,next){
         console.log(req.headers);
@@ -564,10 +597,14 @@ app.use(function(err, req, res, next) {
   });
 });*/
 
-var server=app.listen(9000,function()
+/*
+var server=app.listen(8000,function()
                       {
                       console.log('Listening Address: ', server.address().port);
                       
                       })
 
 module.exports = app;
+ */
+var server = http.createServer(app);
+server.listen(9000,'127.0.0.1');

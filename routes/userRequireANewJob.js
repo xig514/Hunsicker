@@ -344,12 +344,12 @@ function getContactID(req,res)
                                                               if(!err)
                                                               {
                                                               //console.log(rows[0]);
-                                                                                if (rows[0].countNum==1)
-                                                                                {
-                                                                                        // we should directly insert into the Job and without the DPFID
-                                                                                        console.log('Found this Vehicle');
-                                                                                        InsertJob(request,response);
-                                                                                }
+                                                              if (rows[0].countNum==1)
+                                                              {
+                                                              // we should directly insert into the Job and without the DPFID
+                                                              console.log('Found this Vehicle');
+                                                              InsertJob(request,response);
+                                                              }
                                                               else if (rows[0].countNum==0)
                                                               {
                                                                             //we should InsertInto Vehicle First

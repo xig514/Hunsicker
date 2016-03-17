@@ -11,7 +11,7 @@
     
 $(document).ready(function() {
                   
-
+                 
                   $("#c01").val($.cookie("FirstName"));
                   $("#c02").val($.cookie("LastName"));
               
@@ -30,7 +30,7 @@ $(document).ready(function() {
                   $('#PhoneNumber2').autotab({ target: '#PhoneNumber3', format: 'numeric', previous: '#PhoneNumber1' });
                   $('#PhoneNumber3').autotab({ previous: '#PhoneNumber2', format: 'numeric'});
                   
-                  
+                   FirstChange();
                   
 });
 
@@ -233,7 +233,7 @@ function checkCookie() {
                     </p>
                 <form method="POST" id = "ContactInput" onsubmit="" action="/addNewContactAdmin?CompanyID=<%= CompanyID %>">
                     
-                    <span style="color:Blue">Please input your Contact Information. You will be forced to here if no Contact exists for this Company.</span>
+                    <span style="color:Blue">Please input your Contact Information for Company: <%= CompanyName%>.</br> You will be forced to here if no Contact exists for this Company.</span>
                         <div id = "section1_1">
                             Contact Name*:</br></br>
                             First*:</br></br>
@@ -266,7 +266,7 @@ function checkCookie() {
                         City:</br></br>
                         State:</br></br>
                         Zip:</br></br>
-                        Company Status ID: </br></br>
+                        Contact Status ID: </br></br>
                         </div>
                         <div id ="section2_2">
                             <p><input type ="text" id="c05" value="" placeholder = "SiteAddress" name = "SiteAddress" required="true"></p>

@@ -3,16 +3,19 @@
 	<head>
         <title>Admin Input Company Information</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        
        <script src="http://localhost:9000/javascripts/jquery.autotab.js"></script>
-       
+        <script src="http://localhost:9000/javascripts/jquery.cookie.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
                   
        
                 
-                  $("#submit1").click(checkstep1);
-              
+    var r=confirm("Load Last Record?");
+    if (r == true) {
+                  loadCookie();
+                  }
+    
                   
                   
                   
@@ -24,59 +27,38 @@ $(document).ready(function() {
                   
                   
 });
-function checkstep1(){
-    $("#error_cp01").empty(); $("#error_cp02").empty() ;
-    $("#error_cp04").empty(); $("#error_cp06").empty() ;
-    $("#error_cp07").empty(); $("#error_cp08").empty() ;
-    $("#error_cp09").empty(); $("#error_cp_phone").empty() ;
 
-    var inpObj1 = document.getElementById("cp01");
-    var inpObj2 = document.getElementById("cp02");
-    var inpObj4 = document.getElementById("cp04");
-    var inpObj6 = document.getElementById("cp06");
-    var inpObj7 = document.getElementById("cp07");
-    var inpObj8 = document.getElementById("cp08");
+function setCookie(){
+    $.cookie("1", $("#cp01").val(), { expires : 2 });
+    $.cookie("2", $("#cp02").val(), { expires : 2 });
+    $.cookie("3", $("#cp03").val(), { expires : 2 });
+    $.cookie("5", $("#BillingState1").val(), { expires : 2 });
+    $.cookie("4",$("#cp04").val,{expires:2});
+    
+    $.cookie("BillingContactFirstName", $("#cp06").val(), { expires : 2 });
+    $.cookie("BillingContactLastName", $("#cp07").val(), { expires : 2 });
+    $.cookie("BillingContactEmail", $("#cp08").val(), { expires : 2 });
+    $.cookie("Phone1", $("#BillingContactPhone1").val(), { expires : 2 });
+    $.cookie("Phone2", $("#BillingContactPhone2").val(), { expires : 2 });
+    $.cookie("Phone3", $("#BillingContactPhone3").val(), { expires : 2 });
 
-    var inpObj_phone1 = document.getElementById("BillingContactPhone1");
-    var inpObj_phone2 = document.getElementById("BillingContactPhone2");
-    var inpObj_phone3 = document.getElementById("BillingContactPhone3");
+}
+function loadCookie(){
+    $("#cp06").val($.cookie("BillingContactFirstName"));
+    $("#cp07").val($.cookie("BillingContactLastName"));
+    $("#cp08").val($.cookie("BillingContactEmail"));
+    $("#BillingContactPhone1").val($.cookie("Phone1"));
+    $("#BillingContactPhone2").val($.cookie("Phone2"));
+    $("#BillingContactPhone3").val($.cookie("Phone3"));
+    $("#cp01").val($.cookie("1"));
+    $("#cp02").val($.cookie("2"));
+    $("#cp03").val($.cookie("3"));
+    $("#cp04").val($.cookie("4"));
+    $("#BillingState1").val($.cookie("5"));
     
-    if (inpObj1.checkValidity() == false) {
-        $("#error_cp01").text(inpObj1.validationMessage);
-        return;
-    }
-    if (inpObj2.checkValidity() == false) {
-        $("#error_cp02").text(inpObj2.validationMessage);
-        return;
-    }
-    if (inpObj4.checkValidity() == false) {
-        $("#error_cp04").text( inpObj4.validationMessage);
-        return;
-    }
-    if (inpObj6.checkValidity() == false) {
-        $("#error_cp06").text(inpObj6.validationMessage);
-        return;
-    }    if (inpObj7.checkValidity() == false) {
-        $("#error_cp07").text( inpObj7.validationMessage);
-        return;
-    }
-    if (inpObj8.checkValidity() == false) {
-        $("#error_cp08").text(  inpObj8.validationMessage);
-        return;
-    }
-
-    if (inpObj_phone1.checkValidity() == false || inpObj_phone2.checkValidity() == false ||inpObj_phone3.checkValidity() == false) {
-        $("#error_cp_phone").text('Incorrect Phone Number');
-        console.log('Error in phone');
-        return;
-    }
-
-    
-    
-    
-    $("#form1").toggle();
-    $("#form2").toggle();
-    $("#c01").focus();
+}
+function submitCompany(){
+    setCookie();
 }
 </script>
    <!--

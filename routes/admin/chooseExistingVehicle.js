@@ -81,7 +81,8 @@ exports.handle_Input=function (req,res)
                                              }
                                              
                                              else{console.log("no Vehicle records");
-                                             
+                                             //Jump to add vehicle page;
+                                             res.redirect('http://localhost:9000/addNewVehicleAdmin/'+CompanyID);
                                              
                                              }
                                              
@@ -92,6 +93,7 @@ exports.handle_Input=function (req,res)
                                              }
                                              else{
                                              //Jump tp add new vehicle because there is no vehicle records here.
+                                              res.redirect('http://localhost:9000/addNewVehicleAdmin/'+CompanyID+'?ContactID='+ContactID+'&ContactName=' +ContactName);
                                              }
                                              }
                                              

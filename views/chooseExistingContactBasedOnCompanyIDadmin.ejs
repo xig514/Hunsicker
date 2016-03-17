@@ -11,6 +11,14 @@
                           
                          $("#TableAll").toggle();
                           $("#nav").height($("#section").outerHeight());
+                          var a =$("#selectedContactID").html();
+                          if(a!=-1)
+                          {
+                          $('#ContactID option:contains('+ a +')').prop({selected: true});
+                          $("#ContactID").change();
+                          }
+
+                          
                           
                           });
                           
@@ -294,6 +302,14 @@
                     <span style="color:green; display:none" id="CompanyID" value=""><%= CompanyID %></span>
                     <% } %>
                     </p>
+                    <p>
+                    <% if(typeof(selectedContactID) !== 'undefined') {%>
+                    <span style="color:green; display:none" id="selectedContactID" value=""><%= selectedContactID %></span>
+                    <% } else{%>
+                    
+                    <span id="selectedContactID"style="color:red" value ="0" hidden>-1</span>
+                    <% } %>
+                    </p>
                 <div id = "section1">
                                   <br><br>
                     Contact Name:<br><br>
@@ -361,7 +377,7 @@
                            
                 </form>
                 <button class="button1" id="EditContactInfo"  >Edit Contact Info</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                <button class = "button2" id="Add_New_Contact" onclick="{location.href='http://localhost:9000/addNewContactAdmin?CompanyID=<%= CompanyID%>'}">Add New Contact</button>
+                <button class = "button2" id="Add_New_Contact" onclick="{location.href='http://localhost:9000/addNewContactAdmin?CompanyID=<%= CompanyID%>&CompanyName=<%= CompanyName%>'}">Add New Contact</button>
                 
                   <!-- <button id = "hide1" onclick = "hideContactInfo()" >Hide</button><br>-->
                   <div id = "table1">

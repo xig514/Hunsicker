@@ -87,7 +87,7 @@ exports.handle_CompanyInput=function (req,res)
                                              else{
                                              console.log("no contact records");
                                              //Here go direct to add new Contact for this company pape.
-                                             res.render('addNewContactAdmin',{title:'Add New Contact Admin',CompanyID:CompanyID});
+                                             res.render('addNewContactAdmin',{title:'Add New Contact Admin',CompanyName:CompanyName,CompanyID:CompanyID});
                                              }
                                              
                                              }
