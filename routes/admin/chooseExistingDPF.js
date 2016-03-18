@@ -18,7 +18,7 @@ exports.show=function (request,response)
 {
     //console.log(11111);
     response.writeHead(301,
-                       {Location: 'http://localhost:9000/inputSelection'}
+                       {Location: '/inputSelection'}
                        );
     response.end();
     //response.redirect('http:/localhost:9000/inputSelection');
@@ -84,7 +84,7 @@ exports.handle_Input=function (req,res)
                                              
                                              else{console.log("no DPFDOC records");
                                              //jump to add new DPF page.
-                                             res.redirect('http://localhost:9000/addNewDPFAdmin?ContactID='+ContactID+'&VIN='+VIN+'&CompanyID='+CompanyID);
+                                             res.redirect('/addNewDPFAdmin?ContactID='+ContactID+'&VIN='+VIN+'&CompanyID='+CompanyID);
                                              
                                              }
                                              
@@ -95,7 +95,7 @@ exports.handle_Input=function (req,res)
                                              }
                                              else{
                                              //Jump tp add new DPF because there is no vehicle records here.
-                                             res.redirect('http://localhost:9000/addNewDPFAdmin?ContactID='+ContactID+'&VIN='+VIN+'&CompanyID='+CompanyID);
+                                             res.redirect('/addNewDPFAdmin?ContactID='+ContactID+'&VIN='+VIN+'&CompanyID='+CompanyID);
 
                                              }
                                              }

@@ -359,32 +359,32 @@ var handle_setSelection=function(request, response) {
     code=code.toLowerCase();
     if (code.localeCompare("contact")==0)
     {
-        var rdirctIndex='http://localhost:9000/database/0';
+        var rdirctIndex='/database/0';
         response.redirect(rdirctIndex);
     }
     else if (code.localeCompare("job")==0)
     {
-        var rdirctIndex='http://localhost:9000/database/1';
+        var rdirctIndex='/database/1';
         response.redirect(rdirctIndex);
     }
     else if (code.localeCompare("vehicle")==0)
     {
-        var rdirctIndex='http://localhost:9000/database/2';
+        var rdirctIndex='/database/2';
         response.redirect(rdirctIndex);
     }
     else if (code.localeCompare("engine")==0)
     {
-        var rdirctIndex='http://localhost:9000/database/3';
+        var rdirctIndex='/database/3';
         response.redirect(rdirctIndex);
     }
     else if (code.localeCompare("company")==0)
     {
-        var rdirctIndex='http://localhost:9000/database/4';
+        var rdirctIndex='/database/4';
         response.redirect(rdirctIndex);
     }
     else if (code.localeCompare("dpfdoc")==0)
     {
-        var rdirctIndex='http://localhost:9000/database/5';
+        var rdirctIndex='/database/5';
         response.redirect(rdirctIndex);
     }
     else

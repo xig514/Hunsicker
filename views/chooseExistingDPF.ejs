@@ -80,7 +80,7 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
                 return;
             }
             
-            //window.location = "http://localhost:9000/chooseExistingContactBasedOnCompanyID/"+CompanyID;
+            //window.location = "/chooseExistingContactBasedOnCompanyID/"+CompanyID;
 
         }
               </script>
@@ -208,8 +208,8 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
 
 
                 <div  id="nav">
-                <button onclick="{location.href='http://localhost:9000/userPage/inputSelection'}">Back To Home</button>
-                <button onclick="{location.href='http://localhost:9000/signout'}">signout</button>
+                <button onclick="{location.href='/userPage/inputSelection'}">Back To Home</button>
+                <button onclick="{location.href='/signout'}">signout</button>
              </div>
 
 
@@ -328,7 +328,7 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
 
 
                 </form>
-                <button id="ADDNewDPF" onclick="{location.href='http://localhost:9000/addNewDPFAdmin?VIN=<%= VIN%>&ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>'}">Add New DPF</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button id="ADDNewDPF" onclick="{location.href='/addNewDPFAdmin?VIN=<%= VIN%>&ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>'}">Add New DPF</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <button id="EditDPFInfo" >Edit DPF Info</button>
                   <!-- <button id = "hide1" onclick = "hideContactInfo()" >Hide</button><br>-->
                   <div id = "table1">

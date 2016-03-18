@@ -104,7 +104,7 @@ exports.handle_Input=function (request,response)
                                                                            connection.release();
                                                                            if(!err ) {
                                                                            //we sucessfully input the data into Company ,then we should take care of the Contact Info
-                                                                           //response.redirect("http://localhost:9000/chooseExistingContactBasedOnCompanyID/+"+MaxCompanyID+"/?CompanyName=\""+CompanyName)+"\"";
+                                                                           //response.redirect("/chooseExistingContactBasedOnCompanyID/+"+MaxCompanyID+"/?CompanyName=\""+CompanyName)+"\"";
                                                                            jumpToChoose(request,response,MaxCompanyID);
                                                                            }
                                                                            else{

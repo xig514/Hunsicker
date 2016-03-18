@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+    <script>
+function validateForm() {
+    var x = document.forms["form1"]["username"].value;
+    var y = document.forms["form1"]["password"].value;
+    var patt =  /^[a-zA-Z0-9]+$/i
+    if (x == null || x == "" || y ==null || y == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+
+    if (!x.match(patt) )
+    {
+        alert("The User Name should contains only letters and digits");
+        return false;
+    }
+    if (!y.match(patt))
+    {
+        alert("The Password should contains only letters and digits");
+        return false;
+    }
+
+
+}
+
+
+</script>
+
+        <title> <%= h1 %></title>
+        
+        <style>
+
+
+
+       #header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+	#section {
+		    width:800px;
+		    float:left;
+		    padding:10px;	 	 
+		}
+
+		#nav {
+		    line-height:30px;
+		    background-color:#eeeeee;
+		    height:800px;
+		    width:150px;
+		    float:left;
+		    padding:2px;	      
+		}
+
+		#footer {
+		    background-color:black;
+		    color:white;
+		    clear:both;
+		    text-align:center;
+		   padding:5px;	 	 
+		}
+        
+        
+</style>
+
+    </head>
+    <body>
+
+                <div id = "header">
+                <h1><%=title%></h1>
+                </div>
+
+
+                <div  id="nav">
+
+             <button onclick="{location.href='http://localhost:9000/login'}">Back</button>
+             </div>
+
+
+                <div id="section">
+                <span>Login:</span>
+                <% if(typeof(again) !== 'undefined') {%>
+                <font size="2" color="red"><%=  again %></font>
+                <% } %>
+                <form method="post" name="form1" action="/login" onsubmit="return validateForm()">
+                <p><label for="username">Account Name:</label><br><input type="text" name="username" required="true"></p>
+                <p><label for="password">Account Password:</label><br> <input type="password" name="password" required="true"> </p>
+                <input type="submit" value="Login" >
+                    <a href="/signup" title="register">register</a>
+                   <p>
+                   <% if(typeof(errorMessage) !== 'undefined') {%>
+                    <span><%= errorMessage %></span>
+                    <% } %>
+                    </p>
+                </form>
+
+
+
+
+
+
+                </div>
+             
+    <div id="footer">
+	@ Hunsicker DataBase Login
+	</div>
+
+    </body>
+
+    
+    
+
+
+
+</html>
+
+
+
+

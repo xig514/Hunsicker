@@ -120,7 +120,7 @@
                 return;
             }
             
-            //window.location = "http://localhost:9000/chooseExistingContactBasedOnCompanyID/"+CompanyID;
+            //window.location = "/chooseExistingContactBasedOnCompanyID/"+CompanyID;
 
         }
         /*
@@ -280,8 +280,8 @@
 
 
                 <div  id="nav">
-                <button onclick="{location.href='http://localhost:9000/userPage/inputSelection'}">Back To Home</button>
-                <button onclick="{location.href='http://localhost:9000/signout'}">signout</button>
+                <button onclick="{location.href='/userPage/inputSelection'}">Back To Home</button>
+                <button onclick="{location.href='/signout'}">signout</button>
              </div>
 
 
@@ -377,7 +377,7 @@
                            
                 </form>
                 <button class="button1" id="EditContactInfo"  >Edit Contact Info</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                <button class = "button2" id="Add_New_Contact" onclick="{location.href='http://localhost:9000/addNewContactAdmin?CompanyID=<%= CompanyID%>&CompanyName=<%= CompanyName%>'}">Add New Contact</button>
+                <button class = "button2" id="Add_New_Contact" onclick="{location.href='/addNewContactAdmin?CompanyID=<%= CompanyID%>&CompanyName=<%= CompanyName%>'}">Add New Contact</button>
                 
                   <!-- <button id = "hide1" onclick = "hideContactInfo()" >Hide</button><br>-->
                   <div id = "table1">

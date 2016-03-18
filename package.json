@@ -23,6 +23,8 @@
     "passport-local": "*",
     "serve-favicon": "~2.3.0",
     "xmlhttprequest": "* ",
-    "xoauth2": "^1.1.0"
+    "xoauth2": "^1.1.0",
+    "process":"*",
+    "pm2":"*"
   }
 }

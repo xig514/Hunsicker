@@ -18,7 +18,7 @@ exports.show=function (request,response)
 {
     //console.log(11111);
     response.writeHead(301,
-                       {Location: 'http://localhost:9000/inputSelection'}
+                       {Location: '/inputSelection'}
                        );
     response.end();
     //response.redirect('http:/localhost:9000/inputSelection');
@@ -90,7 +90,7 @@ exports.handle_Input=function (req,res)
                                              }
                                              else{
                                              //Jump tp add new vehicle because there is no vehicle records here.
-                                             res.redirect('http://localhost:9000/AddNewEngineAdmin/'+VIN+'?ContactID='+ContactID+'&CompanyID='+CompanyID);
+                                             res.redirect('/AddNewEngineAdmin/'+VIN+'?ContactID='+ContactID+'&CompanyID='+CompanyID);
                                              }
                                              }
                                              
@@ -112,7 +112,7 @@ exports.handle_Input=function (req,res)
     }
     else{
         //go direct to page that need you to input a new Engine.
-         res.redirect('http://localhost:9000/AddNewEngineAdmin/'+VIN+'?ContactID='+ContactID+'&CompanyID='+CompanyID);
+         res.redirect('/AddNewEngineAdmin/'+VIN+'?ContactID='+ContactID+'&CompanyID='+CompanyID);
         
     }
     

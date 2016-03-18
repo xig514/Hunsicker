@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html>
 	<head>
         <title>Existing Engine</title>
@@ -76,7 +76,7 @@
                 return;
             }
             
-            //window.location = "http://localhost:9000/chooseExistingContactBasedOnCompanyID/"+CompanyID;
+            //window.location = "/chooseExistingContactBasedOnCompanyID/"+CompanyID;
 
         }
         /*
@@ -210,8 +210,8 @@
 
 
                 <div  id="nav">
-                <button onclick="{location.href='http://localhost:9000/userPage/inputSelection'}">Back To Home</button>
-                <button onclick="{location.href='http://localhost:9000/signout'}">signout</button>
+                <button onclick="{location.href='/userPage/inputSelection'}">Back To Home</button>
+                <button onclick="{location.href='/signout'}">signout</button>
              </div>
 
 
@@ -288,7 +288,7 @@
                
                            
                 </form>
-                <button id="AddNewEngine"onclick="{location.href='http://localhost:9000/addNewEngineAdmin/<%= VIN %>?ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>'}" >Add New Engine</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button id="AddNewEngine"onclick="{location.href='/addNewEngineAdmin/<%= VIN %>?ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>'}" >Add New Engine</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <button id="EditEngineInfo" >Edit Engine Info</button>
                   <!-- <button id = "hide1" onclick = "hideContactInfo()" >Hide</button><br>-->
                   <div id = "table1">

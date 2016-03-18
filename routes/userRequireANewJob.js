@@ -498,7 +498,7 @@ function InsertJob(request,response)
                                                                                     to: "xig514@lehigh.edu", // list of receivers
                                                                                     subject: "Hello ✔", // Subject line
                                                                                     text: "Hello world ✔", // plaintext body
-                                                                                    html: '<a href="http://localhost:9000/login">Login</a>' // html body
+                                                                                    html: '<a href="/login">Login</a>' // html body
                                                                                     }
                                                                                     
                                                                                     SMTPtransport.sendMail(mailOptions, function(error, response){

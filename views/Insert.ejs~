@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>Result Show</title>
+        
+        <style>
+
+
+
+       #header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+	#section {
+		    width:800px;
+		    float:left;
+		    padding:10px;	 	 
+		}
+
+		#nav {
+		    line-height:30px;
+		    background-color:#eeeeee;
+		    height:800px;
+		    width:150px;
+		    float:left;
+		    padding:2px;	      
+		}
+
+		#footer {
+		    background-color:black;
+		    color:white;
+		    clear:both;
+		    text-align:center;
+		   padding:5px;	 	 
+		}
+        
+        
+</style>
+
+    </head>
+    <body>
+
+                <div id = "header">
+                <h1><%=title%></h1>
+                </div>
+
+
+                <div  id="nav">
+
+             <button onclick="{location.href='http://localhost:9000/login'}">Back</button>
+             </div>
+
+
+                <div id="section">
+                <span>Insert into Contact:</span>
+                <form method="post" name="form1" action="/input_code">
+                <input type="text" name="code">
+ 
+                <input type="submit" value="openGmail" >
+            
+                </form>
+
+
+
+
+                              
+
+                </div>
+             
+    <div id="footer">
+	@ Hunsicker DataBase Select Result
+	</div>
+
+    </body>
+
+    
+    
+
+
+
+</html>

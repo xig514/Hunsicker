@@ -138,9 +138,9 @@
 
 
                 <div  id="nav">
-                <button onclick="{location.href='http://localhost:9000/userPage/<%=usernameE%>'}">Back</button>
-                <button onclick="{location.href='http://localhost:9000/signout'}">signout</button>
-                <!-- <button onclick="{location.href='http://localhost:9000/back'}">back to last </button>-->
+                <button onclick="{location.href='/userPage/<%=usernameE%>'}">Back</button>
+                <button onclick="{location.href='/signout'}">signout</button>
+            
              </div>
 
 
@@ -150,7 +150,7 @@
                     <span style="color:red"><%= errorMessage %></span>
                     <% } %>
                     </p>
-                <button onclick="{location.href='http://localhost:9000/userInputContactAndCompany/<%=usernameE%>'}">Add a contact</button>
+                <button onclick="{location.href='/userInputContactAndCompany/<%=usernameE%>'}">Add a contact</button>
                 <form method="post" name="form1" action="/checkExistingContact/<%=usernameE%>" >
                     
                     

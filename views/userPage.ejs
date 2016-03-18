@@ -50,8 +50,8 @@
 
                 <div  id="nav">
 
-             <button onclick="{location.href='http://localhost:9000/signout'}">sign out</button>
-             <button style="background-color :" onclick="{location.href='http://localhost:9000/passwordChange/<%=usernameE%>'}">change password</button>
+             <button onclick="{location.href='/signout'}">sign out</button>
+             <button style="background-color :" onclick="{location.href='/passwordChange/<%=usernameE%>'}">change password</button>
              </div>
 
 
@@ -71,18 +71,18 @@
                     </p>
                     <p>
                     <span style="color:grey">Click the following button to check your existing Contact information:<br> </span>
-            <button onclick="{location.href='http://localhost:9000/checkExistingContact/<%=usernameE%>'}">Search existing Contact Information for you account</button>
+            <button onclick="{location.href='/checkExistingContact/<%=usernameE%>'}">Search existing Contact Information for you account</button>
                     </p>
-                    <button style="background-color:" onclick="{location.href='http://localhost:9000/updateContactInformation/<%=usernameE%>'}">Update Your Existing Contact Information</button>
+                    <button style="background-color:" onclick="{location.href='/updateContactInformation/<%=usernameE%>'}">Update Your Existing Contact Information</button>
                     
              <p>
              <span style = "color:grey">If it is your first time using this website, click the following button.<br></span>
-                 <button onclick="{location.href='http://localhost:9000/UserInputContactAndCompany/<%=usernameE%>'}">Add Contact And Company For New User</button></p>
+                 <button onclick="{location.href='/UserInputContactAndCompany/<%=usernameE%>'}">Add Contact And Company For New User</button></p>
             <p>
             <span style="color: yellow"></span>
-            <button onclick="{location.href='http://localhost:9000/userRequireANewJob/<%=usernameE%>'}">Require A New Job</button></p>
+            <button onclick="{location.href='/userRequireANewJob/<%=usernameE%>'}">Require A New Job</button></p>
             <p>
-            <button onclick="{location.href='http://localhost:9000/userJobHistory/<%=usernameE%>'}">Search Job history</button>
+            <button onclick="{location.href='/userJobHistory/<%=usernameE%>'}">Search Job history</button>
             </p>
 
 

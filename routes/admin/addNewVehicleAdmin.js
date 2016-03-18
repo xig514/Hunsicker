@@ -69,7 +69,7 @@ exports.handle_Input=function (request,response)
                                          {
                                          //here we redirect
                                          console.log("11111111111111111");
-                                         response.redirect('http://localhost:9000/addNewVehicleAdmin/'+CompanyID+'?AbandonOrUpdate=1');
+                                         response.redirect('/addNewVehicleAdmin/'+CompanyID+'?AbandonOrUpdate=1');
                                          }
                                          else if(rows[0].count2>=1){
                                          console.log('2222222222222222222222222222');
@@ -114,7 +114,7 @@ exports.handle_Input=function (request,response)
                                                                            //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                                                            //Here should check the ContactID and ContactName is passed correct to the next page.
                                                                            var error='failed_insertion';
-                                                                           response.redirect('http://localhost:9000/addNewVehicleAdmin/'+CompanyID+'?ContactID='+ContactID+'&ContactName='+ContactName+'&error='+error);
+                                                                           response.redirect('/addNewVehicleAdmin/'+CompanyID+'?ContactID='+ContactID+'&ContactName='+ContactName+'&error='+error);
                                                                            //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
                                                                            }
@@ -207,7 +207,7 @@ function jumpToChoose(req,res,VIN1,CompanyID){
                                          
                                          else{console.log("no Vehicle records");
                                          //Jump to add vehicle page;
-                                         res.redirect('http://localhost:9000/addNewVehicleAdmin/'+CompanyID+'?ContactID='+ContactID+'&ContactName=' +ContactName);
+                                         res.redirect('/addNewVehicleAdmin/'+CompanyID+'?ContactID='+ContactID+'&ContactName=' +ContactName);
                                          }
                                          
                                          }
@@ -218,7 +218,7 @@ function jumpToChoose(req,res,VIN1,CompanyID){
                                          }
                                          else{
                                          //Jump tp add new vehicle because there is no vehicle records here.
-                                         res.redirect('http://localhost:9000/addNewVehicleAdmin/'+CompanyID+'?ContactID='+ContactID+'&ContactName=' +ContactName);
+                                         res.redirect('/addNewVehicleAdmin/'+CompanyID+'?ContactID='+ContactID+'&ContactName=' +ContactName);
                                          }
                                          }
                                          

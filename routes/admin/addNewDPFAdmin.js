@@ -90,10 +90,10 @@ exports.handle_Input=function(req,res) {
                                          //we found that DPF then, TimesCleaned+1, Link the Job with DPFID and return;
                                          if(rows[0].ci ==CompanyID){
                                          //So that's a duplicate, return to last page and ask the operator to update this Company.
-                                         res.redirect('http://localhost:9000/addNewDPFAdmin?VIN='+VIN+'&ContactID='+ContactID+'&CompanyID='+CompanyID+'&error=This DPF is already in the database. You can update it by click edit DPF info button!');
+                                         res.redirect('/addNewDPFAdmin?VIN='+VIN+'&ContactID='+ContactID+'&CompanyID='+CompanyID+'&error=This DPF is already in the database. You can update it by click edit DPF info button!');
                                          }
                                          else{
-                                         res.redirect('http://localhost:9000/addNewDPFAdmin?VIN='+VIN+'&ContactID='+ContactID+'&CompanyID='+CompanyID+'&error=This DPF is already in the database but the CompanyID is different. If you want to change the CompanyID to current CompanyID, click edit DPF info button!');
+                                         res.redirect('/addNewDPFAdmin?VIN='+VIN+'&ContactID='+ContactID+'&CompanyID='+CompanyID+'&error=This DPF is already in the database but the CompanyID is different. If you want to change the CompanyID to current CompanyID, click edit DPF info button!');
                                          }
                                          
                                          }
@@ -183,14 +183,14 @@ exports.handle_Input=function(req,res) {
                                                                            }
                                                                            else{
                                                                            console.log('error in inserting DPF');
-                                                                            res.redirect('http://localhost:9000/addNewDPFAdmin?VIN='+VIN+'&ContactID='+ContactID+'&CompanyID='+CompanyID+'&error=Error in inserting DPF');
+                                                                            res.redirect('/addNewDPFAdmin?VIN='+VIN+'&ContactID='+ContactID+'&CompanyID='+CompanyID+'&error=Error in inserting DPF');
                                                                            }});
                                                           
                                                           }
                                                           
                                                           else{
                                                           console.log('error in finding Max DPFID');
-                                                          res.redirect('http://localhost:9000/addNewDPFAdmin?VIN='+VIN+'&ContactID='+ContactID+'&CompanyID='+CompanyID+'&error=Error in finding max DPFID');
+                                                          res.redirect('/addNewDPFAdmin?VIN='+VIN+'&ContactID='+ContactID+'&CompanyID='+CompanyID+'&error=Error in finding max DPFID');
                                                           }
                                                           });
                                                           
@@ -201,7 +201,7 @@ exports.handle_Input=function(req,res) {
                                          else{
                                          //error
                                          console.log('error in finding TimesCleaned By three number!');
-                                         res.redirect('http://localhost:9000/addNewDPFAdmin?VIN='+VIN+'&ContactID='+ContactID+'&CompanyID='+CompanyID+'&error=Error in finding specific DPF');
+                                         res.redirect('/addNewDPFAdmin?VIN='+VIN+'&ContactID='+ContactID+'&CompanyID='+CompanyID+'&error=Error in finding specific DPF');
                                          }
                                          });
                         
@@ -266,7 +266,7 @@ function chooseDPF(req,res,VIN ,ContactID, CompanyID,selectedDPFID){
                                          else{
                                          console.log("no DPFDOC records");
                                          //jump to add new DPF page.
-                                         res.redirect('http://localhost:9000/addNewDPFAdmin?ContactID='+ContactID+'&VIN='+VIN+'&CompanyID='+CompanyID);
+                                         res.redirect('/addNewDPFAdmin?ContactID='+ContactID+'&VIN='+VIN+'&CompanyID='+CompanyID);
                                          
                                          }
                                          
@@ -277,7 +277,7 @@ function chooseDPF(req,res,VIN ,ContactID, CompanyID,selectedDPFID){
                                          }
                                          else{
                                          //Jump tp add new DPF because there is no vehicle records here.
-                                         res.redirect('http://localhost:9000/addNewDPFAdmin?ContactID='+ContactID+'&VIN='+VIN+'&CompanyID='+CompanyID);
+                                         res.redirect('/addNewDPFAdmin?ContactID='+ContactID+'&VIN='+VIN+'&CompanyID='+CompanyID);
                                          
                                          }
                                          }

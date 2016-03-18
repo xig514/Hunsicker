@@ -7,8 +7,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="http://localhost:9000/javascripts/jquery.autotab.js"></script>
-<script src = "http://localhost:9000/javascripts/typeahead.min.js"></script>
+<script src="/javascripts/jquery.autotab.js"></script>
+<script src = "/javascripts/typeahead.min.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -22,7 +22,7 @@
                       $("#VIN_1").val($("#VIN").val());
                       $('input.typeahead').typeahead({
                                                      name: 'typeahead',
-                                                     remote: 'http://localhost:9000/admin_SearchDPF?key=%QUERY',
+                                                     remote: '/admin_SearchDPF?key=%QUERY',
                                                      limit: 10
                                                      });
                       
@@ -40,7 +40,7 @@
                           }
                           else{
                           $.ajax({
-                                 url: 'http://localhost:9000/showDPF?key='+$("#DPFID").val(),
+                                 url: '/showDPF?key='+$("#DPFID").val(),
                                  // dataType: "jsonp",
                                  data:'',
                                  type: 'GET',
@@ -108,7 +108,7 @@
                                                                                                                       dataToPost.Location=($("#JL").val());
                                                                                                                       console.log(dataToPost);
                             $.ajax({
-                                   url: 'http://localhost:9000/submitDPF?key='+$("#DPFID").val(),
+                                   url: '/submitDPF?key='+$("#DPFID").val(),
                                    dataType: "json",
                                    data: (dataToPost),
                                    type: 'POST',
@@ -174,7 +174,7 @@ function showVehicle(){
     }
     else{
         $.ajax({
-               url: 'http://localhost:9000/showVehicle?key='+$("#VIN").val(),
+               url: '/showVehicle?key='+$("#VIN").val(),
                // dataType: "jsonp",
                data:'',
                type: 'GET',
@@ -227,7 +227,7 @@ function submitVehicle(){
         dataToPost.VehicleYear=($("#VehicleYear").val());
         console.log(dataToPost);
         $.ajax({
-               url: 'http://localhost:9000/submitVehicle?key='+$("#VehicleID").val(),
+               url: '/submitVehicle?key='+$("#VehicleID").val(),
                dataType: "json",
                data: (dataToPost),
                type: 'POST',
@@ -426,8 +426,8 @@ function submitVehicle(){
 
 
                 <div  id="nav">
-            <button onclick="{location.href='http://localhost:9000/inputSelection'}">back</button>
-             <button onclick="{location.href='http://localhost:9000/signout'}">signout</button>
+            <button onclick="{location.href='/inputSelection'}">back</button>
+             <button onclick="{location.href='/signout'}">signout</button>
 
              </div>
 

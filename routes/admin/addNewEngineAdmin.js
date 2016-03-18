@@ -68,7 +68,7 @@ exports.handle_Input=function (request,response)
                                          {
                                          //here we redirect
                                          console.log("11111111111111111");
-                                         response.redirect('http://localhost:9000/addNewEngineAdmin/'+VIN+'?CompanyID='+CompanyID+'&ContactID='+ContactID+'&error=Engine_Already_Exists');
+                                         response.redirect('/addNewEngineAdmin/'+VIN+'?CompanyID='+CompanyID+'&ContactID='+ContactID+'&error=Engine_Already_Exists');
                                          }
                                          else if(rows[0].count2>=1){
                                          console.log('2222222222222222222222222222');
@@ -94,7 +94,7 @@ exports.handle_Input=function (request,response)
                                                                            //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
                                                                            //Here should check the ContactID and ContactName is passed correct to the next page.
                                                                            var error='failed_insertion';
-                                                                           response.redirect('http://localhost:9000/addNewEngineAdmin/'+VIN+'?ContactID='+ContactID+'&CompanyID='+CompanyID+'&error='+error);
+                                                                           response.redirect('/addNewEngineAdmin/'+VIN+'?ContactID='+ContactID+'&CompanyID='+CompanyID+'&error='+error);
                                                                            //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
                                                                            }
@@ -191,7 +191,7 @@ function jumpToChoose(req,res,VIN1,ContactID,CompanyID,selectedSerialNumber){
                                              }
                                              else{
                                              //Jump tp add new ENgine because there is no Engine records here.
-                                             res.redirect('http://localhost:9000/AddNewEngineAdmin/'+VIN+'?ContactID='+ContactID+'&CompanyID='+CompanyID);
+                                             res.redirect('/AddNewEngineAdmin/'+VIN+'?ContactID='+ContactID+'&CompanyID='+CompanyID);
                                              }
                                              }
                                              
@@ -213,7 +213,7 @@ function jumpToChoose(req,res,VIN1,ContactID,CompanyID,selectedSerialNumber){
     }
     else{
         //go direct to page that need you to input a new Engine.
-        res.redirect('http://localhost:9000/AddNewEngineAdmin/'+VIN+'?ContactID='+ContactID+'&CompanyID='+CompanyID);
+        res.redirect('/AddNewEngineAdmin/'+VIN+'?ContactID='+ContactID+'&CompanyID='+CompanyID);
         
     }
 

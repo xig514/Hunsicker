@@ -104,6 +104,25 @@ var poolH     =    mysql.createPool({
                                     debug    :  false
                                     });
 
+process.on('message', function(msg) {
+  if (msg == 'shutdown') {
+    // Your process is going to be reloaded
+    // You have to close all database/socket.io/* connections
+
+    console.log('Closing all connections...');
+
+    // You will have 4000ms to close all connections before
+    // the reload mechanism will try to do its job
+
+    setTimeout(function() {
+      console.log('Finished closing connections');
+      // This timeout means that all connections have been closed
+      // Now we can exit to let the reload mechanism do its job
+      process.exit(0);
+    }, 1500);
+  }
+});
+
 
 
 //set up passport
@@ -149,7 +168,7 @@ passport.deserializeUser(function(username, done) {
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(session({ secret: 'secret strategic xxzzz code', cookie: { maxAge: 360000 }, resave: true, saveUninitialized: true }))
+app.use(session({ secret: 'secret strategic xxzzz code', cookie: { maxAge: 3600000 }, resave: true, saveUninitialized: true }))
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
@@ -607,4 +626,4 @@ var server=app.listen(8000,function()
 module.exports = app;
  */
 var server = http.createServer(app);
-server.listen(9000,'127.0.0.1');
+server.listen(9000,'0.0.0.0');
