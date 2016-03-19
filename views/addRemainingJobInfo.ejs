@@ -154,29 +154,24 @@
 
 
 	#section {
-		    width:1000px;
+		    width:1200px;
 		    float:left;
 		    padding:10px;
             
-            height: auto;
+            height: 1200px;
 		}
-        #section1{
-            width:25%;
+      
+        #section2{
+            width:700px;
             float:left;
             padding:10px;
             text-align: right;
         }
-        #section2{
-            width:20%;
-            float:left;
-            padding:10px;
-            text-align: left;
-        }
         #section3_4{
-            width:50%;
+            width:450px;
             float:left;
             text-align:center;
-            top:50%;
+            
             position: relative;
             top:50px;
             
@@ -196,7 +191,7 @@
             
         }
 
-		#nav {
+	#nav {
 		    line-height:30px;
 		    background-color:#eeeeee;
 		    height:auto;
@@ -221,7 +216,8 @@
         }
         .input1 {
             text-align: left;
-            width:150px;
+            width:250px;
+            height:30px;
         }
         input[type="checkbox"]{
             -webkit-transform: scale(1);
@@ -265,19 +261,10 @@
                     </p>
                     
                     
-                <div id = "section1">
+               
                                   <br><br>
-                    Old Job or New Job :<br><br>
-                    
-                    <span id = 'span_OldJobID'>Old Job ID</span><br/><br/>
-                    Clean Location:<br><br>
-                    Purchase Order Number:<br><br>
-                    Work Order Number:<br><br>
-                    Vehicle Total Mileage:<br><br>
-                    Vehicle Total Hours:<br><br>
-                    Date:<br/><br/>
-                    Type of Driving:<br><br>
-                </div>
+                   
+              
                 
                 <form id = "form_1" method="post" name="form1"   >
               
@@ -285,32 +272,32 @@
                     
                     <p><span id="Job_span" >Input Job Details    </span>
                     <br>
-                    <input type="radio" id ="JobType1" name="JobType" value="Old"> Old Job
+                   <label class="label1" for="">Old Job or New Job:</label>&nbsp; <input type="radio" id ="JobType1" name="JobType" value="Old"> Old Job
                     <input type="radio" id ="JobType2" name="JobType" value="New"checked> New Job<br><br>
                     
-                    <input  class ="input1"  type ="text"  id = "OldJobID" name ="OldJobID"/><br>
+                  <label id = 'span_OldJobID' class="label1" for="">Old Job ID:</label>&nbsp;  <input  class ="input1"  type ="text"  id = "OldJobID" name ="OldJobID"/><br>
                     </p>
                  
                  
-                            <select class ="input1"   id = "CleaningLocation" name ="CleaningLocation">
+                          <label class="label1" for="">Clean Location:</label>&nbsp;  <select class ="input1"   id = "CleaningLocation" name ="CleaningLocation">
                                 <option value="">-- select --</option>
                                 <option value="Fogelsville">Fogelsville</option>
                                 </select>
                                 <br><br>
-                            <input type ="text" class ="input1"  id = "PurchaseOrderNumber" name = "PurchaseOrderNumber" onchange = "POonchange();"/><br><br>
-                            <input type ="text"  class ="input1"  id = "WorkOrderNumber" name = "WorkOrderNumber"/><br><br>
-                            <input type ="text"  class ="input1"  id = "VehicleTotalMileage" name = "VehicleTotalMileage"/><br><br>
-                            <input type ="text" class ="input1"   id = "VehicleTotalHours" name ="VehicleTotalHours" value =""/><br><br>
-                            <input type ="date" class = "input1" id = "date" name ="date"/><br><br>
-                            <select name = "TypeOfDriving" id="TypeOfDriving" onchange="">
+                         <label class="label1" for="">Purchase order Number:</label>&nbsp;   <input type ="text" class ="input1"  id = "PurchaseOrderNumber" name = "PurchaseOrderNumber" onchange = "POonchange();"/><br><br>
+                          <label class="label1" for="">Work Order Number:</label>&nbsp;  <input type ="text"  class ="input1"  id = "WorkOrderNumber" name = "WorkOrderNumber"/><br><br>
+                         <label class="label1" for="">Vehicle Total Mileage:</label>&nbsp;   <input type ="text"  class ="input1"  id = "VehicleTotalMileage" name = "VehicleTotalMileage"/><br><br>
+                        <label class="label1" for="">Vehicle Total Hours:</label>&nbsp;    <input type ="text" class ="input1"   id = "VehicleTotalHours" name ="VehicleTotalHours" value =""/><br><br>
+                        <label class="label1" for="">Date:</label>&nbsp;    <input type ="date" class = "input1" id = "date" name ="date"/><br><br>
+                          <label class="label1" for="">Type of Driving:</label>&nbsp;  <select class = "input1" name = "TypeOfDriving" id="TypeOfDriving" onchange="">
                             <option value="-1">-- select --</option>
                         
                             <option value="Over The Road/Highway">Over The Road/Highway</option>
                             <option value="Start and Stop">Start and Stop</option>
                             <option value="High Idle">High Idle</option>
                             <option value="Other">Other</option>
-                            </select>
-                            <select name = "AlwaysInsert" id = "AlwaysInsert" hidden>
+                            </select><br>
+                          <select name = "AlwaysInsert" id = "AlwaysInsert" hidden>
                                 <option value="-1">-- select --</option>
                                 <option value="0">-- Not --</option>
                                 <option value="-1">-- Yes --</option>

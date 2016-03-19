@@ -80,7 +80,7 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
                 return;
             }
             
-            //window.location = "http://localhost:9000/chooseExistingContactBasedOnCompanyID/"+CompanyID;
+            //window.location = "/chooseExistingContactBasedOnCompanyID/"+CompanyID;
 
         }
               </script>
@@ -100,23 +100,19 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
 
 
 	#section {
-		    width:800px;
+		    width:1200px;
 		    float:left;
 		    padding:10px;
             
-            height: auto;
+            height: 1200px;
 		}
-        #section1{
-            width:25%;
+
+        #section2{
+            width:600px;
             float:left;
             padding:10px;
             text-align: right;
-        }
-        #section2{
-            width:30%;
-            float:left;
-            padding:10px;
-            text-align: left;
+	    
         }
 
 		#nav {
@@ -159,27 +155,23 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
         .input1 {
             text-align: left;
             width:200px;
+            height:30px;
         }
         #section3_4{
-            width:40%;
-            float:left;
+            width:580px;
+            float:right;
             text-align:right;
-            top:50%;
+            
             position: relative;
             top:50px;
             
             
         }
-        #section3{
-            width:40%;
+
+        #section4{
+            width:580px;
             float:left;
             text-align:right;
-            padding:10px;
-        }
-        #section4{
-            width:40%;
-            float:left;
-            text-align:left;
             padding:10px;
             
         }
@@ -197,6 +189,13 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
             left:0px;
             top:115px;
         }
+	.label1{
+	text-align:right;
+	padding:20px;
+	width:200px;		
+	
+	}
+
 </style>
 
     </head>
@@ -208,8 +207,8 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
 
 
                 <div  id="nav">
-                <button onclick="{location.href='http://localhost:9000/userPage/inputSelection'}">Back To Home</button>
-                <button onclick="{location.href='http://localhost:9000/signout'}">signout</button>
+                <button onclick="{location.href='/userPage/inputSelection'}">Back To Home</button>
+                <button onclick="{location.href='/signout'}">signout</button>
              </div>
 
 
@@ -250,21 +249,9 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
                     <% } %>
                     </p>
                     
-                <div id = "section1">
+               
                                   <br><br>
-                    DPFID :<br><br>
-                    Serial Number:<br><br>
-                    
-                   
-                   
-                    Part Number:<br><br>
-                    Other Number:<br><br>
-                    Manufacturer:<br><br>
-                    DPF or DOC:<br><br>
-                    Type Of Substrate:<br><br>
-                   
-                   
-                </div>
+                 
                 
                 <form id = "form_1" method="post" name="form1"   >
               
@@ -273,7 +260,7 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
                     <p><span id="SerialNumber1" >Select Your DPF Or Show All:    </span>
                     <br>
                        
-                       <Select name = "DPFID" id="DPFID" onchange="DPFIDonChange()"/>
+                        <label class="label1" for="">DPFID*:</label>&nbsp;&nbsp;<Select class="input1" name = "DPFID" id="DPFID" onchange="DPFIDonChange()"/>
                        <option value="-1">-- select --</option>
                        <% for(var i = 0; i <DPFCount;i++) {%>
                        <!-- <option value="<%= ContactID%>"><%=ContactID%></option>-->
@@ -296,29 +283,23 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
                          </select>
                         -->
                      
-                            <input type ="text" disabled class ="input1"  name="SerialNumber" id = "SerialNumber"/><br><br>
-                            <input type ="text" disabled class ="input1"  name="PartNumber"id = "PartNumber"/><br><br>
-                            <input type ="text" disabled class ="inpu1"name="OtherNumber"id = "OtherNumber"  /><br><br>
-                            <input type ="text" disabled  class ="input1"name="Manufacturer"id = "Manufacturer" /><br><br>
-                             <input type ="text" class ="input1" disabled name="DPForDOC"id = "DPForDOC"/><br><br>
-                            <input type ="text" disabled  class ="input1"name="TypeOfSubstrate"id = "TypeOfSubstrate" /><br><br>
+                          <label class="label1" for="">Serial Number:</label>&nbsp;   <input type ="text" disabled class ="input1"  name="SerialNumber" id = "SerialNumber"/><br><br>
+                           <label class="label1" for="">Part Number:</label>&nbsp;  <input type ="text" disabled class ="input1"  name="PartNumber"id = "PartNumber"/><br><br>
+                           <label class="label1" for="">Other Number:</label>&nbsp;  <input type ="text" disabled class ="input1" name="OtherNumber"id = "OtherNumber"  /><br><br>
+                          <label class="label1" for="">Manufacturer:</label>&nbsp;   <input type ="text" disabled  class ="input1"name="Manufacturer"id = "Manufacturer" /><br><br>
+                           <label class="label1" for="">DPF or DOC:</label>&nbsp;   <input type ="text" class ="input1" disabled name="DPForDOC"id = "DPForDOC"/><br><br>
+                          <label class="label1" for="">Type Of Substrate:</label>&nbsp;   <input type ="text" disabled  class ="input1"name="TypeOfSubstrate"id = "TypeOfSubstrate" /><br><br>
                     
                              <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitDPF()">
                           </div>
                     <div id = "section3_4">
-                        Dimensions<br><br>
-                        <div id="section3">
-                            Outer Diameter:<br><br>
-                            Substrate Diameter:<br><br>
-                            Outer Length:<br><br>
-                            Substrate Length:<br><br>
-                            
-                        </div>
+                       <u> Dimensions</u><br><br>
+                        
                         <div id = "section4">
-                            <input class ="input1" type ="text" disabled id = "OuterDiameter" name ="OuterDiameter"><br><br>
-                                <input class ="input1"  type ="text" disabled id = "SubstrateDiameter"name ="SubstrateDiameter"><br><br>
-                                    <input type ="text" class ="input1" disabled id = "OuterLength"name ="OuterLength"><br><br>
-                                        <input type ="text" disabled class ="input1"  id = "SubstrateLength"name ="SubstrateLength"><br><br>
+                           <label class="label1" for="">Outer Diameter:</label>&nbsp;  <input class ="input1" type ="text" disabled id = "OuterDiameter" name ="OuterDiameter"><br><br>
+                              <label class="label1" for="">Substrate Diameter:</label>&nbsp;   <input class ="input1"  type ="text" disabled id = "SubstrateDiameter"name ="SubstrateDiameter"><br><br>
+                              <label class="label1" for="">Outer Length:</label>&nbsp;       <input type ="text" class ="input1" disabled id = "OuterLength"name ="OuterLength"><br><br>
+                             <label class="label1" for="">Substrate Length:</label>&nbsp;            <input type ="text" disabled class ="input1"  id = "SubstrateLength"name ="SubstrateLength"><br><br>
                                             
                                             </div>
                         
@@ -328,8 +309,8 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
 
 
                 </form>
-                <button id="ADDNewDPF" onclick="{location.href='http://localhost:9000/addNewDPFAdmin?VIN=<%= VIN%>&ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>'}">Add New DPF</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button id="EditDPFInfo" >Edit DPF Info</button>
+                <button class="button1" id="ADDNewDPF" onclick="{location.href='/addNewDPFAdmin?VIN=<%= VIN%>&ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>'}">Add New DPF</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="button1" id="EditDPFInfo" >Edit DPF Info</button>
                   <!-- <button id = "hide1" onclick = "hideContactInfo()" >Hide</button><br>-->
                   <div id = "table1">
                   <table id = "TableAll" style="width:100%">

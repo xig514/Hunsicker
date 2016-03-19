@@ -71,24 +71,23 @@ function submitVehicle(){
 	#section {
 		    width:1000px;
 		    float:left;
-		    padding:10px;	 	 
+		    padding:10px;
+		    text-align:right;	 
+			height: 1200px;	 
 		}
     #section1 {
-		    width:500px;
+		    width:800px;
 		    float:left;
-            position:relative;
+            	    position:relative;
+			
 		    padding:10px;
 		}
-        #section1_1{
-            width:200px;
-            float:left;
-            text-align:right;
-            padding:10px;
-        }
+
         #section1_2{
-            width:230px;
+            width:500px;
             float:right;
             padding:10px;
+	    text-align:right;
         }
 
 
@@ -118,10 +117,12 @@ function submitVehicle(){
         .input1{
             margin-bottom:2px;
             margin-top:2px;
+		width: 200px;
         }
         .input2{
             margin-bottom:5px;
             margin-top:10px;
+		width: 200px;
         }
 </style>
 
@@ -135,14 +136,15 @@ function submitVehicle(){
 
                 <div  id="nav">
 
-             <button class="btn btn-primary" onclick="{location.href='9000/inputSelection'}">Back</button>
+             <button class="btn btn-primary" onclick="{location.href='/inputSelection'}">Back</button>
              
             <button class="btn btn-primary" onclick="{location.href='/signout'}">signout</button>
             
                 </div>
-<span style="color:Blue">Please input your Vehicle Information.</span>
 
+<span style="color:Blue;float:left;">Please input your Vehicle Information.</span><br>
                 <div id="section">
+
                 <div id = "section1">
                   <p>WELCOME <span style="color:blue;font-weight:bold"> Bob</span></p>
                  <p>
@@ -153,24 +155,16 @@ function submitVehicle(){
 
                 <form method="POST" id = "VehicleInput" onsubmit="" action="/addNewVehicleAdmin/<%= CompanyID %>">
                     
-                    
-                        <div id = "section1_1">
-                            
-                            VIN*:</br></br>
-                            Unit Number*:</br></br>
-                            Make*:</br></br>
-                            Model*:</br></br>
-                            Year*:</br></br>
-                            </div>
+                 
                         <div id = "section 1_2">
                             
-                            <p><input class="input2" type = "text"  id ="cp01"name = "VIN" placeholder ="VIN" pattern="[A-Za-z0-9]{17}" maxlength = 17 required = "true"/><span style= "color:red" id ="error_cp01"/></p>
-                <p><input class="input1" type = "text" id ="cp02" name = "UnitNumber" placeholder ="Unit Number" /><span style="color:red" id ="error_cp02"/></p>
-                <p>        <input class="input1" type = "text" id ="cp03" name = "Make" placeholder = "Make"value =""required= "true"/></p>
-                <p>        <input class="input1" type = "text" id ="cp04" name = "Model" placeholder = "Model"value =""required= "true"/></p>
+                            <p> <label class="label1" for="">VIN*:</label>&nbsp;<input class="input2" type = "text"  id ="cp01"name = "VIN" placeholder ="VIN" pattern="[A-Za-z0-9]{17}" maxlength = 17 required = "true"/><span style= "color:red" id ="error_cp01"/></p>
+                <p><label class="label1" for="">Unit Number*:</label>&nbsp;<input class="input1" type = "text" id ="cp02" name = "UnitNumber" placeholder ="Unit Number" /><span style="color:red" id ="error_cp02"/></p>
+                <p>    <label class="label1" for="">Make*:</label>&nbsp;    <input class="input1" type = "text" id ="cp03" name = "Make" placeholder = "Make"value =""required= "true"/></p>
+                <p>    <label class="label1" for="">Model*:</label>&nbsp;    <input class="input1" type = "text" id ="cp04" name = "Model" placeholder = "Model"value =""required= "true"/></p>
                 
 
-                <select  class="input1" name = "Year" id="Year">
+                <label class="label1" for="">Year*:</label>&nbsp;<select  class="input1" name = "Year" id="Year">
                     <option  value="-1">Year...</option>
                     <option value="2000">2000</option><option value="2001">2001</option><option value="2002">2002</option><option value="2003">2003</option><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option></option><option value="2017">2017</option></option><option value="2018">2018</option></option><option value="2019">2019</option></option><option value="2020">2020</option>
                     </select>

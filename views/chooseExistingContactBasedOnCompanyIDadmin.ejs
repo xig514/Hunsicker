@@ -173,26 +173,21 @@
 
 
 	#section {
-		    width:800px;
+		    width:1200px;
 		    float:left;
 		    padding:10px;
             
-            height: auto;
+            	    height: 1200px;
 		}
-        #section1{
-            width:25%;
+        
+        #section2{
+            width:590px;
             float:left;
             padding:10px;
             text-align: right;
         }
-        #section2{
-            width:30%;
-            float:left;
-            padding:10px;
-            text-align: left;
-        }
         #section3_4{
-            width:40%;
+            width:580px;
             float:left;
             text-align:right;
             
@@ -201,16 +196,11 @@
             
             
         }
-        #section3{
-            width:40%;
+       
+        #section4{
+            width:550px;
             float:left;
             text-align:right;
-             padding:10px;
-        }
-        #section4{
-            width:40%;
-            float:left;
-            text-align:left;
              padding:10px;
             
         }
@@ -257,15 +247,16 @@
         }
         .input1 {
             text-align: left;
-            width:200px;
+            width:250px;
+            height:30px;
         }
         .button1{
-            top:120px;
+            top:180px;
             position: relative;
             
         }
         .button2{
-            top:120px;
+            top:180px;
             position: relative;
             
         }
@@ -310,25 +301,14 @@
                     <span id="selectedContactID"style="color:red" value ="0" hidden>-1</span>
                     <% } %>
                     </p>
-                <div id = "section1">
-                                  <br><br>
-                    Contact Name:<br><br>
-                   
-                    Contact ID:<br><br>
-                    First:<br><br>
-                    Last:<br><br>
-                    Phone:<br><br>
-                    Email:<br><br>
-                   
-                    Company Name:<br><br>
-                </div>
+               <br><br><br>
                 
                 <form id = "form_1" method="post" name="form1"   >
               
                     <div id = "section2">
                     
-                    <p><span id="ContactID_Span" >Select Your ContactID Or Show All:    </span>
-                    <br><Select name = "ContactName" id="ContactName" onchange="ContactNameOnChange()"/>
+                    <p><span id="ContactID_Span" >Select Your ContactID Or Show All:</span><br><br>
+                    <br>   <label class="label1" for="">Contact Name:</label>&nbsp;<Select class="input1"name = "ContactName" id="ContactName" onchange="ContactNameOnChange()"/>
                     
                     <option value="select">-- select --</option>
                     <% for(var i = 0; i <ContactCount;i++) {%>
@@ -337,7 +317,7 @@
                     <%}%>
                     
                             </select></p>
-                             <Select name = "ContactID" id="ContactID" onchange="ContactIDOnChange()"/>
+                               <label class="label1" for="">Contact ID:</label>&nbsp; <Select class="input1"name = "ContactID" id="ContactID" onchange="ContactIDOnChange()"/>
                             <option value="-1">-- select --</option>
                             <% for(var i = 0; i <ContactCount;i++) {%>
                             <!-- <option value="<%= ContactID%>"><%=ContactID%></option>-->
@@ -346,29 +326,23 @@
                             </select>
                             <br>
                             <br>
-                            <input class ="input1"  type ="text" disabled id = "First"/><br><br>
-                            <input type ="text" class ="input1" disabled id = "Last"/><br><br>
-                            <input type ="text" disabled class ="input1"  id = "Phone"/><br><br>
-                            <input type ="text" disabled id = "EMail" class ="input1" /><br><br>
-                            <input type ="text" disabled id = "CompanyName" class ="input1" /><br><br>
+                            <label class="label1" for="">First:</label>&nbsp;   <input class ="input1"  type ="text" disabled id = "First"/><br><br>
+                             <label class="label1" for="">Last:</label>&nbsp;  <input type ="text" class ="input1" disabled id = "Last"/><br><br>
+                            <label class="label1" for="">Phone:</label>&nbsp;   <input type ="text" disabled class ="input1"  id = "Phone"/><br><br>
+                            <label class="label1" for="">Email:</label>&nbsp;   <input type ="text" disabled id = "EMail" class ="input1" /><br><br>
+                            <label class="label1" for="">Company Name:</label>&nbsp;   <input type ="text" disabled id = "CompanyName" class ="input1" /><br><br>
                            
-                             <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitContact()">
+                            <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitContact()">
                           </div>
                     
                             <div id = "section3_4">
-                                Site Information<br><br>
-                            <div id="section3">
-                                Site Address:<br><br>
-                                City:<br><br>
-                                State:<br><br>
-                                Zip:<br><br>
-                                
-                                                        </div>
+                               <u style="position:relative; right:150px"> Site Information</u><br><br>
+                           
                             <div id = "section4">
-                                <input class ="input1" type ="text" disabled id = "SiteAddress"><br><br>
-                                    <input class ="input1"  type ="text" disabled id = "SiteCity"><br><br>
-                                        <input type ="text" class ="input1" disabled id = "SiteState"><br><br>
-                                            <input type ="text" disabled class ="input1"  id = "SiteZip"><br><br>
+                                <label class="label1" for="">Site Address:</label>&nbsp;   <input class ="input1" type ="text" disabled id = "SiteAddress"><br><br>
+                                  <label class="label1" for="">City:</label>&nbsp;     <input class ="input1"  type ="text" disabled id = "SiteCity"><br><br>
+                                    <label class="label1" for="">State:</label>&nbsp;       <input type ="text" class ="input1" disabled id = "SiteState"><br><br>
+                                     <label class="label1" for="">Zip:</label>&nbsp;          <input type ="text" disabled class ="input1"  id = "SiteZip"><br><br>
                                             
                             </div>
                             
@@ -376,6 +350,7 @@
                
                            
                 </form>
+<br><br><br>
                 <button class="button1" id="EditContactInfo"  >Edit Contact Info</button>&nbsp;&nbsp;&nbsp;&nbsp;
                 <button class = "button2" id="Add_New_Contact" onclick="{location.href='/addNewContactAdmin?CompanyID=<%= CompanyID%>&CompanyName=<%= CompanyName%>'}">Add New Contact</button>
                 

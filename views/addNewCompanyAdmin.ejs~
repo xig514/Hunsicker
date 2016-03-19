@@ -100,43 +100,35 @@ function submitCompany(){
 }
 
 	#section {
-		    width:1000px;
+		    width:1200px;
 		    float:left;
 		    padding:10px;	 	 
-		}
+		    height: 1200px;		
+}
     #section1 {
-		    width:450px;
+		    width:600px;
 		    float:left;
 		    padding:10px;
+		    text-align:right;
 		}
-        #section1_1{
-            width:200px;
-            float:left;
-            text-align:right;
-            padding:10px;
-        }
+      
         #section1_2{
-            width:230px;
+            width:600px;
             float:right;
             padding:10px;
         }
         #section2 {
-		    width:450px;
+		    width:550px;
 		    float:left;
 		    padding:10px;
+		    text-align:right;
 		}
-        #section2_1{
-            width:190px;
-            float:left;
-            text-align:right;
-            padding:10px;
-            
-            
-        }
+     
         #section2_2{
-            width:220px;
-            float:right;
+            width:550px;
+            float:left;
             padding:10px;
+		text-align:right;
         }
 		#nav {
 		    line-height:30px;
@@ -161,7 +153,10 @@ function submitCompany(){
             right: 700px;
             top:400px;
         }
-        
+        .input1{
+
+width:200px;
+}
 </style>
 
     </head>
@@ -191,19 +186,13 @@ function submitCompany(){
                 <form method="POST" id = "CompanyInput" onsubmit="" action="/addNewCompanyAdmin">
                     
                     <span style="color:Blue">Please input your Company Information.</span>
-                        <div id = "section1_1">
-                            Company Name*:</br></br>
-                            Billing Address*:</br></br>
-                            Billing City:</br></br>
-                            Billing State:</br></br>
-                            Billing Zip (e.g. : 18015):</br></br>
-                            </div>
+                     
                         <div id = "section 1_2">
-                <p><input type = "text"  id ="cp01"name = "CompanyName" placeholder ="CompanyName" required = "true"/><span style= "color:red" id ="error_cp01"/></p>
-                <p><input type = "text" id ="cp02" name = "BillingAddress" placeholder ="BillingAddress" required= "true"/><span style="color:red" id ="error_cp02"/></p>
-                <p>        <input type = "text" id ="cp03" name = "BillingCity" placeholder = "BillingCity"value =""/></p>
+                <p> <label class="label1" for="">Company Name*:</label>&nbsp;<input class="input1"type = "text"  id ="cp01"name = "CompanyName" placeholder ="CompanyName" required = "true"/><span style= "color:red" id ="error_cp01"/></p>
+                <p> <label class="label1" for="">Billing Address*:</label>&nbsp;<input class="input1" type = "text" id ="cp02" name = "BillingAddress" placeholder ="BillingAddress" required= "true"/><span style="color:red" id ="error_cp02"/></p>
+                <p>   <label class="label1" for="">Billing City:</label>&nbsp;      <input class="input1"type = "text" id ="cp03" name = "BillingCity" placeholder = "BillingCity"value =""/></p>
 
-                <p>  <Select name = "BillingState" id="BillingState1">
+                <p>  <label class="label1" for="">Billing State:</label>&nbsp; &nbsp; <Select class="input1" name = "BillingState" id="BillingState1">
 
 <option selected value="">State...</option>
 <option value="ZZ">None</option>
@@ -287,30 +276,23 @@ function submitCompany(){
                 
                 
 
-                <p><input type = "text"  id ="cp04" name = "BillingZip" placeholder = "00000" value =""   maxlength=5  pattern= "\d{5}"><span style="color:red" id ="error_cp04" /></p>
+                <p> <label class="label1" for="">Billing Zip (e.g. : 18015):</label>&nbsp;<input class="input1" type = "text"  id ="cp04" name = "BillingZip" placeholder = "00000" value =""   maxlength=5  pattern= "\d{5}"><span style="color:red" id ="error_cp04" /></p>
                     </div>
                     </div>
                     <div id="section2">
                         </br></br></br>
                         
                         <u >Billing Contact Information</u>
-                        <div id ="section2_1">
-                            </br></br>
-                        First Name*:</br></br>
-                        Last Name*:</br></br>
-                        Email:</br></br>
-                        Phone*:</br></br>
-                        Company Status ID: </br></br>
-                        </div>
+                       
                         <div id ="section2_2">
-              <p> <input style = "width:150px" id ="cp06" type = "text" name = "BillingContactFirstName"  placeholder = "BillingContactFirstName" value ="" required = "ture"/><span style="color:red" id ="error_cp06"/></p>
-              <p>  <input style = "width:150px" id ="cp07" type = "text" name = "BillingContactLastName" value ="" placeholder = "BillingContactLastName" required = "ture"/><span id ="error_cp07" style="color:red"/></p>
-            <p>  <input  type = "email" name = "BillingContactEmail" id ="cp08" value ="" placeholder = "BillingContactEmail" /><span id ="error_cp08" style="color:red"/> </p>
-          <p>     <input style="width:30px" class="BillingContactPhone"  type = "text" id = "BillingContactPhone1"  name = "BillingContactPhone1" value ="" placeholder = "000" maxlength=3 required = "true" pattern="\d{3}"  />-
-                <input type = "text" name = "BillingContactPhone2" id = "BillingContactPhone2" class="BillingContactPhone" style="width:30px" value ="" placeholder = "000" maxlength=3 required = "true" pattern="\d{3}"  />-
-                 <input type = "text" name = "BillingContactPhone3" id = "BillingContactPhone3" class="BillingContactPhone" value =""  style="width:40px" placeholder = "0000" maxlength=4 required = "true" pattern="\d{4}"  /><span id ="error_cp_phone" style="color:red"/>
+              <p>  <label class="label1" for="">First Name*:</label>&nbsp;<input class="input1" style = "width:200px" id ="cp06" type = "text" name = "BillingContactFirstName"  placeholder = "BillingContactFirstName" value ="" required = "ture"/><span style="color:red" id ="error_cp06"/></p>
+              <p>  <label class="label1" for="">Last Name*:</label>&nbsp; <input class="input1" style = "width:200px" id ="cp07" type = "text" name = "BillingContactLastName" value ="" placeholder = "BillingContactLastName" required = "ture"/><span id ="error_cp07" style="color:red"/></p>
+            <p>  <label class="label1" for="">Email:</label>&nbsp; <input  class="input1" type = "email" name = "BillingContactEmail" id ="cp08" value ="" placeholder = "BillingContactEmail" /><span id ="error_cp08" style="color:red"/> </p>
+          <p>   <label class="label1" for="Make">Phone*:</label>&nbsp;   <input style="width:30px" class="BillingContactPhone"  style = "width:60px"type = "text" id = "BillingContactPhone1"  name = "BillingContactPhone1" value ="" placeholder = "000" maxlength=3 required = "true" pattern="\d{3}"  />-
+                <input type = "text" name = "BillingContactPhone2" id = "BillingContactPhone2" class="BillingContactPhone" style="width:60px" value ="" placeholder = "000" maxlength=3 required = "true" pattern="\d{3}"  />-
+                 <input type = "text" name = "BillingContactPhone3" id = "BillingContactPhone3" class="BillingContactPhone" value =""  style="width:80px" placeholder = "0000" maxlength=4 required = "true" pattern="\d{4}"  /><span id ="error_cp_phone" style="color:red"/>
              </p>
-             <p>   <input type = "radio" name = "CompanyStatusID" value ="Yes" id="CSI_1" role="radio" checked = "checked"/>
+             <p>   <label class="label1" for="">Company Status ID:</label>&nbsp; <input type = "radio" name = "CompanyStatusID" value ="Yes" id="CSI_1" role="radio" checked = "checked"/>
                 <Span>Active</Span>
                 <input type = "radio" name = "CompanyStatusID" value ="No" id="CSI_2" role="radio"/>
 

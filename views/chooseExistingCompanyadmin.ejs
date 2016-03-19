@@ -176,44 +176,34 @@
     margin-top:11px
 }
 	#section {
-		    width:800px;
+		    width:1200px;
 		    float:left;
 		    padding:10px;
             
-            height: auto;
+            height: 1200px;
 		}
-        #section1{
-            width:25%;
-            float:left;
-            padding:10px;
-            text-align: right;
-        }
+     
         #section2{
-            width:30%;
+            width:600px;
             float:left;
             padding:10px;
-            text-align: left;
+            text-align:right;
         }
         #section3_4{
-            width:40%;
+            width:580px;
             float:left;
             text-align:right;
-            top:50%;
+            
             position: relative;
             top:50px;
             
             
         }
-        #section3{
-            width:40%;
+     
+        #section4{
+            width:550px;
             float:left;
             text-align:right;
-             padding:10px;
-        }
-        #section4{
-            width:40%;
-            float:left;
-            text-align:left;
              padding:10px;
             
         }
@@ -260,8 +250,8 @@
         }
         .input1 {
             text-align: left;
-            width:200px;
-            height:20px;
+            width:250px;
+            height:30px;
         }
 </style>
 
@@ -298,22 +288,14 @@
                      <span id="selectedCompanyID"style="color:red" value ="0" hidden>-1</span>
                     <% } %>
                     </p>
-                <div id = "section1">
-                                  <br><br>
-                    Company Name:<br><br>
-                    Company ID:<br><br>
-                    Address:<br><br>
-                    City:<br><br>
-                    State:<br><br>
-                    Zip:<br><br>
-                </div>
+         
                 
                 <form id = "form_1"method="post" name="form1"   >
               
                     <div id = "section2">
                     
                     <p><span id="ContactID_Span" >Select Your Company Or Show All:    </span>
-                    <br><Select name = "CompanyName" id="CompanyName" onchange="CompanyNameOnChange()"/>
+                    <br>    <label class="label1" for="">Company Name:</label>&nbsp;<Select class ="input1"  name = "CompanyName" id="CompanyName" onchange="CompanyNameOnChange()"/>
                     
                     <option value="select">-- select --</option>
                     <% for(var i = 0; i <CompanyCount;i++) {%>
@@ -322,7 +304,7 @@
                     <%}%>
                     
                             </select></p>
-                             <Select name = "CompanyID" id="CompanyID" onchange="CompanyIDOnChange()"/>
+                             <label class="label1" for="">Company ID:</label>&nbsp; <Select class ="input1" name = "CompanyID" id="CompanyID" onchange="CompanyIDOnChange()"/>
                             <option value="-1">-- select --</option>
                             <% for(var i = 0; i <CompanyCount;i++) {%>
                             <!-- <option value="<%= ContactID%>"><%=ContactID%></option>-->
@@ -331,29 +313,23 @@
                             </select>
                             <br>
                             <br>
-                            <input class ="input1"  type ="text" disabled id = "Address"><br><br>
-                            <input type ="text" class ="input1" disabled id = "City"><br><br>
-                            <input type ="text" disabled class ="input1"  id = "State"><br><br>
-                            <input type ="text" disabled id = "Zip" class ="input1" ><br><br>
+                            <label class="label1" for="">Address:</label>&nbsp; <input class ="input1"  type ="text" disabled id = "Address"><br><br>
+                           <label class="label1" for="">City:</label>&nbsp;  <input type ="text" class ="input1" disabled id = "City"><br><br>
+                           <label class="label1" for="">State:</label>&nbsp;  <input type ="text" disabled class ="input1"  id = "State"><br><br>
+                          <label class="label1" for="">Zip:</label>&nbsp;   <input type ="text" disabled id = "Zip" class ="input1" ><br><br>
                                 
-                            <button id="EditCompanyInfo" >Edit Company Info</button>
+                            <button id="EditCompanyInfo" >Edit Company Info</button> <br>
                              <input type="image" src ="../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitCompany()">
                           </div>
                     
                             <div id = "section3_4">
                                 Billing Contact Information<br><br>
-                            <div id="section3">
-                                First Name:<br><br>
-                                Last Name:<br><br>
-                                Email:<br><br>
-                                Phone:<br><br>
-                                
-                                                        </div>
+                          
                             <div id = "section4">
-                                <input class ="input1" type ="text" disabled id = "BillingContactFirstName"><br><br>
-                                    <input class ="input1"  type ="text" disabled id = "BillingContactLastName"><br><br>
-                                        <input type ="text" class ="input1" disabled id = "BillingContactEmail"><br><br>
-                                            <input type ="text" disabled class ="input1"  id = "BillingContactPhone"><br><br>
+                            <label class="label1" for="">First Name:</label>&nbsp;     <input class ="input1" type ="text" disabled id = "BillingContactFirstName"><br><br>
+                             <label class="label1" for="">Last Name:</label>&nbsp;        <input class ="input1"  type ="text" disabled id = "BillingContactLastName"><br><br>
+                             <label class="label1" for="">Email:</label>&nbsp;            <input type ="text" class ="input1" disabled id = "BillingContactEmail"><br><br>
+                               <label class="label1" for="">Phone:</label>&nbsp;              <input type ="text" disabled class ="input1"  id = "BillingContactPhone"><br><br>
                                             
                             </div>
                             

@@ -117,24 +117,30 @@
 
 
 	#section {
-		    width:800px;
+		    width:1000px;
 		    float:left;
 		    padding:10px;
+            height: 1200px;
             
-            height: auto;
 		}
         #section1{
             width:25%;
             float:left;
-            padding:10px;
+            padding:20px;
             text-align: right;
         }
         #section2{
-            width:30%;
+            width:70%;
             float:left;
             padding:10px;
-            text-align: left;
+            text-align: right;
         }
+	.label1{
+	text-align:right;
+	padding:20px;
+	width:200px;		
+	
+	}
 
 		#nav {
 		    line-height:30px;
@@ -175,7 +181,8 @@
         }
         .input1 {
             text-align: left;
-            width:200px;
+            width:250px;
+            height:30px;
         }
         .button1{
             position:relative;
@@ -230,6 +237,7 @@
                     <span id="selectedVIN"style="color:red" value ="0" hidden>-1</span>
                     <% } %>
                     </p>
+<!--
                 <div id = "section1">
                                   <br><br>
                     VIN:<br><br>
@@ -242,13 +250,13 @@
                    
                    
                 </div>
-                
+ -->               
                 <form id = "form_1" method="post" name="form1"   >
               
                     <div id = "section2">
                     
                     <p><span id="VIN_span" >Select Your Vehicle Or Show All:    </span>
-                    <br><Select name = "VIN" id="VIN" onchange="VINonChange()"/>
+                    <br> <label class="label1" for="VIN">VIN:</label>&nbsp;<Select  class ="input1"  name = "VIN" id="VIN" onchange="VINonChange()"/>
                     
                     <option value="select">-- select --</option>
                     <% for(var i = 0; i <VehicleCount;i++) {%>
@@ -257,7 +265,8 @@
                     <%}%>
                     
                             </select></p>
-                             <Select name = "VehicleID" id="VehicleID" onchange="VehicleIDonChange()"/>
+				
+                              <label class="label1" for="VehicleID">Vehicle ID:</label>&nbsp;<Select  class ="input1" name = "VehicleID" id="VehicleID" onchange="VehicleIDonChange()"/>
                             <option value="-1">-- select --</option>
                             <% for(var i = 0; i <VehicleCount;i++) {%>
                             <!-- <option value="<%= ContactID%>"><%=ContactID%></option>-->
@@ -267,10 +276,10 @@
                             <br>
                             <br>
                             
-                            <input type ="text" class ="input1" disabled id = "UnitNumber"/><br><br>
-                            <input type ="text" disabled class ="input1"  id = "Make"/><br><br>
-                            <input type ="text" disabled id = "Model" class ="input1" /><br><br>
-                            <input type ="text" disabled  class ="input1"id = "Year" /><br><br>
+                            <label class="label1" for="UnitNumber">Unit Number:</label>&nbsp;<input type ="text" class ="input1" disabled id = "UnitNumber" name="UnitNumber"/><br><br>
+                             <label class="label1" for="">Make:</label>&nbsp;<input type ="text" disabled class ="input1"  id = "Make"/><br><br>
+                            <label class="label1" for="Model">Model:</label>&nbsp; <input type ="text" disabled id = "Model" class ="input1" /><br><br>
+                            <label class="label1" for="Year">Year:</label>&nbsp; <input type ="text" disabled  class ="input1"id = "Year" /><br><br>
                                                          <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitVehicle()">
                           </div>
                     
@@ -304,7 +313,7 @@
        
                   </table>
                   </div>
-                  
+                  <br>
                   <button class ="button1"id="Add New Vehicle"  onclick="{location.href='/addNewVehicleAdmin/<%= CompanyID%>?ContactID=<%= ContactID%>&ContactName=<%= username%>'}">Add New Vehicle</button>&nbsp;&nbsp;&nbsp;
                   <button class = "button1"id="EditVehicleInfo" >Edit Vehicle Info</button>
                   <button id="showall1" style = "background-color : lightblue" onclick ="showAll()" >Show All</button>

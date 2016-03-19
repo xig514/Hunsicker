@@ -69,10 +69,11 @@
             
         }
         function submitEngine(){
-            VIN =$("#VIN option:selected").val();
-            if(VIN ==-1){
-                alert("Please select a VIN and then click next.");
+            var SerialNumber =$("#SerialNumber option:selected").val();
+            if(SerialNumber ==-1){
+                alert("Please select a SerialNumber and then click next.");
                 event.preventDefault();
+		console.log(111111);
                 return;
             }
             
@@ -129,23 +130,18 @@
 
 
 	#section {
-		    width:800px;
+		    width:1000px;
 		    float:left;
 		    padding:10px;
             
-            height: auto;
+            height: 1200px;
 		}
-        #section1{
-            width:25%;
+
+        #section2{
+            width:70%;
             float:left;
             padding:10px;
             text-align: right;
-        }
-        #section2{
-            width:30%;
-            float:left;
-            padding:10px;
-            text-align: left;
         }
 
 		#nav {
@@ -187,7 +183,8 @@
         }
         .input1 {
             text-align: left;
-            width:200px;
+            width:250px;
+            height:30px;
         }
         #AddNewEngine{
             position: relative;
@@ -245,25 +242,14 @@
                     <span id="selectedSerialNumber"style="color:red" value ="0" hidden>-1</span>
                     <% } %>
                     </p>
-                <div id = "section1">
-                                  <br><br>
-                    Engine Serial Number:<br><br>
-                   
 
-                   VIN:<br><br>
-                    Make:<br><br>
-                    Model:<br><br>
-                    Year:<br><br>
-                   
-                   
-                </div>
                 
                 <form id = "form_1" method="post" name="form1"   >
               
                     <div id = "section2">
                     
                     <p><span id="SerialNumber_span" >Select Your Engine Or Show All:    </span>
-                    <br><Select name = "SerialNumber" id="SerialNumber" onchange="SerialNumberonChange()"/>
+                    <br><label class="label1" >Engine SerialNumber:</label>&nbsp;&nbsp;&nbsp;	<Select class="input1" name = "SerialNumber" id="SerialNumber" onchange="SerialNumberonChange()"/>
                     
                     <option value="-1">-- select --</option>
                     <% for(var i = 0; i <EngineCount;i++) {%>
@@ -275,11 +261,11 @@
 
 
                             
-                            <input type ="text" class ="input1" disabled id = "VIN" value="<%= VIN%>"/><br><br>
+                            <label class="label1" >Engine VIN:</label>&nbsp;&nbsp;<input type ="text" class ="input1" disabled id = "VIN" value="<%= VIN%>"/><br><br>
                             
-                            <input type ="text" disabled class ="input1"  id = "Make"/><br><br>
-                            <input type ="text" disabled id = "Model" class ="input1" /><br><br>
-                            <input type ="text" disabled  class ="input1"id = "Year" /><br><br>
+                            <label class="label1" >Engine Make:</label>&nbsp;&nbsp;<input type ="text" disabled class ="input1"  id = "Make"/><br><br>
+                            <label class="label1" >Engine Model:</label>&nbsp;&nbsp;<input type ="text" disabled id = "Model" class ="input1" /><br><br>
+                            <label class="label1" >Engine Year:</label>&nbsp;&nbsp;<input type ="text" disabled  class ="input1"id = "Year" /><br><br>
                        
                              <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitEngine()">
                           </div>

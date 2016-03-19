@@ -138,43 +138,34 @@ function checkCookie() {
 }
 
 	#section {
-		    width:1000px;
+		    width:1200px;
 		    float:left;
-		    padding:10px;	 	 
+		    padding:10px;
+	 	    text-align:right;
 		}
     #section1 {
-		    width:450px;
+		    width:600px;
 		    float:left;
 		    padding:10px;
 		}
-        #section1_1{
-            width:200px;
-            float:left;
-            text-align:right;
-            padding:10px;
-        }
+
         #section1_2{
-            width:230px;
+            width:90%;
             float:right;
             padding:10px;
+	    text-align:right;
         }
         #section2 {
 		    width:450px;
 		    float:left;
 		    padding:10px;
 		}
-        #section2_1{
-            width:190px;
-            float:left;
-            text-align:right;
-            padding:10px;
-            
-            
-        }
+
         #section2_2{
-            width:220px;
-            float:right;
+            width:550px;
+            float:left;
             padding:10px;
+	    text-align:right;
         }
 		#nav {
 		    line-height:30px;
@@ -212,9 +203,9 @@ function checkCookie() {
 
                 <div  id="nav">
 
-             <button onclick="{location.href='http://localhost:9000/inputSelection'}">Back</button>
+             <button onclick="{location.href='/inputSelection'}">Back</button>
              
-            <button onclick="{location.href='http://localhost:9000/signout'}">signout</button>
+            <button onclick="{location.href='/signout'}">signout</button>
                 </div>
 
 
@@ -234,44 +225,31 @@ function checkCookie() {
                 <form method="POST" id = "ContactInput" onsubmit="" action="/addNewContactAdmin?CompanyID=<%= CompanyID %>">
                     
                     <span style="color:Blue">Please input your Contact Information for Company: <%= CompanyName%>.</br> You will be forced to here if no Contact exists for this Company.</span>
-                        <div id = "section1_1">
-                            Contact Name*:</br></br>
-                            First*:</br></br>
-                            Last*:</br></br>
-                            Phone:</br></br>
-                            Email:</br></br>
-                            </div>
+                    
                         <div id = "section 1_2">
-                            <p> <input type ="text"disabled id = "ContactName">
-                            <p> <input type ="text " id="c01" value="" placeholder = "FirstName"  name ="FirstName" required onchange="FirstChange();"/></p>
-                            <p><input type ="text " id="c02" value="" name = "LastName" required placeholder = "LastName"onchange="LastChange();"/></p>
+                            <p><label class="label1" >Contact Name*:</label>&nbsp; <input type ="text"disabled id = "ContactName"></p>
+                            <p><label class="label1" >First Name*:</label>&nbsp;  <input type ="text " id="c01" value="" placeholder = "FirstName"  name ="FirstName" required onchange="FirstChange();"/></p>
+                            <p><label class="label1" >Last Name*:</label>&nbsp; <input type ="text " id="c02" value="" name = "LastName" required placeholder = "LastName"onchange="LastChange();"/></p>
                             
-                            <p><input style="width:30px" class="PhoneNumber" type = "text" id = "PhoneNumber1"  name = "PhoneNumber1" value ="" placeholder = "000" maxlength=3 required = "true" pattern="\d{3}"  />-
+                            <p><label class="label1" >Phone:</label>&nbsp; <input style="width:30px" class="PhoneNumber" type = "text" id = "PhoneNumber1"  name = "PhoneNumber1" value ="" placeholder = "000" maxlength=3 required = "true" pattern="\d{3}"  />-
                             <input type = "text" name = "PhoneNumber2" id = "PhoneNumber2" class="PhoneNumber" style="width:30px" value ="" placeholder = "000" maxlength=3 required = "true" pattern="\d{3}"  />-
                             <input type = "text" name = "PhoneNumber3" id = "PhoneNumber3" class="PhoneNumber" value =""  style="width:40px" placeholder = "0000" maxlength=4 required = "true" pattern="\d{4}"  />
                             </p>
                             
-                            <p><input type ="email" id="c04" value="" placeholder = "EmailAddress" name ="EmailAddress"></p>
+                            <p><label class="label1" >Email*:</label>&nbsp; <input type ="email" id="c04" value="" placeholder = "EmailAddress" name ="EmailAddress"></p>
                                 
     
                     </div>
                     </div>
                     <div id="section2">
-                        </br></br></br>
+                       
+                       </br></br></br>
                         
                         <u >Site Information</u>
-                        <div id ="section2_1">
-                            </br></br>
-                        Site Address*:</br></br>
-                        City:</br></br>
-                        State:</br></br>
-                        Zip:</br></br>
-                        Contact Status ID: </br></br>
-                        </div>
                         <div id ="section2_2">
-                            <p><input type ="text" id="c05" value="" placeholder = "SiteAddress" name = "SiteAddress" required="true"></p>
-                            <p><input type ="text " id="c06" value="" placeholder = "SiteCity" name = "SiteCity"></p>
-                                    <p><Select name = "SiteState" id="SiteState1"></p>
+                            <p><label class="label1" >Site Address*:</label>&nbsp;<input type ="text" id="c05" value="" placeholder = "SiteAddress" name = "SiteAddress" required="true"></p>
+                            <p><label class="label1" >City*:</label>&nbsp;<input type ="text " id="c06" value="" placeholder = "SiteCity" name = "SiteCity" required="true"></p>
+                                    <p><label class="label1" >State*:</label>&nbsp;&nbsp;<Select name = "SiteState" id="SiteState1"></p>
                                         
                                         <option selected value="">State...</option>
                                         <option value="ZZ">None</option>
@@ -353,8 +331,8 @@ function checkCookie() {
                                     </p>
                                     
                                     
-                                    <p><input type = "text" name = "SiteZip" placeholder = "00000" value =""  id="c07" maxlength=5  pattern= "\d{5}"></p>
-                                        <p><input type = "radio" name = "ContactStatusID" value ="Yes" id="ConSI_1" role="radio" checked = "checked"/>
+                                    <p><label class="label1" >Zip:</label>&nbsp;<input type = "text" name = "SiteZip" placeholder = "00000" value =""  id="c07" maxlength=5  pattern= "\d{5}"></p>
+                                        <p><label class="label1" >Contact Status ID:</label>&nbsp;<input type = "radio" name = "ContactStatusID" value ="Yes" id="ConSI_1" role="radio" checked = "checked"/>
                                         <Span>Active</Span>
                                         <input type = "radio" name = "ContactStatusID" value ="No" id="ConSI_2" role="radio"/>
                                         
@@ -364,6 +342,7 @@ function checkCookie() {
                
                               
                     </div>  <!-- end of section2 -->
+<br><br>
                     <input type="image" src ="../../public/images/addGreenCircle.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitContact()">
                         
                         </form>
