@@ -546,7 +546,10 @@ app.post('/signup', login.signUpPost);
 // GET
 app.get('/signout', login.signOut);
 
+app.get('/loveIS', function(req,res){
+res.render('loveIS',{name:"Zhang Xiao Mao Da Wo frequently but I am still loving her."});
 
+})
 
 
 

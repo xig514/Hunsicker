@@ -247,7 +247,8 @@
         }
         .input1 {
             text-align: left;
-            width:200px;
+            width:250px;
+            height:30px;
         }
         .button1{
             top:180px;

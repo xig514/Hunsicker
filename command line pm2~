@@ -1,0 +1,3 @@
+pm2 start app.js -i 0 --merge-logs --log-date-format="YYYY-MM-DD HH:mm Z" -o ../applog.log -e ../apperror.log
+
+sudo gedit /etc/nginx/sites-available/default

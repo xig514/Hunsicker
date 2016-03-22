@@ -13,8 +13,8 @@ var queryClause="";
 var pool     =    mysql.createPool({
                                     connectionLimit : 100, //important
                                     host     : 'localhost',
-                                    user     : 'Xig514',
-                                    password : 'some_pass',
+                                    user     : 'root',
+                                    password : '',
                                     database : 'Hunsicker',
                                     debug    :  false
                                     });
