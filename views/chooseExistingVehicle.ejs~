@@ -28,7 +28,7 @@
                               
                               //console.log(VehicleNumber);
                               
-				$("#VIN").trigger("chosen:updated");
+
                               //var VehicleID="#"+ (20*VehicleNumber+1).toString();
                               var UnitNumber="#"+ (20*VehicleNumber+2).toString();
                               var Make="#"+(20*VehicleNumber+3).toString();

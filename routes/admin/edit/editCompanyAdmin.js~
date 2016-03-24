@@ -126,12 +126,12 @@ exports.show=function (req,res,app,dirPath)
                                             // console.log('CompanyCount = ' + countCompanyID);
                                              //;console.log(CompanyID);
                                              if(req.query.message!=undefined){
-                                             res.render('editCompanyAdmin', {h1:'Edit Company',use:{username:'Administrator'},title:'The result of this Company',CompanyID:CompanyID,CompanyName:CompanyName,dataForShowingE:dataForShowing1,errorMessage:req.query.message});
+                                             res.render('editCompanyadmin', {h1:'Edit Company',use:{username:'Administrator'},title:'The result of this Company',CompanyID:CompanyID,CompanyName:CompanyName,dataForShowingE:dataForShowing1,errorMessage:req.query.message});
                                              app.set('views', path.join(dirPath, 'views'));
 
                                              }
                                              else{
-                                             res.render('editCompanyAdmin', {h1:'Edit Company',use:{username:'Administrator'},title:'The result of this Company',CompanyID:CompanyID,CompanyName:CompanyName,dataForShowingE:dataForShowing1});
+                                             res.render('editCompanyadmin', {h1:'Edit Company',use:{username:'Administrator'},title:'The result of this Company',CompanyID:CompanyID,CompanyName:CompanyName,dataForShowingE:dataForShowing1});
                                              app.set('views', path.join(dirPath, 'views'));
 
                                              }

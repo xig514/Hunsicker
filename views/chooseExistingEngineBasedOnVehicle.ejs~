@@ -29,7 +29,7 @@
         function SerialNumberonChange(){
                               var EngineNumber = $("#SerialNumber").val();
 
-				$("#SerialNumber").trigger("chosen:updated");
+
                               var Make="#"+(20*EngineNumber+2).toString();
                               var Model = "#"+(20*EngineNumber+3).toString();
                               var Year = "#"+(20*EngineNumber+4).toString();

@@ -70,13 +70,6 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
         }
         */
         function editDPF(){
-	     DPFID =$("#DPFID option:selected").val();
-            if(DPFID ==-1){
-                alert("Please select a DPFID and then click next.");
-                
-                event.preventDefault();
-                return;
-            }
             var link1="/editDPFAdmin?VIN="+$("#VIN").html()+"&ContactID="+$("#ContactID").html()+"&CompanyID="+$("#CompanyID").html()+"&DPFID="+$("#DPFID option:selected").text();
             location.href=link1;
         }

@@ -39,13 +39,13 @@ exports.handle_Input=function (req,res)
                                          connection.release();
                                          if(!err)
                                          {
-                                         res.redirect('/editEngineAdmin?VIN='+VIN+'&CompanyID='+req.query.CompanyID+'&ContactID='+ContactID+'&message=Successful');
+                                         res.redirect('/editEngineAdmin?VIN='+VIN+'&CompanyID='+req.body.CompanyID+'&ContactID='+ContactID+'&message=Successful');
                                          }
                                          else
                                          {
                                          console.log('error in Update Vehicle!');
                                     
-                                         res.redirect('/editVehicleAdmin?VIN'+VIN+'&CompanyID='+req.query.CompanyID+'&ContactID='+ContactID+'&message=Failed');
+                                         res.redirect('/editVehicleAdmin?VIN'+VIN+'&CompanyID='+req.body.CompanyID+'&ContactID='+ContactID+'&message=Failed');
                                          return;
                                          
                                          

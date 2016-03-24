@@ -33,7 +33,7 @@
                           
         function ContactNameOnChange(){
                               var ContactNumber = $("#ContactName").val();
-                              
+                              $("#ContactName").trigger("chosen:updated");
                               //console.log(ContactNumber);
                               
                               //var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
@@ -83,7 +83,6 @@
              var CompanyName = "#"+(20*ContactNumber+11).toString();
              
              $("#ContactName").val(ContactNumber);
-		$("#ContactName").trigger("chosen:updated");
              $("#First").val($(FirstName).html());
              $("#Last").val($(LastName).html());
              $("#Phone").val($(Phone).html());

@@ -211,7 +211,7 @@
         .input1 {
             text-align: left;
             width:250px;
-            height:30px;
+            height:15px;
         }
         .button1{
             top:180px;
@@ -276,7 +276,7 @@
                     <p><span id="ContactID_Span" >Edit your Contact Information:</span><br><br>
                     <br>   <label class="label1" for="">Contact Name:</label>&nbsp;<input type="text" class="input1" disabled name = "ContactName" id="ContactName"/>
                     </p>
-                               <label class="label1" for="">Contact ID:</label>&nbsp; <Select class="input1" name = "ContactID" id="ContactID" onchange="ContactIDOnChange()"/>
+                               <label class="label1" for="">Contact ID:</label>&nbsp; <Select class="input1"name = "ContactID" id="ContactID" onchange="ContactIDOnChange()"/>
                             
                             <option value="1"><%= ContactID %></option>
                            
