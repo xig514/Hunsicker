@@ -4,12 +4,15 @@
         <title>Existing Engine</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-       
+        <script src="/javascripts/chosen/chosen.jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/javascripts/chosen/chosen.min.css">
+
         <script type="text/javascript">
         
         $(document).ready(function() {
                           
                          $("#TableAll").toggle();
+                          $(".chosen-select").chosen();
                           $("#nav").height($("#section").outerHeight());
                           var a =$("#selectedSerialNumber").html();
                           //alert(a);
@@ -65,53 +68,29 @@
                 $("#nav").height($("#section").outerHeight());
 
         }
-        function EditContactInfo(){
-            
+        function EditEngineInfo(){
+            var SerialNumber =$("#SerialNumber option:selected").val();
+            if(SerialNumber ==-1){
+                alert("Please select a SerialNumber and then click next.");
+                event.preventDefault();
+                
+                return;
+            }
+            link1="/editEngineAdmin"+"?ContactID="+$("#ContactID").html()+"&CompanyID="+$("#CompanyID").html()+"&VIN="+$("#VIN").val();
+            location.href=link1;
         }
         function submitEngine(){
             var SerialNumber =$("#SerialNumber option:selected").val();
             if(SerialNumber ==-1){
                 alert("Please select a SerialNumber and then click next.");
                 event.preventDefault();
-		console.log(111111);
+		
                 return;
             }
             
             //window.location = "/chooseExistingContactBasedOnCompanyID/"+CompanyID;
 
         }
-        /*
-        function checkContactID(){
-            var count_Contact = parseInt(document.getElementById('ContactID').length);
-            console.log('count_ContactID ' +count_Contact);
-            if( count_Contact <2  ) {
-                window.alert('No Contact Information, Please insert One Contact First!');
-                document.getElementById('ContactID_Span').style.color="red";
-                return false;
-                
-            }
-            else{
-                
-              //  var cid = $('#ContactID');
-              var ContactIDValue = document.getElementById("ContactID");
-              var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
-
-                if(Choice  =="select")
-                {
-                    window.alert('Please choose a ContactID');
-                     document.getElementById('ContactID_Span').style.color="red";
-                    return false;
-                }
-                else{
-                return true;
-                }
-            }
-            
-            
-            return false;
-           
-        }
-        */
         
         </script>
 
@@ -220,7 +199,7 @@
                     <% } %>
                     </p>
                     <% if(typeof(username) !== 'undefined') {%>
-                    <span style="color:green">Add a Job for ( <%= username %> ).</span>
+                    <span style="color:green" hidden>Add a Job for ( <%= username %> ).</span>
                     <% } %>
                     </p>
                     
@@ -243,23 +222,21 @@
                     <% } %>
                     </p>
 
-                
+
                 <form id = "form_1" method="post" name="form1"   >
               
                     <div id = "section2">
                     
                     <p><span id="SerialNumber_span" >Select Your Engine Or Show All:    </span>
-                    <br><label class="label1" >Engine SerialNumber:</label>&nbsp;&nbsp;&nbsp;	<Select class="input1" name = "SerialNumber" id="SerialNumber" onchange="SerialNumberonChange()"/>
-                    
+                    <br><label class="label1" >Engine SerialNumber:</label>&nbsp;&nbsp;&nbsp;	<Select style="width:250px"class="chosen-select"  name = "SerialNumber" id="SerialNumber" onchange="SerialNumberonChange()">
                     <option value="-1">-- select --</option>
                     <% for(var i = 0; i <EngineCount;i++) {%>
-                   <!-- <option value="<%= ContactID%>"><%=ContactID%></option>-->
+                    <!-- <option value="<%= ContactID%>"><%=ContactID%></option>-->
                     <option value="<%=i%>"><%=SerialNumber[i]%></option>
                     <%}%>
                     
-                            </select></p>
-
-
+                    </select></p>
+                
                             
                             <label class="label1" >Engine VIN:</label>&nbsp;&nbsp;<input type ="text" class ="input1" disabled id = "VIN" value="<%= VIN%>"/><br><br>
                             
@@ -275,7 +252,7 @@
                            
                 </form>
                 <button id="AddNewEngine"onclick="{location.href='/addNewEngineAdmin/<%= VIN %>?ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>'}" >Add New Engine</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button id="EditEngineInfo" >Edit Engine Info</button>
+                <button id="EditEngineInfo" onclick="EditEngineInfo();">Edit Engine Info</button>
                   <!-- <button id = "hide1" onclick = "hideContactInfo()" >Hide</button><br>-->
                   <div id = "table1">
                   <table id = "TableAll" style="width:100%">

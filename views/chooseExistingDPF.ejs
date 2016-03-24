@@ -3,17 +3,25 @@
 	<head>
         <title>Existing DPF</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-       
+
+        <script src="/javascripts/chosen/chosen.jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/javascripts/chosen/chosen.min.css">
+
         <script type="text/javascript">
         
         $(document).ready(function() {
                           
-                         $("#TableAll").toggle();
+                          $(".chosen-select").chosen({
+                          
+                                                     });
+                          $("#TableAll").toggle();
                           $("#nav").height($("#section").outerHeight());
                           a=$("#selectedDPFID").html();
+                          
+                          
                           if(a!=-1){
                           $('#DPFID option:contains('+ a +')').prop({selected: true});
+                          
                           $("#DPFID").change();
                           }
                           });
@@ -63,6 +71,10 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
             
         }
         */
+        function editDPF(){
+            var link1="/editDPFAdmin?VIN="+$("#VIN").html()+"&ContactID="+$("#ContactID").html()+"&CompanyID="+$("#CompanyID").html()+"&DPFID="+$("#DPFID option:selected").text();
+            location.href=link1;
+        }
         function showAll(){
             var value = arry2.shift();
             arry2.push(value);
@@ -76,6 +88,7 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
             DPFID =$("#DPFID option:selected").val();
             if(DPFID ==-1){
                 alert("Please select a DPFID and then click next.");
+                
                 event.preventDefault();
                 return;
             }
@@ -260,11 +273,11 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
                     <p><span id="SerialNumber1" >Select Your DPF Or Show All:    </span>
                     <br>
                        
-                        <label class="label1" for="">DPFID*:</label>&nbsp;&nbsp;<Select class="input1" name = "DPFID" id="DPFID" onchange="DPFIDonChange()"/>
+                        <label class="label1" for="">DPFID*:</label>&nbsp;&nbsp;<Select style="width:250px"class="chosen-select"  name = "DPFID" id="DPFID" onchange="DPFIDonChange()"/>
                        <option value="-1">-- select --</option>
                        <% for(var i = 0; i <DPFCount;i++) {%>
                        <!-- <option value="<%= ContactID%>"><%=ContactID%></option>-->
-                       <option value="<%=i%>"><%=DPFID[i]%></option>
+                       <option id="<%= i*2+100%>"value="<%=i%>"><%=DPFID[i]%></option>
                        <%}%>
                        
                         </select>
@@ -310,7 +323,7 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
 
                 </form>
                 <button class="button1" id="ADDNewDPF" onclick="{location.href='/addNewDPFAdmin?VIN=<%= VIN%>&ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>'}">Add New DPF</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button class="button1" id="EditDPFInfo" >Edit DPF Info</button>
+                <button class="button1" id="EditDPFInfo" onclick="editDPF()" >Edit DPF Info</button>
                   <!-- <button id = "hide1" onclick = "hideContactInfo()" >Hide</button><br>-->
                   <div id = "table1">
                   <table id = "TableAll" style="width:100%">

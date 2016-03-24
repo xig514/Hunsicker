@@ -5,7 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  
+        <script src="/javascripts/chosen/chosen.jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/javascripts/chosen/chosen.min.css">
+
         <script src="/javascripts/jquery.cookie.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script type="text/javascript">
@@ -13,6 +15,8 @@
         $(document).ready(function() {
                           
                          $("#TableAll").toggle();
+                          
+                          $(".chosen-select").chosen();
                           $("#nav").height($("#section").outerHeight());
                           //alert($("#selectedCompanyID").html());
                           var a =$("#selectedCompanyID").html();
@@ -50,8 +54,8 @@
                               $("#BillingContactPhone").val($(Phone).html());
                               $("#form_1").attr("action", "/chooseExistingContactBasedOnCompanyID/" + $("#CompanyID option:selected").text()+"/?CompanyName=\""+$("#CompanyName option:selected").text()+"\"");
                               console.log($("#form_1").attr("action"));
-                              
-                           
+                            //  EditCompanyChangeOnName();
+                             
                           }
         
         function CompanyIDOnChange(){
@@ -83,6 +87,7 @@
              $("#BillingContactPhone").val($(Phone).html());
              $("#form_1").attr("action", "/chooseExistingContactBasedOnCompanyID/" + $("#CompanyID option:selected").text()+"?CompanyName=\""+$("#CompanyName option:selected").text()+"\"");
              console.log($("#form_1").attr("action"));
+		//EditCompanyChangeOnID();
 
         }
         
@@ -107,10 +112,28 @@
 
         }
         function EditCompany(){
-            
+            CompanyID =$("#CompanyID").val();
+            if(CompanyID ==-1){
+                alert("Please select a Company and then click Edit Company.");
+                event.preventDefault();
+                return;
+            }else{
+                location.href="/editCompanyAdmin/"+$("#CompanyID option:selected").text();
+            }
         }
-        
-      
+        /*
+      	function EditCompanyChangeOnID(){
+		
+		var CompanyID =$("#CompanyID option:selected").text();
+		var link1 = "/EditCompanyInfoAdmin/"+CompanyID;
+		$("#EditCompanyInfo").attr("href",link1);
+	}
+      	function EditCompanyChangeOnName(){
+		var CompanyNumber = parseInt($("#CompanyName").val());
+		var CompanyID =  "#"+(20*CompanyNumber).toString();
+		var link1 = "/EditCompanyInfoAdmin/"+CompanyID;
+		$("#EditCompanyInfo").attr("href",link1);
+	}*/
         function submitCompany(){
             
             CompanyID =$("#CompanyID").val();
@@ -211,7 +234,7 @@
 		    line-height:30px;
 		    background-color:#eeeeee;
 		    height:auto;
-            min-height: 600px;
+                    min-height: 600px;
             
 		    width:150px;
 		    float:left;
@@ -289,13 +312,13 @@
                     <% } %>
                     </p>
          
-                
+                <button style = "position:relative ;top:370px; left:600px;" id="EditCompanyInfo" onclick="EditCompany();" >Edit Company Info</button> <br>
                 <form id = "form_1"method="post" name="form1"   >
               
                     <div id = "section2">
                     
                     <p><span id="ContactID_Span" >Select Your Company Or Show All:    </span>
-                    <br>    <label class="label1" for="">Company Name:</label>&nbsp;<Select class ="input1"  name = "CompanyName" id="CompanyName" onchange="CompanyNameOnChange()"/>
+                    <br>    <label class="label1" for="">Company Name:</label>&nbsp;<Select style="width:250px"class="chosen-select"  name = "CompanyName" id="CompanyName" onchange="CompanyNameOnChange()"/>
                     
                     <option value="select">-- select --</option>
                     <% for(var i = 0; i <CompanyCount;i++) {%>
@@ -318,7 +341,7 @@
                            <label class="label1" for="">State:</label>&nbsp;  <input type ="text" disabled class ="input1"  id = "State"><br><br>
                           <label class="label1" for="">Zip:</label>&nbsp;   <input type ="text" disabled id = "Zip" class ="input1" ><br><br>
                                 
-                            <button id="EditCompanyInfo" >Edit Company Info</button> <br>
+                            
                              <input type="image" src ="../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitCompany()">
                           </div>
                     
@@ -337,6 +360,10 @@
                
                            
                 </form>
+		
+
+
+
                   <!-- <button id = "hide1" onclick = "hideContactInfo()" >Hide</button><br>-->
                   <div id = "table1">
                   <table id = "TableAll" style="width:100%">

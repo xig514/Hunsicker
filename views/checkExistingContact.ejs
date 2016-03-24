@@ -4,7 +4,9 @@
         <title>Existing Contact</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-       
+        <script src="/javascripts/chosen/chosen.jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/javascripts/chosen/chosen.min.css">
+
         <script type="text/javascript">
         
         $(document).ready(function() {
@@ -43,39 +45,7 @@
             document.getElementById("showall1").innerHTML = value;
             $("#TableAll").toggle();
         }
-        
-        /*
-        function checkContactID(){
-            var count_Contact = parseInt(document.getElementById('ContactID').length);
-            console.log('count_ContactID ' +count_Contact);
-            if( count_Contact <2  ) {
-                window.alert('No Contact Information, Please insert One Contact First!');
-                document.getElementById('ContactID_Span').style.color="red";
-                return false;
-                
-            }
-            else{
-                
-              //  var cid = $('#ContactID');
-              var ContactIDValue = document.getElementById("ContactID");
-              var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
-
-                if(Choice  =="select")
-                {
-                    window.alert('Please choose a ContactID');
-                     document.getElementById('ContactID_Span').style.color="red";
-                    return false;
-                }
-                else{
-                return true;
-                }
-            }
-            
-            
-            return false;
-           
-        }
-        */
+     
         
         </script>
 

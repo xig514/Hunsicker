@@ -68,13 +68,37 @@ var addNewContactAdmin = require('./routes/admin/addNewContactAdmin');
 var addNewVehicleAdmin = require('./routes/admin/addNewVehicleAdmin');
 var addNewEngineAdmin =require('./routes/admin/addNewEngineAdmin');
 var addNewDPFAdmin = require('./routes/admin/addNewDPFAdmin');
+//===================================================================
+//========   edit ======================================================
+var editCompanyAdmin = require('./routes/admin/edit/editCompanyAdmin');
+var editContactAdmin = require('./routes/admin/edit/editContactAdmin');
 
+var editVehicleAdmin = require('./routes/admin/edit/editVehicleAdmin');
+var editEngineAdmin=require('./routes/admin/edit/editEngineAdmin');
+var editDPFAdmin = require('./routes/admin/edit/editDPFAdmin');
 
 
 //-----------------------------------------------------------------------------------------------------------------------end admin
 
 
-
+process.on('message', function(msg) {
+           if (msg == 'shutdown') {
+           // Your process is going to be reloaded
+           // You have to close all database/socket.io/* connections
+           
+           console.log('Closing all connections...');
+           
+           // You will have 4000ms to close all connections before
+           // the reload mechanism will try to do its job
+           
+           setTimeout(function() {
+                      console.log('Finished closing connections');
+                      // This timeout means that all connections have been closed
+                      // Now we can exit to let the reload mechanism do its job
+                      process.exit(0);
+                      }, 1500);
+           }
+           });
 
 
 // view engine setup
@@ -317,7 +341,7 @@ app.post('/chooseExistingContactBasedOnCompanyID/:id',function (req,res){
 
 app.get('/chooseExistingVehicle/:id',function(req,res){
     
-    chooseExistingVehicle.handle_Input(req,res);
+    chooseExistingVehicle.show(req,res);
     
         });
 
@@ -403,6 +427,58 @@ app.post('/addNewDPFAdmin',function(req,res){
          
          });
 
+
+//================================================================================
+///======================   EDIT   ===================================================
+app.get('/editCompanyAdmin/:id',function(req,res){
+        app.set('views', path.join(__dirname, 'views/editAdmin'));
+        editCompanyAdmin.show(req,res,app,__dirname);
+        
+        
+        
+        });
+app.post('/editCompanyAdmin/:id',function (req,res){
+         //app.set('views', path.join(__dirname, 'views/editAdmin'));
+         editCompanyAdmin.handle_Input(req,res);
+         });
+
+app.get('/editContactAdmin/:id',function(req,res){
+        app.set('views', path.join(__dirname, 'views/editAdmin'));
+        editContactAdmin.show(req,res,app,__dirname);
+        
+        });
+app.post('/editContactAdmin/:id',function(req,res){
+         editContactAdmin.handle_Input(req,res);
+         
+         });
+app.get('/editVehicleAdmin/:id',function(req,res){
+        app.set('views', path.join(__dirname, 'views/editAdmin'));
+        editVehicleAdmin.show(req,res,app,__dirname);
+        });
+app.post('/editVehicleAdmin/:id',function(req,res){
+         
+         editVehicleAdmin.handle_Input(req,res);
+         });
+app.get('/editEngineAdmin',function(req,res){
+         app.set('views', path.join(__dirname, 'views/editAdmin'));
+        editEngineAdmin.show(req,res,app,__dirname);
+        
+    
+        });
+app.post('/editEngineAdmin',function(req,res){
+                 
+                 editEngineAdmin.handle_Input(req,res);
+                 });
+
+app.get('/editDPFAdmin',function(req,res){
+        
+        app.set('views', path.join(__dirname, 'views/editAdmin'));
+        editDPFAdmin.show(req,res,app,__dirname);
+        })
+
+app.post('/editDPFAdmin',function(req,res){
+         editDPFAdmin.handle_Input(req,res);
+         })
 /*
 app.get('/back',function(req,res,next){
         console.log(req.headers);

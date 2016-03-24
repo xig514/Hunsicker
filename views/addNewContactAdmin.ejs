@@ -190,7 +190,9 @@ function checkCookie() {
             right: 700px;
             top:400px;
         }
-        
+        .input1{
+            width:250px;
+        }
 </style>
 
     </head>
@@ -227,16 +229,16 @@ function checkCookie() {
                     <span style="color:Blue">Please input your Contact Information for Company: <%= CompanyName%>.</br> You will be forced to here if no Contact exists for this Company.</span>
                     
                         <div id = "section 1_2">
-                            <p><label class="label1" >Contact Name*:</label>&nbsp; <input type ="text"disabled id = "ContactName"></p>
-                            <p><label class="label1" >First Name*:</label>&nbsp;  <input type ="text " id="c01" value="" placeholder = "FirstName"  name ="FirstName" required onchange="FirstChange();"/></p>
-                            <p><label class="label1" >Last Name*:</label>&nbsp; <input type ="text " id="c02" value="" name = "LastName" required placeholder = "LastName"onchange="LastChange();"/></p>
+                            <p><label class="label1" >Contact Name*:</label>&nbsp; <input type ="text" class="input1" disabled id = "ContactName"></p>
+                            <p><label class="label1" >First Name*:</label>&nbsp;  <input type ="text "class="input1" id="c01" value="" placeholder = "FirstName"  name ="FirstName" required onchange="FirstChange();"/></p>
+                            <p><label class="label1" >Last Name*:</label>&nbsp; <input type ="text " class="input1" id="c02" value="" name = "LastName" required placeholder = "LastName"onchange="LastChange();"/></p>
                             
-                            <p><label class="label1" >Phone:</label>&nbsp; <input style="width:30px" class="PhoneNumber" type = "text" id = "PhoneNumber1"  name = "PhoneNumber1" value ="" placeholder = "000" maxlength=3 required = "true" pattern="\d{3}"  />-
-                            <input type = "text" name = "PhoneNumber2" id = "PhoneNumber2" class="PhoneNumber" style="width:30px" value ="" placeholder = "000" maxlength=3 required = "true" pattern="\d{3}"  />-
-                            <input type = "text" name = "PhoneNumber3" id = "PhoneNumber3" class="PhoneNumber" value =""  style="width:40px" placeholder = "0000" maxlength=4 required = "true" pattern="\d{4}"  />
+                            <p><label class="label1" >Phone:</label>&nbsp; <input style="width:60px" class="PhoneNumber" type = "text" id = "PhoneNumber1"  name = "PhoneNumber1" value ="" placeholder = "000" maxlength=3 required = "true" pattern="\d{3}"  />-
+                            <input type = "text" name = "PhoneNumber2" id = "PhoneNumber2" class="PhoneNumber" style="width:60px" value ="" placeholder = "000" maxlength=3 required = "true" pattern="\d{3}"  />-
+                            <input type = "text" name = "PhoneNumber3" id = "PhoneNumber3" class="PhoneNumber" value =""  style="width:80px" placeholder = "0000" maxlength=4 required = "true" pattern="\d{4}"  />
                             </p>
                             
-                            <p><label class="label1" >Email*:</label>&nbsp; <input type ="email" id="c04" value="" placeholder = "EmailAddress" name ="EmailAddress"></p>
+                            <p><label class="label1" >Email*:</label>&nbsp; <input type ="email"class="input1" id="c04" value="" placeholder = "EmailAddress" name ="EmailAddress"></p>
                                 
     
                     </div>
@@ -247,9 +249,9 @@ function checkCookie() {
                         
                         <u >Site Information</u>
                         <div id ="section2_2">
-                            <p><label class="label1" >Site Address*:</label>&nbsp;<input type ="text" id="c05" value="" placeholder = "SiteAddress" name = "SiteAddress" required="true"></p>
-                            <p><label class="label1" >City*:</label>&nbsp;<input type ="text " id="c06" value="" placeholder = "SiteCity" name = "SiteCity" required="true"></p>
-                                    <p><label class="label1" >State*:</label>&nbsp;&nbsp;<Select name = "SiteState" id="SiteState1"></p>
+                            <p><label class="label1" >Site Address*:</label>&nbsp;<input type ="text" class="input1"id="c05" value="" placeholder = "SiteAddress" name = "SiteAddress" required="true"></p>
+                            <p><label class="label1" >City*:</label>&nbsp;<input type ="text " id="c06" class="input1"value="" placeholder = "SiteCity" name = "SiteCity" required="true"></p>
+                                    <p><label class="label1" >State*:</label>&nbsp;&nbsp;<Select class="input1" name = "SiteState" id="SiteState1"></p>
                                         
                                         <option selected value="">State...</option>
                                         <option value="ZZ">None</option>
@@ -331,8 +333,8 @@ function checkCookie() {
                                     </p>
                                     
                                     
-                                    <p><label class="label1" >Zip:</label>&nbsp;<input type = "text" name = "SiteZip" placeholder = "00000" value =""  id="c07" maxlength=5  pattern= "\d{5}"></p>
-                                        <p><label class="label1" >Contact Status ID:</label>&nbsp;<input type = "radio" name = "ContactStatusID" value ="Yes" id="ConSI_1" role="radio" checked = "checked"/>
+                                    <p><label class="label1" >Zip:</label>&nbsp;<input class="input1" type = "text" name = "SiteZip" placeholder = "00000" value =""  id="c07" maxlength=5  pattern= "\d{5}"></p>
+                                        <p><label class="label1" >Contact Status ID:</label>&nbsp;<input  type = "radio" name = "ContactStatusID" value ="Yes" id="ConSI_1" role="radio" checked = "checked"/>
                                         <Span>Active</Span>
                                         <input type = "radio" name = "ContactStatusID" value ="No" id="ConSI_2" role="radio"/>
                                         

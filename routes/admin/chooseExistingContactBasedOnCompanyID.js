@@ -14,12 +14,98 @@ var poolH = mysql.createPool({
 
                              });
 
-exports.show=function (request,response)
+exports.show=function (req,res)
 {
-    //var user={username:'Administer'};
-    //response.render('addNewJobAdmin',{user:user,title:title})
+
+    var CompanyID = req.params.id;
+    //console.log(CompanyID);
+    var CompanyName =req.query.CompanyName;
     
-}
+    var selectedContactID=req.query.selectedContactID;
+    
+    var dataForShowing1=new Array();
+    poolH.getConnection(function(err,connection){
+                        if (err) {
+                        connection.release();
+                        res.json({"code" : 100, "status" : "Error in connection database"});
+                        return;
+                        }
+                        var countContactID=0;
+                        var ContactID;
+                        var ContactName;
+                        var queryClause2 = "Select x.countt as countContactID,ContactID as ci, FirstName as fn, LastName as ln, PhoneNumber as pn, EmailAddress as ea, SiteAddress as sa, SiteCity as sc, SiteState as ss,SiteZip as sz, ContactStatusID as csid From Contact,(select count(*) as countt FROM Contact WHERE Contact.CompanyID = "+connection.escape(CompanyID)+") as x  WHERE Contact.CompanyID = " + connection.escape(CompanyID)+"Order By Contact.FirstName, Contact.LastName;";
+                        // console.log(queryClause2);
+                        connection.query(queryClause2,function(err,rows,fields){
+                                         
+                                         connection.release();
+                                         if(!err)
+                                         {
+                                         if(rows[0]!=null && rows[0].countContactID !=undefined){
+                                         
+                                         
+                                         countContactID = rows[0].countContactID;
+                                         ContactID = new Array(countContactID);
+                                         ContactName = new Array(countContactID);
+                                         for(var i =0; i <countContactID ; i++)
+                                         {
+                                         if (rows[i]!=null && rows[i].ci!= undefined)
+                                         {
+                                         
+                                         
+                                         dataForShowing1[i]=new Array(12);
+                                         ContactID[i]=rows[i].ci;
+                                         ContactName[i]=rows[i].fn +" " + rows[i].ln;
+                                         dataForShowing1[i][0]=rows[i].ci;
+                                         
+                                         dataForShowing1[i][1]=rows[i].fn;
+                                         dataForShowing1[i][2]=rows[i].ln;
+                                         dataForShowing1[i][3]=rows[i].pn;
+                                         dataForShowing1[i][4]=rows[i].ea;
+                                         dataForShowing1[i][5]=rows[i].sa;
+                                         dataForShowing1[i][6]=rows[i].ss;
+                                         
+                                         dataForShowing1[i][7]=rows[i].sc;
+                                         dataForShowing1[i][8]=rows[i].sz;
+                                         dataForShowing1[i][9]=rows[i].csid;
+                                         dataForShowing1[i][10] = CompanyID;
+                                         
+                                         dataForShowing1[i][11]=CompanyName;
+                                         console.log(CompanyName);
+                                         }
+                                         }
+                                         if(selectedContactID!=undefined){
+                                         res.render('chooseExistingContactBasedOnCompanyIDadmin', {h1:'Select Contact',use:{username:'Administrator'},title:'The result of all Contacts based on the selected companyID ',CompanyName:CompanyName, CompanyID: CompanyID, ContactCount:countContactID,ContactID:ContactID,ContactName:ContactName,dataForShowingE:dataForShowing1,selectedContactID :selectedContactID });
+                                         }
+                                         else{
+                                         res.render('chooseExistingContactBasedOnCompanyIDadmin', {h1:'Select Contact',use:{username:'Administrator'},title:'The result of all Contacts based on the selected companyID ',CompanyName:CompanyName, CompanyID: CompanyID, ContactCount:countContactID,ContactID:ContactID,ContactName:ContactName,dataForShowingE:dataForShowing1});
+                                         }
+                                         }
+                                         
+                                         else{
+                                         console.log("no contact records");
+                                         //Here go direct to add new Contact for this company pape.
+                                         res.render('addNewContactAdmin',{title:'Add New Contact Admin',CompanyName:CompanyName,CompanyID:CompanyID,errorMessage:'Error in re-query Contacts'});
+                                         }
+                                         
+                                         }
+                                         
+                                         else{
+                                         console.log('error in Select Contact Info!');
+                                         
+                                         res.render('errorPage', {usernameE: 'Administrator',h1:'Error in Select Contact Infomation',title:"Error in Select ComapnyInfo",errorMessage :'Error in Select Contact Info!'});
+                                         return;
+                                         }
+                                         
+                                         
+                                         
+                                         
+                                         
+                                         
+                                         });
+                        });
+
+    
+ }
 
 
 exports.handle_CompanyInput=function (req,res)
@@ -30,7 +116,7 @@ exports.handle_CompanyInput=function (req,res)
     //console.log(CompanyName);
     var dataForShowing1=new Array();
     
-
+    
         poolH.getConnection(function(err,connection){
                             if (err) {
                             connection.release();
@@ -108,36 +194,3 @@ exports.handle_CompanyInput=function (req,res)
                             });
 
 }
-/*
- poolH.getConnection(function(err,connection){
- if (err) {
- connection.release();
- response.json({"code" : 100, "status" : "Error in connection database"});
- return;
- }
- //queryDPFID='Select DPFID from DPFDOC WHERE DPFID like "%'+req.query.key+'%;"'
- queryDPFID='SELECT DPFID from DPFDOC where DPFID like "%'+request.query.key+'%"'
- connection.query(queryDPFID,function(err,rows){
- connection.release();
- if(!err)
- {
- var data=[];
- for(i=0;i<rows.length;i++)
- {
- data.push(rows[i].DPFID);
- 
- }
- console.log(data);
- response.end(JSON.stringify(data));
- 
- }
- else
- {
- console.log('error in select dpfid');
- response.render('errorPage',{title:'Select DPFID ', h1:'Select DPFID', errorMessage:'ERROR IN DPF!', usernameE:'adminBob'});//???why
- }
- })
- });
- 
-
-*/

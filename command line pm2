@@ -11,3 +11,11 @@ netmask 255.255.255.0
 network 192.168.1.0
 broadcast 192.168.1.255
 gateway 192.168.1.254
+
+
+chosen:
+        <script src="/javascripts/chosen/chosen.jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/javascripts/chosen/chosen.min.css">
+
+  $(".chosen-select").chosen();
+style="width:250px"class="chosen-select" 

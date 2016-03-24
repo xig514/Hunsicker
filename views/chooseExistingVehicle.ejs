@@ -3,12 +3,14 @@
 	<head>
         <title>Existing Vehicle</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-       
+
+        <script src="/javascripts/chosen/chosen.jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/javascripts/chosen/chosen.min.css">
+
         <script type="text/javascript">
         
         $(document).ready(function() {
-                          
+                          $(".chosen-select").chosen();
                          $("#TableAll").toggle();
                           $("#nav").height($("#section").outerHeight());
                           
@@ -90,13 +92,25 @@
 
         function submitVehicle(){
             VIN =$("#VehicleID option:selected").val();
-            if(VehicleID ==-1){
+            if(VIN ==-1){
                 alert("Please select a VehicleID and then click next.");
                 event.preventDefault();
                 return;
             }
             
            
+        }
+        function editVehicle(){
+            VIN =$("#VehicleID option:selected").val();
+            if(VIN ==-1){
+                alert("Please select a VehicleID and then click next.");
+                event.preventDefault();
+                return;
+            }
+            else{
+                var link1="/editVehicleAdmin/"+$("#VIN option:selected").text()+"?CompanyID="+$("#CompanyID").html()+"&ContactID="+$("#ContactID").html()+"&ContactName="+$("#ContactName_temp").html();
+                location.href=link1;
+            }
         }
 
         
@@ -215,7 +229,7 @@
                     </p>
                     <p>
                     <% if(typeof(ContactName) !== 'undefined') {%>
-                    <span style="color:green;display:none">Add a Job for ( <%= ContactName %> ).</span>
+                    <span style="color:green;display:none;" id ="ContactName_temp"><%= ContactName %></span>
                     <% } %>
                     </p>
                     <p>
@@ -256,7 +270,7 @@
                     <div id = "section2">
                     
                     <p><span id="VIN_span" >Select Your Vehicle Or Show All:    </span>
-                    <br> <label class="label1" for="VIN">VIN:</label>&nbsp;<Select  class ="input1"  name = "VIN" id="VIN" onchange="VINonChange()"/>
+                    <br> <label class="label1" for="VIN">VIN:</label>&nbsp;<Select  style="width:250px"class="chosen-select"   name = "VIN" id="VIN" onchange="VINonChange()"/>
                     
                     <option value="select">-- select --</option>
                     <% for(var i = 0; i <VehicleCount;i++) {%>
@@ -315,7 +329,7 @@
                   </div>
                   <br>
                   <button class ="button1"id="Add New Vehicle"  onclick="{location.href='/addNewVehicleAdmin/<%= CompanyID%>?ContactID=<%= ContactID%>&ContactName=<%= username%>'}">Add New Vehicle</button>&nbsp;&nbsp;&nbsp;
-                  <button class = "button1"id="EditVehicleInfo" >Edit Vehicle Info</button>
+                  <button class = "button1"id="EditVehicleInfo"  onclick="editVehicle();">Edit Vehicle Info</button>
                   <button id="showall1" style = "background-color : lightblue" onclick ="showAll()" >Show All</button>
 
 

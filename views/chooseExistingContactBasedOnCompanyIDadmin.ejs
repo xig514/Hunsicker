@@ -4,12 +4,15 @@
         <title>Existing Contact</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-       
+        <script src="/javascripts/chosen/chosen.jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/javascripts/chosen/chosen.min.css">
+
         <script type="text/javascript">
         
         $(document).ready(function() {
                           
                          $("#TableAll").toggle();
+                            $(".chosen-select").chosen();
                           $("#nav").height($("#section").outerHeight());
                           var a =$("#selectedContactID").html();
                           if(a!=-1)
@@ -109,8 +112,17 @@
                 $("#nav").height($("#section").outerHeight());
 
         }
-        function EditContactInfo(){
-            
+        function editContact(){
+            ContactID =$("#ContactID").val();
+            if(ContactID ==-1){
+                alert("Please select a Contact and then click Edit Contact.");
+                event.preventDefault();
+                return;
+            }else{
+
+            link1="/editContactAdmin/"+ $("#ContactID option:selected").text()+ "?CompanyID="+$("#CompanyID").html()+"&CompanyName="+$("#CompanyName_1").html();
+            location.href=link1;
+            }
         }
         function submitContact(){
             ContactID =$("#ContactID option:selected").val();
@@ -285,7 +297,7 @@
                     </p>
                     <p>
                     <% if(typeof(CompanyName) !== 'undefined') {%>
-                    <span style="color:green;display:none" id ="CompanyName_1">CompanyName is: <%= CompanyName %></span>
+                    <span style="color:green;display:none" id ="CompanyName_1"><%= CompanyName %></span>
                     <% } %>
                     </p>
                     <p>
@@ -308,7 +320,7 @@
                     <div id = "section2">
                     
                     <p><span id="ContactID_Span" >Select Your ContactID Or Show All:</span><br><br>
-                    <br>   <label class="label1" for="">Contact Name:</label>&nbsp;<Select class="input1"name = "ContactName" id="ContactName" onchange="ContactNameOnChange()"/>
+                    <br>   <label class="label1" for="">Contact Name:</label>&nbsp;<Select style="width:250px"class="chosen-select"  name = "ContactName" id="ContactName" onchange="ContactNameOnChange()"/>
                     
                     <option value="select">-- select --</option>
                     <% for(var i = 0; i <ContactCount;i++) {%>
@@ -351,7 +363,7 @@
                            
                 </form>
 <br><br><br>
-                <button class="button1" id="EditContactInfo"  >Edit Contact Info</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="button1" id="EditContactInfo" onclick="editContact();" >Edit Contact Info</button>&nbsp;&nbsp;&nbsp;&nbsp;
                 <button class = "button2" id="Add_New_Contact" onclick="{location.href='/addNewContactAdmin?CompanyID=<%= CompanyID%>&CompanyName=<%= CompanyName%>'}">Add New Contact</button>
                 
                   <!-- <button id = "hide1" onclick = "hideContactInfo()" >Hide</button><br>-->
