@@ -29,7 +29,7 @@
                           
         function CompanyNameOnChange(){
                               var CompanyNumber = $("#CompanyName").val();
-                              
+                             
                               //console.log(CompanyNumber);
                               //var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
                               var CompanyID ="#"+(20*CompanyNumber).toString();
@@ -86,6 +86,7 @@
              $("#BillingContactEmail").val($(Email).html());
              $("#BillingContactPhone").val($(Phone).html());
              $("#form_1").attr("action", "/chooseExistingContactBasedOnCompanyID/" + $("#CompanyID option:selected").text()+"?CompanyName=\""+$("#CompanyName option:selected").text()+"\"");
+ $("#CompanyName").trigger("chosen:updated");
              console.log($("#form_1").attr("action"));
 		//EditCompanyChangeOnID();
 
@@ -111,7 +112,7 @@
                 $("#nav").height($("#section").outerHeight());
 
         }
-        function EditCompany(){
+        function EditCompany(event){
             CompanyID =$("#CompanyID").val();
             if(CompanyID ==-1){
                 alert("Please select a Company and then click Edit Company.");
@@ -134,7 +135,7 @@
 		var link1 = "/EditCompanyInfoAdmin/"+CompanyID;
 		$("#EditCompanyInfo").attr("href",link1);
 	}*/
-        function submitCompany(){
+        function submitCompany(event){
             
             CompanyID =$("#CompanyID").val();
             if(CompanyID ==-1){
@@ -186,8 +187,10 @@
         <style>
 
 
-
-       #header {
+body{
+min-width:1500px;
+width:auto;
+}  #header {
     background-color:black;
     color:white;
     text-align:center;
@@ -199,11 +202,11 @@
     margin-top:11px
 }
 	#section {
-		    width:1200px;
+		    width:auto;
 		    float:left;
 		    padding:10px;
             
-            height: 1200px;
+            		height: 1200px;
 		}
      
         #section2{
@@ -312,7 +315,7 @@
                     <% } %>
                     </p>
          
-                <button style = "position:relative ;top:370px; left:600px;" id="EditCompanyInfo" onclick="EditCompany();" >Edit Company Info</button> <br>
+                <button style = "position:relative ;top:370px; left:600px;" id="EditCompanyInfo" onclick="EditCompany(event);" >Edit Company Info</button> <br>
                 <form id = "form_1"method="post" name="form1"   >
               
                     <div id = "section2">
@@ -342,7 +345,7 @@
                           <label class="label1" for="">Zip:</label>&nbsp;   <input type ="text" disabled id = "Zip" class ="input1" ><br><br>
                                 
                             
-                             <input type="image" src ="../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitCompany()">
+                             <input type="image" src ="../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitCompany(event)">
                           </div>
                     
                             <div id = "section3_4">

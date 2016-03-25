@@ -141,6 +141,7 @@ exports.handle_Input2=function (req,res)
         VehicleTotalMileage = req.body.VehicleTotalMileage;
         VehicleTotalHours = req.body.VehicleTotalHours;
         console.log("OldJobID"+req.body.OldJobID);
+console.log('date111 ' +Date1);
         if(req.body.OldJobID!="" && req.body.OldJobID!=undefined){
             OldJobID=req.body.OldJobID;
         }
@@ -152,11 +153,11 @@ exports.handle_Input2=function (req,res)
         JobLocation = JobLocation.substring(0,2);
         TypeOfDriving= req.body.TypeOfDriving;
     
-        var res1 = Date1.split("-");
+        var res1 = Date1.split("/");
     
-        var year = res1[0];
-        var month= res1[1];
-        var day = res1[2];
+        var year = res1[2];
+        var month= res1[0];
+        var day = res1[1];
         
         JobID = JobLocation+ year.substr(year.length - 2)+month+day;
         //console.log(JobID);

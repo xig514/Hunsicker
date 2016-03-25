@@ -128,8 +128,10 @@ function checkCookie() {
 
         <style>
 
-
-
+body{
+min-width:1200px;
+width:auto;
+}
        #header {
     background-color:black;
     color:white;
@@ -138,7 +140,7 @@ function checkCookie() {
 }
 
 	#section {
-		    width:1200px;
+		    width:auto;
 		    float:left;
 		    padding:10px;
 	 	    text-align:right;
@@ -150,19 +152,19 @@ function checkCookie() {
 		}
 
         #section1_2{
-            width:90%;
+            width:auto;
             float:right;
             padding:10px;
 	    text-align:right;
         }
         #section2 {
-		    width:450px;
+		    width:auto;
 		    float:left;
 		    padding:10px;
 		}
 
         #section2_2{
-            width:550px;
+            width:auto;
             float:left;
             padding:10px;
 	    text-align:right;
@@ -184,11 +186,11 @@ function checkCookie() {
 		   padding:5px;	 	 
 		}
         #submit1{
-            position: absolute;
+            position: relative;
             width:80px;
             height:80px;
-            right: 700px;
-            top:400px;
+            left: 00px;
+            top:20px;
         }
         .input1{
             width:250px;
@@ -224,7 +226,7 @@ function checkCookie() {
                     <span style="color:red" hidden><%= CompanyID %></span>
                     <% } %>
                     </p>
-                <form method="POST" id = "ContactInput" onsubmit="" action="/addNewContactAdmin?CompanyID=<%= CompanyID %>">
+                <form method="POST" id = "ContactInput" onsubmit="" action="/addNewContactAdmin?CompanyID=<%= CompanyID %>&CompanyName=<%= CompanyName%>">
                     
                     <span style="color:Blue">Please input your Contact Information for Company: <%= CompanyName%>.</br> You will be forced to here if no Contact exists for this Company.</span>
                     
@@ -247,7 +249,7 @@ function checkCookie() {
                        
                        </br></br></br>
                         
-                        <u >Site Information</u>
+                        <u style="position:relative;left:200px;float:left;" >Site Information</u><br>
                         <div id ="section2_2">
                             <p><label class="label1" >Site Address*:</label>&nbsp;<input type ="text" class="input1"id="c05" value="" placeholder = "SiteAddress" name = "SiteAddress" required="true"></p>
                             <p><label class="label1" >City*:</label>&nbsp;<input type ="text " id="c06" class="input1"value="" placeholder = "SiteCity" name = "SiteCity" required="true"></p>
@@ -340,12 +342,13 @@ function checkCookie() {
                                         
                                         <Span>Inactive</Span>
                                         </p>
+ <input type="image" src ="../../public/images/addGreenCircle.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitContact()">
                              </div>
                
                               
                     </div>  <!-- end of section2 -->
 
-                    <input type="image" src ="../../public/images/addGreenCircle.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitContact()">
+                   
                         
                         </form>
             </div>

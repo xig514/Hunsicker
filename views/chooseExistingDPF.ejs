@@ -3,7 +3,7 @@
 	<head>
         <title>Existing DPF</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
+	<meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="/javascripts/chosen/chosen.jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="/javascripts/chosen/chosen.min.css">
 
@@ -69,7 +69,7 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
             
         }
         */
-        function editDPF(){
+        function editDPF(event){
 	     DPFID =$("#DPFID option:selected").val();
             if(DPFID ==-1){
                 alert("Please select a DPFID and then click next.");
@@ -89,7 +89,7 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
 
         }
 
-        function submitDPF(){
+        function submitDPF(event){
             DPFID =$("#DPFID option:selected").val();
             if(DPFID ==-1){
                 alert("Please select a DPFID and then click next.");
@@ -107,7 +107,10 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
         
         <style>
 
-
+body{
+min-width:2200px;
+width:auto;
+}
 
        #header {
     background-color:black;
@@ -118,15 +121,15 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
 
 
 	#section {
-		    width:1200px;
+		    width:auto;
 		    float:left;
 		    padding:10px;
             
-            height: 1200px;
+            		height: 1200px;
 		}
 
         #section2{
-            width:600px;
+            width:auto;
             float:left;
             padding:10px;
             text-align: right;
@@ -137,7 +140,7 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
 		    line-height:30px;
 		    background-color:#eeeeee;
 		    height:auto;
-            min-height: 600px;
+            	    min-height: 600px;
             
 		    width:150px;
 		    float:left;
@@ -176,7 +179,7 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
             height:30px;
         }
         #section3_4{
-            width:580px;
+            width:auto;
             float:right;
             text-align:right;
             
@@ -187,7 +190,7 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
         }
 
         #section4{
-            width:580px;
+            width:auto;
             float:left;
             text-align:right;
             padding:10px;
@@ -197,15 +200,15 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
             padding:10px;
             margin:10px;
             position:relative;
-            left:0px;
-            top:115px;
+            left:700px;
+            top:500px;
         }
         #EditDPFInfo{
             padding:10px;
             margin:10px;
             position:relative;
-            left:0px;
-            top:115px;
+            left:350px;
+            top:500px;
         }
 	.label1{
 	text-align:right;
@@ -270,7 +273,8 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
                
                                   <br><br>
                  
-                
+                 <button class="button1" id="ADDNewDPF" onclick="{location.href='/addNewDPFAdmin?VIN=<%= VIN%>&ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>'}">Add New DPF</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="button1" id="EditDPFInfo" onclick="editDPF(event)" >Edit DPF Info</button>
                 <form id = "form_1" method="post" name="form1"   >
               
                     <div id = "section2">
@@ -308,10 +312,10 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
                            <label class="label1" for="">DPF or DOC:</label>&nbsp;   <input type ="text" class ="input1" disabled name="DPForDOC"id = "DPForDOC"/><br><br>
                           <label class="label1" for="">Type Of Substrate:</label>&nbsp;   <input type ="text" disabled  class ="input1"name="TypeOfSubstrate"id = "TypeOfSubstrate" /><br><br>
                     
-                             <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitDPF()">
+                             <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitDPF(event)">
                           </div>
                     <div id = "section3_4">
-                       <u> Dimensions</u><br><br>
+                       <u style="position:relative;right:200px"id="u1"> Dimensions</u><br><br>
                         
                         <div id = "section4">
                            <label class="label1" for="">Outer Diameter:</label>&nbsp;  <input class ="input1" type ="text" disabled id = "OuterDiameter" name ="OuterDiameter"><br><br>
@@ -327,8 +331,7 @@ $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&Co
 
 
                 </form>
-                <button class="button1" id="ADDNewDPF" onclick="{location.href='/addNewDPFAdmin?VIN=<%= VIN%>&ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>'}">Add New DPF</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button class="button1" id="EditDPFInfo" onclick="editDPF()" >Edit DPF Info</button>
+               
                   <!-- <button id = "hide1" onclick = "hideContactInfo()" >Hide</button><br>-->
                   <div id = "table1">
                   <table id = "TableAll" style="width:100%">

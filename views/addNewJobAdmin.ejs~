@@ -1,0 +1,91 @@
+
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+       <title> <%= title%> </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+                <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <style>
+
+body{
+width:600px;
+}
+
+       #header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+	#section {
+		    width:auto;
+		    float:left;
+		    padding:10px;	 	 
+		}
+
+		#nav {
+		    line-height:30px;
+		    background-color:#eeeeee;
+		    height:800px;
+		    width:150px;
+		    float:left;
+		    padding:2px;	      
+		}
+
+		#footer {
+		    background-color:black;
+		    color:white;
+		    clear:both;
+		    text-align:center;
+		   padding:5px;	 	 
+		}
+        
+        
+</style>
+
+    </head>
+    <body>
+
+                <div id = "header">
+                <h1><%=title%></h1>
+                </div>
+
+
+                <div  id="nav">
+
+             <button  class="btn btn-primary" onclick="{location.href='/signout'}">signout</button>
+             </div>
+
+
+                <div id="section">
+            <form method="post" name="form1" action="/addNewJobAdmin">
+           <p> Welcome <strong><%= user.username %></strong></p>
+                <p><font face="verdana" color="green">PLEASE CHOOSE THE TYPE OF THE COMPANY<br></font></p>
+                <input type="radio" name="Company" value="1" checked> Existing<br>
+		<br><br><br><br>
+                <input type="radio" name="Company" value="2"> New
+		 <br><br><br><br>
+              <br><input  class="btn btn-primary" type="submit" value="OK" >
+
+            </form>
+            <br>
+
+                </div>
+             
+    <div id="footer">
+	@ Hunsicker DataBase Select Result
+	</div>
+
+    </body>
+
+    
+    
+
+
+
+</html>

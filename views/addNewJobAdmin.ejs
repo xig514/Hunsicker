@@ -5,11 +5,16 @@
 <html>
 	<head>
        <title> <%= title%> </title>
-
-        
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+                <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <style>
 
-
+body{
+min-width:600px;
+width:auto;
+}
 
        #header {
     background-color:black;
@@ -19,7 +24,7 @@
 }
 
 	#section {
-		    width:800px;
+		    width:auto;
 		    float:left;
 		    padding:10px;	 	 
 		}
@@ -54,7 +59,7 @@
 
                 <div  id="nav">
 
-             <button onclick="{location.href='/signout'}">signout</button>
+             <button  class="btn btn-primary" onclick="{location.href='/signout'}">signout</button>
              </div>
 
 
@@ -63,9 +68,10 @@
            <p> Welcome <strong><%= user.username %></strong></p>
                 <p><font face="verdana" color="green">PLEASE CHOOSE THE TYPE OF THE COMPANY<br></font></p>
                 <input type="radio" name="Company" value="1" checked> Existing<br>
-
+		<br><br><br><br>
                 <input type="radio" name="Company" value="2"> New
-              <br><input type="submit" value="OK" >
+		 <br><br><br><br>
+              <br><input  class="btn btn-primary" type="submit" value="OK" >
 
             </form>
             <br>

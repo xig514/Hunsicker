@@ -29,10 +29,14 @@ exports.show=function(request,response)
     
     var CompanyID= request.query.CompanyID;
     var CompanyName="";
-    if(request.query.CompanyName){
+    if(request.query.CompanyName!=undefined){
         CompanyName =request.query.CompanyName;
     }
+console.log('CName in show '  + CompanyName);
+    if(request.query.error==undefined)
     response.render('addNewContactAdmin',{title:'Add New Contact Admin',CompanyID:CompanyID,CompanyName:CompanyName});
+	else
+    response.render('addNewContactAdmin',{title:'Add New Contact Admin',CompanyID:CompanyID,CompanyName:CompanyName,errorMessage:request.query.error});
 }
 
 exports.handle_Input=function (request,response)
@@ -48,6 +52,7 @@ exports.handle_Input=function (request,response)
     ContactStatusID = request.body.ContactStatusID;
     var CompanyID = request.query.CompanyID;
     var CompanyName = request.query.CompanyName;
+    console.log('CMName in post = '+CompanyName);
     var ContactStatusID_INT=1;
     if(ContactStatusID=='Yes')
     {
@@ -79,7 +84,7 @@ exports.handle_Input=function (request,response)
                                          {
                                          //console.log('The ContactID is :' +rows[0].solution);
                                          //it's a new Contact, let's input it into the Contact
-                                         response.render('addNewContactAdmin',{title:title, CompanyID:CompanyID,CompanyName:CompanyName,errorMessage:'This Company is already in the database.'});
+                                         response.redirect('/addNewContactAdmin?CompanyID='+CompanyID+'&CompanyName='+CompanyName+'&error=This Contact is already in the database');
                                          }
                                          else{
                                          //we did not find that Contact, just insert
@@ -101,27 +106,30 @@ exports.handle_Input=function (request,response)
                                                           //-----------------------------------------------------------------------------------------------
                                                          
                                                           connection.query(insertContact,ContactInput,function(err,rows){
-                                                                           
+                                                                           connection.release();
                                                                            if(!err ) {
                                                                            //we sucessfully input the data into Contact ,then we should take care of the user_Contact;
-                                                                           console.log("Succesfully insert Contact!!");
+                                                                           console.log("Succesfully insert Contact!! And CompanyName=" +CompanyName);
                                                                            jumpToContact(request,response,CompanyID,CompanyName,MaxContactID);
                                                                            }
                                                                            //-----------------------------------------------------------------------------------------------------------------------------------
                                                                            else{
                                                                            
-                                                                           response.render('addNewContactAdmin',{ title:title ,CompanyID:CompanyID,errorMessage:'Failed to insert into Contact'});
+                                                                            response.redirect('/addNewContactAdmin?CompanyID='+CompanyID+'&CompanyName='+CompanyName+'&error=Failed to insert ContactID!');
                                                                            }
                                                                            });
                                                           //-----------------------------------------------------------------------------------------------
                                                           }
-                                                          else{response.render('addNewContactAdmin',{ title:title ,CompanyID:CompanyID, errorMessage:'Failed to Select ContactID Max'});}
-                                                          }
+                                                         else{response.redirect('/addNewContactAdmin?CompanyID='+CompanyID+'&CompanyName='+CompanyName+'&error=Failed to Select ContactID Max');           }
+
+}
+  else{response.redirect('/addNewContactAdmin?CompanyID='+CompanyID+'&CompanyName='+CompanyName+'&error=Failed to Select ContactID Max');           }
                                                           });
+                                         
                                          }
-                                         }
+}
                                          else{
-                                         response.render('addNewContactAdmin',{ title:title , CompanyID:CompanyID,errorMessage:'Failed to Select Specific ContactID:'+err.code});
+                                         response.redirect('/addNewContactAdmin?CompanyID='+CompanyID+'&CompanyName='+CompanyName+'&error=Failed to Select Specific ContactID: '+err.code);
                                          }});
                                                                                 //-------------------------------------------------------------------------
                         connection.on('error', function(err) {response.json({"code" : 100, "status" : "Error in connection database"});return;});
@@ -196,7 +204,7 @@ function jumpToContact(req,res,CompanyID,CompanyName,MaxContactID){
                                          else{
                                          console.log("no contact records");
                                          //Here go direct to add new Contact for this company pape.
-                                         res.render('addNewContactAdmin',{title:'Add New Contact Admin',CompanyName:CompanyName,CompanyID:CompanyID,errorMessage:'Error in re-query Contacts'});
+                                         response.redirect('/addNewContactAdmin?CompanyID='+CompanyID+'&CompanyName='+CompanyName+'&error=Failed to re-query ContactID: '+err.code);
                                          }
                                          
                                          }

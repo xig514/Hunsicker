@@ -3,14 +3,14 @@
 	<head>
         <title>Admin Input Company Information</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
        <script src="/javascripts/jquery.autotab.js"></script>
         <script src="/javascripts/jquery.cookie.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
                   
        
-                
+              $("#nav").height($("#section").outerHeight());
     var r=confirm("Load Last Record?");
     if (r == true) {
                   loadCookie();
@@ -33,7 +33,7 @@ function setCookie(){
     $.cookie("2", $("#cp02").val(), { expires : 2 });
     $.cookie("3", $("#cp03").val(), { expires : 2 });
     $.cookie("5", $("#BillingState1").val(), { expires : 2 });
-    $.cookie("4",$("#cp04").val,{expires:2});
+    $.cookie("4",$("#cp04").val(),{expires:2});
     
     $.cookie("BillingContactFirstName", $("#cp06").val(), { expires : 2 });
     $.cookie("BillingContactLastName", $("#cp07").val(), { expires : 2 });
@@ -91,7 +91,10 @@ function submitCompany(){
         <style>
 
 
-
+body{
+min-width:1500px;
+width:auto;
+}
        #header {
     background-color:black;
     color:white;
@@ -100,32 +103,33 @@ function submitCompany(){
 }
 
 	#section {
-		    width:1200px;
+		    width:auto;
 		    float:left;
 		    padding:10px;	 	 
-		    height: 1200px;		
+		    height: 1200px;	
+			
 }
     #section1 {
-		    width:600px;
+		    width:auto;
 		    float:left;
 		    padding:10px;
 		    text-align:right;
 		}
       
         #section1_2{
-            width:600px;
+            width:auto;
             float:right;
             padding:10px;
         }
         #section2 {
-		    width:550px;
+		    width:auto;
 		    float:left;
 		    padding:10px;
 		    text-align:right;
 		}
      
         #section2_2{
-            width:550px;
+            width:auto;
             float:left;
             padding:10px;
 		text-align:right;
@@ -133,7 +137,7 @@ function submitCompany(){
 		#nav {
 		    line-height:30px;
 		    background-color:#eeeeee;
-		    height:800px;
+		    height:auto;
 		    width:150px;
 		    float:left;
 		    padding:2px;	      
@@ -147,11 +151,12 @@ function submitCompany(){
 		   padding:5px;	 	 
 		}
         #submit1{
-            position: absolute;
+            position: relative;
             width:80px;
             height:80px;
-            right: 700px;
-            top:500px;
+            left:0px;
+            top:100px;
+	    float:left;
         }
         .input1 {
             text-align: left;
@@ -283,9 +288,10 @@ function submitCompany(){
                     <div id="section2">
                         </br></br></br>
                         
-                        <u >Billing Contact Information</u>
+                        
                        
                         <div id ="section2_2">
+<u style="position:relative;left:0px;">Billing Contact Information</u>
               <p>  <label class="label1" for="">First Name*:</label>&nbsp;<input class="input1"  id ="cp06" type = "text" name = "BillingContactFirstName"  placeholder = "BillingContactFirstName" value ="" required = "ture"/><span style="color:red" id ="error_cp06"/></p>
               <p>  <label class="label1" for="">Last Name*:</label>&nbsp; <input class="input1" id ="cp07" type = "text" name = "BillingContactLastName" value ="" placeholder = "BillingContactLastName" required = "ture"/><span id ="error_cp07" style="color:red"/></p>
             <p>  <label class="label1" for="">Email:</label>&nbsp; <input  class="input1" type = "email" name = "BillingContactEmail" id ="cp08" value ="" placeholder = "BillingContactEmail" /><span id ="error_cp08" style="color:red"/> </p>
@@ -299,12 +305,12 @@ function submitCompany(){
 
                 <Span>Inactive</Span>
                 </p>
-                
+                 <input type="image" src ="../public/images/addGreenCircle.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitCompany()">
                </div>
                
                               
                     </div>  <!-- end of section2 -->
-                    <input type="image" src ="../public/images/addGreenCircle.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitCompany()">
+                   
                         
                         </form>
             </div>

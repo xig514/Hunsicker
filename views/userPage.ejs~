@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>User Page</title>
+        
+        <style>
+body{
+
+
+width:1500px;
+}
+
+
+
+       #header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+	#section {
+		    width:auto;
+		    float:left;
+		    padding:10px;	 	 
+		}
+
+		#nav {
+		    line-height:30px;
+		    background-color:#eeeeee;
+		    height:800px;
+		    width:150px;
+		    float:left;
+		    padding:2px;	      
+		}
+
+		#footer {
+		    background-color:black;
+		    color:white;
+		    clear:both;
+		    text-align:center;
+		   padding:5px;	 	 
+		}
+        
+        
+</style>
+
+    </head>
+    <body>
+
+                <div id = "header">
+                <h1><%=title%></h1>
+                </div>
+
+
+                <div  id="nav">
+
+             <button onclick="{location.href='/signout'}">sign out</button>
+             <button style="background-color :" onclick="{location.href='/passwordChange/<%=usernameE%>'}">change password</button>
+             </div>
+
+
+                <div id="section">
+
+                  <span>This is the normal user page.</span>
+                  <p>WELCOME <span style="color:blue;font-weight:bold"> <%= usernameE%></span></p>
+                    <p>
+                   <% if(typeof(errorMessage) !== 'undefined') {%>
+                    <span style="color:red"><%= errorMessage %></span>
+                    <% } %>
+                    </p>
+                          <p>
+                   <% if(typeof(JobID) !== 'undefined') {%>
+                    <span style="color:red">This is your JobID: <%= JobID %>. Better remember to make convenience for the Job.</span>
+                    <% } %>
+                    </p>
+                    <p>
+                    <span style="color:grey">Click the following button to check your existing Contact information:<br> </span>
+            <button onclick="{location.href='/checkExistingContact/<%=usernameE%>'}">Search existing Contact Information for you account</button>
+                    </p>
+                    <button style="background-color:" onclick="{location.href='/updateContactInformation/<%=usernameE%>'}">Update Your Existing Contact Information</button>
+                    
+             <p>
+             <span style = "color:grey">If it is your first time using this website, click the following button.<br></span>
+                 <button onclick="{location.href='/UserInputContactAndCompany/<%=usernameE%>'}">Add Contact And Company For New User</button></p>
+            <p>
+            <span style="color: yellow"></span>
+            <button onclick="{location.href='/userRequireANewJob/<%=usernameE%>'}">Require A New Job</button></p>
+            <p>
+            <button onclick="{location.href='/userJobHistory/<%=usernameE%>'}">Search Job history</button>
+            </p>
+
+
+
+            </div>
+
+
+<!--
+                <form method="post" name="form1" action="/userPage">
+                <input type="text" name="code">
+ 
+                <input type="submit" value="openGmail" >
+            
+                </form>
+-->
+
+
+
+                              
+
+
+    <div id="footer">
+	@ Hunsicker DataBase User Page
+	</div>
+
+    </body>
+
+    
+    
+
+
+
+</html>

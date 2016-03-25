@@ -44,7 +44,7 @@ function storeValues()
     return true;
 }
 
-function submitVehicle(){
+function submitVehicle(event){
     if($("#Year").val()==-1 || $("#Year").val() ==undefined){
         alert("Please select Vehicle Year.");
         event.preventDefault();
@@ -60,7 +60,10 @@ function submitVehicle(){
         <style>
 
 
-
+body{
+min-width:600px;
+width:auto;
+}
        #header {
     background-color:black;
     color:white;
@@ -69,14 +72,14 @@ function submitVehicle(){
 }
 
 	#section {
-		    width:1000px;
+		    width:auto;
 		    float:left;
 		    padding:10px;
 		    text-align:right;	 
 			height: 1200px;	 
 		}
     #section1 {
-		    width:800px;
+		    width:auto;
 		    float:left;
             	    position:relative;
 			
@@ -84,7 +87,7 @@ function submitVehicle(){
 		}
 
         #section1_2{
-            width:500px;
+            width:auto;
             float:right;
             padding:10px;
 	    text-align:right;
@@ -108,11 +111,11 @@ function submitVehicle(){
 		   padding:5px;	 	 
 		}
         #submit1{
-            position: absolute;
+            position: relative;
             width:80px;
             height:80px;
-            right: 700px;
-            top:400px;
+            right:0 px;
+            top:300px;
         }
         .input1 {
             text-align: left;
@@ -154,8 +157,8 @@ function submitVehicle(){
                     <% } %>
                  </p>
 
-                <form method="POST" id = "VehicleInput" onsubmit="" action="/addNewVehicleAdmin/<%= CompanyID %>">
-                    
+                <form method="POST" id = "VehicleInput" onsubmit="" action="/addNewVehicleAdmin/<%= CompanyID %>?ContactID=<%= ContactID%>&ContactName=<%= ContactName%>">
+                       <input type="image" src ="../public/images/addGreenCircle.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitVehicle(event)">
                  
                         <div id = "section 1_2">
                             
@@ -172,7 +175,7 @@ function submitVehicle(){
                     </div>
                     </div>
                 
-                    <input type="image" src ="../public/images/addGreenCircle.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitVehicle()">
+                 
                         
                         </form>
             </div>

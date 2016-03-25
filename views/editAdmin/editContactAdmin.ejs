@@ -129,13 +129,17 @@
     text-align:center;
     padding:5px;
 }
-
+body{
+min-width:1500px;
+width:auto;
+}
 
 	#section {
 		    width:1200px;
 		    float:left;
 		    padding:10px;
-            
+            	    position:relative;
+		    left:10%;
             	    height: auto;
 		}
         
@@ -167,11 +171,12 @@
 		    line-height:30px;
 		    background-color:#eeeeee;
 		    height:auto;
-            min-height: 600px;
+           	    min-height: 600px;
             
 		    width:150px;
 		    float:left;
-		    padding:2px;	      
+		    padding:2px;
+		    	      
 		}
 
 		#footer {
@@ -238,11 +243,11 @@
                 </div>
 
 
-                <div  id="nav">
+                <div id ="nav">
                 <button onclick="{location.href='/userPage/inputSelection'}">Back To Home</button>
                 <button onclick="{location.href='/signout'}">signout</button><br>
                 <button onclick="back();">Back</button>
-             </div>
+            	</div>
 
 
                 <div id="section">

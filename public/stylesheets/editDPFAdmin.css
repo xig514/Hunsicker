@@ -7,17 +7,20 @@
     padding:5px;
 }
 
-
+body{
+min-width:2200px;
+width:auto;
+}
 	#section {
-		    width:1200px;
+		    width:auto;
 		    float:left;
 		    padding:10px;
             
-            height: 1200px;
+            	    height: 1200px;
 		}
 
         #section2{
-            width:600px;
+            width:auto;
             float:left;
             padding:10px;
             text-align: right;
@@ -67,8 +70,8 @@
             height:30px;
         }
         #section3_4{
-            width:580px;
-            float:right;
+            width:auto;
+            float:left;
             text-align:right;
             
             position: relative;
@@ -78,7 +81,7 @@
         }
 
         #section4{
-            width:580px;
+            width:auto;
             float:left;
             text-align:right;
             padding:10px;

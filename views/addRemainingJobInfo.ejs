@@ -3,10 +3,12 @@
 	<head>
         <title>Add Remaining Job Info</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
         
-        <script type="text/javascript">
-            
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script type="text/javascript">
         var ReasonForCleaning=new Array(5);
         $(document).ready(function() {
                      
@@ -16,7 +18,7 @@
                           
                           $("#nav").height($("#section").outerHeight());
                           
-                        
+                        $( "#datepicker" ).datepicker();
                           $('input[type=radio][name=JobType]').change(function() {
                                                                         if (this.value == 'Old') {
                                                                         $("#OldJobID").toggle();
@@ -84,14 +86,14 @@
                
 
 
-        function submitJob(){
+        function submitJob(event){
            
             po =$("#PurchaseOrderNumber").val();
             //console.log('po = ' +po);
             cl =$("#CleaningLocation").val();
             vtm =$("#VehicleTotalMileage").val();
             tod = $("#TypeOfDriving").val();
-            date = $("#date").val();
+            date = $("#datepicker").val();
             reason =ReasonForCleaning[0]+ReasonForCleaning[1]+ReasonForCleaning[2]+ReasonForCleaning[3]+ReasonForCleaning[4];
                     //console.log('reason '+reason);
                                 if(po =="" || po==null|| po==undefined){
@@ -122,7 +124,7 @@
                                  
                                  }
                                  if(reason ==""){
-                                     alert("Please select a date.");
+                                     alert("Please select reasons.");
                                      event.preventDefault();
                                      return;
                                      
@@ -142,8 +144,10 @@
         <title> <%= h1 %></title>
         
         <style>
-
-
+body{
+min-width:1500px;
+width:auto;
+}	
 
        #header {
     background-color:black;
@@ -154,7 +158,7 @@
 
 
 	#section {
-		    width:1200px;
+		    width:auto;
 		    float:left;
 		    padding:10px;
             
@@ -162,13 +166,13 @@
 		}
       
         #section2{
-            width:700px;
+            width:auto;
             float:left;
             padding:10px;
             text-align: right;
         }
         #section3_4{
-            width:450px;
+            width:auto;
             float:left;
             text-align:center;
             
@@ -178,13 +182,13 @@
             
         }
         #section3{
-            width:40%;
+            width:auto;
             float:left;
             text-align:right;
              padding:10px;
         }
         #section4{
-            width:40%;
+            width:auto;
             float:left;
             text-align:left;
             padding:10px;
@@ -288,8 +292,9 @@
                           <label class="label1" for="">Work Order Number:</label>&nbsp;  <input type ="text"  class ="input1"  id = "WorkOrderNumber" name = "WorkOrderNumber"/><br><br>
                          <label class="label1" for="">Vehicle Total Mileage:</label>&nbsp;   <input type ="text"  class ="input1"  id = "VehicleTotalMileage" name = "VehicleTotalMileage"/><br><br>
                         <label class="label1" for="">Vehicle Total Hours:</label>&nbsp;    <input type ="text" class ="input1"   id = "VehicleTotalHours" name ="VehicleTotalHours" value =""/><br><br>
-                        <label class="label1" for="">Date:</label>&nbsp;    <input type ="date" class = "input1" id = "date" name ="date"/><br><br>
-                          <label class="label1" for="">Type of Driving:</label>&nbsp;  <select class = "input1" name = "TypeOfDriving" id="TypeOfDriving" onchange="">
+                        <label class="label1" for="">Date:</label>&nbsp;    
+                          <input class="input1" type="text" id="datepicker" name="date"><br><br>
+ <label class="label1" for="">Type of Driving:</label>&nbsp;  <select class = "input1" name = "TypeOfDriving" id="TypeOfDriving" onchange="">
                             <option value="-1">-- select --</option>
                         
                             <option value="Over The Road/Highway">Over The Road/Highway</option>
@@ -303,7 +308,7 @@
                                 <option value="-1">-- Yes --</option>
 
                             </select>
-                            <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitJob()">
+                            <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitJob(event)">
                           </div>
                     
                             <div id = "section3_4">

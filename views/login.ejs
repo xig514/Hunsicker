@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-
+<meta name=viewport content="width=device-width, initial-scale=1">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
+  $(document).ready(function() {
+                          
+			
+                          });
+              
 function validateForm() {
     var x = document.forms["form1"]["username"].value;
     var y = document.forms["form1"]["password"].value;
@@ -34,6 +40,12 @@ function validateForm() {
         <style>
 
 
+body{
+
+
+ min-width:500px; /* suppose you want minimun width of 1000px */
+   width: auto !important;
+}
 
        #header {
     background-color:black;
@@ -43,7 +55,7 @@ function validateForm() {
 }
 
 	#section {
-		    width:800px;
+		    width:auto;
 		    float:left;
 		    padding:10px;	 	 
 		}

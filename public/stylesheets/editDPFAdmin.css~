@@ -1,0 +1,109 @@
+
+
+       #header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+body{
+min-width:2200px;
+width:auto;
+}
+	#section {
+		    width:auto;
+		    float:left;
+		    padding:10px;
+            
+            	    height: 1200px;
+		}
+
+        #section2{
+            width:auto;
+            float:left;
+            padding:10px;
+            text-align: right;
+	    
+        }
+
+		#nav {
+		    line-height:30px;
+		    background-color:#eeeeee;
+		    height:auto;
+            min-height: 600px;
+            
+		    width:150px;
+		    float:left;
+		    padding:2px;	      
+		}
+
+		#footer {
+		    background-color:black;
+		    color:white;
+		    clear:both;
+		    text-align:center;
+		   padding:5px;	 	 
+		}
+
+        #showall1
+        {
+            position: fixed;
+            top:20%;
+            left:6%;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            
+        }
+        th, td {
+            padding: 5px;
+        }
+        .submit{
+            max-width: 150px;
+            max-height: 100px;
+        }
+        .input1 {
+            text-align: left;
+            width:250px;
+            height:30px;
+        }
+        #section3_4{
+            width:auto;
+            float:right;
+            text-align:right;
+            
+            position: relative;
+            top:50px;
+            
+            
+        }
+
+        #section4{
+            width:auto;
+            float:left;
+            text-align:right;
+            padding:10px;
+            
+        }
+        #ADDNewDPF{
+            padding:10px;
+            margin:10px;
+            position:relative;
+            left:0px;
+            top:115px;
+        }
+        #EditDPFInfo{
+            padding:10px;
+            margin:10px;
+            position:relative;
+            left:0px;
+            top:115px;
+        }
+	.label1{
+	text-align:right;
+	padding:20px;
+	width:200px;		
+	
+	}

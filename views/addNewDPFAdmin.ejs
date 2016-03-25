@@ -9,7 +9,7 @@
         <script src="/javascripts/jquery.cookie.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
-       
+       <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="text/javascript">
 
         $(document).ready(function() {
@@ -25,7 +25,7 @@
                           $(".confirm").confirm({
                                                 text: "Are you sure you want to add this DPF?",
                                                 title: "Confirmation required",
-                                                confirm: function(button) {
+                                                confirm: function(button,event) {
                                                 
                                                 var a=$("#SerialNumber").val();
                                                 if(a==""){
@@ -147,7 +147,10 @@
         <style>
 
 
-
+body{
+min-width:1500px;
+width:auto;
+}
        #header {
     background-color:black;
     color:white;
@@ -157,15 +160,15 @@
 
 
 	#section {
-		    width:1200px;
+		    width:auto;
 		    float:left;
 		    padding:10px;
-            
+           	
             height: 1200px;
 		}
 
         #section2{
-            width:600;
+            width:auto;
             float:left;
             padding:10px;
             text-align: right;
@@ -205,7 +208,7 @@
             height:30px;
         }
         #section3_4{
-            width:550px;
+            width:auto;
             float:left;
             text-align:right;
             
@@ -215,14 +218,14 @@
             
         }
 	#section4{
-            width:540px;
+            width:auto;
             float:left;
             text-align:right;
             padding:10px;
             
         }
         #section5{
-            width:20%;
+            width:auto;
             float:left;
             text-align:left;
             padding:10px;

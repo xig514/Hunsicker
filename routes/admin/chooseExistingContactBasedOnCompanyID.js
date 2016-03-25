@@ -20,7 +20,7 @@ exports.show=function (req,res)
     var CompanyID = req.params.id;
     //console.log(CompanyID);
     var CompanyName =req.query.CompanyName;
-    
+    console.log('original CompanyName' +CompanyName);
     var selectedContactID=req.query.selectedContactID;
     
     var dataForShowing1=new Array();
@@ -113,7 +113,7 @@ exports.handle_CompanyInput=function (req,res)
     var CompanyID = req.params.id;
     //console.log(CompanyID);
     var CompanyName =req.query.CompanyName;
-    //console.log(CompanyName);
+    console.log('original CompanyName' +CompanyName);
     var dataForShowing1=new Array();
     
     
@@ -163,7 +163,7 @@ exports.handle_CompanyInput=function (req,res)
                                              dataForShowing1[i][10] = CompanyID;
                                              
                                              dataForShowing1[i][11]=CompanyName;
-                                             console.log(CompanyName);
+                                             //console.log(CompanyName);
                                              }
                                              }
                                              res.render('chooseExistingContactBasedOnCompanyIDadmin', {h1:'Select Contact',use:{username:'Administrator'},title:'The result of all Contacts based on the selected companyID ',CompanyName:CompanyName, CompanyID: CompanyID, ContactCount:countContactID,ContactID:ContactID,ContactName:ContactName,dataForShowingE:dataForShowing1});

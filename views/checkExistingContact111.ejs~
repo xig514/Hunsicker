@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="/javascripts/jquery.autotab.js"></script>
+
+        <script type="text/javascript">
+        
+        $(document).ready(function() {
+                          
+                         
+                          
+                          });
+                          
+                          function ContactIDChange(){
+                              var ContactIDValue = document.getElementById("ContactID");
+                              var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
+                              
+                              var id = "noneContactName"+Choice;
+                              
+                              var name=document.getElementById(id).value;
+                              
+                              document.getElementById("ContactInfo").value= name;
+                          }
+        
+        
+        </script>
+
+        <title> <%= h1 %></title>
+        
+        <style>
+
+
+
+       #header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+	#section {
+		    width:800px;
+		    float:left;
+		    padding:10px;	 	 
+		}
+
+		#nav {
+		    line-height:30px;
+		    background-color:#eeeeee;
+		    height:800px;
+		    width:150px;
+		    float:left;
+		    padding:2px;	      
+		}
+
+		#footer {
+		    background-color:black;
+		    color:white;
+		    clear:both;
+		    text-align:center;
+		   padding:5px;	 	 
+		}
+        #ContactInfo
+        {
+            font-family:"Cursive", Cursive, serif;
+            font-size: 16px;
+        }
+        
+</style>
+
+    </head>
+    <body>
+
+                <div id = "header">
+                <h1><%=title%></h1>
+                </div>
+
+
+                <div  id="nav">
+                <button onclick="{location.href='/userPage/<%=usernameE%>'}">Back</button>
+                <button onclick="{location.href='/signout'}">signout</button>
+             </div>
+
+
+                <div id="section">
+                    <p>
+                    <% if(typeof(errorMessage) !== 'undefined') {%>
+                    <span style="color:red"><%= errorMessage %></span>
+                    <% } %>
+                    </p>
+                                            
+                                <p><span id = "ContactCount_Span" style ="display:none" value ="<%=ContactCount%>">1234</span></p>
+                    <p><span id="ContactID_Span" >Select Your ContactID*:    </span>    <br><Select name = "ContactID" id="ContactID" onchange="ContactIDChange()"/>
+                    <option value="select">-- select --</option>
+                    <% for(var i = 0; i <ContactCount;i++) {%>
+                   <!-- <option value="<%= ContactID%>"><%=ContactID%></option>-->
+                    <option value="<%=i%>"><%=ContactID[i]%></option>
+                    <%}%>
+                    
+                            </select></p>
+                            <!-- build none textare to store the data-->
+                            <% for(var i = 0; i<ContactCount ; i++){%>
+                            <% var id = "noneContactName"+ i;%>
+                            <textarea   color="green" id="<%=id%>" cols="50" rows="5" style ="display:none;">ContactName : <%=ContactName[i]%>&#13;&#10;Contact Phone Number :<%=ContactPhone[i]%>&#13;&#10;Contact Site Address : <%=ContactSiteAddress[i]%>
+                                </textarea>
+                            <%}%>
+                            <!-- end of hidden textarea--->
+                            <p>
+                            <textarea name = 'ContactInfo' id = "ContactInfo" rows="5" cols="50"></textarea>
+                            </p>
+              
+                          <p>
+                <input type="submit" value="Submit" >
+                        </p>
+                        
+                 
+                </form>
+
+
+
+
+
+
+                </div>
+             
+    <div id="footer">
+	@ Hunsicker DataBase Select Result
+	</div>
+
+    </body>
+
+    
+    
+
+
+
+</html>
+
+
+
+

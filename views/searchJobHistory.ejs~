@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>Existing Contact</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+       
+        <script type="text/javascript">
+        
+        $(document).ready(function() {
+                        
+                          
+                          });
+                          
+        function ContactIDChange(){
+                              var ContactIDValue = document.getElementById("ContactID");
+                              var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
+                              
+                              var id = "noneContactName"+Choice;
+                              
+                              var name=document.getElementById(id).value;
+                              
+                              document.getElementById("ContactInfo").value= name;
+                          }
+        
+        var arry = ['Show', 'Hide'];
+        var arry2 = ['Show All','Hide All'];
+        
+        function hideContactInfo(){
+            var value = arry.shift();
+            arry.push(value);
+            $("#ContactInfo").toggle();
+                        document.getElementById("hide1").innerHTML = value;
+            
+            
+        }
+        
+        function showAll(){
+            var value = arry2.shift();
+            arry2.push(value);
+            document.getElementById("showall1").innerHTML = value;
+            $("#TableAll").toggle();
+        }
+        
+        /*
+        function checkContactID(){
+            var count_Contact = parseInt(document.getElementById('ContactID').length);
+            console.log('count_ContactID ' +count_Contact);
+            if( count_Contact <2  ) {
+                window.alert('No Contact Information, Please insert One Contact First!');
+                document.getElementById('ContactID_Span').style.color="red";
+                return false;
+                
+            }
+            else{
+                
+              //  var cid = $('#ContactID');
+              var ContactIDValue = document.getElementById("ContactID");
+              var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
+
+                if(Choice  =="select")
+                {
+                    window.alert('Please choose a ContactID');
+                     document.getElementById('ContactID_Span').style.color="red";
+                    return false;
+                }
+                else{
+                return true;
+                }
+            }
+            
+            
+            return false;
+           
+        }
+        */
+        
+        </script>
+
+        <title> <%= h1 %></title>
+        
+        <style>
+
+
+body{
+
+
+width:1500px;
+}
+
+       #header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+	#section {
+		    width:auto;
+		    float:left;
+		    padding:10px;	 	 
+		}
+
+		#nav {
+		    line-height:30px;
+		    background-color:#eeeeee;
+		    height:800px;
+		    width:150px;
+		    float:left;
+		    padding:2px;	      
+		}
+
+		#footer {
+		    background-color:black;
+		    color:white;
+		    clear:both;
+		    text-align:center;
+		   padding:5px;	 	 
+		}
+        #ContactInfo
+        {
+            font-family:"Cursive", Cursive, serif;
+            font-size: 16px;
+        }
+        
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+        }
+</style>
+
+    </head>
+    <body>
+
+                <div id = "header">
+                <h1><%=title%></h1>
+                </div>
+
+
+                <div  id="nav">
+                <button onclick="{location.href='/userPage/<%=usernameE%>'}">Back</button>
+                <button onclick="{location.href='/signout'}">signout</button>
+             </div>
+
+
+                <div id="section">
+                    <p>
+                    <% if(typeof(errorMessage) !== 'undefined') {%>
+                    <span style="color:red"><%= errorMessage %></span>
+                    <% } %>
+                    </p>
+
+                
+                  <div id = "table1">
+                  <table id = "TableAll" style="width:100%">
+                      <tr>
+                          <th>JobID</th>
+                          <th>ContactID</th>
+                          <th>WorkOrderNumber</th>
+                          <th>PurchaseOrderNumber</th>
+                          <th>StartTime</th>
+                          <th>EndTime</th>
+                          <th>VIN</th>
+                          <th>VehicleTotalMileage</th>
+                          <th>VehicleTotalHours</th>
+                          <th>DPFID</th>
+                          <th>ReasonForCleaning</th>
+                          <th>TypeOfDriving</th>
+                          <th>OldJobID</th>
+                          <th>JobLocation</th>
+                        </tr>
+                      <% for (var i=0;    i<numberRowsE;  i++) { %>
+                      <tr>
+                          <% for (var j =0; j<numberFieldsE; j++) { %>
+                          <td style="width:100px">
+                              <%= dataForShowingE[i][j] %>
+                          </td>
+                          <% } %>
+                      </tr>
+                       <% } %>
+
+       
+                  </table>
+                  </div>
+                  
+                  
+                  <button id="showall1" style = "background-color : lightblue" onclick ="showAll()" >Hide All</button>
+
+
+
+
+                </div>
+             
+    <div id="footer">
+	@ Hunsicker DataBase Check Job History
+	</div>
+
+    </body>
+
+    
+    
+
+
+
+</html>
+
+
+
+

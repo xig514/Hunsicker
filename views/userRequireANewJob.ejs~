@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="/javascripts/jquery.autotab.js"></script>
+
+        <script type="text/javascript">
+        
+        $(document).ready(function() {
+                          
+                         
+                          document.getElementById('Date').valueAsDate = new Date();
+                          
+                          });
+                          
+                          function ContactIDChange(){
+                              var ContactIDValue = document.getElementById("ContactID");
+                              var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
+                              
+                              var id = "noneContactName"+Choice;
+                              
+                              var name=document.getElementById(id).value;
+                              
+                              document.getElementById("ContactInfo").value= name;
+                          }
+        
+        function checkContactID(){
+            var count_Contact = parseInt(document.getElementById('ContactID').length);
+            console.log('count_ContactID ' +count_Contact);
+            if( count_Contact <2  ) {
+                window.alert('No Contact Information, Please insert One Contact First!');
+                document.getElementById('ContactID_Span').style.color="red";
+                return false;
+                
+            }
+            else{
+                
+              //  var cid = $('#ContactID');
+              var ContactIDValue = document.getElementById("ContactID");
+              var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
+
+                if(Choice  =="select")
+                {
+                    window.alert('Please choose a ContactID');
+                     document.getElementById('ContactID_Span').style.color="red";
+                    return false;
+                }
+                else{
+                return true;
+                }
+            }
+            
+            
+            return false;
+           
+        }
+        
+        </script>
+
+        <title> <%= h1 %></title>
+        
+        <style>
+
+body{
+
+
+width:1500px;
+}
+
+
+       #header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+	#section {
+		    width:auto;
+		    float:left;
+		    padding:10px;	 	 
+		}
+
+		#nav {
+		    line-height:30px;
+		    background-color:#eeeeee;
+		    height:800px;
+		    width:150px;
+		    float:left;
+		    padding:2px;	      
+		}
+
+		#footer {
+		    background-color:black;
+		    color:white;
+		    clear:both;
+		    text-align:center;
+		   padding:5px;	 	 
+		}
+        #ContactInfo
+        {
+            font-family:"Cursive", Cursive, serif;
+            font-size: 16px;
+        }
+        #addNewContact{
+            position: absolute;
+            top: 390px;
+            right: 950px;
+            max-width: 100px;
+            max-height: 80px;
+        }
+        
+</style>
+
+    </head>
+    <body>
+
+                <div id = "header">
+                <h1>Require A New Job</h1>
+                </div>
+
+
+                <div  id="nav">
+                <button onclick="{location.href='/userPage/<%=usernameE%>'}">Back</button><br>
+                <button onclick="{location.href='/signout'}">signout</button>
+             </div>
+
+
+                <div id="section">
+                    <p>
+                    <% if(typeof(errorMessage) !== 'undefined') {%>
+                    <span style="color:red"><%= errorMessage %></span>
+                    <% } %>
+                    </p>
+                <% if(typeof(again) !== 'undefined') {%>
+                <font size="2" color="red"><%=  again %></font>
+                <% } %>
+                <form method="post" name="form1" action="/userRequireANewJob/<%=usernameE%>" onsubmit="return checkContactID()">
+                    
+                <p><label >VIN*:</label><br /><input type="text" name="VIN" required="true" id ="VIN" pattern="[0-9a-zA-Z]{5,17}"></p>
+                    <p><label for="TypeOfDPF">Select DPF/DOC/SCR*:</label>
+                    <br><Select name = "TypeOfDPF" id="TypeOfDPF" onchange=""/>
+                    
+                    <option value = "F" >DPF</option>
+                    <option value = "S" >SCR</option>
+                    <option value = "C" >DOC</option>
+                    </select>
+                    </p>
+                <p><label for="Date">Date*:</label> <br /><input type="date" name="Date" id = "Date" required="true" min ="<%=Today%>"> </p>
+                    
+                        <p><label for="PurchaseOrderNumber">PurchaseOrderNumber*:</label><br /><input type="text" name="PurchaseOrderNumber" required="true" pattern="[0-9a-zA-Z]{1,27}"></p>
+                            <p><label for="WorkOrderNumber">WorkOrderNumber:</label><br /><input type="text" name="WorkOrderNumber"  pattern="[0-9a-zA-Z]{1,27}"></p>
+                                
+                                <p><span id = "ContactCount_Span" style ="display:none" value ="<%=ContactCount%>">1234</span></p>
+                    <p><span id="ContactID_Span" >Select Your ContactID*:     <br><Select name = "ContactID" id="ContactID" onchange="ContactIDChange()"/>
+                    <option value="select">-- select --</option>
+                    <% for(var i = 0; i <ContactCount;i++) {%>
+                   <!-- <option value="<%= ContactID%>"><%=ContactID%></option>-->
+                    <option value="<%=i%>"><%=ContactID[i]%></option>
+                    <%}%>
+                    
+                            </select></p>
+                            <!-- build none textare to store the data-->
+                            <% for(var i = 0; i<ContactCount ; i++){%>
+                            <% var id = "noneContactName"+ i;%>
+                            <textarea   color="green" id="<%=id%>" cols="50" rows="5" style ="display:none;">ContactName : <%=ContactName[i]%>&#13;&#10;Contact Phone Number :<%=ContactPhone[i]%>&#13;&#10;Contact Site Address : <%=ContactSiteAddress[i]%>
+                                </textarea>
+                            <%}%>
+                            <!-- end of hidden textarea--->
+                            <p>
+                            <textarea name = 'ContactInfo' id = "ContactInfo" rows="5" cols="50"></textarea>
+                            </p>
+                      <p>Total Vehicle Mileage:<br /><input type = "text" id ="" name="VehicleTotalMileage" placeholder = "Total Mileage" value ="" maxlength =10 pattern="\d{1,10}">&nbsp;miles
+                      </p>
+                      
+                      <p>
+                      Total Vehicle Hours(Input if you know):<br /><input type = "text" id="" name = "VehicleTotalHours" placeholder = "Total Hours" maxlength=10 pattern="\d{1,7}">&nbsp;hrs
+                      </p>
+                        <p><label for="VehicleMake">Vehicle Make:</label><br /><input type="text" name="VehicleMake" ></p>
+                      
+                      <p><label for="VehicleModel">Vehicle Model:</label><br /><input type="text" name="VehicleModel" ></p>
+                          
+                          <p><label for="Unit_Truck_Number">UnitNumber/TruckNumber:</label><br /><input type = "text" name = "Unit_Truck_Number">
+                          </p>
+                          
+                          
+                          <p><label for="JobLocation">JobLocation*:</label>
+                          <br><Select name = "JobLocation" id="JobLocation" onchange=""/>
+                          
+                          <option value = "Fo" >Fogelsville</option>
+                          </select>
+                          </p>
+
+                          <p>
+                <input type="submit" value="Submit" >
+                        </p>
+                        
+                 
+                </form>
+                    </span> <input type="image" src="../public/images/add-button-blue-hi.png" id ="addNewContact"onclick="{location.href='/UserInputContactAndCompany/<%=usernameE%>'}"></input>
+
+
+
+
+
+                </div>
+             
+    <div id="footer">
+	@ Hunsicker DataBase Require A New Job
+	</div>
+
+    </body>
+
+    
+    
+
+
+
+</html>
+
+
+
+

@@ -42,6 +42,10 @@
                          });
         </script>
         <style>
+body{
+min-width:1500px;
+width:auto;
+}
 
 
 
@@ -53,7 +57,7 @@
 }
 
 	#section {
-		    width:800px;
+		    width:auto;
 		    float:left;
 		    padding:10px;	 	 
 		}
@@ -76,10 +80,10 @@
 		}
         #section1
         {
-            position: absolute;
-            width:200px;
-            right:900px;
-            top:150px;
+            position: relative;
+            width:500px;
+            left:200px;
+            top:20px;
             padding:10px;
             height:200px;
             
@@ -107,21 +111,20 @@
                    
             <form method = 'post' name = "form_Select_By_NPVD" id = "form2" action ="/SelectByNPVD" onsubmit="return validateForm()">
                 
-                FirstName*: <br><br>
-                LastName*: <br><br>
-                    Phone*: <br><br>
-                    Date(optional): <br><br>
-                        VIN(optional): <br>
+              
                         <div id ="section1">
-                    <input type ="text" name = "FirstName" id ="FirstName"><br><br>
+                   FirstName*:   <input type ="text" name = "FirstName" id ="FirstName"><br><br>
+ LastName*: 
                         <input type ="text" name = "LastName" id = "LastName"><br><br>
-                            
+                         
+ Phone*: 
                             <input style="width:30px" class="BillingContactPhone"  type = "text" id = "BillingContactPhone1"  name = "BillingContactPhone1" value ="" placeholder = "000" maxlength=3 required = "true" pattern="\d{3}"  />-
                             <input type = "text" name = "BillingContactPhone2" id = "BillingContactPhone2" class="BillingContactPhone" style="width:30px" value ="" placeholder = "000" maxlength=3 required = "true" pattern="\d{3}"  />-
                             <input type = "text" name = "BillingContactPhone3" id = "BillingContactPhone3" class="BillingContactPhone" value =""  style="width:40px" placeholder = "0000" maxlength=4 required = "true" pattern="\d{4}"  /><span id ="error_cp_phone" style="color:red"/>
-                            </p>
-
+                            <br><br>
+    Date(optional):
                                 <input type ="date" name = "Date" id = "Date"><br><br>
+VIN(optional):
                                 <input type ="text" name = "VIN" id ="VIN"><br>
                             </div>
                         <br><br>

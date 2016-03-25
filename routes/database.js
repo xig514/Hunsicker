@@ -29,7 +29,10 @@ function sleep(milliseconds) {
 }
 
 function handle_database(req,res) {
-    
+    if(!request.isAuthenticated()) {
+       response.redirect('/login');
+       
+    } else {
     pool.getConnection(function(err,connection){
                        if (err) {
                        connection.release();
@@ -51,6 +54,7 @@ function handle_database(req,res) {
                                      return;     
                                      });
                        });
+}
 }
 
 
@@ -476,7 +480,11 @@ function getdata(req,res,index){
 }
 exports.showData=function(request,response)
 {
-    
+    if(!request.isAuthenticated()) {
+        response.redirect('/login');
+        console.log('not authed in userPage');
+    }
+    else{
     var index=request.params.id;
   
 
@@ -515,6 +523,7 @@ exports.showData=function(request,response)
                 continue;
                 }
     });*/
+}
 }
 
 

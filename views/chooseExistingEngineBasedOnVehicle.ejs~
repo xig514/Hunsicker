@@ -6,7 +6,7 @@
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="/javascripts/chosen/chosen.jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="/javascripts/chosen/chosen.min.css">
-
+<meta name=viewport content="width=device-width, initial-scale=1">
         <script type="text/javascript">
         
         $(document).ready(function() {
@@ -29,7 +29,7 @@
         function SerialNumberonChange(){
                               var EngineNumber = $("#SerialNumber").val();
 
-
+				$("#SerialNumber").trigger("chosen:updated");
                               var Make="#"+(20*EngineNumber+2).toString();
                               var Model = "#"+(20*EngineNumber+3).toString();
                               var Year = "#"+(20*EngineNumber+4).toString();
@@ -68,7 +68,7 @@
                 $("#nav").height($("#section").outerHeight());
 
         }
-        function EditEngineInfo(){
+        function EditEngineInfo(event){
             var SerialNumber =$("#SerialNumber option:selected").val();
             if(SerialNumber ==-1){
                 alert("Please select a SerialNumber and then click next.");
@@ -79,7 +79,7 @@
             link1="/editEngineAdmin"+"?ContactID="+$("#ContactID").html()+"&CompanyID="+$("#CompanyID").html()+"&VIN="+$("#VIN").val();
             location.href=link1;
         }
-        function submitEngine(){
+        function submitEngine(event){
             var SerialNumber =$("#SerialNumber option:selected").val();
             if(SerialNumber ==-1){
                 alert("Please select a SerialNumber and then click next.");
@@ -98,7 +98,11 @@
         
         <style>
 
+body{
 
+
+width:900px;
+}
 
        #header {
     background-color:black;
@@ -109,7 +113,7 @@
 
 
 	#section {
-		    width:1000px;
+		    width:auto;
 		    float:left;
 		    padding:10px;
             
@@ -167,12 +171,12 @@
         }
         #AddNewEngine{
             position: relative;
-            top:250px;
+            top:600px;
             left:0px;
         }
         #EditEngineInfo{
             position: relative;
-            top:250px;
+            top:600px;
             left:0px;
         }
 </style>
@@ -222,7 +226,8 @@
                     <% } %>
                     </p>
 
-
+    <button id="AddNewEngine"onclick="{location.href='/addNewEngineAdmin/<%= VIN %>?ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>'}" >Add New Engine</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button id="EditEngineInfo" onclick="EditEngineInfo(event);">Edit Engine Info</button>
                 <form id = "form_1" method="post" name="form1"   >
               
                     <div id = "section2">
@@ -244,15 +249,14 @@
                             <label class="label1" >Engine Model:</label>&nbsp;&nbsp;<input type ="text" disabled id = "Model" class ="input1" /><br><br>
                             <label class="label1" >Engine Year:</label>&nbsp;&nbsp;<input type ="text" disabled  class ="input1"id = "Year" /><br><br>
                        
-                             <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitEngine()">
+                             <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitEngine(event)">
                           </div>
                     
                     
                
                            
                 </form>
-                <button id="AddNewEngine"onclick="{location.href='/addNewEngineAdmin/<%= VIN %>?ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>'}" >Add New Engine</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button id="EditEngineInfo" onclick="EditEngineInfo();">Edit Engine Info</button>
+            
                   <!-- <button id = "hide1" onclick = "hideContactInfo()" >Hide</button><br>-->
                   <div id = "table1">
                   <table id = "TableAll" style="width:100%">
