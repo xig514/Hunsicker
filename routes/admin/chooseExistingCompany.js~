@@ -14,26 +14,15 @@ var poolH = mysql.createPool({
 
                              });
 
-exports.show=function (request,response)
+exports.show=function (req,res)
 {
-if(!request.isAuthenticated()) {
-        response.redirect('/login');
-        
-    } else {
-    var user={username:'Administer'};
-    response.render('addNewJobAdmin',{user:user,title:title})
-    }
-}
 
-
-exports.handle_Selection=function (req,res)
-{if(!req.isAuthenticated()) {
+if(!req.isAuthenticated()) {
         res.redirect('/login');
        
     } else {
     var dataForShowing1=new Array();
-    var choice = req.body.Company;
-    if(choice ==1){//existing
+    var selectedCompanyID= req.query.selectedCompanyID;
         poolH.getConnection(function(err,connection){
                             if (err) {
                             connection.release();
@@ -87,7 +76,7 @@ exports.handle_Selection=function (req,res)
                                              }
                                             // console.log('CompanyCount = ' + countCompanyID);
                                              //;console.log(CompanyID);
-                                             res.render('chooseExistingCompanyadmin', {h1:'Select Company',use:{username:'Administrator'},title:'The result of all Companys',CompanyCount:countCompanyID,CompanyID:CompanyID,CompanyName:CompanyName,dataForShowingE:dataForShowing1});
+                                             res.render('chooseExistingCompanyadmin', {h1:'Select Company',use:{username:'Administrator'},title:'The result of all Companys',CompanyCount:countCompanyID,CompanyID:CompanyID,CompanyName:CompanyName,dataForShowingE:dataForShowing1,selectedCompanyID:CompanyID});
                                              }
                                              else{
                                              console.log('error in Select CompanyInfo!');
@@ -104,12 +93,6 @@ exports.handle_Selection=function (req,res)
                                              });
                             })
     }
-    else if(choice ==2){
-        console.log('aaaa');
-        res.render('addNewCompanyAdmin', {title:title});
-    }
-    else
-    {console.log("Error");}
-}
+   
 }
 

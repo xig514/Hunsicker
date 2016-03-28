@@ -96,40 +96,15 @@ function checkCookie() {
         }
     }
 }
-    
 
 </script>
-   <!--
-        function validateForm() {
-    var x = document.forms["form1"]["CompanyName"].value;
-    var y = document.forms["form1"]["BillingAddress"].value;
-    var patt =  /^[a-zA-Z0-9]+$/i
-    if (x == null || x == "" || y ==null || y == "") {
-        alert("Name must be filled out");
-        return false;
-    }
-
-    if (!x.match(patt) )
-    {
-        alert("The User Name should contains only letters and digits");
-        return false;
-    }
-    if (!y.match(patt))
-    {
-        alert("The Password should contains only letters and digits");
-        return false;
-    }
-
-
-}
--->
-
+  
 
 
         <style>
 
 body{
-min-width:1500px;
+min-width:1200px;
 width:auto;
 }
        #header {
@@ -207,9 +182,10 @@ width:auto;
 
                 <div  id="nav">
 
-             <button onclick="{location.href='/inputSelection'}">Back</button>
+             <button onclick="{location.href='/inputSelection'}">Back To Home</button>
              
-            <button onclick="{location.href='/signout'}">signout</button>
+            <button onclick="{location.href='/signout'}">signout</button></br>
+<button onclick="{location.href='chooseExistingContactBasedOnCompanyID/<%= CompanyID%>?CompanyName=<%= CompanyName%>'}">Back</button>
                 </div>
 
 

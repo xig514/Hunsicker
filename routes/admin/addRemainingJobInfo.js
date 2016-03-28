@@ -45,6 +45,8 @@ var today = datetime.getFullYear()+"-"+month+"-"+datetime.getDate();
 //==============================================================================================
 exports.show=function(req,res){
     backURL=backURL;
+    var CompanyID=req.query.CompanyID;
+
     var ErrorCode = 0;
     if(req.query.ErrorCode!=undefined){
         ErrorCode = req.query.ErrorCode;
@@ -59,7 +61,7 @@ exports.show=function(req,res){
     
     var DPFID = req.query.DPFID;
     //console.log(req.body.ReasonForCleaning);
-    res.render('addRemainingJobInfo', {ContactID: ContactID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title});
+    res.render('addRemainingJobInfo', {ContactID: ContactID,CompanyID:CompanyID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title});
     }
     else{
    
@@ -70,7 +72,7 @@ exports.show=function(req,res){
         
          DPFID = req.query.DPFID;
         //console.log(req.body.ReasonForCleaning);
-        res.render('addRemainingJobInfo', {ContactID: ContactID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title,errorMessage:'Error in select Job ID'});
+        res.render('addRemainingJobInfo', {ContactID: ContactID,CompanyID:CompanyID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title,errorMessage:'Error in select Job ID'});
 
     }
 }
@@ -81,18 +83,19 @@ exports.handle_Input1=function (req,res,backURL)
     
     //console.log('1111111');
     
- 
+     var CompanyID=req.query.CompanyID;
       ContactID= req.query.ContactID;
       VIN =req.query.VIN;
     //console.log(VIN);
     
        DPFID = req.query.DPFID;
     //console.log(req.body.ReasonForCleaning);
-    res.render('addRemainingJobInfo', {ContactID: ContactID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title});
+    res.render('addRemainingJobInfo', {ContactID: ContactID,CompanyID:CompanyID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title});
     
 }
 exports.handle_Input2=function (req,res)
 {
+	var CompanyID=req.query.CompanyID;
     /*if(!req.isAuthenticated()) {
         response.redirect('/login');
         console.log('not authed in inputSelection');
@@ -209,7 +212,8 @@ console.log('date111 ' +Date1);
                                                                connection.query(queryClause2,JobInput, function (err,rows){
                                                                                 connection.release();
                                                                                 if(!err){
-                                                                                res.render('addRemainingJobInfo', {ContactID: ContactID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title,errorMessage:"Successfully Insert the Job"});
+                                                                               // res.render('addRemainingJobInfo', {ContactID: ContactID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title,errorMessage:"Successfully Insert the Job"});
+								res.redirect('/jobConclusion?JobID='+JobID+'&ContactID='+ContactID+'&VIN='+VIN+'&DPFID='+DPFID+'&message=1'+'&CompanyID='+CompanyID);
                                                                                 }
                                                                                 else{
                                                                                   res.render('addRemainingJobInfo', {ContactID: ContactID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title,errorMessage:err.code});
@@ -244,7 +248,8 @@ console.log('date111 ' +Date1);
                                              connection.query(queryClause2,JobInput, function (err,rows){
                                                               connection.release();
                                                               if(!err){
-                                                              res.render('addRemainingJobInfo', {ContactID: ContactID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title,errorMessage:"Successfully Insert the Job"});
+                                                              //res.render('addRemainingJobInfo', {ContactID: ContactID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title,errorMessage:"Successfully Insert the Job"});
+res.redirect('/jobConclusion?JobID='+JobID+'&ContactID='+ContactID+'&VIN='+VIN+'&DPFID='+DPFID+'&message=1'+'&CompanyID='+CompanyID);
                                                               }
                                                               else{
                                                               res.render('addRemainingJobInfo', {ContactID: ContactID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title,errorMessage:err.code});

@@ -21,7 +21,6 @@ exports.show=function (request,response)
     var dataForShowing1=new Array();
     var ContactName= request.query.ContactName;
     var ContactID= request.query.ContactID;
-var CompanyName;
 if(CompanyName!=undefined){
     var CompanyName = request.query.CompanyName;
     }

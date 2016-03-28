@@ -24,10 +24,6 @@ var pool2     =    mysql.createPool({
                                     });
 exports.userPage=function(request,response)
 {
-if(!request.isAuthenticated()) {
-       response.redirect('/login');
-       
-    } else {
     switch (request.method) {
         case 'GET':
             show(request,response);
@@ -38,7 +34,7 @@ if(!request.isAuthenticated()) {
         default:
             bad_request(response);
     }
-   }
+    
 }
 
 

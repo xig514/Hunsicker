@@ -131,11 +131,11 @@
                                  }
                                  
             
-            //window.location = "http://localhost:9000/chooseExistingContactBasedOnCompanyID/"+CompanyID;
+       
 
         }
         function POonchange(){
-            $("#form_1").attr("action","/addRemainingJobInfo2?ContactID="+$("#ContactID").html()+"&DPFID="+$("#DPFID").html()+"&VIN="+$("#VIN").html());
+            $("#form_1").attr("action","/addRemainingJobInfo2?ContactID="+$("#ContactID").html()+"&DPFID="+$("#DPFID").html()+"&VIN="+$("#VIN").html())+"&CompanyID="+;
             console.log($("#form_1").attr("action"));
         }
         
@@ -147,7 +147,7 @@
 body{
 min-width:1500px;
 width:auto;
-}
+}	
 
        #header {
     background-color:black;
@@ -237,8 +237,9 @@ width:auto;
 
 
                 <div  id="nav">
-                <button onclick="{location.href='/userPage/inputSelection'}">Back To Home</button>
-                <button onclick="{location.href='/signout'}">signout</button>
+                <button onclick="{location.href='/userPage/inputSelection'}">Back To Home</button><br>
+                <button onclick="{location.href='/signout'}">signout</button><br>
+		<button onclick="{location.href='/chooseExistingDPF?VIN=<%= VIN%>&ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>&DPFID=<%= DPFID%>'}">Back</button>
              </div>
 
 
@@ -259,6 +260,12 @@ width:auto;
                     <span style="color:green; display:none" id="ContactID" value="<%= ContactID%>"><%=ContactID %></span>
                     <% } %>
                     </p>
+		    <p>
+                    <% if(typeof(CompanyID) !== 'undefined') {%>
+                    <span style="color:green; display:none" id="CompanyID" value="<%= CompanyID%>"><%=CompanyID %></span>
+                    <% } %>
+                    </p>
+		    <p>
                     <% if(typeof(VIN) !== 'undefined') {%>
                     <span style="color:green; display:none" id="VIN" value="<%= VIN%>"><%= VIN %></span>
                     <% } %>

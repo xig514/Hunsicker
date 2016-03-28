@@ -67,7 +67,8 @@
         <style>
 
 body{
-width:1500px;
+min-width:1500px;
+width:auto;
 }
 
        #header {
@@ -165,7 +166,7 @@ width:1500px;
                 
                 <button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;" onclick="{location.href='/signout'}">signout</button>
                 
-                <button class="btn btn-primary"  style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='/addNewJobAdmin'}">BackToLast</button>
+                <button class="btn btn-primary"  style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='/chooseExistingCompany'}">BackToLast</button>
                 
              </div>
 

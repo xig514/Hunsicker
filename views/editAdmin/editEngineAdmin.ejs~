@@ -11,14 +11,8 @@
                           
                           $("#nav").height($("#section").outerHeight());
                          
-                          $("#SerialNumber").change();
                           
                           
-                          
-                          
-                          });
-                          
-        function SerialNumberonChange(){
                             var EngineNumber =0;
 
 
@@ -37,7 +31,11 @@
                                $("#form_1").attr("action", "/editEngineAdmin?VIN="+ $("#VIN").val() +"&ContactID="+ $("#ContactID").html()+"&CompanyID=" +$("#CompanyID").html());                              //console.log($("#form_1").attr("action"));
                               // alert($("#form_1").attr("action"));
                            
-                          }
+                          
+                          
+                          });
+                          
+
         
         
        
@@ -119,7 +117,7 @@
         
         <style>
 body{
-min-width:900px;
+min-width:800px;
 width:auto;
 }
 

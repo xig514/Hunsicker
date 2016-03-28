@@ -22,7 +22,7 @@ $(document).ready(function() {
                   
                   $("#Year").val($.cookie("Year"));
                   
-              
+              	
 
 
                   
@@ -31,6 +31,86 @@ $(document).ready(function() {
                   
 });
 
+
+function VIN_Change(){
+if(document.getElementById("cp01").checkValidity()==true){
+$("#VIN_Check").css("color",'green');
+$("#VIN_Check").html('&#10004;');
+$("#cp01").css('border-color','green');
+
+}
+else{
+$("#VIN_Check").css("color",'red');
+$("#VIN_Check").html('&#10008;');
+$("#cp01").css('border-color','red');
+}
+
+if($("#cp01").val()==$("#cp01_1").val()&& document.getElementById("cp01_1").checkValidity()==true){
+
+$("#VIN_Check2").css("color",'green');
+$("#VIN_Check2").html('&#10004;');
+$("#cp01_1").css('border-color','green');
+}
+else if($("#cp01").val()==$("#cp01_1").val() && document.getElementById("cp01_1").checkValidity()!=true){
+
+$("#VIN_Check2").css("color",'red');
+$("#VIN_Check2").html('&#10008;');
+$("#cp01_1").css('border-color','red');
+
+}
+else if($("#cp01").val()!=$("#cp01_1").val()&&document.getElementById("cp01_1").checkValidity()==true){
+
+$("#VIN_Check2").css("color",'red');
+$("#VIN_Check2").html('Please input the same VIN to confirm!');
+$("#cp01_1").css('border-color','red');
+}
+else if($("#cp01").val()!=$("#cp01_1").val() && document.getElementById("cp01_1").checkValidity()!=true){
+$("#VIN_Check2").css("color",'red');
+$("#VIN_Check2").html('&#10008; + Please input the same VIN to confirm!');
+$("#cp01_1").css('border-color','red');
+
+}
+}
+
+function VIN_Change2(){
+if($("#cp01").val()==$("#cp01_1").val()&& document.getElementById("cp01_1").checkValidity()==true){
+
+$("#VIN_Check2").css("color",'green');
+$("#VIN_Check2").html('&#10004;');
+$("#cp01_1").css('border-color','green');
+}
+else if($("#cp01").val()==$("#cp01_1").val() && document.getElementById("cp01_1").checkValidity()!=true){
+
+$("#VIN_Check2").css("color",'red');
+$("#VIN_Check2").html('&#10008;');
+$("#cp01_1").css('border-color','red');
+
+}
+else if($("#cp01").val()!=$("#cp01_1").val()&&document.getElementById("cp01_1").checkValidity()==true){
+
+$("#VIN_Check2").css("color",'red');
+$("#VIN_Check2").html('Please input the same VIN to confirm!');
+$("#cp01_1").css('border-color','red');
+}
+else if($("#cp01").val()!=$("#cp01_1").val() && document.getElementById("cp01_1").checkValidity()!=true){
+$("#VIN_Check2").css("color",'red');
+$("#VIN_Check2").html('&#10008; + Please input the same VIN to confirm!');
+$("#cp01_1").css('border-color','red');
+
+}
+if(document.getElementById("cp01").checkValidity()==true){
+$("#VIN_Check").css("color",'green');
+$("#VIN_Check").html('&#10004;');
+$("#cp01").css('border-color','green');
+
+}
+else{
+$("#VIN_Check").css("color",'red');
+$("#VIN_Check").html('&#10008;');
+$("#cp01").css('border-color','red');
+}
+
+}
 function storeValues()
 {
     //alert("VIN= "+$("#cp01").val());
@@ -52,6 +132,8 @@ function submitVehicle(event){
     }
     storeValues();
 }
+
+ 
 </script>
 
 
@@ -140,10 +222,10 @@ width:auto;
 
                 <div  id="nav">
 
-             <button class="btn btn-primary" onclick="{location.href='/inputSelection'}">Back</button>
+             <button class="btn btn-primary" onclick="{location.href='/inputSelection'}">Back To Home</button>
              
-            <button class="btn btn-primary" onclick="{location.href='/signout'}">signout</button>
-            
+            <button class="btn btn-primary" onclick="{location.href='/signout'}">signout</button><br>
+                 <button onclick = "{location.href='/chooseExistingVehicle/<%= ContactID%>?ContactName=<%= ContactName%>&CompanyID=<%= CompanyID%>&CompanyName='}">Back</button>
                 </div>
 
 <span style="color:Blue;float:left;">Please input your Vehicle Information.</span><br>
@@ -162,7 +244,8 @@ width:auto;
                  
                         <div id = "section 1_2">
                             
-                            <p> <label class="label1" for="">VIN*:</label>&nbsp;<input class="input2" type = "text"  id ="cp01"name = "VIN" placeholder ="VIN" pattern="[A-Za-z0-9]{17}" maxlength = 17 required = "true"/><span style= "color:red" id ="error_cp01"/></p>
+                            <p> <label class="label1" for="">VIN*:</label>&nbsp;<input class="input2" type = "text"  id ="cp01"name = "VIN" placeholder ="VIN" pattern="[A-Za-z0-9]{17}" maxlength = 17 required = "true" onchange="VIN_Change()"/><span style= "color:red;" id ="error_cp01"/><span id="VIN_Check"></span></p>
+ <p> <label class="label1" for="">Confirm VIN*:</label>&nbsp;<input class="input2" type = "text"  id ="cp01_1"name = "VIN_01" placeholder ="VIN" pattern="[A-Za-z0-9]{17}" maxlength = 17 required = "true" onchange="VIN_Change2()"/><br><span id="VIN_Check2"style="text-align:right"></span></p>
                 <p><label class="label1" for="">Unit Number*:</label>&nbsp;<input class="input1" type = "text" id ="cp02" name = "UnitNumber" placeholder ="Unit Number" /><span style="color:red" id ="error_cp02"/></p>
                 <p>    <label class="label1" for="">Make*:</label>&nbsp;    <input class="input1" type = "text" id ="cp03" name = "Make" placeholder = "Make"value =""required= "true"/></p>
                 <p>    <label class="label1" for="">Model*:</label>&nbsp;    <input class="input1" type = "text" id ="cp04" name = "Model" placeholder = "Model"value =""required= "true"/></p>

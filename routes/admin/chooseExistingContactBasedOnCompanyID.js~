@@ -163,7 +163,7 @@ exports.handle_CompanyInput=function (req,res)
                                              dataForShowing1[i][10] = CompanyID;
                                              
                                              dataForShowing1[i][11]=CompanyName;
-                                             console.log(CompanyName);
+                                             //console.log(CompanyName);
                                              }
                                              }
                                              res.render('chooseExistingContactBasedOnCompanyIDadmin', {h1:'Select Contact',use:{username:'Administrator'},title:'The result of all Contacts based on the selected companyID ',CompanyName:CompanyName, CompanyID: CompanyID, ContactCount:countContactID,ContactID:ContactID,ContactName:ContactName,dataForShowingE:dataForShowing1});

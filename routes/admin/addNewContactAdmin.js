@@ -26,7 +26,10 @@ var MaxContactID = 0;
 
 exports.show=function(request,response)
 {
-    
+    if(!request.isAuthenticated()) {
+        response.redirect('/login');
+       
+    } else {
     var CompanyID= request.query.CompanyID;
     var CompanyName="";
     if(request.query.CompanyName!=undefined){
@@ -38,9 +41,14 @@ console.log('CName in show '  + CompanyName);
 	else
     response.render('addNewContactAdmin',{title:'Add New Contact Admin',CompanyID:CompanyID,CompanyName:CompanyName,errorMessage:request.query.error});
 }
+}
 
 exports.handle_Input=function (request,response)
 {
+if(!request.isAuthenticated()) {
+        response.redirect('/login');
+       
+    } else {
     FirstName =request.body.FirstName;
     LastName = request.body.LastName;
     PhoneNumber = request.body.PhoneNumber1+request.body.PhoneNumber2+request.body.PhoneNumber3;
@@ -134,7 +142,7 @@ exports.handle_Input=function (request,response)
                                                                                 //-------------------------------------------------------------------------
                         connection.on('error', function(err) {response.json({"code" : 100, "status" : "Error in connection database"});return;});
                         });
-
+}
 }
 
 
@@ -223,4 +231,5 @@ function jumpToContact(req,res,CompanyID,CompanyName,MaxContactID){
                                          
                                          });
                         });
+
 }

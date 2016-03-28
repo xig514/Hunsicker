@@ -31,10 +31,6 @@ var title = "Input into Company and Contact";
 
 exports.UserInputContactAndCompany=function(request,response)
 {
-   if(!request.isAuthenticated()) {
-       response.redirect('/login');
-       
-    } else {
     switch (request.method) {
         case 'GET':
             show(request,response);
@@ -45,7 +41,7 @@ exports.UserInputContactAndCompany=function(request,response)
         default:
             bad_request(response);
     }
-    }
+    
 }
 
 

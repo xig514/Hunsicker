@@ -89,6 +89,10 @@ var showinputSelection = function(request, response, next) {
 
 exports.login=function(request,response)
 {
+    if(!request.isAuthenticated()) {
+       response.redirect('/login');
+       
+    } else {
     switch (request.method) {
         case 'GET':
             show(request,response);
@@ -99,7 +103,7 @@ exports.login=function(request,response)
         default:
             bad_request(response);
     }
-    
+    }
 }
 
 

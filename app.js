@@ -55,7 +55,7 @@ var addNewJobAdmin= require('./routes/admin/addNewJobAdmin');
 
 var admin_SearchDPF=require('./routes/admin/admin_SearchDPF');
 var submitDPF= require ('./routes/admin/submitDPF');
-
+var chooseExistingCompany = require('./routes/admin/chooseExistingCompany');
 var chooseExistingContactBasedOnCompanyID = require('./routes/admin/chooseExistingContactBasedOnCompanyID');
 var chooseExistingVehicle  = require('./routes/admin/chooseExistingVehicle');
 var chooseExistingEngine = require('./routes/admin/chooseExistingEngineBasedOnVIN');
@@ -76,7 +76,8 @@ var editContactAdmin = require('./routes/admin/edit/editContactAdmin');
 var editVehicleAdmin = require('./routes/admin/edit/editVehicleAdmin');
 var editEngineAdmin=require('./routes/admin/edit/editEngineAdmin');
 var editDPFAdmin = require('./routes/admin/edit/editDPFAdmin');
-
+//----------------------------------------------------------------------------------------------------------------------job Conclusion
+var jobConclusion= require('./routes/admin/jobConclusion');
 
 //-----------------------------------------------------------------------------------------------------------------------end admin
 
@@ -303,6 +304,11 @@ app.get('/gmail',function(req,res){
  */
 
 //===========================================================================Gmail part
+app.get('/jobConclusion',function(req,res){
+
+	jobConclusion.show(req,res);
+
+});
 app.get('/addNewJobAdmin',function(req,res){
         addNewJobAdmin.show(req,res);
         });
@@ -310,6 +316,11 @@ app.get('/addNewJobAdmin',function(req,res){
 app.post('/addNewJobAdmin',function(req,res){
          addNewJobAdmin.handle_Selection(req,res);
          });
+app.get('/chooseExistingCompany',function(req,res){
+
+chooseExistingCompany.show(req,res);
+}
+);
 app.get('/chooseExistingContactBasedOnCompanyID/:id',function (req,res){
         chooseExistingContactBasedOnCompanyID.show(req,res);
         

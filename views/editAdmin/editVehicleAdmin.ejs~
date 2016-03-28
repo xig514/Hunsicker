@@ -15,12 +15,6 @@
                           if(a!=-1&& a!=undefined)
                           {
                          
-                          $("#VIN").change();
-                          
-                          }
-                          });
-                          
-        function VINonChange(){
                             var VehicleNumber = 0;
             
                               //console.log(VehicleNumber);
@@ -41,6 +35,12 @@
                               $("#Year").val($(Year).html());
                               $("#CompanyID").val($(CompanyID).html());
                               $("#form_1").attr("action", "/editVehicleAdmin/"+ $("#VIN_temp").html() +"?ContactID="+ $("#ContactID").html()+"&CompanyID=" +$("#CompanyID").html()+"&ContactName=")+$("#ContactName").html();
+                          
+                          }
+                          });
+                          
+        function VINonChange(){
+                          
                               
                               
                            
@@ -87,7 +87,21 @@
             var link1= '/chooseExistingVehicle/'+$("#VIN_temp").html()+"?CompanyID="+$("#CompanyID_temp").html()+"&ContactID="+$("#ContactID").html()+"&ContactName="+$("#ContactName_temp").html();
             location.href=link1;
         }
-        
+
+
+	function VIN_Change(){
+if(document.getElementById("VIN").checkValidity()==true){
+$("#VIN_Check").css("color",'green');
+$("#VIN_Check").html('&#10004;');
+$("#VIN").css('border-color','green');
+
+}
+else{
+$("#VIN_Check").css("color",'red');
+$("#VIN_Check").html('&#10008;');
+$("#VIN").css('border-color','red');
+}
+}
         </script>
 
         <title> <%= h1 %></title>
@@ -95,7 +109,7 @@
         <style>
 
 body{
-min-width:1200px;
+min-width:1000px;
 width:auto;
 }
 
@@ -252,7 +266,7 @@ width:auto;
                     <div id = "section2">
                     
                     <p><span id="VIN_span" >Edit Vehicle:  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </span><br><br>
-                    <br> <label class="label1" for="VIN">VIN:</label>&nbsp;<input  type="text" class ="input1"  name = "VIN" id="VIN" onchange="VINonChange()" value="<%= VIN%>"  pattern="[A-Za-z0-9]{17}" maxlength = 17 required = "true"></input>
+                    <br> <label class="label1" for="VIN">VIN:</label>&nbsp;<input  type="text" class ="input1"  name = "VIN" id="VIN" onchange="VINonChange()" value="<%= VIN%>"  pattern="[A-Za-z0-9]{17}" maxlength = 17 required = "true" onchange="VIN_Change()"></input><span id="VIN_Check"></span>
                     
                   
 

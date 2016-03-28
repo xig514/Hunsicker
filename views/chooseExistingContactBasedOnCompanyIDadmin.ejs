@@ -62,7 +62,7 @@
                               $("#SiteState").val($(SiteState).html());
                               $("#SiteCity").val($(SiteCity).html());
                               $("#SiteZip").val($(SiteZip).html());
-                              $("#form_1").attr("action", "/chooseExistingVehicle/" + $("#ContactID option:selected").text()+"?ContactName=" +$("#ContactName option:selected").text()+"&CompanyID="+$("#CompanyID").html());
+                              $("#form_1").attr("action", "/chooseExistingVehicle/" + $("#ContactID option:selected").text()+"?ContactName=" +$("#ContactName option:selected").text()+"&CompanyID="+$("#CompanyID").html()+"&CompanyName="+$("#CompanyName_1").html());
                               console.log($("#form_1").attr("action"));
                               //console.log($("#CompanyID").val());
                            
@@ -93,7 +93,7 @@
              $("#SiteState").val($(SiteState).html());
              $("#SiteCity").val($(SiteCity).html());
              $("#SiteZip").val($(SiteZip).html());
-             $("#form_1").attr("action", "/chooseExistingVehicle/" + $("#ContactID option:selected").text()+"?ContactName=" +$("#ContactName option:selected").text()+"&CompanyID="+$("#CompanyID").html());
+             $("#form_1").attr("action", "/chooseExistingVehicle/" + $("#ContactID option:selected").text()+"?ContactName=" +$("#ContactName option:selected").text()+"&CompanyID="+$("#CompanyID").html()+"&CompanyName="+$("#CompanyName_1").html());
              //console.log($("#form_1").attr("action"));
 
 
@@ -295,7 +295,8 @@ width:auto;
 
                 <div  id="nav">
                 <button onclick="{location.href='/userPage/inputSelection'}">Back To Home</button>
-                <button onclick="{location.href='/signout'}">signout</button>
+                <button onclick="{location.href='/signout'}">signout</button><br>
+		<button onclick="{location.href='/chooseExistingCompany?selectedCompanyID=<%= CompanyID%>'}">Back</button>
              </div>
 
 
