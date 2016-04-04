@@ -130,7 +130,8 @@
     padding:5px;
 }
 body{
-width:1500px;
+min-width:1500px;
+width:auto;
 }
 
 	#section {

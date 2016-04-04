@@ -44,6 +44,13 @@ var today = datetime.getFullYear()+"-"+month+"-"+datetime.getDate();
 
 //==============================================================================================
 exports.show=function(req,res){
+var user = request.user;
+
+    if(!request.isAuthenticated()) {
+        response.redirect('/login');
+        console.log('not authed in userPage');
+    }
+    else{
     backURL=backURL;
     var CompanyID=req.query.CompanyID;
 
@@ -51,7 +58,7 @@ exports.show=function(req,res){
     if(req.query.ErrorCode!=undefined){
         ErrorCode = req.query.ErrorCode;
     }
-    if(ErrorCode = 0){
+    if(ErrorCode == 0){
         //console.log('1111111');
          reason = req.body.ReasonForCleaning;
     
@@ -76,10 +83,18 @@ exports.show=function(req,res){
 
     }
 }
+}
 
 exports.handle_Input1=function (req,res,backURL)
 {
-      backURL=backURL;
+var user = request.user;
+
+    if(!request.isAuthenticated()) {
+        response.redirect('/login');
+        console.log('not authed in userPage');
+    }
+    else{
+     // backURL=backURL;
     
     //console.log('1111111');
     
@@ -91,16 +106,18 @@ exports.handle_Input1=function (req,res,backURL)
        DPFID = req.query.DPFID;
     //console.log(req.body.ReasonForCleaning);
     res.render('addRemainingJobInfo', {ContactID: ContactID,CompanyID:CompanyID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title});
-    
+    }
 }
 exports.handle_Input2=function (req,res)
 {
 	var CompanyID=req.query.CompanyID;
-    /*if(!req.isAuthenticated()) {
+   var user = request.user;
+
+    if(!request.isAuthenticated()) {
         response.redirect('/login');
-        console.log('not authed in inputSelection');
-    } else {
-    */
+        console.log('not authed in userPage');
+    }
+    else{
     //console.log('1111111');
        var reason_temp= req.body.ReasonForCleaning;
        //console.log("reason :" +reason_temp);
@@ -271,9 +288,9 @@ res.redirect('/jobConclusion?JobID='+JobID+'&ContactID='+ContactID+'&VIN='+VIN+'
         
         
                                              });
-                            connection.on('error', function(err) {response.json({"code" : 100, "status" : "Error in connection database"});return;});
+                            connection.on('error', function(err) {res.json({"code" : 100, "status" : "Error in connection database"});return;});
                             });
-    
+    }
     
 }
 

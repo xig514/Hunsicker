@@ -142,38 +142,7 @@
             //window.location = "/chooseExistingContactBasedOnCompanyID/"+CompanyID;
 
         }
-        /*
-        function checkContactID(){
-            var count_Contact = parseInt(document.getElementById('ContactID').length);
-            console.log('count_ContactID ' +count_Contact);
-            if( count_Contact <2  ) {
-                window.alert('No Contact Information, Please insert One Contact First!');
-                document.getElementById('ContactID_Span').style.color="red";
-                return false;
-                
-            }
-            else{
-                
-              //  var cid = $('#ContactID');
-              var ContactIDValue = document.getElementById("ContactID");
-              var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
-
-                if(Choice  =="select")
-                {
-                    window.alert('Please choose a ContactID');
-                     document.getElementById('ContactID_Span').style.color="red";
-                    return false;
-                }
-                else{
-                return true;
-                }
-            }
-            
-            
-            return false;
-           
-        }
-        */
+      
         
         </script>
 
@@ -294,7 +263,7 @@ width:auto;
 
 
                 <div  id="nav">
-                <button onclick="{location.href='/userPage/inputSelection'}">Back To Home</button>
+                <button onclick="{location.href='/inputSelection'}">Back To Home</button>
                 <button onclick="{location.href='/signout'}">signout</button><br>
 		<button onclick="{location.href='/chooseExistingCompany?selectedCompanyID=<%= CompanyID%>'}">Back</button>
              </div>

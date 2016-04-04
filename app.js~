@@ -304,6 +304,11 @@ app.get('/gmail',function(req,res){
  */
 
 //===========================================================================Gmail part
+app.get('/jobConclusion',function(req,res){
+
+	jobConclusion.show(req,res);
+
+});
 app.get('/addNewJobAdmin',function(req,res){
         addNewJobAdmin.show(req,res);
         });
@@ -692,4 +697,4 @@ var server=app.listen(8000,function()
 module.exports = app;
  */
 var server = http.createServer(app);
-server.listen(9000,'0.0.0.0');
+server.listen(9000,'127.0.0.1');

@@ -18,7 +18,7 @@ var VIN="";
 var CompanyID = 0;
 exports.show=function (request,response)
 {
-
+var user = request.user;
 
     if(!request.isAuthenticated()) {
         response.redirect('/login');

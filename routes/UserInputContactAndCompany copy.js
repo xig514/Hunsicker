@@ -56,10 +56,10 @@ function bad_request(request, response) {
         response.end('Bad Request');
 }
 function show(request, response){
-    /*if(!request.isAuthenticated()) {
+    if(!request.isAuthenticated()) {
         response.redirect('/login');
         console.log('not authed in UICC');
-    } else {*/
+    } else {
     
     fs.readFile(template, function(err, data) {
                var aa = "Login";

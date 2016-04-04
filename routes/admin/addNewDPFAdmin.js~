@@ -45,7 +45,7 @@ exports.show=function(request,response)
 
 
 exports.handle_Input=function(req,res) {
-   
+   var user = req.user;
   if(!req.isAuthenticated() ) {
         res.redirect('/login');
         console.log('not authed in UICC');

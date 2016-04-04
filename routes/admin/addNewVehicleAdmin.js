@@ -18,6 +18,13 @@ var ContactName="";
 var CompanyID = 0;
 exports.show=function (request,response)
 {
+var user = request.user;
+
+    if(!request.isAuthenticated()) {
+        response.redirect('/login');
+        console.log('not authed in userPage');
+    }
+    else{
     ContactID = request.query.ContactID;
     ContactName = request.query.ContactName;
     CompanyID =request.params.id;
@@ -29,13 +36,17 @@ exports.show=function (request,response)
       response.render('addNewVehicleAdmin',{title:title, CompanyID:CompanyID,ContactID:ContactID,ContactName:ContactName});
     }
 }
+}
 
 exports.handle_Input=function (request,response)
 {
-    /*if(!request.isAuthenticated()) {
+    var user = request.user;
+
+    if(!request.isAuthenticated()|| user.username!="adminBob") {
         response.redirect('/login');
-        console.log('not authed in UICC.handle_input');
-    } else {*/
+        console.log('not authed in userPage');
+    }
+    else{
     var Year = request.body.Year;
     var Model = request.body.Model;
     var Make =request.body.Make;
@@ -44,6 +55,7 @@ exports.handle_Input=function (request,response)
     var ContactID = request.query.ContactID; 
     var CompanyID= request.params.id;
     var Contactname = request.query.ContactName;
+    var CompanyName = request.query.CompanyName;
      var MaxVehicleID = 0;
     title = "Input Vehicle";
     
@@ -70,17 +82,17 @@ exports.handle_Input=function (request,response)
                                          if (rows[0].count1>=1)//
                                          {
                                          //here we redirect
-                                         console.log("11111111111111111");
+                                        // console.log("11111111111111111");
                                          response.redirect('/addNewVehicleAdmin/'+CompanyID+'?AbandonOrUpdate=1&ContactID='+ContactID+'&ContactName='+ContactName);
                                          }
                                          else if(rows[0].count2>=1){
-                                         console.log('2222222222222222222222222222');
+                                        //console.log('2222222222222222222222222222');
                                          var errorM= 'This Vehicle has already been inserted';
                                           response.redirect('/addNewVehicleAdmin/'+CompanyID+'?AbandonOrUpdate=1&ContactID='+ContactID+'&ContactName='+ContactName+'&error=errorM');
                                          }
                                          else{
                                          var count3_temp =rows[0].count3;
-                                         console.log("333333333333333333333");
+                                        // console.log("333333333333333333333");
                                          var findLargestVehicleID = "Select Max(VehicleID) AS solution from Vehicle;";
                                          
                                          connection.query(findLargestVehicleID,function(err,rows){//First, found the largest CompanyID;
@@ -110,7 +122,7 @@ exports.handle_Input=function (request,response)
                                                                            if(!err ) {
                                                                            //we sucessfully input the data into Vehicle ,then we should take care of the Engine Info
                                                                            console.log('Jump to Last page');
-                                                                           jumpToChoose(request,response,VIN,CompanyID,ContactID,Contactname);
+                                                                           jumpToChoose(request,response,VIN,CompanyID,ContactID,Contactname,CompanyName);
                                                                            }
                                                                            else{
                                                                            //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -154,11 +166,11 @@ exports.handle_Input=function (request,response)
     
     
 
-//}
+}
 }
 
 
-function jumpToChoose(req,res,VIN1,CompanyID,ContactID,Contactname){
+function jumpToChoose(req,res,VIN1,CompanyID,ContactID,Contactname,CompanyName){
     
     var dataForShowing1=new Array();
 
@@ -216,7 +228,7 @@ function jumpToChoose(req,res,VIN1,CompanyID,ContactID,Contactname){
                                          // console.log('CompanyCount = ' + countCompanyID);
                                          //;console.log(CompanyID);
                                          //console.log(VIN1);
-                                         res.render('chooseExistingVehicle', {h1:'Select Vehicle',use:{username:'Administrator'},title:'The result of all Vehicle',VehicleCount:countVehicle,VehicleID:VehicleID,VIN:VIN,ContactID: ContactID,dataForShowingE:dataForShowing1,username:ContactName,CompanyID:CompanyID,selectedVIN:VIN1});
+                                         res.render('chooseExistingVehicle', {h1:'Select Vehicle',use:{username:'Administrator'},title:'The result of all Vehicle',VehicleCount:countVehicle,VehicleID:VehicleID,VIN:VIN,ContactID: ContactID,dataForShowingE:dataForShowing1,username:ContactName,CompanyID:CompanyID,selectedVIN:VIN1,CompanyName:CompanyName});
                                          }
                                          else{
                                          //Jump tp add new vehicle because there is no vehicle records here.

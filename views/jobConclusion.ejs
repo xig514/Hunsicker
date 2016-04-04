@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>Existing Company</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="/javascripts/jquery.autotab.js"></script>
+        <script src="/javascripts/jquery.cookie.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+        
+        $(document).ready(function() {
+                          
+                         
+                     $("#nav").height($("#section").outerHeight());
+                          });
+                          
+            
+        
+      
+        
+        </script>
+
+        <title> <%= h1 %></title>
+        
+        <style>
+
+body{
+min-width:2200px;
+width:auto;
+}
+
+       #header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+	#section {
+		    width:auto;
+		    float:left;
+		    padding:10px;
+            
+            height: 1200px;
+		}
+     
+      
+		#nav {
+		    line-height:30px;
+		    background-color:#eeeeee;
+		    height:auto;
+                    min-height: 600px;
+            
+		    width:150px;
+		    float:left;
+		    padding:20px;
+		}
+        
+		#footer {
+		    background-color:black;
+		    color:white;
+		    clear:both;
+		    text-align:center;
+		   padding:5px;	 	 
+		}
+        
+       
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            
+        }
+        th, td {
+            padding: 5px;
+        }
+       
+</style>
+
+    </head>
+    <body>
+        
+                <div id = "header">
+                <h1><%=title%></h1>
+                </div>
+
+
+                <div  id="nav">
+                    <button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='/inputSelection'}">Back To Home</button>
+                
+                <button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;" onclick="{location.href='/signout'}">signout</button>
+                
+                <button class="btn btn-primary"  style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='/addRemainingJobInfo/?VIN=<%= VIN%>&CompanyID=<%= CompanyID%>&ContactID=<%= ContactID%>&DPFID=<%= DPFID%>'}">Back</button>
+                
+             </div>
+
+
+                <div id="section">
+                    
+                    <p>
+                    <% if(typeof(message) !== 'undefined') {%>
+                    <span style="color:red"><%= message %></span>
+                    <% } %>
+                    </p>
+
+         
+                
+             
+                  <div id = "table1">
+                  <table id = "TableAll1" style="width:100%">
+                      <tr>
+                          <th>CompanyName</th>
+                          <th>CompanyID</th>
+                          <th>BillingAddr</th>
+                          <th>BillingCity</th>
+                          <th>BillingState</th>
+                          <th>BillingZip</th>
+                          <th>BlCFirstName</th>
+                          <th>BlCLastName</th>
+                          <th>BlCEmail</th>
+                          <th>BlCPhone</th>
+                          <th>CSID</th>
+                        </tr>
+                      
+                      
+                      <tr>
+                          <% for (var j =0; j<11; j++) { %>
+                          <% var id = j.toString();%>
+                          <td style="width:100px"  id = "Company<%= id %>"><%= dataForShowingE1[j] %></td>
+                          <% } %>
+                      </tr>
+                      
+
+       
+                  </table>
+ <button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='/editCompanyAdmin/<%= CompanyID%>?JobID=<%= JobID%>&back=1&DPFID=<%= DPFID%>&ContactID<%= ContactID%>&VIN=<%= VIN%>'}">Edit Company</button>
+<br>
+
+ 			<table id = "TableAll2" style="width:100%">
+                      <tr>
+                          <th>ContactID</th>
+                          <th>FirstName</th>
+                          <th>LastName</th>
+                          <th>Phone</th>
+                          <th>Email</th>
+                          <th>SiteAddress</th>
+                          <th>SiteCity</th>
+                          <th>SiteState</th>
+                          <th>SiteZip</th>
+                          <th>CSID</th>
+                        
+                        </tr>
+                      
+                      <tr>
+                          <% for (var j =0; j<10; j++) { %>
+                          <% var id = j.toString();%>
+                          <td style="width:100px"  id = "Contact<%= id %>"><%= dataForShowingE2[j] %></td>
+                          <% } %>
+                      </tr>
+                      
+
+       
+                  </table>
+<button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='/editContactAdmin/<%= ContactID%>?CompanyID=<%= CompanyID%>&CompanyName=<%= dataForShowingE1[0]%>&JobID=<%= JobID%>&back=1&DPFID=<%= DPFID%>&VIN=<%= VIN%>'}">Edit Contact</button>
+<br>
+  <table id = "TableAll3" style="width:100%">
+                      <tr>
+                          <th>DPFID</th>
+                          <th>PartNumber</th>
+                          <th>SerialNumber</th>
+                          <th>OtherNumber</th>
+                          <th>Manufacturer</th>
+                          <th>OuterDiameter</th>
+                          <th>SubstrateDiameter</th>
+                          <th>OuterLength</th>
+                          <th>SubstrateLength</th>
+                          <th>DPForDOC</th>
+                          <th>TypeOfSubstrate</th>
+                          <th>TimesCleaned</th>
+                         <th>CompanyID</th>
+                        </tr>
+                     
+                      <tr>
+                          <% for (var j =0; j<13; j++) { %>
+                          <% var id = j.toString();%>
+                          <td style="width:100px"  id = "DPF<%= id %>"><%= dataForShowingE3[j] %></td>
+                          <% } %>
+                      </tr>
+
+
+       
+                  </table>
+<button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='/editDPFAdmin?ContactID<%= ContactID%>&CompanyID=<%= CompanyID%>&VIN=<%= VIN%>&DPFID=<%= DPFID%>&JobID=<%= JobID%>&back=1'}">Edit DPF</button>
+<br>
+ <table id = "TableAll" style="width:100%">
+                      <tr>
+                          <th>VIN</th>
+                          <th>VehicleID</th>
+                          <th>UnitNumber</th>
+                          <th>Make</th>
+                          <th>Model</th>
+                          <th>Year</th>
+                          <th>CompanyID</th>
+                        </tr>
+                     
+                          <% for (var j =0; j<7; j++) { %>
+                          <% var id = j.toString();%>
+                          <td style="width:100px"  id = "Vehicle<%= id %>"><%= dataForShowingE4[j] %></td>
+                          <% } %>
+                      </tr>
+               
+
+       
+                  </table>
+<button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='/editVehicleAdmin/<%= VIN%>?ContactID<%= ContactID%>&CompanyID=<%= CompanyID%>&DPFID=<%= DPFID%>&JobID=<%= JobID%>&back=1'}">Edit Vehicle</button>
+<br>
+
+  <table id = "TableAll" style="width:100%">
+                      <tr>
+                          <th>VIN</th>
+                         
+                          <th>Engine Serial Number</th>
+                          <th>Make</th>
+                          <th>Model</th>
+                          <th>Year</th>
+
+                        </tr>
+   
+                      <tr>
+                          <% for (var j =0; j<5; j++) { %>
+                          <% var id = j.toString();%>
+                          <td style="width:100px"  id = "Engine<%= id %>"><%= dataForShowingE5[j] %></td>
+                          <% } %>
+                      </tr>
+
+
+       
+                  </table>
+<button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='/editEngineAdmin?ContactID<%= ContactID%>&CompanyID=<%= CompanyID%>&VIN=<%= VIN%>&DPFID=<%= DPFID%>&JobID=<%= JobID%>&back=1'}">Edit Engine</button>
+
+<br>
+ <table id = "TableAll" style="width:100%">
+                      <tr>
+                          <th>JobID</th>
+                          <th>ContactID</th>
+                          <th>WorkOrderNumber</th>
+                          <th>PurchaseOrderNumber</th>
+                          <th>StartTime</th>
+                          <th>EndTime</th>
+                          <th>VIN</th>
+                          <th>VehicleTotalMileage</th>
+                          <th>VehicleTotalHours</th>
+                          <th>DPFID</th>
+                          <th>ReasonForCleaning</th>
+                          <th>TypeOfDriving</th>
+                          <th>OldJobID</th>
+			  <th>JobLocation</th>
+			  <th>TypeOfDriving</th>
+                        </tr>
+                    
+                      <tr>
+                          <% for (var j =0; j<14; j++) { %>
+                          <% var id = (j).toString();%>
+                          <td style="width:100px"  id = "Job<%= id %>"><%= dataForShowingE6[j] %></td>
+                          <% } %>
+                      </tr>
+                     
+
+       
+                  </table>
+<button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='/editJobAdmin?ContactID<%= ContactID%>&CompanyID=<%= CompanyID%>&VIN=<%= VIN%>&DPFID=<%= DPFID%>&JobID=<%= JobID%>&back=1'}">Edit Job</button>
+
+                  </div>
+                  
+                  
+                 
+
+
+
+
+
+                </div>
+             
+    <div id="footer">
+	@ Hunsicker DataBase Choose Existing CompanyID Information
+	</div>
+
+    </body>
+
+    
+    
+
+
+
+</html>
+
+
+
+

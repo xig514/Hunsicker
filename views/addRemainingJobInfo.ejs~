@@ -18,7 +18,10 @@
                           
                           $("#nav").height($("#section").outerHeight());
                           
-                        $( "#datepicker" ).datepicker();
+                            $( "#datepicker" ).datepicker({
+     				 changeMonth: true,
+     				 changeYear: true
+    				});
                           $('input[type=radio][name=JobType]').change(function() {
                                                                         if (this.value == 'Old') {
                                                                         $("#OldJobID").toggle();
@@ -135,7 +138,7 @@
 
         }
         function POonchange(){
-            $("#form_1").attr("action","/addRemainingJobInfo2?ContactID="+$("#ContactID").html()+"&DPFID="+$("#DPFID").html()+"&VIN="+$("#VIN").html())+"&CompanyID="+;
+            $("#form_1").attr("action","/addRemainingJobInfo2?ContactID="+$("#ContactID").html()+"&DPFID="+$("#DPFID").html()+"&VIN="+$("#VIN").html()+"&CompanyID="+$("#CompanyID").html());
             console.log($("#form_1").attr("action"));
         }
         
@@ -237,7 +240,7 @@ width:auto;
 
 
                 <div  id="nav">
-                <button onclick="{location.href='/userPage/inputSelection'}">Back To Home</button><br>
+                <button onclick="{location.href='/inputSelection'}">Back To Home</button><br>
                 <button onclick="{location.href='/signout'}">signout</button><br>
 		<button onclick="{location.href='/chooseExistingDPF?VIN=<%= VIN%>&ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>&DPFID=<%= DPFID%>'}">Back</button>
              </div>
@@ -257,12 +260,12 @@ width:auto;
                     </p>
                     <p>
                     <% if(typeof(ContactID) !== 'undefined') {%>
-                    <span style="color:green; display:none" id="ContactID" value="<%= ContactID%>"><%=ContactID %></span>
+                    <span style="color:green; display:none" id="ContactID" value="<%= ContactID%>"><%= ContactID %></span>
                     <% } %>
                     </p>
 		    <p>
                     <% if(typeof(CompanyID) !== 'undefined') {%>
-                    <span style="color:green; display:none" id="CompanyID" value="<%= CompanyID%>"><%=CompanyID %></span>
+                    <span style="color:green;display:none; " id="CompanyID" value="<%= CompanyID%>"><%= CompanyID %></span>
                     <% } %>
                     </p>
 		    <p>

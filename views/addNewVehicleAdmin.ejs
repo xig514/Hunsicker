@@ -12,7 +12,8 @@
 <script type="text/javascript">
 $(document).ready(function() {
                   
-       
+       		 var a =confirm("loadCookie?");
+                          if(a==true){
                   $("#cp01").val($.cookie("VIN"));
                   $("#cp02").val($.cookie("UnitNumber"));
                   
@@ -21,7 +22,7 @@ $(document).ready(function() {
                   $("#cp04").val($.cookie("Model"));
                   
                   $("#Year").val($.cookie("Year"));
-                  
+                  }
               	
 
 
@@ -115,7 +116,7 @@ function storeValues()
 {
     //alert("VIN= "+$("#cp01").val());
     $.cookie("VIN", $("#cp01").val(), { expires : 2 });
-    $.cookie("UnitNUmber",$("#cp02").val(),{expires:2});
+    $.cookie("UnitNumber",$("#cp02").val(),{expires:2});
     $.cookie("Make",$("#cp03").val(),{expires:2});
     $.cookie("Model",$("#cp04").val(),{expires:2});
     $.cookie("Year",$("#Year").val(),{expires:2});

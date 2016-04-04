@@ -21,10 +21,13 @@ exports.show=function (request,response)
 
 exports.handle_Input=function (request,response)
 {
-    /*if(!request.isAuthenticated()) {
+   var user = request.user;
+
+    if(!request.isAuthenticated()|| user.username!="adminBob") {
         response.redirect('/login');
-        console.log('not authed in UICC.handle_input');
-    } else {*/
+        console.log('not authed in userPage');
+    }
+    else{
     var CompanyName=request.body.CompanyName;
     //console.log(CompanyName);
     var BillingAddress = request.body.BillingAddress;
@@ -146,7 +149,7 @@ exports.handle_Input=function (request,response)
     
     
 
-//}
+}
 }
 
 

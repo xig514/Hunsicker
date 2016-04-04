@@ -45,10 +45,13 @@ console.log('CName in show '  + CompanyName);
 
 exports.handle_Input=function (request,response)
 {
-if(!request.isAuthenticated()) {
+var user = request.user;
+
+    if(!request.isAuthenticated()|| user.username!="adminBob") {
         response.redirect('/login');
-       
-    } else {
+        console.log('not authed in userPage');
+    }
+    else{
     FirstName =request.body.FirstName;
     LastName = request.body.LastName;
     PhoneNumber = request.body.PhoneNumber1+request.body.PhoneNumber2+request.body.PhoneNumber3;

@@ -62,7 +62,7 @@
                               $("#SiteState").val($(SiteState).html());
                               $("#SiteCity").val($(SiteCity).html());
                               $("#SiteZip").val($(SiteZip).html());
-                              $("#form_1").attr("action", "/chooseExistingVehicle/" + $("#ContactID option:selected").text()+"?ContactName=" +$("#ContactName option:selected").text()+"&CompanyID="+$("#CompanyID").html());
+                              $("#form_1").attr("action", "/chooseExistingVehicle/" + $("#ContactID option:selected").text()+"?ContactName=" +$("#ContactName option:selected").text()+"&CompanyID="+$("#CompanyID").html()+"&CompanyName="+$("#CompanyName_1").html());
                               console.log($("#form_1").attr("action"));
                               //console.log($("#CompanyID").val());
                            
@@ -142,38 +142,7 @@
             //window.location = "/chooseExistingContactBasedOnCompanyID/"+CompanyID;
 
         }
-        /*
-        function checkContactID(){
-            var count_Contact = parseInt(document.getElementById('ContactID').length);
-            console.log('count_ContactID ' +count_Contact);
-            if( count_Contact <2  ) {
-                window.alert('No Contact Information, Please insert One Contact First!');
-                document.getElementById('ContactID_Span').style.color="red";
-                return false;
-                
-            }
-            else{
-                
-              //  var cid = $('#ContactID');
-              var ContactIDValue = document.getElementById("ContactID");
-              var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
-
-                if(Choice  =="select")
-                {
-                    window.alert('Please choose a ContactID');
-                     document.getElementById('ContactID_Span').style.color="red";
-                    return false;
-                }
-                else{
-                return true;
-                }
-            }
-            
-            
-            return false;
-           
-        }
-        */
+      
         
         </script>
 

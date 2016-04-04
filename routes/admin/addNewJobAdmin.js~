@@ -16,21 +16,30 @@ var poolH = mysql.createPool({
 
 exports.show=function (request,response)
 {
-if(!request.isAuthenticated()) {
+	//var user = request.user;
+
+    if(!request.isAuthenticated()) {
+    console.log('not authed in userPage');
         response.redirect('/login');
-        
-    } else {
+    
+	
+    }
+    else{
     var user={username:'Administer'};
     response.render('addNewJobAdmin',{user:user,title:title})
     }
 }
 
 
+
 exports.handle_Selection=function (req,res)
-{if(!req.isAuthenticated()) {
-        res.redirect('/login');
-       
-    } else {
+{var user = request.user;
+
+    if(!request.isAuthenticated()) {
+        response.redirect('/login');
+        console.log('not authed in userPage');
+    }
+    else{
     var dataForShowing1=new Array();
     var choice = req.body.Company;
     if(choice ==1){//existing

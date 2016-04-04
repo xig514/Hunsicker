@@ -224,7 +224,7 @@ $("#form_1").attr("action", "/editDPFAdmin?VIN="+ $("#VIN").html() +"&ContactID=
 
 
                 </form>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
                   <div id = "table1">
                   <table id = "TableAll" style="width:100%">
                       <tr>

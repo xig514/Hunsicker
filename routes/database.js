@@ -29,10 +29,12 @@ function sleep(milliseconds) {
 }
 
 function handle_database(req,res) {
-    if(!request.isAuthenticated()) {
+var user = req.user;
+    if(!request.isAuthenticated()  || user.username!='adminBob') {
        response.redirect('/login');
        
     } else {
+    console.log(user.username)
     pool.getConnection(function(err,connection){
                        if (err) {
                        connection.release();
@@ -55,7 +57,9 @@ function handle_database(req,res) {
                                      });
                        });
 }
+
 }
+
 
 
 function getdata(req,res,index){
@@ -480,7 +484,10 @@ function getdata(req,res,index){
 }
 exports.showData=function(request,response)
 {
-    if(!request.isAuthenticated()) {
+
+var user = request.user;
+
+    if(!request.isAuthenticated()|| user.username!="adminBob") {
         response.redirect('/login');
         console.log('not authed in userPage');
     }

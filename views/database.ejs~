@@ -9,9 +9,8 @@
         <style>
 
 body{
-
-
-width:2200px;
+min-width:2200px;
+width:auto;
 }
 
 
