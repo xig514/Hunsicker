@@ -33,10 +33,10 @@ exports.show=function (request,response)
 
 
 exports.handle_Selection=function (req,res)
-{var user = request.user;
-
-    if(!request.isAuthenticated()) {
-        response.redirect('/login');
+{var user = req.user;
+console.log(user.username)
+    if(!req.isAuthenticated()) {
+        res.redirect('/login');
         
     }
     else{

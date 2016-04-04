@@ -44,10 +44,10 @@ var today = datetime.getFullYear()+"-"+month+"-"+datetime.getDate();
 
 //==============================================================================================
 exports.show=function(req,res){
-var user = request.user;
+var user = req.user;
 
-    if(!request.isAuthenticated()) {
-        response.redirect('/login');
+    if(!req.isAuthenticated()) {
+        res.redirect('/login');
         console.log('not authed in userPage');
     }
     else{
@@ -87,10 +87,10 @@ var user = request.user;
 
 exports.handle_Input1=function (req,res,backURL)
 {
-var user = request.user;
+var user = req.user;
 
-    if(!request.isAuthenticated()) {
-        response.redirect('/login');
+    if(!req.isAuthenticated()) {
+        req.redirect('/login');
         console.log('not authed in userPage');
     }
     else{
@@ -111,10 +111,10 @@ var user = request.user;
 exports.handle_Input2=function (req,res)
 {
 	var CompanyID=req.query.CompanyID;
-   var user = request.user;
+   var user = req.user;
 
-    if(!request.isAuthenticated()|| user.username!="adminBob") {
-        response.redirect('/login');
+    if(!req.isAuthenticated()) {
+        res.redirect('/login');
         console.log('not authed in userPage');
     }
     else{
