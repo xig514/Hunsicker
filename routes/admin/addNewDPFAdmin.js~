@@ -25,10 +25,12 @@ var poolH     =    mysql.createPool({
 
 exports.show=function(request,response)
 {
+/*
      if(!request.isAuthenticated() ) {
        response.redirect('/login');
        
-    } else {
+    } else {*/
+
     CompanyID=request.query.CompanyID;
     ContactID = request.query.ContactID;
     VIN = request.query.VIN;
@@ -40,17 +42,17 @@ exports.show=function(request,response)
     else{
         response.render('addNewDPFAdmin',{title:title,h1:title,username:'Bob' ,CompanyID:CompanyID,VIN:VIN,ContactID:ContactID});
     }
-}
+//}
 }
 
 
 exports.handle_Input=function(req,res) {
-   var user = req.user;
+   /*
   if(!req.isAuthenticated() ) {
         res.redirect('/login');
         console.log('not authed in UICC');
     } else{
-
+*/
     CompanyID=req.query.CompanyID;
     ContactID = req.query.ContactID;
     VIN = req.query.VIN;

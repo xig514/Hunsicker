@@ -45,12 +45,13 @@ var today = datetime.getFullYear()+"-"+month+"-"+datetime.getDate();
 //==============================================================================================
 exports.show=function(req,res){
 var user = req.user;
-
+/*
     if(!req.isAuthenticated()) {
         res.redirect('/login');
         console.log('not authed in userPage');
     }
-    else{
+    else{*/
+
     backURL=backURL;
     var CompanyID=req.query.CompanyID;
 
@@ -82,18 +83,19 @@ var user = req.user;
         res.render('addRemainingJobInfo', {ContactID: ContactID,CompanyID:CompanyID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title,errorMessage:'Error in select Job ID'});
 
     }
-}
+//}
 }
 
 exports.handle_Input1=function (req,res,backURL)
 {
+/*
 var user = req.user;
 
     if(!req.isAuthenticated()) {
         req.redirect('/login');
         console.log('not authed in userPage');
     }
-    else{
+    else{*/
      // backURL=backURL;
     
     //console.log('1111111');
@@ -106,18 +108,19 @@ var user = req.user;
        DPFID = req.query.DPFID;
     //console.log(req.body.ReasonForCleaning);
     res.render('addRemainingJobInfo', {ContactID: ContactID,CompanyID:CompanyID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title});
-    }
+   // }
 }
 exports.handle_Input2=function (req,res)
 {
 	var CompanyID=req.query.CompanyID;
+/*
    var user = req.user;
 
     if(!req.isAuthenticated()) {
         res.redirect('/login');
         console.log('not authed in userPage');
     }
-    else{
+    else{*/
     //console.log('1111111');
        var reason_temp= req.body.ReasonForCleaning;
        //console.log("reason :" +reason_temp);

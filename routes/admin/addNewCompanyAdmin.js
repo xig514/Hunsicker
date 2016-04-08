@@ -21,13 +21,14 @@ exports.show=function (request,response)
 
 exports.handle_Input=function (request,response)
 {
+/*
    var user = request.user;
 
     if(!request.isAuthenticated()) {
         response.redirect('/login');
         console.log('not authed in userPage');
     }
-    else{
+    else{*/
     var CompanyName=request.body.CompanyName;
     //console.log(CompanyName);
     var BillingAddress = request.body.BillingAddress;
@@ -149,7 +150,7 @@ exports.handle_Input=function (request,response)
     
     
 
-}
+//}
 }
 
 

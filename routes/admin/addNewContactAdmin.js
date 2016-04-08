@@ -26,32 +26,49 @@ var MaxContactID = 0;
 
 exports.show=function(request,response)
 {
-    if(!request.isAuthenticated()) {
+   /* if(!request.isAuthenticated()) {
         response.redirect('/login');
        
     } else {
+*/
     var CompanyID= request.query.CompanyID;
     var CompanyName="";
     if(request.query.CompanyName!=undefined){
         CompanyName =request.query.CompanyName;
     }
-console.log('CName in show '  + CompanyName);
+    console.log('CName in show '  + CompanyName);
+
+
+poolH.getConnection(function(err,connection){
+                        if (err) {
+                        connection.release();
+                        
+                        response.json({"code" : 100, "status" : "Error in connection database"});
+                        return;
+                        }
+                        
+                        var queryClause2 ="Select ContactID As solution From Contact  Where FirstName  = " +connection.escape(FirstName) + " And  LastName = " +connection.escape(LastName)+"And PhoneNumber="+ connection.escape(PhoneNumber)+"And SiteAddress="+ connection.escape(SiteAddress)+" And CompanyID="+connection.escape(CompanyID)+";";
+//query the CompanyID for the Company Address, state city.
     if(request.query.error==undefined)
+    {
+
     response.render('addNewContactAdmin',{title:'Add New Contact Admin',CompanyID:CompanyID,CompanyName:CompanyName});
-	else
+    }
+    else
     response.render('addNewContactAdmin',{title:'Add New Contact Admin',CompanyID:CompanyID,CompanyName:CompanyName,errorMessage:request.query.error});
-}
+});
 }
 
 exports.handle_Input=function (request,response)
 {
+/*
 var user = request.user;
 
     if(!request.isAuthenticated()) {
         response.redirect('/login');
         console.log('not authed in userPage');
     }
-    else{
+    else{*/
     FirstName =request.body.FirstName;
     LastName = request.body.LastName;
     PhoneNumber = request.body.PhoneNumber1+request.body.PhoneNumber2+request.body.PhoneNumber3;
@@ -145,7 +162,7 @@ var user = request.user;
                                                                                 //-------------------------------------------------------------------------
                         connection.on('error', function(err) {response.json({"code" : 100, "status" : "Error in connection database"});return;});
                         });
-}
+//}
 }
 
 

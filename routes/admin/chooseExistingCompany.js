@@ -16,11 +16,11 @@ var poolH = mysql.createPool({
 
 exports.show=function (req,res)
 {
-
+/*
 if(!req.isAuthenticated()) {
         res.redirect('/login');
        
-    } else {
+    } else {*/
     var dataForShowing1=new Array();
     var selectedCompanyID= req.query.selectedCompanyID;
         poolH.getConnection(function(err,connection){
@@ -92,7 +92,7 @@ if(!req.isAuthenticated()) {
                             
                                              });
                             })
-    }
+    //}
    
 }
 

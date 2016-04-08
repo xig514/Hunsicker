@@ -17,29 +17,30 @@ var poolH = mysql.createPool({
 exports.show=function (request,response)
 {
 	//var user = request.user;
-
+/*
     if(!request.isAuthenticated()) {
     console.log('not authed in userPage');
         response.redirect('/login');
     
 	
     }
-    else{
+    else{*/
+
     var user={username:'Administer'};
-    response.render('addNewJobAdmin',{user:user,title:title})
-    }
+    response.render('addNewJobAdmin',{user:user,title:title});
+   // }
 }
 
 
 
 exports.handle_Selection=function (req,res)
-{var user = req.user;
-
+{/*var user = req.user;
+console.log(user.username)
     if(!req.isAuthenticated()) {
         res.redirect('/login');
         
     }
-    else{
+    else{*/
     var dataForShowing1=new Array();
     var choice = req.body.Company;
     if(choice ==1){//existing

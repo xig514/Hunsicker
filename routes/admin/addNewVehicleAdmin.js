@@ -19,12 +19,12 @@ var CompanyID = 0;
 exports.show=function (request,response)
 {
 var user = request.user;
-
+/*
     if(!request.isAuthenticated()) {
         response.redirect('/login');
-        console.log('not authed in userPage');
+        console.log('not authed in Vehicle');
     }
-    else{
+    else{*/
     ContactID = request.query.ContactID;
     ContactName = request.query.ContactName;
     CompanyID =request.params.id;
@@ -35,18 +35,19 @@ var user = request.user;
     else{
       response.render('addNewVehicleAdmin',{title:title, CompanyID:CompanyID,ContactID:ContactID,ContactName:ContactName});
     }
-}
+//}
 }
 
 exports.handle_Input=function (request,response)
 {
-    var user = request.user;
-
+    
+/*
     if(!request.isAuthenticated()|| user.username!="adminBob") {
         response.redirect('/login');
         console.log('not authed in userPage');
     }
-    else{
+    else{*/
+
     var Year = request.body.Year;
     var Model = request.body.Model;
     var Make =request.body.Make;
@@ -166,7 +167,7 @@ exports.handle_Input=function (request,response)
     
     
 
-}
+//}
 }
 
 

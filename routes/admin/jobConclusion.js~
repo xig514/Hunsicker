@@ -17,10 +17,12 @@ var poolH = mysql.createPool({
 exports.show=function (req,res)
 {
 var queryClause2="";
+/*
 if(!req.isAuthenticated()) {
         res.redirect('/login');
        
     } else {
+*/
     var dataForShowing1=new Array();//Company
     var dataForShowing2=new Array();//Contact
     var dataForShowing3=new Array();//DPF
@@ -252,7 +254,7 @@ else
 {
 message=req.query.message;
 }
-                                             res.render('jobConclusion', {h1:'Job Conclusion',title:'Job Conclusion',VIN:VIN,CompanyID:CompanyID,ContactID:ContactID,DPFID:DPFID,JobID:JobID,message:message, dataForShowingE1:dataForShowing1,dataForShowingE2:dataForShowing2,dataForShowingE3:dataForShowing3,dataForShowingE4:dataForShowing4,dataForShowingE5:dataForShowing5,dataForShowingE6:dataForShowing6});
+                                         res.render('jobConclusion', {h1:'Job Conclusion',title:'Job Conclusion',VIN:VIN,CompanyID:CompanyID,ContactID:ContactID,DPFID:DPFID,JobID:JobID,message:message, dataForShowingE1:dataForShowing1,dataForShowingE2:dataForShowing2,dataForShowingE3:dataForShowing3,dataForShowingE4:dataForShowing4,dataForShowingE5:dataForShowing5,dataForShowingE6:dataForShowing6});
 					}
 						else{
 					//jump to add job page

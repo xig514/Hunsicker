@@ -16,11 +16,11 @@ var poolH = mysql.createPool({
 
 exports.show=function (req,res)
 {
-
+/*
 if(!req.isAuthenticated()) {
         res.redirect('/login');
        
-    } else {
+    } else {*/
     var dataForShowing1=new Array();
     var selectedCompanyID= req.query.selectedCompanyID;
         poolH.getConnection(function(err,connection){
@@ -76,7 +76,7 @@ if(!req.isAuthenticated()) {
                                              }
                                             // console.log('CompanyCount = ' + countCompanyID);
                                              //;console.log(CompanyID);
-                                             res.render('chooseExistingCompanyadmin', {h1:'Select Company',use:{username:'Administrator'},title:'The result of all Companys',CompanyCount:countCompanyID,CompanyID:CompanyID,CompanyName:CompanyName,dataForShowingE:dataForShowing1,selectedCompanyID:CompanyID});
+                                             res.render('chooseExistingCompanyadmin', {h1:'Select Company',use:{username:'Administrator'},title:'The result of all Companys',CompanyCount:countCompanyID,CompanyID:CompanyID,CompanyName:CompanyName,dataForShowingE:dataForShowing1,selectedCompanyID:selectedCompanyID});
                                              }
                                              else{
                                              console.log('error in Select CompanyInfo!');

@@ -17,10 +17,12 @@ var poolH = mysql.createPool({
 exports.show=function (req,res)
 {
 var queryClause2="";
+/*
 if(!req.isAuthenticated()) {
         res.redirect('/login');
        
     } else {
+*/
     var dataForShowing1=new Array();//Company
     var dataForShowing2=new Array();//Contact
     var dataForShowing3=new Array();//DPF
@@ -389,6 +391,6 @@ message=req.query.message;
                                 });
       
    
-}
+//}
 
 }

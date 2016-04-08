@@ -19,12 +19,13 @@ var CompanyID = 0;
 exports.show=function (request,response)
 {
 
-
+/*
     if(!request.isAuthenticated()) {
         response.redirect('/login');
         console.log('not authed in userPage');
     }
-    else{
+    else{*/
+
     ContactID = request.query.ContactID;
     CompanyID = request.query.CompanyID;
     VIN =request.params.id;
@@ -35,18 +36,18 @@ exports.show=function (request,response)
     else{
         response.render('addNewEngineAdmin',{title:title, VIN:VIN,ContactID:ContactID,CompanyID:CompanyID});
     }
-}
+//}
 }
 
 exports.handle_Input=function (request,response)
 {
    var user = request.user;
-
+/*
     if(!request.isAuthenticated()) {
         response.redirect('/login');
         console.log('not authed in userPage');
     }
-    else{
+    else{*/
     var Year = request.body.EngineYear;
     var Model = request.body.EngineModel;
     var Make =request.body.EngineMake;
@@ -134,7 +135,7 @@ exports.handle_Input=function (request,response)
     
     
 
-}
+//}
 }
 
 

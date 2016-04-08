@@ -53,8 +53,5 @@ changed: chooseExistingContactBasedOnCompanyID.js
 ubuntu:
 1. In Add Contact, people can input either phoneNumber or EmailAddress
 2. In Add Contact, People can choose if they want to use the Company Address as the site address.
-3. Add a new table of PartNumber and Dimensions, and remove all Dimensions to this table.
-
-
 
 
