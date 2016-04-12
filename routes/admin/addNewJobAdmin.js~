@@ -41,13 +41,11 @@ console.log(user.username)
         
     }
     else{*/
-/*
     var user = req.user;
     if(user!=undefined){
 
 console.log("username is " + user.username.toJSON());
-}*/
-
+}
     var dataForShowing1=new Array();
     var choice = req.body.Company;
     if(choice ==1){//existing
