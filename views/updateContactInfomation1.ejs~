@@ -131,9 +131,8 @@ var count=0;
         
         <style>
 body{
-
-
-width:1500px;
+min-width:1800px;
+width:auto;
 }
 
 

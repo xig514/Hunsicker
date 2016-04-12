@@ -299,10 +299,7 @@ exports.show= function(req,res){
 
 
 exports.update=function(req,res){
-if(!request.isAuthenticated()) {
-       response.redirect('/login');
-       
-    } else {
+
     username= req.params.id;
     var tag1= req.body.tag1;
     if(req.query.key=='Contact'){
@@ -383,4 +380,4 @@ if(!request.isAuthenticated()) {
 
     }
 }
-}
+

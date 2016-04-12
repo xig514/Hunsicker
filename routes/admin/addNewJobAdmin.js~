@@ -25,7 +25,10 @@ exports.show=function (request,response)
 	
     }
     else{*/
-
+var user = request.user;
+console.log(user);
+user = user.toJSON();
+console.log("username " +user.username);
     var user={username:'Administer'};
     response.render('addNewJobAdmin',{user:user,title:title});
    // }
@@ -41,6 +44,11 @@ console.log(user.username)
         
     }
     else{*/
+var user = req.user;
+console.log(user);
+user = user.toJSON();
+
+console.log("username " +user.username);
     var dataForShowing1=new Array();
     var choice = req.body.Company;
     if(choice ==1){//existing
@@ -120,6 +128,6 @@ console.log(user.username)
     }
     else
     {console.log("Error");}
-}
+//}
 }
 

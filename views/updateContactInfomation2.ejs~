@@ -91,9 +91,8 @@ var count=0;
 
 
 body{
-
-
-width:1500px;
+min-width:1500px;
+width:auto;
 }
 
        #header {

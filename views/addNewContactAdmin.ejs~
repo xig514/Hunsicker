@@ -6,12 +6,14 @@
         <script src="/javascripts/jquery.cookie.js"></script>
         <script src="/javascripts/jquery.autotab.js"></script>
         
-       
+               
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script type="text/javascript">
     
 $(document).ready(function() {
                   
-                 
+                  $("#warning1").hide();
                   $("#c01").val($.cookie("FirstName"));
                   $("#c02").val($.cookie("LastName"));
               
@@ -82,6 +84,18 @@ function LastChange(){
 }
 
 function submitContact(){
+var phone=$("#PhoneNumber1").val()+$("#PhoneNumber2").val()+$("#PhoneNumber3").val();
+if(($("#PhoneNumber1").val()=="" && $("#PhoneNumber2").val()=="" && $("#PhoneNumber3").val()=="" )&& $("#c04").val()==""){
+	$("#warning1").show();
+    	event.preventDefault();
+	return;
+	
+}
+else if($("#c04").val()=="" && phone.length<10){
+$("#warning2").show();
+    	event.preventDefault();
+	return;
+}
     storeValues();
 }
 
@@ -190,6 +204,12 @@ width:auto;
 
 
                 <div id="section">
+<div id="warning1" class="alert alert-warning">
+  <strong>Warning!</strong> Please input either Email or Phone Number.
+</div>
+<div id="warning2" class="alert alert-warning">
+  <strong>Warning!</strong> Please input correct phone number format.
+</div>
                 <div id = "section1">
                   <p>WELCOME <span style="color:blue;font-weight:bold"> Bob</span></p>
                  <p>
@@ -211,9 +231,9 @@ width:auto;
                             <p><label class="label1" >First Name*:</label>&nbsp;  <input type ="text "class="input1" id="c01" value="" placeholder = "FirstName"  name ="FirstName" required onchange="FirstChange();"/></p>
                             <p><label class="label1" >Last Name*:</label>&nbsp; <input type ="text " class="input1" id="c02" value="" name = "LastName" required placeholder = "LastName"onchange="LastChange();"/></p>
                             
-                            <p><label class="label1" >Phone:</label>&nbsp; <input style="width:60px" class="PhoneNumber" type = "text" id = "PhoneNumber1"  name = "PhoneNumber1" value ="" placeholder = "000" maxlength=3 required = "true" pattern="\d{3}"  />-
-                            <input type = "text" name = "PhoneNumber2" id = "PhoneNumber2" class="PhoneNumber" style="width:60px" value ="" placeholder = "000" maxlength=3 required = "true" pattern="\d{3}"  />-
-                            <input type = "text" name = "PhoneNumber3" id = "PhoneNumber3" class="PhoneNumber" value =""  style="width:80px" placeholder = "0000" maxlength=4 required = "true" pattern="\d{4}"  />
+                            <p><label class="label1" >Phone:</label>&nbsp; <input style="width:60px" class="PhoneNumber" type = "text" id = "PhoneNumber1"  name = "PhoneNumber1" value ="" placeholder = "000" maxlength=3  pattern="\d{3}"  />-
+                            <input type = "text" name = "PhoneNumber2" id = "PhoneNumber2" class="PhoneNumber" style="width:60px" value ="" placeholder = "000" maxlength=3  pattern="\d{3}"  />-
+                            <input type = "text" name = "PhoneNumber3" id = "PhoneNumber3" class="PhoneNumber" value =""  style="width:80px" placeholder = "0000" maxlength=4  pattern="\d{4}"  />
                             </p>
                             
                             <p><label class="label1" >Email*:</label>&nbsp; <input type ="email"class="input1" id="c04" value="" placeholder = "EmailAddress" name ="EmailAddress"></p>

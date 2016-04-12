@@ -41,6 +41,7 @@ console.log(user.username)
         
     }
     else{*/
+
     var dataForShowing1=new Array();
     var choice = req.body.Company;
     if(choice ==1){//existing

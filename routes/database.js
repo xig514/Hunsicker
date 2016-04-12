@@ -29,11 +29,7 @@ function sleep(milliseconds) {
 }
 
 function handle_database(req,res) {
-var user = req.user;
-    if(!request.isAuthenticated()  || user.username!='adminBob') {
-       response.redirect('/login');
-       
-    } else {
+
     console.log(user.username)
     pool.getConnection(function(err,connection){
                        if (err) {
@@ -56,7 +52,7 @@ var user = req.user;
                                      return;     
                                      });
                        });
-}
+
 
 }
 

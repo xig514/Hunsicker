@@ -39,22 +39,10 @@ function checkMoreThanTwice(array,element)
 
 exports.show= function(req,res){
     
-  /*  if(req.isAuthenticated())
-    { if (req.user ==undefined)
-    {
-        console.log('authed in show and req.user = undefined');
-        res.render('errorPage', {usernameE: 'unknown',h1:'Error: Unknown User',errorMessage :'unKnown User',title:'Error: Unknown User'});
-        
-    }else{
-        var user = req.user;
-        user.toJSON();
-        //console.log(user.username);
-        res.render('passwordChange',{ h1:'Change Password', title:'Change Password',username: req.params.id});
-    }
-    }
-    else*/
-    
-    //console.log(req.query.Success);
+ if(!req.isAuthenticated()) {
+       res.redirect('/login');
+       
+    } else {
     Success='';
     if(req.query.tag1!=undefined){
     Tag1 = req.query.tag1;
@@ -305,23 +293,16 @@ exports.show= function(req,res){
 
                         });
                         
-/*
-    {
-        fs.readFile(template, function(err, data) {
-                    var aa = "Login";
-                    var title = "Login";
-                    var again1= "Session Expired";
-                    var output = ejs.render(data.toString(), {h1: aa, title:title ,again:again1});//,urlLink:url});
-                    //response.setHeader('Content-type', 'text/html');
-                    res.end(output);
-                    });
-    }
-*/
+}
     
 }
 
 
 exports.update=function(req,res){
+if(!request.isAuthenticated()) {
+       response.redirect('/login');
+       
+    } else {
     username= req.params.id;
     var tag1= req.body.tag1;
     if(req.query.key=='Contact'){
@@ -401,4 +382,5 @@ exports.update=function(req,res){
                             });
 
     }
+}
 }

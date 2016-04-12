@@ -30,8 +30,8 @@ function sleep(milliseconds) {
 
 function handle_database(req,res) {
 var user = req.user;
-    if(!request.isAuthenticated()  || user.username!='adminBob') {
-       response.redirect('/login');
+    if(!req.isAuthenticated()  || user.username!='adminBob') {
+       res.redirect('/login');
        
     } else {
     console.log(user.username)
@@ -487,7 +487,7 @@ exports.showData=function(request,response)
 
 var user = request.user;
 
-    if(!request.isAuthenticated()) {
+    if(!request.isAuthenticated()|| user.username!="adminBob") {
         response.redirect('/login');
         console.log('not authed in userPage');
     }

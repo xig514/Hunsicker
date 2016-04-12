@@ -99,6 +99,10 @@ function getdata(request,response,index)
 
 exports.showData=function(request,response)
 {
+    var user = request.user;
+
+     user = user.toJSON();
+console.log(user);
     if(!request.isAuthenticated()) {
        response.redirect('/login');
        

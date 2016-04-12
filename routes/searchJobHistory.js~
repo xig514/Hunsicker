@@ -99,7 +99,13 @@ function getdata(request,response,index)
 
 exports.showData=function(request,response)
 {
-    
+    var user = request.user;
+
+     user = user.toJSON();
+    if(!request.isAuthenticated()) {
+       response.redirect('/login');
+       
+    } else {
     var username=request.params.id;
   
 
@@ -122,6 +128,6 @@ exports.showData=function(request,response)
     numberRows=1;
     getdata(request,response,username);
     
-
+}
 }
 
