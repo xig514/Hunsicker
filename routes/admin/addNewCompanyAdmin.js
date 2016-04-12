@@ -16,7 +16,7 @@ var poolH = mysql.createPool({
 
 exports.show=function (request,response)
 {
-
+ response.render('addNewCompanyAdmin', {title:title});
 }
 
 exports.handle_Input=function (request,response)

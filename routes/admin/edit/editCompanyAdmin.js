@@ -155,3 +155,40 @@ exports.show=function (req,res,app,dirPath)
     
 
 }
+
+exports.deleteAdmin=function(req,res){
+    var CompanyID= req.query.CompanyID;
+    poolH.getConnection(function(err,connection){
+                        if (err) {
+                        connection.release();
+                        res.json({"code" : 100, "status" : "Error in connection database"});
+                        return;
+                        }
+                        
+                        
+                        
+                        var queryClause2 = "Delete from Company Where CompanyID =" +connection.escape(CompanyID);
+                        connection.query(queryClause2,function(err,rows,fields){
+                                         
+                                         connection.release();
+                                         if(!err)
+                                         {
+                                         res.redirect('/chooseExistingCompany');
+                                         
+                                         }
+                                         else{
+                                         console.log('error in Delete CompanyInfo!');
+                                         
+                                         res.render('errorPage', {usernameE: username,h1:'Error in Delete Company Infomation in edit',title:"Error in Delete ComapnyInfo in edit",errorMessage :'Error in Delete CompanyInfo!'});
+                                         return;
+                                         }
+                                         
+                                         
+                                         
+                                         
+                                         
+                                         
+                                         });
+                        });
+
+}

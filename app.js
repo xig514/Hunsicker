@@ -419,7 +419,9 @@ app.post('/addNewDPFAdmin',function(req,res){
          
          });
 
-
+app.get('/addNewCompanyAdmin',function(req,res){
+        addNewCompanyAdmin.show(req,res);
+        });
 //================================================================================
 ///======================   EDIT   ===================================================
 app.get('/editCompanyAdmin/:id',function(req,res){
@@ -466,19 +468,21 @@ app.get('/editDPFAdmin',function(req,res){
         
         app.set('views', path.join(__dirname, 'views/editAdmin'));
         editDPFAdmin.show(req,res,app,__dirname);
-        })
+        });
 
 app.post('/editDPFAdmin',function(req,res){
          editDPFAdmin.handle_Input(req,res);
-         })
-/*
-app.get('/back',function(req,res,next){
-        console.log(req.headers);
+         });
 
-        res.redirect(  req.headers['referer']||'/');
-       
+//================================================================================delete admin
+app.get('/deleteCompanyAdmin',function(req,res){
+        
+        
+        editCompanyAdmin.deleteAdmin(req,res);
         });
- */
+
+
+
 //================================================================================
 app.post('/submitDPF',function(req,res)
          {

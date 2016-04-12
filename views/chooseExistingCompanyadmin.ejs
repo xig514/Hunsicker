@@ -7,7 +7,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="/javascripts/chosen/chosen.jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="/javascripts/chosen/chosen.min.css">
-
+        <script src ="/javascripts/bootbox.min.js"/>
         <script src="/javascripts/jquery.cookie.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script type="text/javascript">
@@ -26,11 +26,13 @@
                           $('#CompanyID option:contains('+ a +')').prop({selected: true});
                           $("#CompanyID").change();
                           }
+                          
+                        
                           });
                           
         function CompanyNameOnChange(){
                               var CompanyNumber = $("#CompanyName").val();
-                             
+                              if(CompanyNumber!=-1){
                               //console.log(CompanyNumber);
                               //var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
                               var CompanyID ="#"+(20*CompanyNumber).toString();
@@ -55,6 +57,18 @@
                               $("#BillingContactPhone").val($(Phone).html());
                               $("#form_1").attr("action", "/chooseExistingContactBasedOnCompanyID/" + $("#CompanyID option:selected").text()+"/?CompanyName=\""+$("#CompanyName option:selected").text()+"\"");
                               console.log($("#form_1").attr("action"));
+                              }
+                              else{
+                                  $("#CompanyID").val(CompanyNumber);
+                                  $("#Address").val("");
+                                  $("#City").val("");
+                                  $("#State").val("");
+                                  $("#Zip").val("");
+                                  $("#BillingContactFirstName").val("");
+                                  $("#BillingContactLastName").val("");
+                                  $("#BillingContactEmail").val("");
+                                  $("#BillingContactPhone").val("");
+                              }
                             //  EditCompanyChangeOnName();
                              
                           }
@@ -62,6 +76,7 @@
         function CompanyIDOnChange(){
             
              var CompanyNumber = parseInt($("#CompanyID").val());
+             if(CompanyNumber!=-1){
              //alert("CompanyNumber" +CompanyNumber);
              //console.log("CompanyNumber = " + CompanyNumber);
              //var CompanyName ="#"+(20*CompanyNumber).toString();
@@ -74,7 +89,7 @@
              var Email ="#"+(20*CompanyNumber+8).toString();
              var Phone = "#"+(20*CompanyNumber+9).toString();
              
-             //console.log("CompanyName   " +CompanyNumber );
+             console.log("CompanyName   " +CompanyNumber );
              $("#CompanyName").val(CompanyNumber);
              console.log($("#CompanyName option:selected").text());
               //$("#CompanyName").val(16);
@@ -88,7 +103,20 @@
              $("#BillingContactPhone").val($(Phone).html());
              $("#form_1").attr("action", "/chooseExistingContactBasedOnCompanyID/" + $("#CompanyID option:selected").text()+"?CompanyName=\""+$("#CompanyName option:selected").text()+"\"");
  $("#CompanyName").trigger("chosen:updated");
-             console.log($("#form_1").attr("action"));
+                 console.log($("#form_1").attr("action"));}
+             else{
+                 
+                  $("#CompanyName").val(-1);
+                  $("#Address").val("");
+                  $("#City").val("");
+                  $("#State").val("");
+                  $("#Zip").val("");
+                  $("#BillingContactFirstName").val("");
+                  $("#BillingContactLastName").val("");
+                  $("#BillingContactEmail").val("");
+                  $("#BillingContactPhone").val("");
+                   $("#CompanyName").trigger("chosen:updated");
+             }
 		//EditCompanyChangeOnID();
 
         }
@@ -110,77 +138,75 @@
             arry2.push(value);
             document.getElementById("showall1").innerHTML = value;
             $("#TableAll").toggle();
-                $("#nav").height($("#section").outerHeight());
+            $("#nav").height($("#section").outerHeight());
 
         }
         function EditCompany(event){
             CompanyID =$("#CompanyID").val();
             if(CompanyID ==-1){
-                alert("Please select a Company and then click Edit Company.");
+                bootbox.alert("Please select a Company and then click next.", function() {
+                              
+                              $("#CompanyNameLabel").css("border-color","red");
+                              $("#CompanyNameLabel").css("border-style","solid");
+                            
+                              });
+
                 event.preventDefault();
                 return;
             }else{
                 location.href="/editCompanyAdmin/"+$("#CompanyID option:selected").text();
             }
         }
-        /*
-      	function EditCompanyChangeOnID(){
-		
-		var CompanyID =$("#CompanyID option:selected").text();
-		var link1 = "/EditCompanyInfoAdmin/"+CompanyID;
-		$("#EditCompanyInfo").attr("href",link1);
-	}
-      	function EditCompanyChangeOnName(){
-		var CompanyNumber = parseInt($("#CompanyName").val());
-		var CompanyID =  "#"+(20*CompanyNumber).toString();
-		var link1 = "/EditCompanyInfoAdmin/"+CompanyID;
-		$("#EditCompanyInfo").attr("href",link1);
-	}*/
+        
+        function deleteCompany(event){
+           
+            CompanyID =$("#CompanyID").val();
+            
+            if(CompanyID ==-1){
+                bootbox.alert("Please select a Company and then click next.", function() {
+                              
+                              $("#CompanyNameLabel").css("border-color","red");
+                               $("#CompanyNameLabel").css("border-style","solid");
+                              return;
+                              });
+                
+            }else{
+                bootbox.confirm("Are you sure to delete this Company?", function(result) {
+                                if(result==true){
+                location.href="/deleteCompanyAdmin?CompanyID="+$("#CompanyID option:selected").text();
+                                }
+                                else{
+                                return;
+                                }
+                                });
+                                return;
+        }
+        }
+
         function submitCompany(event){
             
+        
+
+
             CompanyID =$("#CompanyID").val();
             if(CompanyID ==-1){
-                alert("Please select a Company and then click next.");
+                bootbox.alert("Please select a Company and then click next.", function() {
+                              
+                              $("#CompanyNameLabel").css("border-color","blue");
+                              $("#CompanyNameLabel").css("border-style","solid");
+                              
+                              });
+
                 event.preventDefault();
                 return;
             }
-            
+        
             //window.location = "/chooseExistingContactBasedOnCompanyID/"+CompanyID;
 
         }
-        /*
-        function checkContactID(){
-            var count_Contact = parseInt(document.getElementById('ContactID').length);
-            console.log('count_ContactID ' +count_Contact);
-            if( count_Contact <2  ) {
-                window.alert('No Contact Information, Please insert One Contact First!');
-                document.getElementById('ContactID_Span').style.color="red";
-                return false;
-                
-            }
-            else{
-                
-              //  var cid = $('#ContactID');
-              var ContactIDValue = document.getElementById("ContactID");
-              var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
-
-                if(Choice  =="select")
-                {
-                    window.alert('Please choose a ContactID');
-                     document.getElementById('ContactID_Span').style.color="red";
-                    return false;
-                }
-                else{
-                return true;
-                }
-            }
-            
-            
-            return false;
-           
+        function addCompany(event){
+               location.href="/addNewCompanyAdmin";
         }
-        */
-        
         </script>
 
         <title> <%= h1 %></title>
@@ -207,7 +233,7 @@ width:auto;
 		    float:left;
 		    padding:10px;
             
-            		height: 1200px;
+            height: 1200px;
 		}
      
         #section2{
@@ -238,7 +264,7 @@ width:auto;
 		    line-height:30px;
 		    background-color:#eeeeee;
 		    height:auto;
-                    min-height: 600px;
+            
             
 		    width:150px;
 		    float:left;
@@ -280,6 +306,10 @@ width:auto;
             width:250px;
             height:30px;
         }
+        #remove_company{
+            position:relative;
+            top:370px; left:600px;
+        }
 </style>
 
     </head>
@@ -316,21 +346,27 @@ width:auto;
                     <% } %>
                     </p>
          
-                <button style = "position:relative ;top:370px; left:600px;" id="EditCompanyInfo" onclick="EditCompany(event);" >Edit Company Info</button> <br>
+         <button style = "position:relative ;top:370px; left:600px;" id="EditCompanyInfo"  class="btn btn-info btn-lg" onclick="EditCompany(event);" ><span class="glyphicon glyphicon-edit"></span> Edit Company Info</button>
+         <button  id="remove_company"  class="btn btn-info btn-lg" onclick="deleteCompany(event);" ><span class="glyphicon glyphicon-remove"></span> Remove Company Info</button>
+            <button  id="remove_company"  class="btn btn-info btn-lg" onclick="addCompany(event);" ><span class="glyphicon glyphicon-plus"></span> Add New Company</button>
+
+         <br>
                 <form id = "form_1"method="post" name="form1"   >
               
                     <div id = "section2">
                     
                     <p><span id="ContactID_Span" >Select Your Company Or Show All:    </span>
-                    <br>    <label class="label1" for="">Company Name:</label>&nbsp;<Select style="width:250px"class="chosen-select"  name = "CompanyName" id="CompanyName" onchange="CompanyNameOnChange()"/>
+                    <br>    <label id="CompanyNameLabel"class="label1" for="">Company Name:</label>&nbsp;<Select style="width:250px"class="chosen-select"  name = "CompanyName" id="CompanyName" onchange="CompanyNameOnChange()"/>
                     
-                    <option value="select">-- select --</option>
+                    <option value="-1">Select</option>
                     <% for(var i = 0; i <CompanyCount;i++) {%>
                    <!-- <option value="<%= ContactID%>"><%=ContactID%></option>-->
                     <option value="<%=i%>"><%=CompanyName[i]%></option>
                     <%}%>
                     
-                            </select></p>
+                    </select>
+
+                     </p>
                              <label class="label1" for="">Company ID:</label>&nbsp; <Select class ="input1" name = "CompanyID" id="CompanyID" onchange="CompanyIDOnChange()"/>
                             <option value="-1">-- select --</option>
                             <% for(var i = 0; i <CompanyCount;i++) {%>
