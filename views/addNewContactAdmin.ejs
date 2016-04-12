@@ -9,11 +9,13 @@
                
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="../public/stylesheets/addNewContactAdmin.css">
 <script type="text/javascript">
     
 $(document).ready(function() {
                   
                   $("#warning1").hide();
+                  $("#warning2").hide();
                   $("#c01").val($.cookie("FirstName"));
                   $("#c02").val($.cookie("LastName"));
               
@@ -84,6 +86,8 @@ function LastChange(){
 }
 
 function submitContact(){
+    $("#warning1").hide();
+    $("#warning2").hide();
 var phone=$("#PhoneNumber1").val()+$("#PhoneNumber2").val()+$("#PhoneNumber3").val();
 if(($("#PhoneNumber1").val()=="" && $("#PhoneNumber2").val()=="" && $("#PhoneNumber3").val()=="" )&& $("#c04").val()==""){
 	$("#warning1").show();
@@ -112,81 +116,31 @@ function checkCookie() {
         }
     }
 }
+function AutoFill(){
+   if( $('#myonoffswitch').prop('checked'))
+   {
+       $("#c05").val($("#ba_temp").html());
+       $("#c06").val($("#bc_temp").html());
+       $("#SiteState1").val($("#bs_temp").html());
+       $("#c07").val($("#bz_temp").html());
+        
+   }
+   else{
+       $("#c05").val("");
+       $("#c06").val("");
+       $("#SiteState1").val("");
+       $("#c07").val("");
+
+   }
+    
+    
+}
 
 </script>
   
 
 
-        <style>
 
-body{
-min-width:1200px;
-width:auto;
-}
-       #header {
-    background-color:black;
-    color:white;
-    text-align:center;
-    padding:5px;
-}
-
-	#section {
-		    width:auto;
-		    float:left;
-		    padding:10px;
-	 	    text-align:right;
-		}
-    #section1 {
-		    width:600px;
-		    float:left;
-		    padding:10px;
-		}
-
-        #section1_2{
-            width:auto;
-            float:right;
-            padding:10px;
-	    text-align:right;
-        }
-        #section2 {
-		    width:auto;
-		    float:left;
-		    padding:10px;
-		}
-
-        #section2_2{
-            width:auto;
-            float:left;
-            padding:10px;
-	    text-align:right;
-        }
-		#nav {
-		    line-height:30px;
-		    background-color:#eeeeee;
-		    height:800px;
-		    width:150px;
-		    float:left;
-		    padding:2px;	      
-		}
-
-		#footer {
-		    background-color:black;
-		    color:white;
-		    clear:both;
-		    text-align:center;
-		   padding:5px;	 	 
-		}
-        #submit1{
-            position: relative;
-            width:80px;
-            height:80px;
-            left: 00px;
-            top:20px;
-        }
-        .input1{
-            width:250px;
-        }
-</style>
 
     </head>
     <body>
@@ -219,6 +173,31 @@ width:auto;
                     <span style="color:red"><%= errorMessage %></span>
                     <% } %>
                     </p>
+                    
+                    <p>
+                    <% if(typeof(ba) !== 'undefined') {%>
+                    <span style="color:red" id="ba_temp"hidden><%= ba %></span>
+                    <% } %>
+                    </p>
+                    
+                    <p>
+                    <% if(typeof(bc) !== 'undefined') {%>
+                    <span style="color:red" id="bc_temp" hidden><%= bc %></span>
+                    <% } %>
+                    </p>
+                    
+                    <p>
+                    <% if(typeof(bs) !== 'undefined') {%>
+                    <span style="color:red" id="bs_temp"hidden><%= bs %></span>
+                    <% } %>
+                    </p>
+                    
+                    <p>
+                    <% if(typeof(bz) !== 'undefined') {%>
+                    <span style="color:red" id="bz_temp"hidden><%= bz %></span>
+                    <% } %>
+                    </p>
+                    
                     <p>
                     <% if(typeof(CompanyID) !== 'CompanyID') {%>
                     <span style="color:red" hidden><%= CompanyID %></span>
@@ -228,7 +207,7 @@ width:auto;
                     
                     <span style="color:Blue">Please input your Contact Information for Company: <%= CompanyName%>.</br> You will be forced to here if no Contact exists for this Company.</span>
                     
-                        <div id = "section 1_2">
+                        <div id = "section 1_2"><br><br><br>
                             <p><label class="label1" >Contact Name*:</label>&nbsp; <input type ="text" class="input1" disabled id = "ContactName"></p>
                             <p><label class="label1" >First Name*:</label>&nbsp;  <input type ="text "class="input1" id="c01" value="" placeholder = "FirstName"  name ="FirstName" required onchange="FirstChange();"/></p>
                             <p><label class="label1" >Last Name*:</label>&nbsp; <input type ="text " class="input1" id="c02" value="" name = "LastName" required placeholder = "LastName"onchange="LastChange();"/></p>
@@ -248,6 +227,13 @@ width:auto;
                        </br></br></br>
                         
                         <u style="position:relative;left:200px;float:left;" >Site Information</u><br>
+                        <span id="span_autofill">Auto Fill</span>
+                        <div class="onoffswitch">
+                            
+                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"  onchange="AutoFill()">
+                                <label class="onoffswitch-label" for="myonoffswitch"></label>
+                        </div>
+                        <br>
                         <div id ="section2_2">
                             <p><label class="label1" >Site Address*:</label>&nbsp;<input type ="text" class="input1"id="c05" value="" placeholder = "SiteAddress" name = "SiteAddress" required="true"></p>
                             <p><label class="label1" >City*:</label>&nbsp;<input type ="text " id="c06" class="input1"value="" placeholder = "SiteCity" name = "SiteCity" required="true"></p>

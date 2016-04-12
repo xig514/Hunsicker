@@ -1,0 +1,106 @@
+.onoffswitch {
+    position: relative; width: 60px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+    left:300px;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    height: 22px; padding: 0; line-height: 22px;
+    border: 2px solid #CCCCCC; border-radius: 22px;
+    background-color: #FFFFFF;
+    transition: background-color 0.3s ease-in;
+}
+.onoffswitch-label:before {
+    content: "";
+    display: block; width: 22px; margin: 0px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 36px;
+    border: 2px solid #CCCCCC; border-radius: 22px;
+    transition: all 0.3s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+    background-color: #49E845;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+    border-color: #49E845;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+    right: 0px;
+}
+
+
+body{
+    min-width:1200px;
+    width:auto;
+}
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+#section {
+    width:auto;
+    float:left;
+    padding:10px;
+    text-align:right;
+}
+#section1 {
+    width:600px;
+    float:left;
+    padding:10px;
+}
+
+#section1_2{
+    width:auto;
+    float:right;
+    padding:10px;
+    text-align:right;
+}
+#section2 {
+    width:auto;
+    float:left;
+    padding:10px;
+}
+
+#section2_2{
+    width:auto;
+    float:left;
+    padding:10px;
+    text-align:right;
+}
+#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:800px;
+    width:150px;
+    float:left;
+    padding:2px;
+}
+
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;
+}
+#submit1{
+    position: relative;
+    width:80px;
+    height:80px;
+    left: 00px;
+    top:20px;
+}
+.input1{
+    width:250px;
+}
+#span_autofill{
+    position:relative;
+    left:0px;
+}

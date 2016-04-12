@@ -47,16 +47,42 @@ poolH.getConnection(function(err,connection){
                         return;
                         }
                         
-                        var queryClause2 ="Select ContactID As solution From Contact  Where FirstName  = " +connection.escape(FirstName) + " And  LastName = " +connection.escape(LastName)+"And PhoneNumber="+ connection.escape(PhoneNumber)+"And SiteAddress="+ connection.escape(SiteAddress)+" And CompanyID="+connection.escape(CompanyID)+";";
-//query the CompanyID for the Company Address, state city.
+                        var queryClause2 ="Select BillingAddress As ba, BillingCity as bc, BillingState as bs, BillingZip as bz  From Company  Where CompanyID = " + connection.escape(CompanyID)+";"
+                    //console.log(queryClause2);
+                    //query the CompanyID for the Company Address, state city.
+                    connection.query(queryClause2,function(err,rows){
+                                     if(!err)
+                                     {
+                                     
+                                     if(rows[0]!=null && rows[0].ba!=undefined)//we found the Contact already in the database
+                                     {
+                                     var ba=rows[0].ba;
+                                     var bc=rows[0].bc;
+                                     var bs=rows[0].bs;
+                                     var bz=rows[0].bz;
+                                     
     if(request.query.error==undefined)
     {
 
-    response.render('addNewContactAdmin',{title:'Add New Contact Admin',CompanyID:CompanyID,CompanyName:CompanyName});
+                    response.render('addNewContactAdmin',{title:'Add New Contact Admin',CompanyID:CompanyID,CompanyName:CompanyName,ba:ba,bc:bc,bs:bs,bz:bz});
     }
     else
-    response.render('addNewContactAdmin',{title:'Add New Contact Admin',CompanyID:CompanyID,CompanyName:CompanyName,errorMessage:request.query.error});
-});
+    response.render('addNewContactAdmin',{title:'Add New Contact Admin',CompanyID:CompanyID,CompanyName:CompanyName,errorMessage:request.query.error,ba:ba,bc:bc,bs:bs,bz:bz});
+    }
+        else{
+                     //no such company, go back to add company page
+                     response.redirect('/addNewJobAdmin');
+                }
+                                     }
+                                     else
+                                     {
+                                     //error
+                                     response.render('errorPage', {usernameE: 'Administrator',h1:'Error in Select Company Infomation',title:"Error in Select Company Info",errorMessage :'Error in Select Company Info!'});
+                                     return;
+                                     }
+                                     });
+                    }
+    );
 }
 
 exports.handle_Input=function (request,response)
@@ -240,7 +266,7 @@ function jumpToContact(req,res,CompanyID,CompanyName,MaxContactID){
                                          else{
                                          console.log('error in Select Contact Info!');
                                          
-                                         res.render('errorPage', {usernameE: 'Administrator',h1:'Error in Select Contact Infomation',title:"Error in Select ComapnyInfo",errorMessage :'Error in Select Contact Info!'});
+                                         res.render('errorPage', {usernameE: 'Administrator',h1:'Error in Select Contact Infomation',title:"Error in Select Contact Info",errorMessage :'Error in Select Contact Info!'});
                                          return;
                                          }
                                          
