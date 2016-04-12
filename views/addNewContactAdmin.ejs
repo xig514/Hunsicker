@@ -92,11 +92,13 @@ if(($("#PhoneNumber1").val()=="" && $("#PhoneNumber2").val()=="" && $("#PhoneNum
 	
 }
 else if($("#c04").val()=="" && phone.length<10){
-$("#warning2").show();
+	$("#warning2").show();
     	event.preventDefault();
 	return;
-}
+}else{
+
     storeValues();
+}
 }
 
 function checkCookie() {

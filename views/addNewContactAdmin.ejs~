@@ -208,7 +208,7 @@ width:auto;
   <strong>Warning!</strong> Please input either Email or Phone Number.
 </div>
 <div id="warning2" class="alert alert-warning">
-  <strong>Warning!</strong> Please input correct phone number format.
+  <strong>Warning!</strong> Please input correct Phone Number format.
 </div>
                 <div id = "section1">
                   <p>WELCOME <span style="color:blue;font-weight:bold"> Bob</span></p>
