@@ -280,7 +280,7 @@ console.log('date111 ' +Date1);
                                                                {
                                                                JobID = rows[0].jbid;
                                                                // we found this contact has already get this Job, Just
-                                                               res.render('addRemainingJobInfo', {ContactID: ContactID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title,errorMessage:"You have already required a job for this vehicle on this day, if you want to add anyway, select Always insert."});
+                                                               res.render('addRemainingJobInfo', {CompanyID:CompanyID,ContactID: ContactID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title,errorMessage:"You have already required a job for this vehicle on this day, if you want to add anyway, select Always insert."});
 
                                                                console.log('Found this Job');
                                                                connection.release();
@@ -298,7 +298,7 @@ console.log('date111 ' +Date1);
 								res.redirect('/jobConclusion?JobID='+JobID+'&ContactID='+ContactID+'&VIN='+VIN+'&DPFID='+DPFID+'&message=1'+'&CompanyID='+CompanyID);
                                                                                 }
                                                                                 else{
-                                                                                  res.render('addRemainingJobInfo', {ContactID: ContactID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title,errorMessage:err.code});
+                                                                                res.render('addRemainingJobInfo', {CompanyID:CompanyID,ContactID: ContactID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title,errorMessage:err.code});
                                                                                 }
                                                                                 });
 
