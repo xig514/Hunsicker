@@ -140,7 +140,11 @@ var show=function(request,response){
     fs.readFile(template, function(err, data) {
                var aa = "Login";
                 var title = "Login";
-                var again1= "Please input the UserName and Password";
+                var errorMessage="";
+                if(request.query.error!=undefined){
+                errorMessage+=request.query.error;
+                }
+                var again1= errorMessage+ "! Please input the UserName and Password";
                 var output = ejs.render(data.toString(), {h1: aa, title:title ,again:again1});//,urlLink:url});
                 //response.setHeader('Content-type', 'text/html');
                 response.end(output);

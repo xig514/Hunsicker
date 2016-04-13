@@ -368,12 +368,12 @@ app.post('/chooseExistingDPF',function(req,res){
          });
 
 app.get('/addRemainingJobInfo',function(req,res){
-         backURL = req.headers['referer'];
-         addRemainingJobInfo.show(req,res,backURL);
+        // backURL = req.headers['referer'];
+         addRemainingJobInfo.show(req,res);
          });
 app.post('/addRemainingJobInfo',function(req,res){
-         backURL = req.headers['referer'];
-         addRemainingJobInfo.handle_Input1(req,res,backURL);
+       //  backURL = req.headers['referer'];
+         addRemainingJobInfo.handle_Input1(req,res);
          });
 app.post('/addRemainingJobInfo2',function(req,res){
          
@@ -701,4 +701,4 @@ var server=app.listen(8000,function()
 module.exports = app;
  */
 var server = http.createServer(app);
-server.listen(9000,"128.180.123.60");
+server.listen(9000,"0.0.0.0");

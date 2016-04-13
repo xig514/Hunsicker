@@ -308,7 +308,11 @@ width:auto;
         }
         #remove_company{
             position:relative;
-            top:370px; left:600px;
+            top:390px; left:600px;
+        }#add_company{
+          position:relative;
+          top:410px; left:600px;
+        
         }
 </style>
 
@@ -346,9 +350,9 @@ width:auto;
                     <% } %>
                     </p>
          
-         <button style = "position:relative ;top:370px; left:600px;" id="EditCompanyInfo"  class="btn btn-info btn-lg" onclick="EditCompany(event);" ><span class="glyphicon glyphicon-edit"></span> Edit Company Info</button>
+         <button style = "position:relative ;top:390px; left:600px;" id="EditCompanyInfo"  class="btn btn-info btn-lg" onclick="EditCompany(event);" ><span class="glyphicon glyphicon-edit"></span> Edit Company Info</button>
          <button  id="remove_company"  class="btn btn-info btn-lg" onclick="deleteCompany(event);" ><span class="glyphicon glyphicon-remove"></span> Remove Company Info</button>
-            <button  id="remove_company"  class="btn btn-info btn-lg" onclick="addCompany(event);" ><span class="glyphicon glyphicon-plus"></span> Add New Company</button>
+           <br> <button  id="add_company"  class="btn btn-info btn-lg" onclick="addCompany(event);" ><span class="glyphicon glyphicon-plus"></span> Add New Company</button>
 
          <br>
                 <form id = "form_1"method="post" name="form1"   >

@@ -26,75 +26,116 @@ var MaxContactID = 0;
 
 exports.show=function(request,response)
 {
-   /* if(!request.isAuthenticated()) {
-        response.redirect('/login');
-       
+    if(!request.isAuthenticated()) {
+        response.redirect('/login?error=Time_out');
+        
     } else {
-*/
-    var CompanyID= request.query.CompanyID;
-    var CompanyName="";
-    if(request.query.CompanyName!=undefined){
-        CompanyName =request.query.CompanyName;
-    }
-    console.log('CName in show '  + CompanyName);
 
+    var user = request.user;
+    if(user!=undefined){
+        var keys = Object.keys(user);
+        
+    
+            var val = user[keys[0]];
+        var username=val.username;
+      //  console.log(val.username);
+        if(username=="adminBob"){
+            var CompanyID= request.query.CompanyID;
+            var CompanyName="";
+            if(request.query.CompanyName!=undefined){
+                CompanyName =request.query.CompanyName;
+            }
+            console.log('CName in show '  + CompanyName);
+            
+            
+            poolH.getConnection(function(err,connection){
+                                if (err) {
+                                connection.release();
+                                
+                                response.json({"code" : 100, "status" : "Error in connection database"});
+                                return;
+                                }
+                                
+                                var queryClause2 ="Select BillingAddress As ba, BillingCity as bc, BillingState as bs, BillingZip as bz  From Company  Where CompanyID = " + connection.escape(CompanyID)+";"
+                                //console.log(queryClause2);
+                                //query the CompanyID for the Company Address, state city.
+                                connection.query(queryClause2,function(err,rows){
+                                                 if(!err)
+                                                 {
+                                                 
+                                                 if(rows[0]!=null && rows[0].ba!=undefined)//we found the Contact already in the database
+                                                 {
+                                                 var ba=rows[0].ba;
+                                                 var bc=rows[0].bc;
+                                                 var bs=rows[0].bs;
+                                                 var bz=rows[0].bz;
+                                                 
+                                                 if(request.query.error==undefined)
+                                                 {
+                                                 
+                                                 response.render('addNewContactAdmin',{title:'Add New Contact Admin',CompanyID:CompanyID,CompanyName:CompanyName,ba:ba,bc:bc,bs:bs,bz:bz});
+                                                 }
+                                                 else
+                                                 response.render('addNewContactAdmin',{title:'Add New Contact Admin',CompanyID:CompanyID,CompanyName:CompanyName,errorMessage:request.query.error,ba:ba,bc:bc,bs:bs,bz:bz});
+                                                 }
+                                                 else{
+                                                 //no such company, go back to add company page
+                                                 response.redirect('/addNewJobAdmin');
+                                                 }
+                                                 }
+                                                 else
+                                                 {
+                                                 //error
+                                                 response.render('errorPage', {usernameE: 'Administrator',h1:'Error in Select Company Infomation',title:"Error in Select Company Info",errorMessage :'Error in Select Company Info!'});
+                                                 return;
+                                                 }
+                                                 });
+                                }
+                                );
 
-poolH.getConnection(function(err,connection){
-                        if (err) {
-                        connection.release();
-                        
-                        response.json({"code" : 100, "status" : "Error in connection database"});
-                        return;
-                        }
-                        
-                        var queryClause2 ="Select BillingAddress As ba, BillingCity as bc, BillingState as bs, BillingZip as bz  From Company  Where CompanyID = " + connection.escape(CompanyID)+";"
-                    //console.log(queryClause2);
-                    //query the CompanyID for the Company Address, state city.
-                    connection.query(queryClause2,function(err,rows){
-                                     if(!err)
-                                     {
-                                     
-                                     if(rows[0]!=null && rows[0].ba!=undefined)//we found the Contact already in the database
-                                     {
-                                     var ba=rows[0].ba;
-                                     var bc=rows[0].bc;
-                                     var bs=rows[0].bs;
-                                     var bz=rows[0].bz;
-                                     
-    if(request.query.error==undefined)
-    {
-
-                    response.render('addNewContactAdmin',{title:'Add New Contact Admin',CompanyID:CompanyID,CompanyName:CompanyName,ba:ba,bc:bc,bs:bs,bz:bz});
-    }
-    else
-    response.render('addNewContactAdmin',{title:'Add New Contact Admin',CompanyID:CompanyID,CompanyName:CompanyName,errorMessage:request.query.error,ba:ba,bc:bc,bs:bs,bz:bz});
-    }
+            
+            
+            
+        }
+        
         else{
-                     //no such company, go back to add company page
-                     response.redirect('/addNewJobAdmin');
-                }
-                                     }
-                                     else
-                                     {
-                                     //error
-                                     response.render('errorPage', {usernameE: 'Administrator',h1:'Error in Select Company Infomation',title:"Error in Select Company Info",errorMessage :'Error in Select Company Info!'});
-                                     return;
-                                     }
-                                     });
-                    }
-    );
-}
+            response.redirect('/userPage/'+username);
+            
+        }
+        }
+        
+        
+        
+    
+    else{
+        console.log("undefined user");
+        //logged in but user is undefined? Will that happen?
+        response.redirect('/login');
+    }
+    
+    }
+    
+    
+    
+    }
 
 exports.handle_Input=function (request,response)
 {
-/*
-var user = request.user;
-
+    
     if(!request.isAuthenticated()) {
-        response.redirect('/login');
-        console.log('not authed in userPage');
-    }
-    else{*/
+        response.redirect('/login?error=Time_out');
+        
+    } else {
+        
+        var user = request.user;
+        if(user!=undefined){
+            var keys = Object.keys(user);
+            
+            
+            var val = user[keys[0]];
+            var username=val.username;
+            //  console.log(val.username);
+            if(username=="adminBob"){
     FirstName =request.body.FirstName;
     LastName = request.body.LastName;
     PhoneNumber = request.body.PhoneNumber1+request.body.PhoneNumber2+request.body.PhoneNumber3;
@@ -188,7 +229,23 @@ var user = request.user;
                                                                                 //-------------------------------------------------------------------------
                         connection.on('error', function(err) {response.json({"code" : 100, "status" : "Error in connection database"});return;});
                         });
-//}
+}
+            else{
+                response.redirect('/userPage/'+username);
+                
+            }
+        }
+        
+        
+        
+        
+        else{
+            console.log("undefined user");
+            //logged in but user is undefined? Will that happen?
+            response.redirect('/login?error=undefined_user');
+        }
+    }
+            
 }
 
 

@@ -17,12 +17,25 @@ var poolH = mysql.createPool({
 exports.show=function (req,res)
 {
 var queryClause2="";
-/*
-if(!req.isAuthenticated()) {
-        res.redirect('/login');
-       
+    
+    if(!req.isAuthenticated()) {
+        res.redirect('/login?error=Time_out');
+        
     } else {
-*/
+        
+        var user = req.user;
+        if(user!=undefined){
+            var keys = Object.keys(user);
+            
+            
+            var val = user[keys[0]];
+            var username=val.username;
+            //  console.log(val.username);
+            if(username=="adminBob"){
+                
+                
+                
+                
     var dataForShowing1=new Array();//Company
     var dataForShowing2=new Array();//Contact
     var dataForShowing3=new Array();//DPF
@@ -391,6 +404,25 @@ message=req.query.message;
                                 });
       
    
-//}
+            }
+            else{
+                res.redirect('/userPage/'+username);
+                
+            }
+        }
+        
+        
+        
+        
+        else{
+            console.log("undefined user");
+            //logged in but user is undefined? Will that happen?
+            res.redirect('/login');
+        }
+        
+    }
+    
+    
+ 
 
 }

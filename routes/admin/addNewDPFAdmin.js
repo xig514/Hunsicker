@@ -25,11 +25,20 @@ var poolH     =    mysql.createPool({
 
 exports.show=function(request,response)
 {
-/*
-     if(!request.isAuthenticated() ) {
-       response.redirect('/login');
-       
-    } else {*/
+    if(!request.isAuthenticated()) {
+        response.redirect('/login?error=Time_out');
+        
+    } else {
+        
+        var user = request.user;
+        if(user!=undefined){
+            var keys = Object.keys(user);
+            
+            
+            var val = user[keys[0]];
+            var username=val.username;
+            //  console.log(val.username);
+            if(username=="adminBob"){
 
     CompanyID=request.query.CompanyID;
     ContactID = request.query.ContactID;
@@ -42,17 +51,50 @@ exports.show=function(request,response)
     else{
         response.render('addNewDPFAdmin',{title:title,h1:title,username:'Bob' ,CompanyID:CompanyID,VIN:VIN,ContactID:ContactID});
     }
-//}
+}
+            else{
+                response.redirect('/userPage/'+username);
+                
+            }
+        }
+        
+        
+        
+        
+        else{
+            console.log("undefined user");
+            //logged in but user is undefined? Will that happen?
+            response.redirect('/login');
+        }
+        
+    }
+    
+    
+    
+            
 }
 
 
 exports.handle_Input=function(req,res) {
-   /*
-  if(!req.isAuthenticated() ) {
-        res.redirect('/login');
-        console.log('not authed in UICC');
-    } else{
-*/
+    
+    
+    if(!req.isAuthenticated()) {
+        res.redirect('/login?error=Time_out');
+        
+    } else {
+        
+        var user = req.user;
+        if(user!=undefined){
+            var keys = Object.keys(user);
+            
+            
+            var val = user[keys[0]];
+            var username=val.username;
+            //  console.log(val.username);
+            if(username=="adminBob"){
+                
+                
+
     CompanyID=req.query.CompanyID;
     ContactID = req.query.ContactID;
     VIN = req.query.VIN;
@@ -221,7 +263,27 @@ exports.handle_Input=function(req,res) {
                         
                         });
 
-//}
+}
+            
+            else{
+                res.redirect('/userPage/'+username);
+                
+            }
+        }
+        
+        
+        
+        
+        else{
+            console.log("undefined user");
+            //logged in but user is undefined? Will that happen?
+            res.redirect('/login');
+        }
+        
+    }
+    
+    
+
 }
 
 

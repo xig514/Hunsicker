@@ -16,6 +16,23 @@ var poolH = mysql.createPool({
 
 exports.show=function (req,res,app,dirpath)
 {
+    if(!req.isAuthenticated()) {
+        app.set('views', path.join(dirpath, 'views'));
+        res.redirect('/login?error=Time_out');
+        
+    } else {
+        
+        var user = req.user;
+        if(user!=undefined){
+            var keys = Object.keys(user);
+            
+            
+            var val = user[keys[0]];
+            var username=val.username;
+            //  console.log(val.username);
+            if(username=="adminBob"){
+                
+
     var VIN = req.params.id;
     var CompanyID = req.query.CompanyID;
     var ContactID= req.query.ContactID;
@@ -93,12 +110,49 @@ exports.show=function (req,res,app,dirpath)
                                          
                                          });
                         });
+            }
+            
+            else{
+                app.set('views', path.join(dirpath, 'views'));
+                res.redirect('/userPage/'+username);
+                
+            }
+        }
+        
+        
+        
+        
+        else{
+            app.set('views', path.join(dirpath, 'views'));
+            console.log("undefined user");
+            //logged in but user is undefined? Will that happen?
+            res.redirect('/login');
+        }
+        
+    }
+    
+    
 
 }
 
 
 exports.handle_Input=function (req,res)
 {
+    if(!req.isAuthenticated()) {
+        res.redirect('/login?error=Time_out');
+        
+    } else {
+        
+        var user = req.user;
+        if(user!=undefined){
+            var keys = Object.keys(user);
+            
+            
+            var val = user[keys[0]];
+            var username=val.username;
+            //  console.log(val.username);
+            if(username=="adminBob"){
+                
     //console.log('1111111');
     var VIN = req.params.id;
     var ContactName =req.query.ContactName;
@@ -140,6 +194,25 @@ exports.handle_Input=function (req,res)
                                          });
                         connection.on('error', function(err) {res.json({"code" : 100, "status" : "Error in connection database"});return;});
                         });
+            }
+            
+            else{
+                res.redirect('/userPage/'+username);
+                
+            }
+        }
+        
+        
+        
+        
+        else{
+            console.log("undefined user");
+            //logged in but user is undefined? Will that happen?
+            res.redirect('/login');
+        }
+        
+    }
+    
 
     
     

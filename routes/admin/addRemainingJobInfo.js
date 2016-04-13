@@ -29,7 +29,7 @@ var DPFID;
 var ContactID;
 var OldJobID="";
 
-var backURL = "";
+var backURL = "/";
 var datetime = new Date();
 var month ="";
 
@@ -44,13 +44,22 @@ var today = datetime.getFullYear()+"-"+month+"-"+datetime.getDate();
 
 //==============================================================================================
 exports.show=function(req,res){
-var user = req.user;
-/*
     if(!req.isAuthenticated()) {
-        res.redirect('/login');
-        console.log('not authed in userPage');
-    }
-    else{*/
+        res.redirect('/login?error=Time_out');
+        
+    } else {
+        
+        var user = req.user;
+        if(user!=undefined){
+            var keys = Object.keys(user);
+            
+            
+            var val = user[keys[0]];
+            var username=val.username;
+            //  console.log(val.username);
+            if(username=="adminBob"){
+                
+                
 
     backURL=backURL;
     var CompanyID=req.query.CompanyID;
@@ -82,46 +91,99 @@ var user = req.user;
         //console.log(req.body.ReasonForCleaning);
         res.render('addRemainingJobInfo', {ContactID: ContactID,CompanyID:CompanyID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title,errorMessage:'Error in select Job ID'});
 
+        }
+            }
+            else{
+                res.redirect('/userPage/'+username);
+                
+            }
+        }
+        
+        
+        
+        
+        else{
+            console.log("undefined user");
+            //logged in but user is undefined? Will that happen?
+            res.redirect('/login');
+        }
+        
     }
-//}
 }
 
-exports.handle_Input1=function (req,res,backURL)
+exports.handle_Input1=function (req,res)
 {
-/*
-var user = req.user;
-
+    
     if(!req.isAuthenticated()) {
-        req.redirect('/login');
-        console.log('not authed in userPage');
-    }
-    else{*/
-     // backURL=backURL;
-    
-    //console.log('1111111');
-    
+        res.redirect('/login?error=Time_out');
+        
+    } else {
+        
+        var user = req.user;
+        if(user!=undefined){
+            var keys = Object.keys(user);
+            
+            
+            var val = user[keys[0]];
+            var username=val.username;
+            //  console.log(val.username);
+            if(username=="adminBob"){
+                
+
      var CompanyID=req.query.CompanyID;
       ContactID= req.query.ContactID;
       VIN =req.query.VIN;
-    //console.log(VIN);
+    console.log("CompanyID= "  + CompanyID );
     
        DPFID = req.query.DPFID;
     //console.log(req.body.ReasonForCleaning);
     res.render('addRemainingJobInfo', {ContactID: ContactID,CompanyID:CompanyID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title});
-   // }
+    
+            }
+            else{
+                res.redirect('/userPage/'+username);
+                
+            }
+        }
+        
+        
+        
+        
+        else{
+            console.log("undefined user");
+            //logged in but user is undefined? Will that happen?
+            res.redirect('/login');
+        }
+        
+    }
+ 
 }
+
 exports.handle_Input2=function (req,res)
 {
 	var CompanyID=req.query.CompanyID;
-/*
-   var user = req.user;
 
     if(!req.isAuthenticated()) {
-        res.redirect('/login');
-        console.log('not authed in userPage');
-    }
-    else{*/
-    //console.log('1111111');
+        res.redirect('/login?error=Time_out');
+        
+    } else {
+        
+        var user = req.user;
+        if(user!=undefined){
+            var keys = Object.keys(user);
+            
+            
+            var val = user[keys[0]];
+            var username=val.username;
+            //  console.log(val.username);
+            if(username=="adminBob"){
+                
+                
+
+    
+    
+    
+    
        var reason_temp= req.body.ReasonForCleaning;
        //console.log("reason :" +reason_temp);
     if(reason_temp=="" ||reason_temp ==undefined){
@@ -272,7 +334,7 @@ console.log('date111 ' +Date1);
 res.redirect('/jobConclusion?JobID='+JobID+'&ContactID='+ContactID+'&VIN='+VIN+'&DPFID='+DPFID+'&message=1'+'&CompanyID='+CompanyID);
                                                               }
                                                               else{
-                                                              res.render('addRemainingJobInfo', {ContactID: ContactID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title,errorMessage:err.code});
+                                                              res.render('addRemainingJobInfo', {CompanyID:CompanyID,ContactID: ContactID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title,errorMessage:err.code});
                                                               }
                                                               });
                                              
@@ -284,16 +346,33 @@ res.redirect('/jobConclusion?JobID='+JobID+'&ContactID='+ContactID+'&VIN='+VIN+'
                                              }
                                              }
                                              else{//error in select JOBID
-                                             console.log("error in select JobID");
-                                             res.redirect(backURL+"?ErrorCode=1")
-                                             
+                                             console.log("error in selecting JobID");
+                                             //res.redirect(backURL+"?ErrorCode=1")
+                                             res.render('addRemainingJobInfo', {CompanyID:CompanyID,ContactID: ContactID,VIN:VIN,title:"Add Remaining JobInfo",DPFID:DPFID,title:title,h1:title,errorMessage:"Error happens in selecting JobID"});
                                              }
         
         
                                              });
                             connection.on('error', function(err) {res.json({"code" : 100, "status" : "Error in connection database"});return;});
                             });
-   // }
+    }
+            else{
+                res.redirect('/userPage/'+username);
+                
+            }
+        }
+        
+        
+        
+        
+        else{
+            console.log("undefined user");
+            //logged in but user is undefined? Will that happen?
+            res.redirect('/login');
+        }
+        
+    }
+    
     
 }
 

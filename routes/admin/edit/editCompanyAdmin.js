@@ -17,6 +17,23 @@ var poolH = mysql.createPool({
 
 exports.handle_Input=function (req,res)
 {
+    
+    if(!req.isAuthenticated()) {
+        res.redirect('/login?error=Time_out');
+        
+    } else {
+        
+        var user = req.user;
+        if(user!=undefined){
+            var keys = Object.keys(user);
+            
+            
+            var val = user[keys[0]];
+            var username=val.username;
+            //  console.log(val.username);
+            if(username=="adminBob"){
+                
+
     var CompanyID=req.params.id;
     var newValue  ={};
     newValue['CompanyName']=req.body.CompanyName;
@@ -63,7 +80,26 @@ exports.handle_Input=function (req,res)
                                          });
                         connection.on('error', function(err) {res.json({"code" : 100, "status" : "Error in connection database"});return;});
                         });
+            }
+            else{
+                res.redirect('/userPage/'+username);
+                
+            }
+        }
+        
+        
+        
+        
+        else{
+            console.log("undefined user");
+            //logged in but user is undefined? Will that happen?
+            res.redirect('/login');
+        }
+        
+    }
     
+    
+
 }
 
 
@@ -72,6 +108,23 @@ exports.handle_Input=function (req,res)
 
 exports.show=function (req,res,app,dirPath)
 {
+    if(!req.isAuthenticated()) {
+         app.set('views', path.join(dirPath, 'views'));
+        res.redirect('/login?error=Time_out');
+        
+    } else {
+        
+        var user = req.user;
+        if(user!=undefined){
+            var keys = Object.keys(user);
+            
+            
+            var val = user[keys[0]];
+            var username=val.username;
+            //  console.log(val.username);
+            if(username=="adminBob"){
+                
+
     var dataForShowing1=new Array(12);
     var CompanyID = req.params.id;
             poolH.getConnection(function(err,connection){
@@ -152,11 +205,49 @@ exports.show=function (req,res,app,dirPath)
                             
                                              });
                                 });
+            }
+            
+            else{
+                 app.set('views', path.join(dirPath, 'views'));
+                res.redirect('/userPage/'+username);
+                
+            }
+        }
+        
+        
+        
+        
+        else{
+            console.log("undefined user");
+             app.set('views', path.join(dirPath, 'views'));
+            //logged in but user is undefined? Will that happen?
+            res.redirect('/login');
+        }
+        
+    }
+    
+
     
 
 }
 
 exports.deleteAdmin=function(req,res){
+    
+    if(!req.isAuthenticated()) {
+        res.redirect('/login?error=Time_out');
+        
+    } else {
+        
+        var user = req.user;
+        if(user!=undefined){
+            var keys = Object.keys(user);
+            
+            
+            var val = user[keys[0]];
+            var username=val.username;
+            //  console.log(val.username);
+            if(username=="adminBob"){
+
     var CompanyID= req.query.CompanyID;
     poolH.getConnection(function(err,connection){
                         if (err) {
@@ -190,5 +281,23 @@ exports.deleteAdmin=function(req,res){
                                          
                                          });
                         });
+            }
+            else{
+                res.redirect('/userPage/'+username);
+                
+            }
+        }
+        
+        
+        
+        
+        else{
+            console.log("undefined user");
+            //logged in but user is undefined? Will that happen?
+            res.redirect('/login');
+        }
+        
+    }
+
 
 }

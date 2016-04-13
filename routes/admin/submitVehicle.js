@@ -16,6 +16,28 @@ var poolH = mysql.createPool({
 
 exports.submitVehicle =function(req,res)
 {
+    if(!req.isAuthenticated()) {
+        res.redirect('/login?error=Time_out');
+        
+    } else {
+        
+        var user = req.user;
+        if(user!=undefined){
+            var keys = Object.keys(user);
+            
+            
+            var val = user[keys[0]];
+            var username=val.username;
+            //  console.log(val.username);
+            if(username=="adminBob"){
+                
+                
+                
+                
+
+    
+    
+    
     var VehicleID = req.query.key;
     //  console.log('req.body'+JSON.stringify(req.body));
     // console.log('partnumber' +req.body.PartNumber);
@@ -112,5 +134,26 @@ exports.submitVehicle =function(req,res)
                             connection.on('error', function(err) {res.json({"code" : 100, "status" : "Error in connection database"});return;});
                             });
     }
+            }
+            else{
+                res.redirect('/userPage/'+username);
+                
+            }
+        }
+        
+        
+        
+        
+        else{
+            console.log("undefined user");
+            //logged in but user is undefined? Will that happen?
+            res.redirect('/login');
+        }
+        
+    }
+    
+    
+    
+
     
 }

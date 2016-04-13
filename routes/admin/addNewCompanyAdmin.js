@@ -16,19 +16,51 @@ var poolH = mysql.createPool({
 
 exports.show=function (request,response)
 {
+    if(!request.isAuthenticated()) {
+        response.redirect('/login?error=Time_out');
+        
+    } else {
+        
+        var user = request.user;
+        if(user!=undefined){
+            var keys = Object.keys(user);
+            var val = user[keys[0]];
+            var username=val.username;
+            //  console.log(val.username);
+            if(username=="adminBob"){
  response.render('addNewCompanyAdmin', {title:title});
+            }
+            else{
+                 response.redirect('/userPage/'+username);
+            }
+        }
+        else{
+            console.log("undefined user");
+            //logged in but user is undefined? Will that happen?
+            response.redirect('/login');
+        }
+        
+    }
+    
+
 }
 
 exports.handle_Input=function (request,response)
 {
-/*
-   var user = request.user;
-
     if(!request.isAuthenticated()) {
-        response.redirect('/login');
-        console.log('not authed in userPage');
-    }
-    else{*/
+        response.redirect('/login?error=Time_out');
+        
+    } else {
+        
+        var user = request.user;
+        if(user!=undefined){
+            var keys = Object.keys(user);
+            
+            
+            var val = user[keys[0]];
+            var username=val.username;
+            //  console.log(val.username);
+            if(username=="adminBob"){
     var CompanyName=request.body.CompanyName;
     //console.log(CompanyName);
     var BillingAddress = request.body.BillingAddress;
@@ -150,7 +182,26 @@ exports.handle_Input=function (request,response)
     
     
 
-//}
+            }
+            else{
+                response.redirect('/userPage/'+username);
+                
+            }
+        }
+        
+        
+        
+        
+        else{
+            console.log("undefined user");
+            //logged in but user is undefined? Will that happen?
+            response.redirect('/login');
+        }
+        
+    }
+
+
+
 }
 
 

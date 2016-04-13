@@ -15,7 +15,23 @@ var poolH = mysql.createPool({
                              });
 
 exports.show=function (request,response)
-{	
+{
+    
+    if(!request.isAuthenticated()) {
+        response.redirect('/login?error=Time_out');
+        
+    } else {
+        
+        var user = request.user;
+        if(user!=undefined){
+            var keys = Object.keys(user);
+            
+            
+            var val = user[keys[0]];
+            var username=val.username;
+            //  console.log(val.username);
+            if(username=="adminBob"){
+                
     var VIN1= request.params.id;
     var CompanyID=request.query.CompanyID;
     var dataForShowing1=new Array();
@@ -101,13 +117,46 @@ else {var CompanyName ="";}
                                          
                                          });
                         });
-
+            }
+            else{
+                response.redirect('/userPage/'+username);
+                
+            }
+        }
+        
+        
+        
+        
+        else{
+            console.log("undefined user");
+            //logged in but user is undefined? Will that happen?
+            response.redirect('/login');
+        }
+        
+    }
 }
 
 
 exports.handle_Input=function (req,res)
 {
-    //console.log('1111111');
+    
+    if(!req.isAuthenticated()) {
+        res.redirect('/login?error=Time_out');
+        
+    } else {
+        
+        var user = req.user;
+        if(user!=undefined){
+            var keys = Object.keys(user);
+            
+            
+            var val = user[keys[0]];
+            var username=val.username;
+            //  console.log(val.username);
+            if(username=="adminBob"){
+                
+                
+
     if(req.params.id!=undefined){
     var ContactID= req.params.id;
     }
@@ -192,7 +241,24 @@ exports.handle_Input=function (req,res)
                                              
                                              });
                             });
-    
+            }
+            else{
+                res.redirect('/userPage/'+username);
+                
+            }
+        }
+        
+        
+        
+        
+        else{
+            console.log("undefined user");
+            //logged in but user is undefined? Will that happen?
+            res.redirect('/login');
+        }
+        
+    }
+
 }
 
 

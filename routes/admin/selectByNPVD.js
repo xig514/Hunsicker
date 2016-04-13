@@ -20,6 +20,24 @@ var dataForShowing = new Array();
 
 exports.handle_selectByNPVD=function(request,response) {
     
+    
+    if(!request.isAuthenticated()) {
+        response.redirect('/login?error=Time_out');
+        
+    } else {
+        
+        var user = request.user;
+        if(user!=undefined){
+            var keys = Object.keys(user);
+            
+            
+            var val = user[keys[0]];
+            var username=val.username;
+            //  console.log(val.username);
+            if(username=="adminBob"){
+
+    
+    
     var FirstName = request.body.FirstName;
     var LastName = request.body.LastName;
     var Phone = request.body.Phone;
@@ -129,11 +147,70 @@ exports.handle_selectByNPVD=function(request,response) {
                                      return;     
                                      });
                        });
+            }
+            else{
+                response.redirect('/userPage/'+username);
+                
+            }
+        }
+        
+        
+        
+        
+        else{
+            console.log("undefined user");
+            //logged in but user is undefined? Will that happen?
+            response.redirect('/login');
+        }
+        
+    }
+    
+
 }
 exports.show=function(request,response)
 {
-    response.render('selectByNPVD', {title:'Select By Name, Phone'});
     
+    
+    
+    if(!request.isAuthenticated()) {
+        response.redirect('/login?error=Time_out');
+        
+    } else {
+        
+        var user = request.user;
+        if(user!=undefined){
+            var keys = Object.keys(user);
+            
+            
+            var val = user[keys[0]];
+            var username=val.username;
+            //  console.log(val.username);
+            if(username=="adminBob"){
+                
+                
+                
+
+    response.render('selectByNPVD', {title:'Select By Name, Phone'});
+            }
+            else{
+                response.redirect('/userPage/'+username);
+                
+            }
+        }
+        
+        
+        
+        
+        else{
+            console.log("undefined user");
+            //logged in but user is undefined? Will that happen?
+            response.redirect('/login');
+        }
+        
+    }
+    
+    
+
     
 }
 
