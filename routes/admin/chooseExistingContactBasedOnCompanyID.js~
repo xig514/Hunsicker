@@ -210,7 +210,7 @@ exports.handle_CompanyInput=function (req,res)
                                              dataForShowing1[i][3]=rows[i].pn;
                                              dataForShowing1[i][4]=rows[i].ea;
                                              dataForShowing1[i][5]=rows[i].sa;
-					     console.log( dataForShowing1[i][5]);
+					     console.log(rows[i].sa);
                                              dataForShowing1[i][6]=rows[i].ss;
 
                                              dataForShowing1[i][7]=rows[i].sc;

@@ -48,8 +48,8 @@
                               
                               $("#CompanyID").val(CompanyNumber);
                               var str = $(Address).html();
-			var res = str.replace("&amp;", "&"); 
-			$("#Address").val(res);
+var res = str.replace("&amp;", "&"); 
+$("#Address").val(res);
                               $("#City").val($(City).html());
                               $("#State").val($(State).html());
                               $("#Zip").val($(Zip).html());

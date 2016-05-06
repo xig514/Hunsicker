@@ -49,7 +49,7 @@
 
              $("#Email").val($(Email).html());
              $("#CompanyName").val($(CompanyName).html());
-             
+             $("#Address").val($(SiteAddress).html());
 
 var str = $(SiteAddress).html();
 var res = str.replace("&amp;", "&"); 

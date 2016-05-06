@@ -34,9 +34,6 @@
                         
                           //console.log($(Address).html());
                           $("#Address").val($(Address).html());
-var str = $(Address).html();
-var res = str.replace("&amp;", "&"); 
-$("#Address").val(res);
                           $("#City").val($(City).html());
                           $("#State").val($(State).html());
                           $("#Zip").val($(Zip).html());

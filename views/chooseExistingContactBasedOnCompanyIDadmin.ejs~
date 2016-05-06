@@ -58,10 +58,7 @@
                               $("#CompanyName").val($(CompanyName).html());
                               //$("#CompanyName").val('$(CompanyName).html()');
 
-                           
-var str = $(SiteAddress).html();
-var res = str.replace("&amp;", "&"); 
-$("#SiteAddress").val(res);
+                              $("#SiteAddress").val($(SiteAddress).html());
                               $("#SiteState").val($(SiteState).html());
                               $("#SiteCity").val($(SiteCity).html());
                               $("#SiteZip").val($(SiteZip).html());

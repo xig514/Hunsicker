@@ -193,7 +193,7 @@ width:auto;
                                   </input>
                               </a>
                           </td>
-                          <% for (var j =0; j<numberFieldsE; j++) { %>
+                          <% for (var j =0; j<numberFieldsE+1; j++) { %>
                           <td style="width:100px">
                               <%= dataForShowingE[i][j] %>
                           </td>

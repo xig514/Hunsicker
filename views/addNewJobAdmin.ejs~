@@ -67,9 +67,9 @@ width:auto;
             <form method="post" name="form1" action="/addNewJobAdmin">
            <p> Welcome <strong><%= user.username %></strong></p>
                 <p><font face="verdana" color="green">PLEASE CHOOSE THE TYPE OF THE COMPANY<br></font></p>
-                <input type="radio" name="Company" value="1" checked> Existing Company<br>
+                <input type="radio" name="Company" value="1" checked> Existing<br>
 		<br><br><br><br>
-                <input type="radio" name="Company" value="2"> New Company
+                <input type="radio" name="Company" value="2"> New
 		 <br><br><br><br>
               <br><input  class="btn btn-primary" type="submit" value="OK" >
 
