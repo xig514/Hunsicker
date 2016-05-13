@@ -134,7 +134,7 @@ exports.handle_Input=function(req,res) {
                         }
                         else{
                         
-                        query0 = "SELECT TimesCleaned as tc, DPFID as di, CompanyID as ci From DPFDOC WHERE PartNumber= " +connection.escape(req.body.PartNumber)+" and  SerialNumber = "+connection.escape(req.body.SerialNumber)+";"
+                        query0 = "SELECT TimesCleaned as tc, DPFID as di, CompanyID as ci From DPFDOC WHERE PartNumber= " +connection.escape(req.body.PartNumber)+" and  SerialNumber = "+connection.escape(req.body.SerialNumber)+"and OtherNumber = "+ connection.escape(req.body.OtherNumber)+";";
                         //console.log(query0);
                         connection.query(query0, function(err,rows){
                                          if(!err){

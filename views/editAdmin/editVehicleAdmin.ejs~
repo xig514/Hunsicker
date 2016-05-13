@@ -92,7 +92,7 @@
       var decoded = elem.value;
       //bbb  = aaa.replace("/amp;", "&");
       
-     //alert(decoded);
+      alert(decoded);
       location.href = decoded;
       
   }

@@ -172,7 +172,6 @@ exports.handle_Input=function (request,response)
                                                                            //Here should check the ContactID and ContactName is passed correct to the next page.
                                                                            var error='failed_insertion';
                                                                            response.redirect('/addNewVehicleAdmin/'+CompanyID+'?ContactID='+ContactID+'&ContactName='+ContactName+'&error='+error);
-
                                                                            //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
                                                                            }

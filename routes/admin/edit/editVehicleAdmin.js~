@@ -93,7 +93,7 @@ exports.show=function (req,res,app,dirpath)
                                          }
                                          else{
                                          if(req.query.backURL!=undefined){
-                                         backURL ='/jobConclusion?JobID='+req.query.JobID+'&ContactID='+req.query.ContactID+'&VIN='+req.params.id+'&DPFID='+req.query.DPFID+'&message=1&CompanyID='+req.query.CompanyID;
+                                         backURL ='http://localhost:9000/jobConclusion?JobID='+req.query.JobID+'&ContactID='+req.query.ContactID+'&VIN='+req.params.id+'&DPFID='+req.query.DPFID+'&message=1&CompanyID='+req.query.CompanyID;
                                          res.render('editVehicleAdmin', {h1:'Edit Vehicle',use:{username:'Administrator'},title:'The result of specific Vehicle',VehicleID:VehicleID,VIN:VIN,ContactID: ContactID,dataForShowingE:dataForShowing1,ContactName:ContactName,ContactName:ContactName,username:ContactName,CompanyID:CompanyID,errorMessage:message,backURL:backURL,backURL_mark :1});
                                          app.set('views', path.join(dirpath, 'views'));
                                          return;
