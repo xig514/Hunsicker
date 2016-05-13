@@ -28,7 +28,8 @@
     "pm2":"*",
     "xoauth2": "^1.1.0",
     "process": "*" ,
-    "bootbox": "4.4.0"
+    "bootbox": "4.4.0",
+    "python-shell": "0.4.0"
 	
   }
 }

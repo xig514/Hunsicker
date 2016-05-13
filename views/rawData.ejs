@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>Raw Data</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="/javascripts/chosen/chosen.jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/javascripts/chosen/chosen.min.css">
+        <script src ="/javascripts/bootbox.min.js"/>
+        <script src="/javascripts/jquery.cookie.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+        
+        $(document).ready(function() {
+                                             });
+                          
+       </script>
+        <style>
+            body{
+                min-width:1500px;
+                width:auto;
+                height:auto;
+                
+            }  #header {
+                background-color:black;
+                color:white;
+                text-align:center;
+                padding:5px;
+            }
+        
+        #CompanyID{
+            
+            margin-top:11px
+        }
+        #section {
+		    width:auto;
+		    float:left;
+		    padding:10px;
+            height:auto;
+            min-height: 800px;
+		}
+        
+        #section2{
+            width:600px;
+            float:left;
+            padding:10px;
+            text-align:right;
+        }
+        #nav {
+		    line-height:30px;
+		    background-color:#eeeeee;
+		    height:auto;
+            
+            
+		    width:150px;
+		    float:left;
+		    padding:20px;
+		}
+        
+		#footer {
+		    background-color:black;
+		    color:white;
+		    clear:both;
+		    text-align:center;
+            padding:5px;
+		}
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            
+        }
+        th, td {
+            padding: 5px;
+        }
+        .submit{
+            max-width: 150px;
+            max-height: 100px;
+        }
+        .input1 {
+            text-align: left;
+            width:250px;
+            height:30px;
+        }
+        </style>
+    </head>
+    <body>
+        
+                <div id = "header">
+                <h1><%=title%></h1>
+                </div>
+
+
+                <div  id="nav">
+                    <button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='/inputSelection'}">Back To Home</button>
+                
+                <button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;" onclick="{location.href='/signout'}">signout</button>
+                
+              
+                
+             </div>
+
+
+                <div id="section">
+                    
+                    <p>
+                    <% if(typeof(errorMessage) !== 'undefined') {%>
+                    <span style="color:red"><%= errorMessage %></span>
+                    <% } %>
+                    </p>
+                    
+         <button style = "position:relative ;top:490px; left:0px;" id="EditCompanyInfo"  class="btn btn-info btn-lg" onclick="" ><span class="glyphicon glyphicon-edit"></span> Upload Local Raw Data File</button><br>
+
+
+
+
+         <br>
+         
+                <form id = "form_1"method="post" name="form1"   >
+              
+                    <div id = "section2">
+                     
+                    <p><span id="Raw_Data_Span" >BackPressure:    </span> <span id="Raw_Data_Span" >BackPressure:    </span>
+                             <input class ="input1"  type ="text"  id = "BP1"><input class ="input1"  type ="text"  id = "SCFM1"><br><br>
+                             <input type ="text" class ="input1"  id = "BP2"><input class ="input1"  type ="text"  id = "SCFM2"><br><br>
+                             <input type ="text"  class ="input1"  id = "BP3"><input class ="input1"  type ="text"  id = "SCFM3"><br><br>
+                             <input type ="text"  id = "BP4" class ="input1" ><input class ="input1"  type ="text"  id = "SCFM4"><br><br>
+                             <input class ="input1"  type ="text"  id = "BP5"><input class ="input1"  type ="text"  id = "SCFM5"><br><br>
+                             <input type ="text" class ="input1"  id = "BP6"><input class ="input1"  type ="text"  id = "SCFM6"><br><br>
+                             <input class ="input1"  type ="text"  id = "BP7"><input class ="input1"  type ="text"  id = "SCFM7"><br><br>
+                             <input type ="text" class ="input1"  id = "BP8"><input class ="input1"  type ="text"  id = "SCFM8"><br><br>
+                             <input class ="input1"  type ="text"  id = "BP9"><input class ="input1"  type ="text"  id = "SCFM9"><br><br>
+                             <input type ="text" class ="input1"  id = "BP10"><input class ="input1"  type ="text"  id = "SCFM10"><br><br>
+                             <input class ="input1"  type ="text"  id = "BP11"><input class ="input1"  type ="text"  id = "SCFM11"><br><br>
+                             
+                            
+                             <input type="image" src ="../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitCompany(event)">
+                </div>
+       
+                           
+                </form>
+		
+
+
+                </div>
+             
+    <div id="footer">
+	@ Hunsicker DataBase Choose Existing CompanyID Information
+	</div>
+
+    </body>
+
+    
+    
+
+
+
+</html>
+
+
+
+

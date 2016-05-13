@@ -108,6 +108,7 @@ exports.handle_Input=function (req,res)
 
 exports.show=function (req,res,app,dirPath)
 {
+    
     if(!req.isAuthenticated()) {
          app.set('views', path.join(dirPath, 'views'));
         res.redirect('/login?error=Time_out');
@@ -124,7 +125,9 @@ exports.show=function (req,res,app,dirPath)
             //  console.log(val.username);
             if(username=="adminBob"){
                 
-
+           
+               
+              
     var dataForShowing1=new Array(12);
     var CompanyID = req.params.id;
             poolH.getConnection(function(err,connection){
@@ -179,14 +182,33 @@ exports.show=function (req,res,app,dirPath)
                                             // console.log('CompanyCount = ' + countCompanyID);
                                              //;console.log(CompanyID);
                                              if(req.query.message!=undefined){
-                                             res.render('editCompanyAdmin', {h1:'Edit Company',use:{username:'Administrator'},title:'The result of this Company',CompanyID:CompanyID,CompanyName:CompanyName,dataForShowingE:dataForShowing1,errorMessage:req.query.message});
+                                             if(req.query.backURL!=undefined){
+                                             backURL ='http://localhost:9000/jobConclusion?JobID='+req.query.JobID+'&ContactID='+req.query.ContactID+'&VIN='+req.query.VIN+'&DPFID='+req.query.DPFID+'&message=1&CompanyID='+req.params.id;
+                                             res.render('editCompanyAdmin', {h1:'Edit Company',use:{username:'Administrator'},title:'The result of this Company',CompanyID:CompanyID,CompanyName:CompanyName,dataForShowingE:dataForShowing1,errorMessage:req.query.message,backURL:backURL, backURL_mark:1});
                                              app.set('views', path.join(dirPath, 'views'));
+                                             return;
+                                             }
+                                             else
+                                             {
+                                              res.render('editCompanyAdmin', {h1:'Edit Company',use:{username:'Administrator'},title:'The result of this Company',CompanyID:CompanyID,CompanyName:CompanyName,dataForShowingE:dataForShowing1,errorMessage:req.query.message,backURL_mark:0});
+                                             app.set('views', path.join(dirPath, 'views'));
+                                             return;
+                                             }
 
                                              }
                                              else{
-                                             res.render('editCompanyAdmin', {h1:'Edit Company',use:{username:'Administrator'},title:'The result of this Company',CompanyID:CompanyID,CompanyName:CompanyName,dataForShowingE:dataForShowing1});
+                                             if(req.query.backURL!=undefined){
+                                             //console.log("asdasdsadas    "  +req.query.backURL);
+                                             backURL ='http://localhost:9000/jobConclusion?JobID='+req.query.JobID+'&ContactID='+req.query.ContactID+'&VIN='+req.query.VIN+'&DPFID='+req.query.DPFID+'&message=1&CompanyID='+req.params.id;
+                                             res.render('editCompanyAdmin', {h1:'Edit Company',use:{username:'Administrator'},title:'The result of this Company',CompanyID:CompanyID,CompanyName:CompanyName,dataForShowingE:dataForShowing1,backURL:backURL,backURL_mark:1});
                                              app.set('views', path.join(dirPath, 'views'));
-
+                                             return;
+                                             }
+                                             else{
+                                             res.render('editCompanyAdmin', {h1:'Edit Company',use:{username:'Administrator'},title:'The result of this Company',CompanyID:CompanyID,CompanyName:CompanyName,dataForShowingE:dataForShowing1,backURL_mark:0});
+                                             app.set('views', path.join(dirPath, 'views'));
+                                             return;
+                                             }
                                              }
                                              
                                              

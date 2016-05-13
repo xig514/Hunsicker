@@ -98,6 +98,7 @@ exports.handle_Input=function (request,response)
     var CompanyID= request.params.id;
     var Contactname = request.query.ContactName;
     var CompanyName = request.query.CompanyName;
+     var VehicleOwner = request.body.VehicleOwner;
      var MaxVehicleID = 0;
     title = "Input Vehicle";
     
@@ -157,7 +158,7 @@ exports.handle_Input=function (request,response)
                                                           
                                                           var insert="INSERT INTO Vehicle Set ? ";
                                                           
-                                                          var VehicleInput = {VehicleID: MaxVehicleID, VIN:VIN1,UnitNumber:UnitNumber,VehicleMake:Make,VehicleModel:Model, CompanyID: CompanyID, VehicleYear:Year};
+                                                          var VehicleInput = {VehicleID: MaxVehicleID, VIN:VIN1,UnitNumber:UnitNumber,VehicleMake:Make,VehicleModel:Model, CompanyID: CompanyID, VehicleYear:Year,VehicleOwner:VehicleOwner};
                                                           //console.log(VehicleInput);
                                                           connection.query(insert, VehicleInput ,function(err,rows){
                                                                            connection.release();

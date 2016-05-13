@@ -52,7 +52,7 @@ exports.show=function (req,res,app,dirpath)
                         
                        
                         var VehicleID;
-                        var queryClause2 = "Select  VIN as VIN, VehicleID as vid, UnitNumber as un, VehicleMake as vmake, VehicleModel as vmodel, VehicleYear as vy, CompanyID as ci FROM Vehicle where VIN="+connection.escape(VIN);
+                        var queryClause2 = "Select  VIN as VIN, VehicleID as vid, UnitNumber as un, VehicleMake as vmake, VehicleModel as vmodel,VehicleOwner as vo, VehicleYear as vy, CompanyID as ci FROM Vehicle where VIN="+connection.escape(VIN);
                         
                         connection.query(queryClause2,function(err,rows,fields){
                                          
@@ -75,15 +75,34 @@ exports.show=function (req,res,app,dirpath)
                                          dataForShowing1[4]=rows[0].vmodel;
                                          dataForShowing1[5]=rows[0].vy;
                                          dataForShowing1[6] =rows[0].ci;
+                                         dataForShowing1[7]=rows[0].vo;
                                          //console.log(dataForShowing1);
                                          if(message==""){
-                                         res.render('editVehicleAdmin', {h1:'Edit Vehicle',use:{username:'Administrator'},title:'The result of specific Vehicle',VehicleID:VehicleID,VIN:VIN,ContactID: ContactID,dataForShowingE:dataForShowing1,ContactName:ContactName,ContactName:ContactName,username:ContactName,CompanyID:CompanyID});
+                                         if(req.query.backURL!=undefined){
+                                         backURL ='http://localhost:9000/jobConclusion?JobID='+req.query.JobID+'&ContactID='+req.query.ContactID+'&VIN='+req.params.id+'&DPFID='+req.query.DPFID+'&message=1&CompanyID='+req.query.CompanyID;
+                                         res.render('editVehicleAdmin', {h1:'Edit Vehicle',use:{username:'Administrator'},title:'The result of specific Vehicle',VehicleID:VehicleID,VIN:VIN,ContactID: ContactID,dataForShowingE:dataForShowing1,ContactName:ContactName,ContactName:ContactName,username:ContactName,CompanyID:CompanyID,backURL:backURL, backURL_mark:1});
                                          app.set('views', path.join(dirpath, 'views'));
+                                         return;
+                                         }
+                                         else{
+                                         res.render('editVehicleAdmin', {h1:'Edit Vehicle',use:{username:'Administrator'},title:'The result of specific Vehicle',VehicleID:VehicleID,VIN:VIN,ContactID: ContactID,dataForShowingE:dataForShowing1,ContactName:ContactName,ContactName:ContactName,username:ContactName,CompanyID:CompanyID, backURL_mark:0});
+                                         app.set('views', path.join(dirpath, 'views'));
+                                         return;
+                                         }
                                          
                                          }
                                          else{
-                                         res.render('editVehicleAdmin', {h1:'Edit Vehicle',use:{username:'Administrator'},title:'The result of specific Vehicle',VehicleID:VehicleID,VIN:VIN,ContactID: ContactID,dataForShowingE:dataForShowing1,ContactName:ContactName,ContactName:ContactName,username:ContactName,CompanyID:CompanyID,errorMessage:message});
+                                         if(req.query.backURL!=undefined){
+                                         backURL ='http://localhost:9000/jobConclusion?JobID='+req.query.JobID+'&ContactID='+req.query.ContactID+'&VIN='+req.params.id+'&DPFID='+req.query.DPFID+'&message=1&CompanyID='+req.query.CompanyID;
+                                         res.render('editVehicleAdmin', {h1:'Edit Vehicle',use:{username:'Administrator'},title:'The result of specific Vehicle',VehicleID:VehicleID,VIN:VIN,ContactID: ContactID,dataForShowingE:dataForShowing1,ContactName:ContactName,ContactName:ContactName,username:ContactName,CompanyID:CompanyID,errorMessage:message,backURL:backURL,backURL_mark :1});
                                          app.set('views', path.join(dirpath, 'views'));
+                                         return;
+                                         }
+                                         else{
+                                         res.render('editVehicleAdmin', {h1:'Edit Vehicle',use:{username:'Administrator'},title:'The result of specific Vehicle',VehicleID:VehicleID,VIN:VIN,ContactID: ContactID,dataForShowingE:dataForShowing1,ContactName:ContactName,ContactName:ContactName,username:ContactName,CompanyID:CompanyID,errorMessage:message,backURL_mark:0});
+                                         app.set('views', path.join(dirpath, 'views'));
+                                         return;
+                                         }
                                          }
                                          
                                          }
@@ -165,6 +184,8 @@ exports.handle_Input=function (req,res)
     newValue['VehicleModel']=req.body.Model;
     newValue['VehicleYear']=req.body.Year;
     newValue['CompanyID']=req.body.CompanyID;
+    newValue['VehicleOwner'] = req.body.VehicleOwner;
+                                                    
     console.log(newValue);
     poolH.getConnection(function(err,connection){
                         if (err) {

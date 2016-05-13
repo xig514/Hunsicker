@@ -19,6 +19,21 @@
             
         
       
+      function EditCompany(){
+          location.href='/editCompanyAdmin/<%= CompanyID%>?JobID=<%= JobID%>&back=1&DPFID=<%= DPFID%>&ContactID=<%= ContactID%>&VIN=<%= VIN%>&backURL=1';
+      }
+        function EditVehicle(){
+            location.href='/editVehicleAdmin/<%= VIN%>?ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>&DPFID=<%= DPFID%>&JobID=<%= JobID%>&back=1&backURL=1';
+        }
+        function EditEngine(){
+            location.href='/editEngineAdmin?ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>&VIN=<%= VIN%>&DPFID=<%= DPFID%>&JobID=<%= JobID%>&back=1&backURL=1';
+        }
+        function EditContact(){
+            location.href='/editContactAdmin/<%= ContactID%>?CompanyID=<%= CompanyID%>&CompanyName=<%= dataForShowingE1[0]%>&JobID=<%= JobID%>&back=1&DPFID=<%= DPFID%>&VIN=<%= VIN%>&backURL=1';
+        }
+        function EditDPF(){
+            location.href='/editDPFAdmin?ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>&VIN=<%= VIN%>&DPFID=<%= DPFID%>&JobID=<%= JobID%>&back=1&backURL=1';
+        }
         
         </script>
 
@@ -134,7 +149,7 @@ width:auto;
 
        
                   </table>
- <button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='/editCompanyAdmin/<%= CompanyID%>?JobID=<%= JobID%>&back=1&DPFID=<%= DPFID%>&ContactID<%= ContactID%>&VIN=<%= VIN%>'}">Edit Company</button>
+ <button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="EditCompany()">Edit Company</button>
 <br>
 
  			<table id = "TableAll2" style="width:100%">
@@ -162,7 +177,7 @@ width:auto;
 
        
                   </table>
-<button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='/editContactAdmin/<%= ContactID%>?CompanyID=<%= CompanyID%>&CompanyName=<%= dataForShowingE1[0]%>&JobID=<%= JobID%>&back=1&DPFID=<%= DPFID%>&VIN=<%= VIN%>'}">Edit Contact</button>
+<button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="EditContact()">Edit Contact</button>
 <br>
   <table id = "TableAll3" style="width:100%">
                       <tr>
@@ -191,7 +206,7 @@ width:auto;
 
        
                   </table>
-<button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='/editDPFAdmin?ContactID<%= ContactID%>&CompanyID=<%= CompanyID%>&VIN=<%= VIN%>&DPFID=<%= DPFID%>&JobID=<%= JobID%>&back=1'}">Edit DPF</button>
+<button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="EditDPF()">Edit DPF</button>
 <br>
  <table id = "TableAll" style="width:100%">
                       <tr>
@@ -213,7 +228,7 @@ width:auto;
 
        
                   </table>
-<button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='/editVehicleAdmin/<%= VIN%>?ContactID<%= ContactID%>&CompanyID=<%= CompanyID%>&DPFID=<%= DPFID%>&JobID=<%= JobID%>&back=1'}">Edit Vehicle</button>
+<button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="EditVehicle()">Edit Vehicle</button>
 <br>
 
   <table id = "TableAll" style="width:100%">
@@ -237,7 +252,7 @@ width:auto;
 
        
                   </table>
-<button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='/editEngineAdmin?ContactID<%= ContactID%>&CompanyID=<%= CompanyID%>&VIN=<%= VIN%>&DPFID=<%= DPFID%>&JobID=<%= JobID%>&back=1'}">Edit Engine</button>
+<button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="EditEngine()">Edit Engine</button>
 
 <br>
  <table id = "TableAll" style="width:100%">
@@ -270,8 +285,12 @@ width:auto;
        
                   </table>
 <button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='/editJobAdmin?ContactID<%= ContactID%>&CompanyID=<%= CompanyID%>&VIN=<%= VIN%>&DPFID=<%= DPFID%>&JobID=<%= JobID%>&back=1'}">Edit Job</button>
+<h1>load job</h1>
+
+<h1>Job cart</h1>
 
                   </div>
+
                   
                   
                  

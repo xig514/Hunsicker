@@ -38,7 +38,7 @@ exports.show=function (req,res)
     var CompanyName =req.query.CompanyName;
     console.log('original CompanyName' +CompanyName);
     var selectedContactID=req.query.selectedContactID;
-    
+                console.log("selected Contact ID      "    + selectedContactID);
     var dataForShowing1=new Array();
     poolH.getConnection(function(err,connection){
                         if (err) {
@@ -78,7 +78,7 @@ exports.show=function (req,res)
                                          dataForShowing1[i][3]=rows[i].pn;
                                          dataForShowing1[i][4]=rows[i].ea;
                                          dataForShowing1[i][5]=rows[i].sa;
-					 console.log(row[i].sa);
+                                         
                                          dataForShowing1[i][6]=rows[i].ss;
                                          
                                          dataForShowing1[i][7]=rows[i].sc;

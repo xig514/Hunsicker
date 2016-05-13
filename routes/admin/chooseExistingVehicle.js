@@ -42,6 +42,7 @@ if(CompanyName!=undefined){
     var CompanyName = request.query.CompanyName;
     }
 else {var CompanyName ="";}
+  //     CompanyName="\""+CompanyName+"\"";
     poolH.getConnection(function(err,connection){
                         if (err) {
                         connection.release();
@@ -51,7 +52,7 @@ else {var CompanyName ="";}
                         var countVehicle=0;
                         var VIN;
                         var VehicleID;
-                        var queryClause2 = "Select x.count as countVehicle , VIN as VIN, VehicleID as vid, UnitNumber as un, VehicleMake as vmake, VehicleModel as vmodel, VehicleYear as vy From Vehicle , (select count(*) as count FROM Vehicle Where CompanyID =" + connection.escape(CompanyID) +") as x where Vehicle.CompanyID =" + connection.escape(CompanyID) +" Order by VIN ";
+                        var queryClause2 = "Select x.count as countVehicle , VIN as VIN, VehicleID as vid, VehicleOwner as vo , UnitNumber as un, VehicleMake as vmake, VehicleModel as vmodel, VehicleYear as vy From Vehicle , (select count(*) as count FROM Vehicle Where CompanyID =" + connection.escape(CompanyID) +") as x where Vehicle.CompanyID =" + connection.escape(CompanyID) +" Order by VIN ";
                         // console.log(queryClause2);
                         connection.query(queryClause2,function(err,rows,fields){
                                          
@@ -68,7 +69,7 @@ else {var CompanyName ="";}
                                          {
                                          
                                          
-                                         dataForShowing1[i]=new Array(6);
+                                         dataForShowing1[i]=new Array(7);
                                          VehicleID[i]=rows[i].vid;
                                          VIN[i]=rows[i].VIN;
                                          //console.log("CompanyName " + i +"  =  " + rows[i].cn)
@@ -81,7 +82,7 @@ else {var CompanyName ="";}
                                          dataForShowing1[i][3]=rows[i].vmake;
                                          dataForShowing1[i][4]=rows[i].vmodel;
                                          dataForShowing1[i][5]=rows[i].vy;
-                                         
+                                         dataForShowing1[i][6]= rows[i].vo;
                                          
                                          }
                                          
@@ -94,6 +95,7 @@ else {var CompanyName ="";}
                                          // console.log('CompanyCount = ' + countCompanyID);
                                          //;console.log(CompanyID);
                                          //console.log(VIN1);
+                                         //console.log(dataForShowing1);
                                          response.render('chooseExistingVehicle', {h1:'Select Vehicle',use:{username:'Administrator'},title:'The result of all Vehicle',VehicleCount:countVehicle,VehicleID:VehicleID,VIN:VIN,ContactID: ContactID,dataForShowingE:dataForShowing1,username:ContactName,CompanyName:CompanyName,CompanyID:CompanyID,selectedVIN:VIN1});
                                          }
                                          else{
@@ -166,6 +168,8 @@ exports.handle_Input=function (req,res)
     var CompanyID = req.query.CompanyID;
     //console.log(CompanyID+ " =  CompanyID");
     var CompanyName= req.query.CompanyName;
+    //CompanyName="\""+CompanyName+"\"";
+       //         console.log("CompanyName =     "  +CompanyName);
         poolH.getConnection(function(err,connection){
                             if (err) {
                             connection.release();
@@ -175,7 +179,7 @@ exports.handle_Input=function (req,res)
                             var countVehicle=0;
                             var VIN;
                             var VehicleID;
-                            var queryClause2 = "Select x.count as countVehicle , VIN as VIN, VehicleID as vid, UnitNumber as un, VehicleMake as vmake, VehicleModel as vmodel, VehicleYear as vy From Vehicle , (select count(*) as count FROM Vehicle Where CompanyID =" + connection.escape(CompanyID) +") as x where Vehicle.CompanyID =" + connection.escape(CompanyID) +" Order by VIN ";
+                            var queryClause2 = "Select x.count as countVehicle , VIN as VIN, VehicleID as vid, VehicleOwner as vo, UnitNumber as un, VehicleMake as vmake, VehicleModel as vmodel, VehicleYear as vy From Vehicle , (select count(*) as count FROM Vehicle Where CompanyID =" + connection.escape(CompanyID) +") as x where Vehicle.CompanyID =" + connection.escape(CompanyID) +" Order by VIN ";
                            // console.log(queryClause2);
                             connection.query(queryClause2,function(err,rows,fields){
                                              
@@ -192,7 +196,7 @@ exports.handle_Input=function (req,res)
                                              {
                                              
                                              
-                                             dataForShowing1[i]=new Array(6);
+                                             dataForShowing1[i]=new Array(7);
                                              VehicleID[i]=rows[i].vid;
                                              VIN[i]=rows[i].VIN;
                                              //console.log("CompanyName " + i +"  =  " + rows[i].cn)
@@ -205,8 +209,7 @@ exports.handle_Input=function (req,res)
                                              dataForShowing1[i][3]=rows[i].vmake;
                                              dataForShowing1[i][4]=rows[i].vmodel;
                                              dataForShowing1[i][5]=rows[i].vy;
-
-                                             
+                                             dataForShowing1[i][6]=rows[i].vo;
                                              }
                                              
                                              else{console.log("no Vehicle records");
@@ -218,6 +221,7 @@ exports.handle_Input=function (req,res)
                                              }
                                             // console.log('CompanyCount = ' + countCompanyID);
                                              //;console.log(CompanyID);
+                                             //console.log(dataForShowing1);
                                              res.render('chooseExistingVehicle', {h1:'Select Vehicle',use:{username:'Administrator'},title:'The result of all Vehicle',VehicleCount:countVehicle,VehicleID:VehicleID,VIN:VIN,ContactID: ContactID,dataForShowingE:dataForShowing1,CompanyName:CompanyName,ContactName:ContactName,username:ContactName,CompanyID:CompanyID});
                                              }
                                              else{

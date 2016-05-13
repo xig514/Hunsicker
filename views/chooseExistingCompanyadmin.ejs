@@ -48,8 +48,8 @@
                               
                               $("#CompanyID").val(CompanyNumber);
                               var str = $(Address).html();
-			var res = str.replace("&amp;", "&"); 
-			$("#Address").val(res);
+			                  var res = str.replace("&amp;", "&");
+                              $("#Address").val(res);
                               $("#City").val($(City).html());
                               $("#State").val($(State).html());
                               $("#Zip").val($(Zip).html());
@@ -57,7 +57,7 @@
                               $("#BillingContactLastName").val($(LastName).html());
                               $("#BillingContactEmail").val($(Email).html());
                               $("#BillingContactPhone").val($(Phone).html());
-                              $("#form_1").attr("action", "/chooseExistingContactBasedOnCompanyID/" + $("#CompanyID option:selected").text()+"/?CompanyName=\""+$("#CompanyName option:selected").text()+"\"");
+                              $("#form_1").attr("action", "/chooseExistingContactBasedOnCompanyID/" + $("#CompanyID option:selected").text()+"/?CompanyName="+$("#CompanyName option:selected").text());
                               console.log($("#form_1").attr("action"));
                               }
                               else{
@@ -109,7 +109,7 @@ $("#Address").val(res);
              $("#BillingContactLastName").val($(LastName).html());
              $("#BillingContactEmail").val($(Email).html());
              $("#BillingContactPhone").val($(Phone).html());
-             $("#form_1").attr("action", "/chooseExistingContactBasedOnCompanyID/" + $("#CompanyID option:selected").text()+"?CompanyName=\""+$("#CompanyName option:selected").text()+"\"");
+             $("#form_1").attr("action", "/chooseExistingContactBasedOnCompanyID/" + $("#CompanyID option:selected").text()+"?CompanyName="+$("#CompanyName option:selected").text());
  $("#CompanyName").trigger("chosen:updated");
                  console.log($("#form_1").attr("action"));}
              else{
@@ -136,8 +136,8 @@ $("#Address").val(res);
             var value = arry.shift();
             arry.push(value);
             $("#ContactInfo").toggle();
-                        document.getElementById("hide1").innerHTML = value;
-            
+            document.getElementById("hide1").innerHTML = value;
+           
             
         }
         
@@ -146,8 +146,16 @@ $("#Address").val(res);
             arry2.push(value);
             document.getElementById("showall1").innerHTML = value;
             $("#TableAll").toggle();
-            $("#nav").height($("#section").outerHeight());
-
+            if(value=='Show All'){
+                var newHeight =$("#section").height()-$("#TableAll").height();
+                $("#section").height(newHeight);
+                $("#nav").height($("#section").height());
+            }
+            else{
+            var newHeight =$("#TableAll").height()+$("#section").height();
+            $("#section").height(newHeight);
+            $("#nav").height($("#section").height());
+            }
         }
         function EditCompany(event){
             CompanyID =$("#CompanyID").val();
@@ -225,6 +233,8 @@ $("#Address").val(res);
 body{
 min-width:1500px;
 width:auto;
+height:auto;
+
 }  #header {
     background-color:black;
     color:white;
@@ -240,8 +250,8 @@ width:auto;
 		    width:auto;
 		    float:left;
 		    padding:10px;
-            
-            height: 1200px;
+            height:auto;
+            min-height: 800px;
 		}
      
         #section2{
@@ -317,10 +327,17 @@ width:auto;
         #remove_company{
             position:relative;
             top:390px; left:600px;
-        }#add_company{
+        
+        }
+        #add_company{
           position:relative;
           top:410px; left:600px;
         
+        }
+        #table1{
+            position:relative;
+            top:200px;
+            
         }
 </style>
 
@@ -358,9 +375,9 @@ width:auto;
                     <% } %>
                     </p>
          
-         <button style = "position:relative ;top:390px; left:600px;" id="EditCompanyInfo"  class="btn btn-info btn-lg" onclick="EditCompany(event);" ><span class="glyphicon glyphicon-edit"></span> Edit Company Info</button>
-         <button  id="remove_company"  class="btn btn-info btn-lg" onclick="deleteCompany(event);" ><span class="glyphicon glyphicon-remove"></span> Remove Company Info</button>
-           <br> <button  id="add_company"  class="btn btn-info btn-lg" onclick="addCompany(event);" ><span class="glyphicon glyphicon-plus"></span> Add New Company</button>
+         <button style = "position:relative ;top:490px; left:0px;" id="EditCompanyInfo"  class="btn btn-info btn-lg" onclick="EditCompany(event);" ><span class="glyphicon glyphicon-edit"></span> Edit Company Info</button><br>
+         <button style = "position:relative ; top:510px; left:0px;"  id="remove_company"  class="btn btn-info btn-lg" onclick="deleteCompany(event);" ><span class="glyphicon glyphicon-remove"></span> Remove Company Info</button><br>
+           <br> <button  style = "position:relative ; top:500px; left:0px;" id="add_company"  class="btn btn-info btn-lg" onclick="addCompany(event);" ><span class="glyphicon glyphicon-plus"></span> Add New Company</button><br>
 
          <br>
                 <form id = "form_1"method="post" name="form1"   >
@@ -417,7 +434,7 @@ width:auto;
 
 
                   <!-- <button id = "hide1" onclick = "hideContactInfo()" >Hide</button><br>-->
-                  <div id = "table1">
+                  <div id = "table1"  >
                   <table id = "TableAll" style="width:100%">
                       <tr>
                           <th>CompanyID</th>

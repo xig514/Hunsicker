@@ -194,12 +194,33 @@ exports.show=function (req,res,app,dirPath)
                                          dataForShowing1[11]=CompanyName;
                                          //console.log(CompanyName);
                                          if(req.query.message!=undefined){
-                                         res.render('editContactAdmin', {h1:'Select Contact',use:{username:'Administrator'},title:'The result of specific Contact you want to edit',CompanyName:CompanyName, CompanyID: CompanyID,ContactID:ContactID,ContactName:ContactName,dataForShowingE:dataForShowing1,errorMessage:req.query.message});
+                                         if(req.query.backURL!=undefined){
+                                         backURL ='http://localhost:9000/jobConclusion?JobID='+req.query.JobID+'&ContactID='+req.params.id+'&VIN='+req.query.VIN+'&DPFID='+req.query.DPFID+'&message=1&CompanyID='+req.query.CompanyID;
+                                         res.render('editContactAdmin', {h1:'Select Contact',use:{username:'Administrator'},title:'The result of specific Contact you want to edit',CompanyName:CompanyName, CompanyID: CompanyID,ContactID:ContactID,ContactName:ContactName,dataForShowingE:dataForShowing1,errorMessage:req.query.message,backURL:backURL,backURL_mark:1});
                                           app.set('views', path.join(dirPath, 'views'));
+                                         return;
                                          }
                                          else{
-                                         res.render('editContactAdmin', {h1:'Select Contact',use:{username:'Administrator'},title:'The result of specific Contact you want to edit',CompanyName:CompanyName, CompanyID: CompanyID,ContactID:ContactID,ContactName:ContactName,dataForShowingE:dataForShowing1});
+                                         
+                                         res.render('editContactAdmin', {h1:'Select Contact',use:{username:'Administrator'},title:'The result of specific Contact you want to edit',CompanyName:CompanyName, CompanyID: CompanyID,ContactID:ContactID,ContactName:ContactName,dataForShowingE:dataForShowing1,errorMessage:req.query.message,backURL_mark:0});
                                          app.set('views', path.join(dirPath, 'views'));
+                                         return;
+                                         
+                                         }
+                                         }
+                                         else{
+                                         if(req.query.backURL!=undefined){
+                                          backURL ='http://localhost:9000/jobConclusion?JobID='+req.query.JobID+'&ContactID='+req.params.id+'&VIN='+req.query.VIN+'&DPFID='+req.query.DPFID+'&message=1&CompanyID='+req.query.CompanyID;
+                                         res.render('editContactAdmin', {h1:'Select Contact',use:{username:'Administrator'},title:'The result of specific Contact you want to edit',CompanyName:CompanyName, CompanyID: CompanyID,ContactID:ContactID,ContactName:ContactName,dataForShowingE:dataForShowing1,backURL:backURL, backURL_mark:1});
+                                         app.set('views', path.join(dirPath, 'views'));
+                                         return;
+                                         }
+                                         else
+                                         {
+                                         res.render('editContactAdmin', {h1:'Select Contact',use:{username:'Administrator'},title:'The result of specific Contact you want to edit',CompanyName:CompanyName, CompanyID: CompanyID,ContactID:ContactID,ContactName:ContactName,dataForShowingE:dataForShowing1,backURL_mark:0});
+                                         app.set('views', path.join(dirPath, 'views'));
+                                         return;
+                                         }
                                          }
                                          }
                                          

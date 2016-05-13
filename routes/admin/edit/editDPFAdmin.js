@@ -78,12 +78,33 @@ exports.show=function (req,res,app,dirpath)
                                           dataForShowing1[12]=rows[0].ci;
                                          
                                          if(req.query.message==undefined){
-                                         res.render('editDPFAdmin', {h1:'Edit DPF',use:{username:'Administrator'},title:'Edit DPF',DPFID:DPFID,VIN:VIN,ContactID: ContactID,dataForShowingE:dataForShowing1,CompanyID:CompanyID});
+                                         if(req.query.backURL!=undefined){
+                                         backURL ='http://localhost:9000/jobConclusion?JobID='+req.query.JobID+'&ContactID='+req.query.ContactID+'&VIN='+req.query.VIN+'&DPFID='+req.query.DPFID+'&message=1&CompanyID='+req.query.CompanyID;
+                                         res.render('editDPFAdmin', {h1:'Edit DPF',use:{username:'Administrator'},title:'Edit DPF',DPFID:DPFID,VIN:VIN,ContactID: ContactID,dataForShowingE:dataForShowing1,CompanyID:CompanyID,backURL:backURL, backURL_mark:1});
                                          app.set('views', path.join(dirpath, 'views'));
+                                         return;
+                                         }
+                                         else
+                                         {
+                                         res.render('editDPFAdmin', {h1:'Edit DPF',use:{username:'Administrator'},title:'Edit DPF',DPFID:DPFID,VIN:VIN,ContactID: ContactID,dataForShowingE:dataForShowing1,CompanyID:CompanyID,backURL_mark:0});
+                                         app.set('views', path.join(dirpath, 'views'));
+
+                                         return;
+                                         }
                                          }else
                                          {
-                                         res.render('editDPFAdmin', {h1:'Edit DPF',use:{username:'Administrator'},title:'Edit DPF',DPFID:DPFID,VIN:VIN,ContactID: ContactID,dataForShowingE:dataForShowing1,CompanyID:CompanyID,errorMessage:req.query.message});
+                                         if(req.query.backURL!= undefined){
+                                         
+                                         backURL ='http://localhost:9000/jobConclusion?JobID='+req.query.JobID+'&ContactID='+req.query.ContactID+'&VIN='+req.query.VIN+'&DPFID='+req.query.DPFID+'&message=1&CompanyID='+req.query.CompanyID;
+                                         res.render('editDPFAdmin', {h1:'Edit DPF',use:{username:'Administrator'},title:'Edit DPF',DPFID:DPFID,VIN:VIN,ContactID: ContactID,dataForShowingE:dataForShowing1,CompanyID:CompanyID,errorMessage:req.query.message,backURL:backURL,backURL_mark:1});
                                          app.set('views', path.join(dirpath, 'views'));
+                                         return;
+                                         }
+                                         else{
+                                         res.render('editDPFAdmin', {h1:'Edit DPF',use:{username:'Administrator'},title:'Edit DPF',DPFID:DPFID,VIN:VIN,ContactID: ContactID,dataForShowingE:dataForShowing1,CompanyID:CompanyID,errorMessage:req.query.message,backURL_mark:0});
+                                         app.set('views', path.join(dirpath, 'views'));
+                                         return;
+                                         }
                                          }
 
                                          

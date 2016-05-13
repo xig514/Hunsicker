@@ -118,6 +118,19 @@ $("#State").val($(SiteState).html());
             location.href=link1;
             
         }
+        function BackToJobConclusion(){
+            var aaa =$("#back_URL").html();
+            var elem = document.createElement('textarea');
+            elem.innerHTML = aaa;
+            var decoded = elem.value;
+            //bbb  = aaa.replace("/amp;", "&");
+            
+            //alert(decoded);
+            location.href = decoded;
+            
+        }
+        
+        
         
         </script>
 
@@ -250,7 +263,14 @@ width:auto;
                 <div id ="nav">
                 <button onclick="{location.href='/inputSelection'}">Back To Home</button>
                 <button onclick="{location.href='/signout'}">signout</button><br>
-                <button onclick="back();">Back</button>
+                <% if(backURL_mark== 1) {%>
+                <textarea style="color:red"  id ="back_URL" hidden><%= backURL %></textarea>
+                
+                <button class="btn btn-primary"  style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="BackToJobConclusion()">BackToLast</button>
+                <% }else{  %>
+                <button class="btn btn-primary"  style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="back()">BackToLast</button>
+                <%}%>
+                
             	</div>
 
 
@@ -276,6 +296,7 @@ width:auto;
                     <span style="color:green; display:none" id="CompanyID_temp" value=""><%= CompanyID %></span>
                     <% } %>
                     </p>
+                    
                     <br><br><br>
                 
                 <form id = "form_1" method="post" name="form1"   >

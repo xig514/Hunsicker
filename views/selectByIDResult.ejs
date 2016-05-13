@@ -284,6 +284,11 @@ function submitVehicle(){
                                
 
                     }
+function AnalyseData(){
+    
+    location.href="/python?JobID="+$("#JobID").val();
+    
+}
     </script>
 
         <style>
@@ -432,7 +437,7 @@ width:auto;
 
 
                 <div  id="nav">
-            <button onclick="{location.href='/inputSelection'}">back</button>
+             <button onclick="{location.href='/inputSelection'}">back</button>
              <button onclick="{location.href='/signout'}">signout</button>
 
              </div>
@@ -476,8 +481,10 @@ width:auto;
                     <p> <label for="OldJobID">OldJobID: </label><br> <input type ="text" name = "OldJobID" readonly = "readonly"  id="OJID" value ="<%=OldJobID%>"class="Main_table_input"></p>
                         
                     <p> <label for="JobLocation">JobLocation: </label> <br><input type ="text" name = "JobLocation" readonly = "readonly" value ="<%=JobLocation%>" id="JL"class="Main_table_input"></p>
-                                         <input type = "submit" value = "SelectByID">
+                        <button  onclick= onclick="{location.href='/SelectByID'}">Back To Last</button>
+                            
                 </form>
+            <button   onclick="AnalyseData()">Analyse Data</button><br>
             <button tyoe="button" id="button3">Edit Job table</button>
 
                               
@@ -555,9 +562,9 @@ width:auto;
                         
                         <br><br>
                         
-                                            <button  type="button" onclick = "submitDPF()"id = "button_DPF">Edit DPF</button>
+                           <button  type="button" onclick = "submitDPF()"id = "button_DPF">Edit DPF</button>
                            <br>
-                        
+                        
                         </p>
                         
                 </div>
@@ -628,6 +635,7 @@ width:auto;
                             
 
                     <button  type="button" onclick = "submitVehicle()"id = "button_Vehicle">Edit Vehicle</button>
+                    
                     <span id = "lblResponse1"> </span>
                     </p>
                     

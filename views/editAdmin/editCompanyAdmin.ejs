@@ -29,14 +29,14 @@
                           var Email ="#"+(20*CompanyNumber+8).toString();
                           var Phone = "#"+(9).toString();
                           var CompanyStatusID="#"+(10).toString();
-                          console.log("CompanyName   " +CompanyName );
+                          //console.log("CompanyName   " +CompanyName );
                           $("#CompanyName").val($(CompanyName).html());
                         
                           //console.log($(Address).html());
                           $("#Address").val($(Address).html());
 var str = $(Address).html();
 var res = str.replace("&amp;", "&"); 
-$("#Address").val(res);
+                          $("#Address").val(res);
                           $("#City").val($(City).html());
                           $("#State").val($(State).html());
                           $("#Zip").val($(Zip).html());
@@ -59,7 +59,17 @@ $("#Address").val(res);
                           
                           });
                           
-            
+    function BackToJobConclusion(){
+                              var aaa =$("#back_URL").html();
+                              var elem = document.createElement('textarea');
+                              elem.innerHTML = aaa;
+                              var decoded = elem.value;
+                              //bbb  = aaa.replace("/amp;", "&");
+                              
+                              //alert(decoded);
+                              location.href = decoded;
+
+                          }
         
       
         
@@ -168,8 +178,13 @@ width:auto;
                     <button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='/inputSelection'}">Back To Home</button>
                 
                 <button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;" onclick="{location.href='/signout'}">signout</button>
-                
+                <% if(backURL_mark== 1) {%>
+                <textarea style="color:red"  id ="back_URL" hidden><%= backURL %></textarea>
+        
+                 <button class="btn btn-primary"  style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="BackToJobConclusion()">BackToLast</button>
+                 <% }else{  %>
                 <button class="btn btn-primary"  style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='/chooseExistingCompany?selectedCompanyID=<%= CompanyID%>'}">BackToLast</button>
+                <%}%>
                 
              </div>
 
@@ -177,7 +192,7 @@ width:auto;
                 <div id="section">
                     
                     <p>
-                    <% if(typeof(errorMessage) !== 'undefined') {%>
+                    <% if(typeof(errorMessage) != 'undefined') {%>
                     <span style="color:red"><%= errorMessage %></span>
                     <% } %>
                     </p>

@@ -26,6 +26,7 @@
                               var Model = "#"+(20*VehicleNumber+4).toString();
                               var Year = "#"+(20*VehicleNumber+5).toString();
                               var CompanyID = "#" +(6).toString();
+                              var VehicleOwner = "#"+(7).toString();
                               //console.log($(CompanyID).html());
                               
                              
@@ -34,6 +35,8 @@
                               $("#Model").val($(Model).html());
                               $("#Year").val($(Year).html());
                               $("#CompanyID").val($(CompanyID).html());
+                              $("#VehicleOwner").val($(VehicleOwner).html());
+                          
                               $("#form_1").attr("action", "/editVehicleAdmin/"+ $("#VIN_temp").html() +"?ContactID="+ $("#ContactID").html()+"&CompanyID=" +$("#CompanyID").html()+"&ContactName=")+$("#ContactName").html();
                           
                           }
@@ -58,7 +61,7 @@
             arry2.push(value);
             document.getElementById("showall1").innerHTML = value;
             $("#TableAll").toggle();
-                $("#nav").height($("#section").outerHeight());
+            $("#nav").height($("#section").outerHeight());
 
         }
 
@@ -81,7 +84,18 @@
             var link1= '/chooseExistingVehicle/'+$("#VIN_temp").html()+"?CompanyID="+$("#CompanyID_temp").html()+"&ContactID="+$("#ContactID").html()+"&ContactName="+$("#ContactName_temp").html();
             location.href=link1;
         }
-
+  
+  function BackToJobConclusion(){
+      var aaa =$("#back_URL").html();
+      var elem = document.createElement('textarea');
+      elem.innerHTML = aaa;
+      var decoded = elem.value;
+      //bbb  = aaa.replace("/amp;", "&");
+      
+      alert(decoded);
+      location.href = decoded;
+      
+  }
 
 	function VIN_Change(){
 if(document.getElementById("VIN").checkValidity()==true){
@@ -204,7 +218,14 @@ width:auto;
                 <div  id="nav">
                 <button onclick="{location.href='/inputSelection'}">Back To Home</button>
                 <button onclick="{location.href='/signout'}">signout</button><br>
-                <button onclick = "back()">Back</button>
+                <% if(backURL_mark== 1) {%>
+                <textarea style="color:red"  id ="back_URL" hidden><%= backURL %></textarea>
+                
+                <button class="btn btn-primary"  style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="BackToJobConclusion()">BackToLast</button>
+                <% }else{  %>
+                <button class="btn btn-primary"  style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="back()">BackToLast</button>
+                <%}%>
+
              </div>
 
 
@@ -239,7 +260,7 @@ width:auto;
                     <span style="color:green ;display:none" id = "VIN_temp"><%= VIN %></span>
                     <% } %>
                     </p>
-                    
+  
                     
 <!--
                 <div id = "section1">
@@ -279,6 +300,8 @@ width:auto;
                             </select><br><br>
                             <label class="label1" >Company ID: </label><input type ="text" class = "input1" id = "CompanyID" name= "CompanyID"/>
                             <br><br><br>
+                            <label class="label1" >Vehicle Owner: </label><input type ="text" class = "input1" id = "VehicleOwner" name= "VehicleOwner"/>
+                            <br><br><br>
                         <input type="image" src ="../../public/images/edit.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitVehicle()">
                           </div>
                     
@@ -298,10 +321,11 @@ width:auto;
                           <th>Make</th>
                           <th>Model</th>
                           <th>Year</th>
-                            <th>CompanyID</th>
+                          <th>CompanyID</th>
+                          <th>VehicleOwner</th>
                         </tr>
                      
-                          <% for (var j =0; j<7; j++) { %>
+                          <% for (var j =0; j<8; j++) { %>
                           <% var id = j.toString();%>
                           <td style="width:100px"  id = "<%= id %>"><%= dataForShowingE[j] %></td>
                           <% } %>

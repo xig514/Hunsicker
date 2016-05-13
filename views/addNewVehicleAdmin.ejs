@@ -8,11 +8,14 @@
        <script src="/javascripts/jquery.cookie.js"></script>
        <script src="/javascripts/jquery.autotab.js"></script>
        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+       <link href="/stylesheets//bootstrap-switch.min.css" rel="stylesheet">
+           
+        <script src="/javascripts/bootstrap-switch.js"></script>
        
 <script type="text/javascript">
 $(document).ready(function() {
-                  
-       		 var a =confirm("loadCookie?");
+             $("[name='my-checkbox']").bootstrapSwitch();
+       		 var a =confirm("Load last Vehicle information?");
                           if(a==true){
                   $("#cp01").val($.cookie("VIN"));
                   $("#cp02").val($.cookie("UnitNumber"));
@@ -22,6 +25,7 @@ $(document).ready(function() {
                   $("#cp04").val($.cookie("Model"));
                   
                   $("#Year").val($.cookie("Year"));
+                  $("#cp05").val($.cookie("VehicleOwner"));
                   }
               	
 
@@ -31,9 +35,14 @@ $(document).ready(function() {
 
                   
 });
-
+var validate = 0;
 
 function VIN_Change(){
+    var  validate1=1;
+    var validate2 =1;
+    var mark1=0;
+    var mark2=0;
+    var mark3=0;
 if(document.getElementById("cp01").checkValidity()==true){
 $("#VIN_Check").css("color",'green');
 $("#VIN_Check").html('&#10004;');
@@ -44,6 +53,7 @@ else{
 $("#VIN_Check").css("color",'red');
 $("#VIN_Check").html('&#10008;');
 $("#cp01").css('border-color','red');
+validate1=0;
 }
 
 if($("#cp01").val()==$("#cp01_1").val()&& document.getElementById("cp01_1").checkValidity()==true){
@@ -51,29 +61,125 @@ if($("#cp01").val()==$("#cp01_1").val()&& document.getElementById("cp01_1").chec
 $("#VIN_Check2").css("color",'green');
 $("#VIN_Check2").html('&#10004;');
 $("#cp01_1").css('border-color','green');
+
+
 }
 else if($("#cp01").val()==$("#cp01_1").val() && document.getElementById("cp01_1").checkValidity()!=true){
 
 $("#VIN_Check2").css("color",'red');
 $("#VIN_Check2").html('&#10008;');
 $("#cp01_1").css('border-color','red');
-
+validate2=0;
 }
 else if($("#cp01").val()!=$("#cp01_1").val()&&document.getElementById("cp01_1").checkValidity()==true){
 
 $("#VIN_Check2").css("color",'red');
 $("#VIN_Check2").html('Please input the same VIN to confirm!');
 $("#cp01_1").css('border-color','red');
+validate2=0;
+
 }
 else if($("#cp01").val()!=$("#cp01_1").val() && document.getElementById("cp01_1").checkValidity()!=true){
 $("#VIN_Check2").css("color",'red');
 $("#VIN_Check2").html('&#10008; + Please input the same VIN to confirm!');
 $("#cp01_1").css('border-color','red');
+validate2=0;
 
 }
+var original = $("#VIN_Check").html();
+if($("#cp01").val().includes("i") || $("#cp01").val().includes("I") ){
+    
+    var b = original+ " i or I should not be included in VIN";
+    $("#VIN_Check").html(b);
+    validate1=0;
+    mark1=1;
 }
 
+if($("#cp01").val().includes("o") || $("#cp01").val().includes("O") ){
+
+    if(mark1==0)
+    var b = original+ "  o or O should not be included in VIN";
+    else
+    var b = original+ " o, i or O, I should not be included in VIN";
+    $("#VIN_Check").html(b );
+    validate1=0;
+    mark2=1;
+}
+
+if($("#cp01").val().includes("q") || $("#cp01").val().includes("Q") ){
+    
+    
+    validate1=0;
+    var b ="";
+    if(mark1==1 && mark2==1){
+     b=original+" o, i, q or O, I, Q should not be included in VIN";
+    }else if(mark2 !=1 && mark1==1){
+     b=original+"  i, q or  I, Q should not be included in VIN";
+    }else if(mark2==1 && mark1 !=1){
+        b=original+" o, q or O, Q should not be included in VIN";
+    }else{
+       b=original+" q or Q should not be included in VIN";
+    }
+       $("#VIN_Check").html(b);
+}
+mark1=0;
+mark2=0;
+mark3=0;
+var original = $("#VIN_Check2").html();
+if($("#cp01_1").val().includes("i") || $("#cp01_1").val().includes("I") ){
+    
+    var b = original+ " i or I should not be included in VIN";
+    $("#VIN_Check2").html(b);
+    validate1=0;
+    mark1=1;
+}
+
+if($("#cp01_1").val().includes("o") || $("#cp01_1").val().includes("O") ){
+    
+    if(mark1==0)
+        var b = original+ "  o or O should not be included in VIN";
+        else
+        var b = original+ " o, i or O, I should not be included in VIN";
+        $("#VIN_Check2").html(b );
+        validate1=0;
+        mark2=1;
+    }
+    
+    if($("#cp01_1").val().includes("q") || $("#cp01_1").val().includes("Q") ){
+        
+        
+        validate1=0;
+        var b ="";
+        if(mark1==1 && mark2==1){
+            b=original+" o, i, q or O, I, Q should not be included in VIN";
+        }else if(mark2 !=1 && mark1==1){
+            b=original+"  i, q or  I, Q should not be included in VIN";
+        }else if(mark2==1 && mark1 !=1){
+            b=original+" o, q or O, Q should not be included in VIN";
+        }else{
+            b=original+" q or Q should not be included in VIN";
+        }
+        $("#VIN_Check2").html(b);
+    }
+    
+    
+    
+
+
+
+
+
+if(validate1==1&& validate2==1){
+    validate=1;
+}
+}
+//===============================================================================
 function VIN_Change2(){
+    var validate1=1;
+    var validate2=1;
+    var mark1=0;
+    var mark2=0;
+    var mark3=0;
 if($("#cp01").val()==$("#cp01_1").val()&& document.getElementById("cp01_1").checkValidity()==true){
 
 $("#VIN_Check2").css("color",'green');
@@ -85,6 +191,7 @@ else if($("#cp01").val()==$("#cp01_1").val() && document.getElementById("cp01_1"
 $("#VIN_Check2").css("color",'red');
 $("#VIN_Check2").html('&#10008;');
 $("#cp01_1").css('border-color','red');
+validate2=0;
 
 }
 else if($("#cp01").val()!=$("#cp01_1").val()&&document.getElementById("cp01_1").checkValidity()==true){
@@ -92,11 +199,13 @@ else if($("#cp01").val()!=$("#cp01_1").val()&&document.getElementById("cp01_1").
 $("#VIN_Check2").css("color",'red');
 $("#VIN_Check2").html('Please input the same VIN to confirm!');
 $("#cp01_1").css('border-color','red');
+validate2=0;
 }
 else if($("#cp01").val()!=$("#cp01_1").val() && document.getElementById("cp01_1").checkValidity()!=true){
 $("#VIN_Check2").css("color",'red');
 $("#VIN_Check2").html('&#10008; + Please input the same VIN to confirm!');
 $("#cp01_1").css('border-color','red');
+validate2=0;
 
 }
 if(document.getElementById("cp01").checkValidity()==true){
@@ -109,7 +218,92 @@ else{
 $("#VIN_Check").css("color",'red');
 $("#VIN_Check").html('&#10008;');
 $("#cp01").css('border-color','red');
+validate1=0;
 }
+
+var original = $("#VIN_Check").html();
+if($("#cp01").val().includes("i") || $("#cp01").val().includes("I") ){
+    
+    var b = original+ " i or I should not be included in VIN";
+    $("#VIN_Check").html(b);
+    validate1=0;
+    mark1=1;
+}
+
+if($("#cp01").val().includes("o") || $("#cp01").val().includes("O") ){
+    
+    if(mark1==0)
+        var b = original+ "  o or O should not be included in VIN";
+        else
+        var b = original+ " o, i or O, I should not be included in VIN";
+        $("#VIN_Check").html(b );
+        validate1=0;
+        mark2=1;
+    }
+    
+    if($("#cp01").val().includes("q") || $("#cp01").val().includes("Q") ){
+        
+        
+        validate1=0;
+        var b ="";
+        if(mark1==1 && mark2==1){
+            b=original+" o, i, q or O, I, Q should not be included in VIN";
+        }else if(mark2 !=1 && mark1==1){
+            b=original+"  i, q or  I, Q should not be included in VIN";
+        }else if(mark2==1 && mark1 !=1){
+            b=original+" o, q or O, Q should not be included in VIN";
+        }else{
+            b=original+" q or Q should not be included in VIN";
+        }
+        $("#VIN_Check").html(b);
+    }
+    mark1=0;
+    mark2=0;
+    mark3=0;
+    var original = $("#VIN_Check2").html();
+    if($("#cp01_1").val().includes("i") || $("#cp01_1").val().includes("I") ){
+        
+        var b = original+ " i or I should not be included in VIN";
+        $("#VIN_Check2").html(b);
+        validate1=0;
+        mark1=1;
+    }
+    
+    if($("#cp01_1").val().includes("o") || $("#cp01_1").val().includes("O") ){
+        
+        if(mark1==0)
+            var b = original+ "  o or O should not be included in VIN";
+            else
+            var b = original+ " o, i or O, I should not be included in VIN";
+            $("#VIN_Check2").html(b );
+            validate1=0;
+            mark2=1;
+        }
+        
+        if($("#cp01_1").val().includes("q") || $("#cp01_1").val().includes("Q") ){
+            
+            
+            validate1=0;
+            var b ="";
+            if(mark1==1 && mark2==1){
+                b=original+" o, i, q or O, I, Q should not be included in VIN";
+            }else if(mark2 !=1 && mark1==1){
+                b=original+"  i, q or  I, Q should not be included in VIN";
+            }else if(mark2==1 && mark1 !=1){
+                b=original+" o, q or O, Q should not be included in VIN";
+            }else{
+                b=original+" q or Q should not be included in VIN";
+            }
+            $("#VIN_Check2").html(b);
+        }
+
+
+
+
+if(validate1==1&& validate2==1){
+    validate=1;
+}
+
 
 }
 function storeValues()
@@ -120,7 +314,7 @@ function storeValues()
     $.cookie("Make",$("#cp03").val(),{expires:2});
     $.cookie("Model",$("#cp04").val(),{expires:2});
     $.cookie("Year",$("#Year").val(),{expires:2});
-
+    $.cookie("VehicleOwner",$("#cp05").val(),{expires:2});
 
     return true;
 }
@@ -131,9 +325,43 @@ function submitVehicle(event){
         event.preventDefault();
         return;
     }
-    storeValues();
-}
+    if(validate == 0 ){
+        bootbox.alert("The format of VIN is not correct!", function() {
+                      
+                     
+                      });
 
+        event.preventDefault();
+        return;
+    }else{
+        
+    
+    storeValues();
+    }
+}
+function switch_to_Construction1(){
+    if($("#switch_to_Construction").prop('checked')==true){
+        $("#cp01").attr('pattern',"[A-HJ-NPR-Za-hj-npr-z0-9]{11}");
+        $("#cp01").attr('maxlength',11);
+        $("#cp01_1").attr('pattern',"[A-HJ-NPR-Za-hj-npr-z0-9]{11}");
+        $("#cp01_1").attr('maxlength',11);
+        $("#label_VIN").html("Special VIN");
+        if($("#cp01").val()!=""){
+        VIN_Change();
+        }
+    }
+    else{
+        $("#cp01").attr('pattern',"[A-HJ-NPR-Za-hj-npr-z0-9]{17}");
+        $("#cp01").attr('maxlength',17);
+        $("#cp01_1").attr('pattern',"[A-HJ-NPR-Za-hj-npr-z0-9]{17}");
+        $("#cp01_1").attr('maxlength',17);
+        $("#label_VIN").html("VIN");
+        if($("#cp01").val()!=""){
+            VIN_Change();
+        }
+    }
+    
+}
  
 </script>
 
@@ -144,7 +372,7 @@ function submitVehicle(event){
 
 
 body{
-min-width:600px;
+min-width:1500px;
 width:auto;
 }
        #header {
@@ -158,13 +386,13 @@ width:auto;
 		    width:auto;
 		    float:left;
 		    padding:10px;
-		    text-align:right;	 
+		    text-align:right;
 			height: 1200px;	 
 		}
     #section1 {
 		    width:auto;
 		    float:left;
-            	    position:relative;
+            position:relative;
 			
 		    padding:10px;
 		}
@@ -198,7 +426,7 @@ width:auto;
             width:80px;
             height:80px;
             right:0 px;
-            top:400px;
+            top:500px;
         }
         .input1 {
             text-align: left;
@@ -244,16 +472,18 @@ width:auto;
                        <input type="image" src ="../public/images/addGreenCircle.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitVehicle(event)">
                  
                         <div id = "section 1_2">
-                            
-                            <p> <label class="label1" for="">VIN*:</label>&nbsp;<input class="input2" type = "text"  id ="cp01"name = "VIN" placeholder ="VIN" pattern="[A-Za-z0-9]{17}" maxlength = 17 required = "true" onchange="VIN_Change()"/><span style= "color:red;" id ="error_cp01"/><span id="VIN_Check"></span></p>
- <p> <label class="label1" for="">Confirm VIN*:</label>&nbsp;<input class="input2" type = "text"  id ="cp01_1"name = "VIN_01" placeholder ="VIN" pattern="[A-Za-z0-9]{17}" maxlength = 17 required = "true" onchange="VIN_Change2()"/><br><span id="VIN_Check2"style="text-align:right"></span></p>
+                           <label >Switch to Construction Vehicle</label> <input type="checkbox" name="my-checkbox"  id = "switch_to_Construction" onchange="switch_to_Construction1()">
+                            <p> <label id ="label_VIN"class="label1" for="">VIN*:</label>&nbsp;<input class="input2" type = "text"  id ="cp01"name = "VIN" placeholder ="VIN" pattern="[A-HJ-NPR-Za-hj-npr-z0-9]{17}" maxlength = 17 required = "true" onchange="VIN_Change()"/><span style= "color:red;" id ="error_cp01"/><br><span id="VIN_Check"></span><span id="VIN_Check_1"></span></p>
+ <p> <label class="label1" for="">Confirm VIN*:</label>&nbsp;<input class="input2" type = "text"  id ="cp01_1"name = "VIN_01" placeholder ="VIN" pattern="[A-HJ-NPR-Za-hj-npr-z0-9]{17}" maxlength = 17 required = "true" onchange="VIN_Change2()"/><br><span id="VIN_Check2"style="text-align:left"></span></p>
                 <p><label class="label1" for="">Unit Number*:</label>&nbsp;<input class="input1" type = "text" id ="cp02" name = "UnitNumber" placeholder ="Unit Number" /><span style="color:red" id ="error_cp02"/></p>
                 <p>    <label class="label1" for="">Make*:</label>&nbsp;    <input class="input1" type = "text" id ="cp03" name = "Make" placeholder = "Make"value =""required= "true"/></p>
                 <p>    <label class="label1" for="">Model*:</label>&nbsp;    <input class="input1" type = "text" id ="cp04" name = "Model" placeholder = "Model"value =""required= "true"/></p>
+                <p>    <label class="label1" for="">Vehicle Owner:</label>&nbsp;    <input class="input1" type = "text" id ="cp05" name = "VehicleOwner" placeholder = "Owner"value =""/></p>
                 
 
                 <label class="label1" for="">Year*:</label>&nbsp;<select  class="input1" name = "Year" id="Year">
                     <option  value="-1">Year...</option>
+                    <option  value="N/A">N/A</option>
                     <option value="2000">2000</option><option value="2001">2001</option><option value="2002">2002</option><option value="2003">2003</option><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option></option><option value="2017">2017</option></option><option value="2018">2018</option></option><option value="2019">2019</option></option><option value="2020">2020</option>
                     </select>
                     </div>

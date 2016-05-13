@@ -28,13 +28,13 @@
                               
                               //console.log(VehicleNumber);
                               
-				$("#VIN").trigger("chosen:updated");
+                              $("#VIN").trigger("chosen:updated");
                               //var VehicleID="#"+ (20*VehicleNumber+1).toString();
                               var UnitNumber="#"+ (20*VehicleNumber+2).toString();
                               var Make="#"+(20*VehicleNumber+3).toString();
                               var Model = "#"+(20*VehicleNumber+4).toString();
                               var Year = "#"+(20*VehicleNumber+5).toString();
-
+                              var VehicleOwner = "#" +(20*VehicleNumber +6).toString();
                               //console.log($(CompanyID).html());
                               
                               $("#VehicleID").val(VehicleNumber);
@@ -42,7 +42,8 @@
                               $("#Make").val($(Make).html());
                               $("#Model").val($(Model).html());
                               $("#Year").val($(Year).html());
- 
+                              $("#VehicleOwner").val($(Year).html());
+                              
                               $("#form_1").attr("action", "/chooseExistingEngineBasedOnVehicle/?VIN="+ $("#VIN option:selected").text() +"&ContactID="+ $("#ContactID").html()+"&CompanyID=" +$("#CompanyID").html());
                               
                               
@@ -57,14 +58,15 @@
              var Make="#"+ (20*VehicleNumber+3).toString();
              var Model="#"+(20*VehicleNumber+4).toString();
              var Year = "#"+(20*VehicleNumber+5).toString();
-
+             var VehicleOwner ="#"+(20*VehicleNumber+6).toString();
              
              $("#VIN").val(VehicleNumber);
+             $("#VIN").trigger("chosen:updated");
              $("#UnitNumber").val($(UnitNumber).html());
              $("#Make").val($(Make).html());
              $("#Model").val($(Model).html());
              $("#Year").val($(Year).html());
-
+             $("#VehicleOwner").val($(VehicleOwner).html());
             $("#form_1").attr("action", "/chooseExistingEngineBasedOnVehicle/?VIN="+ $("#VIN option:selected").text() +"&ContactID="+ $("#ContactID").html()+"&CompanyID=" +$("#CompanyID").html());
 
         }
@@ -113,7 +115,13 @@
             }
         }
 
-        
+function AddNewVehicle(){
+    location.href='/addNewVehicleAdmin/<%= CompanyID%>?ContactID=<%= ContactID%>&ContactName=<%= username%>&CompanyName=<%= CompanyName%>';
+}
+    function back(){
+            location.href='/chooseExistingContactBasedOnCompanyID/<%= CompanyID%>?CompanyName=<%= CompanyName%>&selectedContactID=<%= ContactID%>';
+            
+        }
         </script>
 
         <title> <%= h1 %></title>
@@ -207,6 +215,10 @@ width:auto;
             left:5px;
             
         }
+        #table1{
+            position:relative;
+            top:200px;
+        }
 </style>
 
     </head>
@@ -220,7 +232,7 @@ width:auto;
                 <div  id="nav">
                 <button onclick="{location.href='/inputSelection'}">Back To Home</button>
                 <button onclick="{location.href='/signout'}">signout</button><br>
- <button onclick="{location.href='/chooseExistingContactBasedOnCompanyID/<%= CompanyID%>?CompanyName=<%= CompanyName%>&selectedContactID=<%= ContactID%>'}">Back</button>
+ <button onclick="back()">Back</button>
              </div>
 
 
@@ -268,8 +280,10 @@ width:auto;
                    
                    
                 </div>
- -->                 <button class ="button1"id="Add New Vehicle"  onclick="{location.href='/addNewVehicleAdmin/<%= CompanyID%>?ContactID=<%= ContactID%>&ContactName=<%= username%>&CompanyName=<%= CompanyName%>'}">Add New Vehicle</button>&nbsp;&nbsp;&nbsp;
-                  <button class = "button1"id="EditVehicleInfo"  onclick="editVehicle(event);">Edit Vehicle Info</button>
+ -->
+<button class ="button1"id="Add New Vehicle"  onclick="AddNewVehicle()">Add New Vehicle</button>
+
+                <button class = "button1"id="EditVehicleInfo"  onclick="editVehicle(event);">Edit Vehicle Info</button>
                 <form id = "form_1" method="post" name="form1"   >
               
                     <div id = "section2">
@@ -299,6 +313,7 @@ width:auto;
                              <label class="label1" for="">Make:</label>&nbsp;<input type ="text" disabled class ="input1"  id = "Make"/><br><br>
                             <label class="label1" for="Model">Model:</label>&nbsp; <input type ="text" disabled id = "Model" class ="input1" /><br><br>
                             <label class="label1" for="Year">Year:</label>&nbsp; <input type ="text" disabled  class ="input1"id = "Year" /><br><br>
+                            <label class="label1" for="Owner">Vehicle Owner:</label>&nbsp; <input type ="text" disabled  class ="input1"id = "VehicleOwner" /><br><br>
                                                          <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitVehicle(event)">
                           </div>
                     
@@ -318,11 +333,11 @@ width:auto;
                           <th>Make</th>
                           <th>Model</th>
                           <th>Year</th>
-
+                          <th>VehicleOwner</th>
                         </tr>
                       <% for (var i=0;    i<VehicleCount  ;  i++) { %>
                       <tr>
-                          <% for (var j =0; j<6; j++) { %>
+                          <% for (var j =0; j<7; j++) { %>
                           <% var id = (20*i+j).toString();%>
                           <td style="width:100px"  id = "<%= id %>"><%= dataForShowingE[i][j] %></td>
                           <% } %>

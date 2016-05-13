@@ -156,12 +156,33 @@ exports.show=function (req,res,app,dirpath)
                            
                                              var message=req.query.message;
                                              if(message!=undefined){
-                                             res.render('editEngineAdmin', {h1:'Edit Engine',use:{username:'Administrator'},title:'Edit Engine Base On specific VIN',VIN:VIN,SerialNumber:SerialNumber,ContactID: ContactID, CompanyID:CompanyID,dataForShowingE:dataForShowing1,errorMessage:message});
+                                             if(req.query.backURL!=undefined){
+                                             backURL ='http://localhost:9000/jobConclusion?JobID='+req.query.JobID+'&ContactID='+req.query.ContactID+'&VIN='+req.query.VIN+'&DPFID='+req.query.DPFID+'&message=1&CompanyID='+req.query.CompanyID;
+                                             res.render('editEngineAdmin', {h1:'Edit Engine',use:{username:'Administrator'},title:'Edit Engine Base On specific VIN',VIN:VIN,SerialNumber:SerialNumber,ContactID: ContactID, CompanyID:CompanyID,dataForShowingE:dataForShowing1,errorMessage:message, backURL:backURL, backURL_mark:1});
                                              app.set('views', path.join(dirpath, 'views'));
+                                             return;
                                              }
                                              else{
-                                              res.render('editEngineAdmin', {h1:'Edit Engine',use:{username:'Administrator'},title:'Edit Engine Base On specific VIN',VIN:VIN,SerialNumber:SerialNumber,ContactID: ContactID, CompanyID:CompanyID,dataForShowingE:dataForShowing1});
+                                             
+                                             res.render('editEngineAdmin', {h1:'Edit Engine',use:{username:'Administrator'},title:'Edit Engine Base On specific VIN',VIN:VIN,SerialNumber:SerialNumber,ContactID: ContactID, CompanyID:CompanyID,dataForShowingE:dataForShowing1,errorMessage:message,backURL_mark:0});
                                              app.set('views', path.join(dirpath, 'views'));
+
+                                             return;
+                                             }
+                                             }
+                                             else{
+                                             if(req.query.backURL!=undefined){
+                                               backURL ='http://localhost:9000/jobConclusion?JobID='+req.query.JobID+'&ContactID='+req.query.ContactID+'&VIN='+req.query.VIN+'&DPFID='+req.query.DPFID+'&message=1&CompanyID='+req.query.CompanyID;
+                                             res.render('editEngineAdmin', {h1:'Edit Engine',use:{username:'Administrator'},title:'Edit Engine Base On specific VIN',VIN:VIN,SerialNumber:SerialNumber,ContactID: ContactID, CompanyID:CompanyID,dataForShowingE:dataForShowing1,backURL:backURL, backURL_mark:1});
+                                             app.set('views', path.join(dirpath, 'views'));
+                                             return;
+                                             }
+                                             else{
+                                             res.render('editEngineAdmin', {h1:'Edit Engine',use:{username:'Administrator'},title:'Edit Engine Base On specific VIN',VIN:VIN,SerialNumber:SerialNumber,ContactID: ContactID, CompanyID:CompanyID,dataForShowingE:dataForShowing1,backURL_mark:0});
+                                             app.set('views', path.join(dirpath, 'views'));
+
+                                             return;
+                                             }
                                              }
                                              }
                                              

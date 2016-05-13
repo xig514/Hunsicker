@@ -78,6 +78,8 @@ var editEngineAdmin=require('./routes/admin/edit/editEngineAdmin');
 var editDPFAdmin = require('./routes/admin/edit/editDPFAdmin');
 //----------------------------------------------------------------------------------------------------------------------job Conclusion
 var jobConclusion= require('./routes/admin/jobConclusion');
+//----------------------------------------------------------------------------------------------------------------------python
+var python_script = require('./routes/admin/python.js')
 
 //-----------------------------------------------------------------------------------------------------------------------end admin
 
@@ -473,7 +475,16 @@ app.get('/editDPFAdmin',function(req,res){
 app.post('/editDPFAdmin',function(req,res){
          editDPFAdmin.handle_Input(req,res);
          });
-
+//================================================================================
+//python admin
+app.get('/python',function(req,res){
+    python_script.show(req,res);
+    
+        });
+app.get('/analysisResult',function(req,res){
+        
+        python_script.showResult(req,res);
+        });
 //================================================================================delete admin
 app.get('/deleteCompanyAdmin',function(req,res){
         

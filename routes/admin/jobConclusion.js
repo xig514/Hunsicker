@@ -17,12 +17,12 @@ var poolH = mysql.createPool({
 exports.show=function (req,res)
 {
 var queryClause2="";
-    
+    /*
     if(!req.isAuthenticated()) {
         res.redirect('/login?error=Time_out');
         
     } else {
-        
+     
         var user = req.user;
         if(user!=undefined){
             var keys = Object.keys(user);
@@ -33,7 +33,7 @@ var queryClause2="";
             //  console.log(val.username);
             if(username=="adminBob"){
                 
-                
+                */
                 
                 
     var dataForShowing1=new Array();//Company
@@ -89,7 +89,7 @@ var queryClause2="";
                                              
                                              }
                                              
-                                             else{console.log("no company records");}
+                                             else{console.log("no company records");return;}
                                              
                                              
                                              
@@ -133,6 +133,7 @@ var queryClause2="";
                                          //Here go direct to add new Contact for this company pape.
                                         
                                          res.render('addNewContactAdmin',{title:'Add New Contact Admin',CompanyName: dataForShowing2[11],CompanyID:CompanyID});
+                                         return;
                                          
                                          }
 //***********************************************************************************************************************************************DPF 
@@ -268,6 +269,7 @@ else
 message=req.query.message;
 }
                                          res.render('jobConclusion', {h1:'Job Conclusion',title:'Job Conclusion',VIN:VIN,CompanyID:CompanyID,ContactID:ContactID,DPFID:DPFID,JobID:JobID,message:message, dataForShowingE1:dataForShowing1,dataForShowingE2:dataForShowing2,dataForShowingE3:dataForShowing3,dataForShowingE4:dataForShowing4,dataForShowingE5:dataForShowing5,dataForShowingE6:dataForShowing6});
+                                 return;
 					}
 						else{
 					//jump to add job page
@@ -288,7 +290,9 @@ message=req.query.message;
                                              }
                                              else{
                                              //jump to add new engine.
-                                             console.log("Need to insert this engine.")
+                                             console.log("Need to insert this engine.");
+                                             return;
+                                             
                                              }
 
                                             }
@@ -315,7 +319,7 @@ message=req.query.message;
                                          //Jump to add vehicle page;
                                        
                                          res.redirect('/addNewVehicleAdmin/'+CompanyID+'?ContactID='+ContactID+'&ContactName=' +ContactName);
-                                         
+                                         return;
                                          }
                                          
                                          }
@@ -340,10 +344,12 @@ message=req.query.message;
                                          
                                          }
                                          
-                                         else{console.log("no DPFDOC records");
+                                         else{
+                                         console.log("no DPFDOC records");
                                          //jump to add new DPF page.
+                                         
                                          res.redirect('/addNewDPFAdmin?ContactID='+ContactID+'&VIN='+VIN+'&CompanyID='+CompanyID);
-                                         app.set('views', path.join(dirpath, 'views'));
+                                         return;
                                          }
                                          
                                          }
@@ -403,7 +409,7 @@ message=req.query.message;
                                              });
                                 });
       
-   
+   /*
             }
             else{
                 res.redirect('/userPage/'+username);
@@ -419,8 +425,10 @@ message=req.query.message;
             //logged in but user is undefined? Will that happen?
             res.redirect('/login');
         }
-        
+    
+    
     }
+    */
     
     
  

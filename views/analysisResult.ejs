@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>Existing Company</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="/javascripts/jquery.autotab.js"></script>
+        <script src="/javascripts/jquery.cookie.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+        
+        $(document).ready(function() {
+                          
+                         
+                     $("#nav").height($("#section").outerHeight());
+                          });
+                          
+            
+        
+      
+           </script>
+
+        <title> <%= h1 %></title>
+        
+        <style>
+
+body{
+min-width:2200px;
+width:auto;
+}
+
+       #header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+	#section {
+		    width:auto;
+		    float:left;
+		    padding:10px;
+            
+            height: 1200px;
+		}
+     
+      
+		#nav {
+		    line-height:30px;
+		    background-color:#eeeeee;
+		    height:auto;
+                    min-height: 600px;
+            
+		    width:150px;
+		    float:left;
+		    padding:20px;
+		}
+        
+		#footer {
+		    background-color:black;
+		    color:white;
+		    clear:both;
+		    text-align:center;
+		   padding:5px;	 	 
+		}
+        
+       
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            
+        }
+        th, td {
+            padding: 5px;
+        }
+       
+</style>
+
+    </head>
+    <body>
+        
+                <div id = "header">
+                <h1><%=title%></h1>
+                </div>
+
+
+                <div  id="nav">
+                    <button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="{location.href='/inputSelection'}">Back To Home</button>
+                
+                <button class="btn btn-primary" style="margin-top:5px;margin-left:5px;margin-bottom:10px;" onclick="{location.href='/signout'}">signout</button>
+                
+                
+                
+             </div>
+
+
+                <div id="section">
+                    
+                    <p>
+                    <% if(typeof(message) !== 'undefined') {%>
+                    <span style="color:red"><%= message %></span>
+                    <% } %>
+                    </p>
+
+         
+         <iframe frameborder="0" scrolling="no" width="900px" height="600px"
+             src="/myfig.png" name="imgbox" id="imgbox">
+             
+         </iframe><br/>
+                
+                  
+                 
+
+
+
+
+
+                </div>
+             
+    <div id="footer">
+	@ Hunsicker DataBase Choose Existing CompanyID Information
+	</div>
+
+    </body>
+
+    
+    
+
+
+
+</html>
+
+
+
+

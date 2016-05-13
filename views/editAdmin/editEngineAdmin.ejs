@@ -80,38 +80,17 @@
             var link1= '/chooseExistingEngineBasedOnVehicle?VIN='+$("#VIN").val()+"&ContactID="+$("#ContactID").html()+"&CompanyID="+$("#CompanyID").html()+"&SerialNumber="+$("#SerialNumber_temp").html();
             location.href=link1;
         }
-        /*
-        function checkContactID(){
-            var count_Contact = parseInt(document.getElementById('ContactID').length);
-            console.log('count_ContactID ' +count_Contact);
-            if( count_Contact <2  ) {
-                window.alert('No Contact Information, Please insert One Contact First!');
-                document.getElementById('ContactID_Span').style.color="red";
-                return false;
-                
-            }
-            else{
-                
-              //  var cid = $('#ContactID');
-              var ContactIDValue = document.getElementById("ContactID");
-              var Choice = ContactIDValue.options[ContactIDValue.selectedIndex].value;
-
-                if(Choice  =="select")
-                {
-                    window.alert('Please choose a ContactID');
-                     document.getElementById('ContactID_Span').style.color="red";
-                    return false;
-                }
-                else{
-                return true;
-                }
-            }
+        function BackToJobConclusion(){
+            var aaa =$("#back_URL").html();
+            var elem = document.createElement('textarea');
+            elem.innerHTML = aaa;
+            var decoded = elem.value;
+            //bbb  = aaa.replace("/amp;", "&");
             
+            //alert(decoded);
+            location.href = decoded;
             
-            return false;
-           
         }
-        */
         
         </script>
 
@@ -212,7 +191,14 @@ width:auto;
                 <div  id="nav">
                 <button onclick="{location.href='/inputSelection'}">Back To Home</button>
                 <button onclick="{location.href='/signout'}">signout</button><br>
-                <button onclick="back()">Back</button>
+                <% if(backURL_mark== 1) {%>
+                <textarea style="color:red"  id ="back_URL" hidden><%= backURL %></textarea>
+                
+                <button class="btn btn-primary"  style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="BackToJobConclusion()">BackToLast</button>
+                <% }else{  %>
+                <button class="btn btn-primary"  style="margin-top:5px;margin-left:5px;margin-bottom:10px;"onclick="back()">BackToLast</button>
+                <%}%>
+                
              </div>
 
 
