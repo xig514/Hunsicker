@@ -27,11 +27,13 @@
         function DPFIDonChange(){
              var DPFNumber = $("#DPFID").val();
              console.log(DPFNumber);
-           $("#DPFID").trigger("chosen:updated");
+           
+           
              var PartNumber="#"+ (20*DPFNumber+1).toString();
              var SerialNumber="#"+ (20*DPFNumber+2).toString();
              var OtherNumber="#"+ (20*DPFNumber+3).toString();
              var Manufacturer="#"+(20*DPFNumber+4).toString();
+             //alert(Manufacturer);
              var OuterDiameter	 = "#"+(20*DPFNumber+5).toString();
              var SubstrateDiameter = "#"+(20*DPFNumber+6).toString();
              var OuterLength = "#"+(20*DPFNumber+7).toString();
@@ -40,24 +42,65 @@
              var TypeOfSubstrate = "#"+(20*DPFNumber+10).toString();
 
              
-             
+           
              $("#PartNumber").val($(PartNumber).html());
-             $("#SerialNumber").val($(SerialNumber).html());
+             if(DPFNumber   ==-1){
+              $("#SerialNumber").val("");
+             }else{
+             $("#SerialNumber").val(DPFNumber);
+             }
              $("#OtherNumber").val($(OtherNumber).html());
+             //alert($(Manufacturer).html());
              $("#Manufacturer").val($(Manufacturer).html());
+             //$("#Manufacturer").val($("#104").html());
+
              $("#OuterDiameter").val($(OuterDiameter).html());
              $("#SubstrateDiameter").val($(SubstrateDiameter).html());
              $("#OuterLength").val($(OuterLength).html());
              $("#SubstrateLength").val($(SubstrateLength).html());
              $("#DPForDOC").val($(DPForDOC).html());
              $("#TypeOfSubstrate").val($(TypeOfSubstrate).html());
-
+             $("#SerialNumber").trigger("chosen:updated");
 
 $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&ContactID="+ $("#ContactID").html()+"&CompanyID=" +$("#CompanyID").html()+"&DPFID="+$("#DPFID option:selected").text());
 
         }
-        
+        function SerialNumberOnchange(){
+            
+            var DPFNumber  =$("#SerialNumber").val();
+           
        
+            
+            var PartNumber="#"+ (20*DPFNumber+1).toString();
+            var SerialNumber="#"+ (20*DPFNumber+2).toString();
+            var OtherNumber="#"+ (20*DPFNumber+3).toString();
+            var Manufacturer="#"+(20*DPFNumber+4).toString();
+            var OuterDiameter	 = "#"+(20*DPFNumber+5).toString();
+            var SubstrateDiameter = "#"+(20*DPFNumber+6).toString();
+            var OuterLength = "#"+(20*DPFNumber+7).toString();
+            var SubstrateLength = "#"+(20*DPFNumber+8).toString();
+            var DPForDOC = "#"+(20*DPFNumber+9).toString();
+            var TypeOfSubstrate = "#"+(20*DPFNumber+10).toString();
+            console.log(DPFNumber  );
+            if(DPFNumber==-1){
+            $("#DPFID").val(-1);
+            }else{
+            $("#DPFID").val(DPFNumber);
+            }
+            $("#PartNumber").val($(PartNumber).html());
+            $("#SerialNumber").val($(SerialNumber).html());
+            $("#OtherNumber").val($(OtherNumber).html());
+            $("#Manufacturer").val($(Manufacturer).html());
+            $("#OuterDiameter").val($(OuterDiameter).html());
+            $("#SubstrateDiameter").val($(SubstrateDiameter).html());
+            $("#OuterLength").val($(OuterLength).html());
+            $("#SubstrateLength").val($(SubstrateLength).html());
+            $("#DPForDOC").val($(DPForDOC).html());
+            $("#TypeOfSubstrate").val($(TypeOfSubstrate).html());
+             $("#DPFID").trigger("chosen:updated");
+            $("#form_1").attr("action", "/addRemainingJobInfo/?VIN="+ $("#VIN").html() +"&ContactID="+ $("#ContactID").html()+"&CompanyID=" +$("#CompanyID").html()+"&DPFID="+$("#DPFID option:selected").text());
+        }
+        
         var arry2 = ['Hide All','Show All'];
         /*
         function hideContactInfo(){
@@ -180,7 +223,7 @@ width:auto;
         }
         #section3_4{
             width:auto;
-            float:right;
+            float:left;
             text-align:right;
             
             position: relative;
@@ -287,7 +330,7 @@ width:auto;
                        <option value="-1">-- select --</option>
                        <% for(var i = 0; i <DPFCount;i++) {%>
                        <!-- <option value="<%= ContactID%>"><%=ContactID%></option>-->
-                       <option id="<%= i*2+100%>"value="<%=i%>"><%=DPFID[i]%></option>
+                       <option id="<%= i*2+1000%>"value="<%=i%>"><%=DPFID[i]%></option>
                        <%}%>
                        
                         </select>
@@ -299,7 +342,7 @@ width:auto;
                          
                          <option value="select">-- select --</option>
                          <% for(var i = 0; i <DPFCount;i++) {%>
-                       
+                          
                          <option value="<%=i%>"><%=SerialNumber[i]%></option>
                          <%}%>
                         
@@ -307,8 +350,21 @@ width:auto;
                         -->
                      <label class="label1" for="">Manufacturer:</label>&nbsp;   <input type ="text" disabled  class ="input1"name="Manufacturer"id = "Manufacturer" /><br><br>
                      <label class="label1" for="">Part Number:</label>&nbsp;  <input type ="text" disabled class ="input1"  name="PartNumber"id = "PartNumber"/><br><br>
-                     <label class="label1" for="">Serial Number:</label>&nbsp;   <input type ="text" disabled class ="input1"  name="SerialNumber" id = "SerialNumber"/><br><br>
-                          
+                     <label class="label1" for="">Serial Number:</label>&nbsp;
+                    
+                     <Select style="width:250px" class="chosen-select"  name = "SerialNumber" id="SerialNumber" onchange="SerialNumberOnchange()"/>
+                     <option value="-1">-- select --</option>
+                     <% for(var i = 0; i <DPFCount;i++) {%>
+                     <!-- <option value="<%= ContactID%>"><%=ContactID%></option>-->
+                     <option id="<%= i*2+10000 %>" value ="<%= i %>"><%=SerialNumber[i]%></option>
+                     <%}%>
+                     </select>
+                     <br>
+                     <br>
+
+
+
+
                      <label class="label1" for="">Other Number:</label>&nbsp;  <input type ="text" disabled class ="input1" name="OtherNumber"id = "OtherNumber"  /><br><br>
                      <label class="label1" for="">DPF or DOC:</label>&nbsp;   <input type ="text" class ="input1" disabled name="DPForDOC"id = "DPForDOC"/><br><br>
                      <label class="label1" for="">Type Of Substrate:</label>&nbsp;   <input type ="text" disabled  class ="input1"name="TypeOfSubstrate"id = "TypeOfSubstrate" /><br><br>
@@ -355,7 +411,7 @@ width:auto;
                       <tr>
                           <% for (var j =0; j<12; j++) { %>
                           <% var id = (20*i+j).toString();%>
-                          <td style="width:100px"  id = "<%= id %>"><%= dataForShowingE[i][j] %></td>
+                          <td style="width:100px"  id = "<%= id %>"><%= dataForShowingE[i][j]    %></td>
                           <% } %>
                       </tr>
                        <% } %>
