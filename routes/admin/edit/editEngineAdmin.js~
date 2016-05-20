@@ -52,7 +52,7 @@ exports.handle_Input=function (req,res)
                                          connection.release();
                                          if(!err)
                                          {if(req.query.back==1){
-    					res.redirect('/editEngineAdmin?VIN='+VIN+'&CompanyID='+req.query.CompanyID+'&ContactID='+ContactID+'&message=Successful&DPFID='+req.query.DPFID+'&JobID='+req.query.JobID+"&backURL=1");
+    					res.redirect('/editEngineAdmin?VIN='+VIN+'&CompanyID='+req.query.CompanyID+'&ContactID='+ContactID+'&message=Successful&DPFID='+DPFID+'&JobID='+JobID+"&backURL=1");
 }else{
                                          res.redirect('/editEngineAdmin?VIN='+VIN+'&CompanyID='+req.query.CompanyID+'&ContactID='+ContactID+'&message=Successful');
 }

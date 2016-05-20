@@ -201,7 +201,7 @@ width:auto;
                  <% if(typeof(JobID) != 'undefined') {%>
                 <form id = "form_1"method="post" name="form1" action="/editCompanyAdmin/<%= CompanyID%>?JobID=<%= JobID%>&VIN=<%= VIN%>&ContactID=<%=ContactID %>&DPFID=<%=DPFID%>&back=1"   >
               <% }else{ %>
-		 <form id = "form_1"method="post" name="form1" action="/editCompanyAdmin/<%= CompanyID%>>"   >
+		 <form id = "form_1"method="post" name="form1" action="/editCompanyAdmin/<%= CompanyID%>?JobID=<%= JobID%>"   >
 		<% } %>
                     <div id = "section2">
                     

@@ -282,7 +282,7 @@ function jumpToChoose(req,res,VIN1,CompanyID,ContactID,Contactname,CompanyName){
                                          dataForShowing1[i][3]=rows[i].vmake;
                                          dataForShowing1[i][4]=rows[i].vmodel;
                                          dataForShowing1[i][5]=rows[i].vy;
-                                         dataForShowing1[i][6]=rows[i].vo;
+                                         
                                          
                                          }
                                          

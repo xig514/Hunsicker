@@ -277,7 +277,7 @@ width:auto;
                 </div>
  -->             
 
-
+$("#form_1").attr("action", "/editVehicleAdmin/"+ $("#VIN_temp").html() +"?ContactID="+ $("#ContactID").html()+"&CompanyID=" +$("#CompanyID").html()+"&ContactName=")+$("#ContactName").html();
      <% if(typeof(JobID) != 'undefined') {%>
                 <form id = "form_1"method="post" name="form1" action="/editVehicleAdmin/<%= VIN %>?ContactID=<%= ContactID%>?CompanyID=<%= CompanyID %>&JobID=<%= JobID %>&ContactName=<%= ContactName %>&DPFID=<%= DPFID %>&back=1"   >
               <% }else{ %>

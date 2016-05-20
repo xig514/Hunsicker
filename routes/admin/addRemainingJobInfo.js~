@@ -243,14 +243,12 @@ console.log('date111 ' +Date1);
         var year = res1[2];
         var month= res1[0];
         var day = res1[1];
-/*
 	if(parseInt(month)<10){
 	month='0'+month;
 	}
         if(parseInt(day)<10){
 	day='0'+day;
 	}
-*/
         JobID = JobLocation+ year.substr(year.length - 2)+month+day;
 console.log('JobID  '   +JobID);
         //console.log(JobID);

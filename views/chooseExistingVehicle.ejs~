@@ -104,7 +104,7 @@
         }
         function editVehicle(event){
             VIN =$("#VehicleID option:selected").val();
-		
+		alert(VIN);
             if(VIN ==-1 ||VIN ==undefined){
                 alert("Please select a VehicleID and then click next.");
                 event.preventDefault();

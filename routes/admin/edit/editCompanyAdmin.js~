@@ -78,7 +78,7 @@ exports.handle_Input=function (req,res)
                                          console.log('error in Update Company!');
                                          if(req.query.back==1)
 {
- res.redirect('/editCompanyAdmin/'+CompanyID+'?message=Failed&DPFID='+req.query.DPFID+"&JobID="+req.query.JobID+"&ContactID=" +req.query.ContactID+"&VIN="+req.query.VIN+"&backURL=1");
+ res.redirect('/editCompanyAdmin/'+CompanyID+'?message=Failed&DPFID='+req.query.DPFID+"&JobID="+req.query.JobID+"&ContactID=" +req.query.ContactID+"&CompanyID="+"&VIN="+req.query.VIN+"&backURL=1");
 }else{
                                          res.redirect('/editCompanyAdmin/'+CompanyID+'?message=Failed');
 }

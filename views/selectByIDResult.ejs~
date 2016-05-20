@@ -47,7 +47,7 @@
                                  jsonpCallback: 'callback',
                                  success: function (data) {
                                  
-                                 if(data[0]=='not found')
+                                 if(data[0]=='not_found')
                                  {
                                  $('#lblResponse').html('Error connecting to the server.');
                                  }

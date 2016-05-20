@@ -262,7 +262,7 @@ function jumpToChoose(req,res,selectedCompanyID){
                                              }
                                              // console.log('CompanyCount = ' + countCompanyID);
                                              //;console.log(CompanyID);
-                                             res.render('chooseExistingCompanyadmin', {h1:'Select Company',use:{username:'Administrator'},title:'The result of all Companies',CompanyCount:countCompanyID,CompanyID:CompanyID,CompanyName:CompanyName,dataForShowingE:dataForShowing1,selectedCompanyID:selectedCompanyID});
+                                             res.render('chooseExistingCompanyadmin', {h1:'Select Company',use:{username:'Administrator'},title:'The result of all Companys',CompanyCount:countCompanyID,CompanyID:CompanyID,CompanyName:CompanyName,dataForShowingE:dataForShowing1,selectedCompanyID:selectedCompanyID});
                                              }
                                              else{
                                              console.log('error in Select CompanyInfo!');

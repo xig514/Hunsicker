@@ -3,7 +3,6 @@ Created on 2016.2.2
 
 @author: tinalu
 '''
-'''
 import sys
 import matplotlib.pyplot as plt
 import numpy as np
@@ -61,7 +60,7 @@ if __name__ == '__main__':
     plt.savefig('myfig.png')
     plt.show()
      
-'''     
+     
      
      
      

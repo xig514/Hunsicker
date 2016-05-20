@@ -19,7 +19,7 @@
 			  $("#DPFID").trigger("chosen:updated");
                           if(a!=-1)
                           {
-                          $('#ContactID option[value='+ a +']').prop({selected: true});
+                          $('#ContactID option[value=('+ a +')').prop({selected: true});
 			 	
                           $("#ContactID").change();
   			 

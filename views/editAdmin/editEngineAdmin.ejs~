@@ -248,7 +248,7 @@ width:auto;
                 <% if(typeof(JobID) != 'undefined') {%>
                 <form id = "form_1"method="post" name="form1" action="/editEngineAdmin/?ContactID=<%= ContactID%>&CompanyID=<%= CompanyID %>&JobID=<%= JobID %>&VIN=<%= VIN %>&DPFID=<%= DPFID %>&back=1"   >
               <% }else{ %>
-		 <form id = "form_1"method="post" name="form1" action="/editEngineAdmin/?ContacID=<%= ContactID%>&CompanyID=<%= CompanyID %>&VIN=<%= VIN%>"   >
+		 <form id = "form_1"method="post" name="form1" action="/editEngineAdmin/?ContacID=<%= ContactID%>?CompanyID=<%= CompanyID %>&VIN=<%= VIN%>"   >
 		<% } %>
               
                     <div id = "section2">

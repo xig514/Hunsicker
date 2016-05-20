@@ -444,7 +444,7 @@ function submitVehicle(event){
         event.preventDefault();
         return;
     }
-//alert("validate  " +validate);
+alert("validate  " +validate);
     if(validate == 0 ){
         bootbox.alert("The format of VIN is not correct!", function() {
                       

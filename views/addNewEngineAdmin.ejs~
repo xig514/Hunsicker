@@ -169,7 +169,7 @@ text-align:right;
                     </p>
                      <p>
                     <% if(typeof(CompanyID) !== 'undefined') {%>
-                    <span style="color:green ;"hidden id ="CompanyID"><%= CompanyID %></span>
+                    <span style="color:green ;hidden" id ="CompanyID"><%= CompanyID %></span>
                     <% } %>
                     </p>
                     <p>

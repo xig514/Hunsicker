@@ -157,7 +157,7 @@
                 <% if(typeof(JobID) != 'undefined') {%>
                 <form id = "form_1"method="post" name="form1" action="/editDPFAdmin/?ContactID=<%= ContactID%>?CompanyID=<%= CompanyID %>&JobID=<%= JobID %>&VIN=<%= VIN %>&DPFID=<%= DPFID %>&back=1"   >
               <% }else{ %>
-		 <form id = "form_1"method="post" name="form1" action="/editDPFAdmin/?ContactID=<%= ContactID%>?CompanyID=<%= CompanyID %>&DPFID=<%= DPFID %>"   >
+		 <form id = "form_1"method="post" name="form1" action="/editDPFAdmin/?ContactID=<%= ContactID%>?CompanyID=<%= CompanyID %>&DPFID=<%=DPFID %>"   >
 		<% } %>
 
                

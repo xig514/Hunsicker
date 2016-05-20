@@ -221,7 +221,7 @@ exports.show=function (req,res,app,dirPath)
                                          else{
                                          if(req.query.backURL!=undefined){
                                           backURL ='/jobConclusion?JobID='+req.query.JobID+'&ContactID='+req.params.id+'&VIN='+req.query.VIN+'&DPFID='+req.query.DPFID+'&message=1&CompanyID='+req.query.CompanyID;
-                                         res.render('editContactAdmin', {h1:'Select Contact',use:{username:'Administrator'},title:'The result of specific Contact you want to edit',CompanyName:CompanyName, CompanyID: CompanyID,ContactID:ContactID,ContactName:ContactName,dataForShowingE:dataForShowing1,backURL:backURL, backURL_mark:1,JobID:req.query.JobID,VIN:req.query.VIN,DPFID:req.query.DPFID});
+                                         res.render('editContactAdmin', {h1:'Select Contact',use:{username:'Administrator'},title:'The result of specific Contact you want to edit',CompanyName:CompanyName, CompanyID: CompanyID,ContactID:ContactID,ContactName:ContactName,dataForShowingE:dataForShowing1,backURL:backURL, backURL_mark:1});
                                          app.set('views', path.join(dirPath, 'views'));
                                          return;
                                          }

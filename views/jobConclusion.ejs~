@@ -281,7 +281,7 @@ width:auto;
                           <th>TypeOfDriving</th>
                           <th>OldJobID</th>
 			  <th>JobLocation</th>
-			
+			  <th>TypeOfDriving</th>
                         </tr>
                     
                       <tr>

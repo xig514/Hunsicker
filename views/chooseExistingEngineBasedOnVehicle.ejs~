@@ -91,13 +91,13 @@
             //window.location = "/chooseExistingContactBasedOnCompanyID/"+CompanyID;
 
         }
-        function SkipEngine()
+        function SkipEngine(){
 	{
 	var b =confirm("Skip the Engine Page?");
 		if(b==true){
 
 		location.href = "/chooseExistingDPF?VIN="+ $("#VIN").val() +"&ContactID="+ $("#ContactID").html()+"&CompanyID=" +$("#CompanyID").html();
-		}
+	}
 	else{
 		return;
 	}
