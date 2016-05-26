@@ -103,8 +103,8 @@ exports.handle_selectByIDResult=function(request,response) {
                                         
                                         //This is the old format of Job information
                                         /*response.render('selectByIDResult',{title:'Select By ID Result',JobID:JobID, Today:today, ContactID:ContactID,WorkOrderNumber:WorkOrderNumber, PurchaseOrderNumber:PurchaseOrderNumber,StartTime:StartTime,EndTime:EndTime,VIN:VIN,  VehicleTotalMileage:VehicleTotalMileage,VehicleTotalHours:VehicleTotalHours, DPFID:DPFID, ReasonForCleaning:ReasonForCleaning,TypeOFDriving:TypeOFDriving,OldJobID:OldJobID,JobLocation:JobLocation});*/
-		var queryCompanyID= "Select CompanyID as cid from Contact where ContactID = "+ connection.escape(ContactID)+";";
- 		 connection.query(queryCompanyID,function(err,rows){
+		var queryContactID= "Select CompanyID as cid from Contact where ContactID = "+ connection.escape(ContactID)+";";
+ 		 connection.query(queryJobID,function(err,rows){
                                         connection.release();
                                         if(!err) {
                                         

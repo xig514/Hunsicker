@@ -154,7 +154,8 @@ text-align:right;
              <button class="btn btn-primary" onclick="{location.href='/inputSelection'}">Back To Home</button><br>
              
             <button class="btn btn-primary" onclick="{location.href='/signout'}">signout</button><br>
-            <button class="btn btn-primary" onclick="{location.href='/chooseExistingEngineBasedOnVehicle?VIN=<%= VIN%>&ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>'}">Back</button>
+            <button class="btn btn-primary" onclick="{location.href='/chooseExistingEngineBasedOnVehicle?VIN=<%= VIN%>&ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>'}">BackToEngine</button>
+<button class="btn btn-primary" onclick="{location.href='/chooseExistingVehicle/<%= VIN%>?ContactID=<%= ContactID%>&CompanyID=<%= CompanyID%>'}">BackToVehicle</button>
                 </div>
 <span style="color:Blue">Please input your Vehicle Information.</span><br><br>
 		

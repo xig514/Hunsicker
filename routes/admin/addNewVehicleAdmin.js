@@ -154,7 +154,10 @@ exports.handle_Input=function (request,response)
                                                           var VIN1='';
                                                            //--------------------------------------------------------------------------------------------------------------
                                                           if(count3_temp>=1){
-                                                          VIN1=VIN+'_'+MaxVehicleID;
+                                                          //VIN1=VIN+'_'+MaxVehicleID;
+							  var errorM = 'This Vehicle is in the database with a different UnitNumber/Owner';
+							   response.redirect('/addNewVehicleAdmin/'+CompanyID+'?AbandonOrUpdate=1&ContactID='+ContactID+'&ContactName='+ContactName+'&error=' +errorM+'&errorCode=2&VIN='+VIN);	
+								return;
                                                           }
                                                           else {
                                                           VIN1=VIN;

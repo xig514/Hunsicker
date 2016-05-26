@@ -88,7 +88,7 @@
             arry2.push(value);
             document.getElementById("showall1").innerHTML = value;
             $("#TableAll").toggle();
-                $("#nav").height($("#section").outerHeight());
+            $("#nav").height($("#section").outerHeight()+200);
 
         }
 
@@ -104,7 +104,7 @@
         }
         function editVehicle(event){
             VIN =$("#VehicleID option:selected").val();
-		alert(VIN);
+		
             if(VIN ==-1 ||VIN ==undefined){
                 alert("Please select a VehicleID and then click next.");
                 event.preventDefault();
@@ -132,6 +132,7 @@ function AddNewVehicle(){
 body{
 min-width:900px;
 width:auto;
+
 }
 
        #header {
@@ -146,17 +147,17 @@ width:auto;
 		    width:auto;
 		    float:left;
 		    padding:10px;
-            height: 1200px;
-            
+            	height:auto;
+            	min-height:800px;
 		}
         #section1{
-            width:25%;
+            width:auto;
             float:left;
             padding:20px;
             text-align: right;
         }
         #section2{
-            width:70%;
+            width:auto;
             float:left;
             padding:10px;
             text-align: right;
@@ -172,7 +173,7 @@ width:auto;
 		    line-height:30px;
 		    background-color:#eeeeee;
 		    height:auto;
-            min-height: 600px;
+           	 
             
 		    width:150px;
 		    float:left;
@@ -184,7 +185,7 @@ width:auto;
 		    color:white;
 		    clear:both;
 		    text-align:center;
-		   padding:5px;	 	 
+		    padding:5px;	 	 
 		}
 
         #showall1
@@ -204,6 +205,9 @@ width:auto;
         .submit{
             max-width: 150px;
             max-height: 100px;
+	    position:relative;
+		top:0px;
+
         }
         .input1 {
             text-align: left;
@@ -212,13 +216,14 @@ width:auto;
         }
         .button1{
             position:relative;
-            top:700px;
+            top:500px;
             left:5px;
             
         }
-        #table1{
-            position:relative;
-            top:200px;
+	.button2{
+            top:510px;
+            position: relative;
+            left: 5px;
         }
 </style>
 
@@ -233,7 +238,7 @@ width:auto;
                 <div  id="nav">
                 <button onclick="{location.href='/inputSelection'}">Back To Home</button>
                 <button onclick="{location.href='/signout'}">signout</button><br>
- <button onclick="back()">Back</button>
+ <button onclick="back()">BackToContact</button>
              </div>
 
 
@@ -282,9 +287,9 @@ width:auto;
                    
                 </div>
  -->
-<button class ="button1"id="Add New Vehicle"  onclick="AddNewVehicle()">Add New Vehicle</button>
-
-                <button class = "button1"id="EditVehicleInfo"  onclick="editVehicle(event);">Edit Vehicle Info</button>
+		<button class = "button1"id="EditVehicleInfo"  onclick="editVehicle(event);">Edit Vehicle Info</button><br>
+		<button class ="button2"id="Add New Vehicle"  onclick="AddNewVehicle()">Add New Vehicle</button>
+               
                 <form id = "form_1" method="post" name="form1"   >
               
                     <div id = "section2">
@@ -315,14 +320,14 @@ width:auto;
                             <label class="label1" for="Model">Model:</label>&nbsp; <input type ="text" disabled id = "Model" class ="input1" /><br><br>
                             <label class="label1" for="Year">Year:</label>&nbsp; <input type ="text" disabled  class ="input1"id = "Year" /><br><br>
                             
-                                                         <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitVehicle(event)">
+                                                      <input type="image" src ="../../public/images/next.jpeg" alt="submit" id = "submit1"  class = "submit" onclick="submitVehicle(event)">
                           </div>
                     
                     
                
                            
                 </form>
-               
+               <br><br><br><br><br>
 
                   <!-- <button id = "hide1" onclick = "hideContactInfo()" >Hide</button><br>-->
                   <div id = "table1">
